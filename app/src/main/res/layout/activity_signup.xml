@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo_" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/borderline">
+
+            <EditText
+                android:id="@+id/setEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="이메일 주소를 입력해주세요."
+                android:inputType="textEmailAddress" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/borderline">
+
+            <EditText
+                android:id="@+id/setPass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="비밀번호를 입력해주세요."
+                android:inputType="textPassword" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/borderline">
+
+            <EditText
+                android:id="@+id/passCheck"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="한번 더 입력해주세요."
+                android:inputType="textPassword" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/signUp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                app:cornerRadius="5dp" />
+
+            <Button
+                android:id="@+id/toLogin"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="로그인 하러가기"
+                app:cornerRadius="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
