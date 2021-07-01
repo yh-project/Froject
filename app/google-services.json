@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "43404191250",
+    "project_id": "froject-e157c",
+    "storage_bucket": "froject-e157c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43404191250:android:94432ec8841067e928dacb",
+        "android_client_info": {
+          "package_name": "com.example.froject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43404191250-ajnc95akt4seffts505udo3etikotr35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFLX0mtRxqfo520BV1jE8RC1GZiIf3YJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43404191250-ajnc95akt4seffts505udo3etikotr35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
