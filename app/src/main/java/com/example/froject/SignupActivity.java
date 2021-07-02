@@ -1,20 +1,15 @@
 package com.example.froject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,6 +25,7 @@ public class SignupActivity extends AppCompatActivity {
 
         findViewById(R.id.signUp).setOnClickListener(onClickListener);
         findViewById(R.id.gotoLogin).setOnClickListener(onClickListener);
+        findViewById(R.id.back).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -54,6 +50,9 @@ public class SignupActivity extends AppCompatActivity {
                 case R.id.gotoLogin:
                     startActivity(LoginActivity.class);
                     break;
+                case R.id.back:
+                    backAlert();
+                    break;
             }
         }
     };
@@ -71,7 +70,8 @@ public class SignupActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // 회원가입 성공시
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    startToast("ㅇㅋ 성공했다.");
+                                    startToast("회원가입을 성공했습니다.");
+                                    startActivity(MainActivity.class);
                                 } else {
                                     // 회원가입실패시
                                     if(task.getException() != null) {

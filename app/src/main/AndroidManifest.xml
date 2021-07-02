@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Froject">
-        <activity android:name=".PostlistActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".SignupActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".PassresetActivity"></activity>
+        <activity android:name=".UserinfoActivity"></activity>
     </application>
 
 </manifest>

@@ -1,34 +1,33 @@
 package com.example.froject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class PassresetActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_passreset);
 
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.logIn).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoSignup).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoResetpass).setOnClickListener(onClickListener);
+        findViewById(R.id.sendEmail).setOnClickListener(onClickListener);
         findViewById(R.id.back).setOnClickListener(onClickListener);
     }
 
@@ -41,53 +40,38 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finishAlert();
+        backAlert();
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.logIn:
-                    log_In();
-                    break;
-                case R.id.gotoResetpass:
-                    startActivity(PassresetActivity.class);
-                    break;
-                case R.id.gotoSignup:
-                    startActivity(SignupActivity.class);
+                case R.id.sendEmail:
+                    send_resetpass();
                     break;
                 case R.id.back:
-                    finishAlert();
+                    backAlert();
                     break;
             }
         }
     };
 
-    private void log_In() {
-        String email = ((EditText)findViewById(R.id.loginEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.loginPass)).getText().toString();
+    private void send_resetpass() {
+        String email = ((EditText)findViewById(R.id.useEmail)).getText().toString();
 
-        if(email.length()>0 && password.length()>0) {
-            mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        if(email.length()>0) {
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                // 로그인 성공
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("로그인 성공");
-                                startActivity(MainActivity.class);
-                            } else {
-                                //로그인 실패
-                                if(task.getException()!=null) {
-                                    startToast(task.getException().toString());
-                                }
+                                startToast("이메일을 보냈습니다.");
                             }
                         }
                     });
         } else {
-            startToast("이메일 또는 비밀번호를 입력해주세요.");
+            startToast("이메일을 입력해주세요.");
         }
     }
 
@@ -101,16 +85,14 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void finishAlert() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(LoginActivity.this)
-                .setTitle("앱 종료")
-                .setMessage("앱을 종료하시겠습니까?")
+    private void backAlert() {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(PassresetActivity.this)
+                .setTitle("나가기")
+                .setMessage("입력하신 내용이 사라집니다. \n정말 이 창을 나가시겠습니까?")
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        moveTaskToBack(true);
-                        finishAndRemoveTask();
-                        android.os.Process.killProcess(android.os.Process.myPid());
+                        startActivity(LoginActivity.class);
                     }
                 })
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
