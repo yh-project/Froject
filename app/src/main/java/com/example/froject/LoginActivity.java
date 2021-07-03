@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = ((EditText)findViewById(R.id.loginEmail)).getText().toString();
         String password = ((EditText)findViewById(R.id.loginPass)).getText().toString();
 
+
         if(email.length()>0 && password.length()>0) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -76,8 +77,13 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // 로그인 성공
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("로그인 성공");
-                                startActivity(MainActivity.class);
+                                if(user.isEmailVerified()==true) {
+                                    startToast("로그인 성공");
+                                    startActivity(MainActivity.class);
+                                }else {
+                                    startToast("이메일 인증을 완료해주세요.");
+                                    FirebaseAuth.getInstance().signOut();
+                                }
                             } else {
                                 //로그인 실패
                                 if(task.getException()!=null) {

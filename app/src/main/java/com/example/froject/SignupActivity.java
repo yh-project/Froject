@@ -80,6 +80,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         startToast("메일을 전송했습니다.");
+                                                        FirebaseAuth.getInstance().signOut();
                                                     }
                                                 }
                                             });
