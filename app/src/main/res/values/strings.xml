@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Froject</string>
     <string name="logout">로그아웃</string>
+    <string name="shubal">슈발</string>
 </resources>
