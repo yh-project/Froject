@@ -129,7 +129,3 @@ public class LoginActivity extends AppCompatActivity {
         msgDlg.show();
     }
 }
-
-
-
-//배고파
