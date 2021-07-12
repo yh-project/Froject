@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.logout).setOnClickListener(onClickListener);
         findViewById(R.id.back).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoBoard).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -72,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.back:
                     finishAlert();
+                    break;
+                case R.id.gotoBoard:
+                    startActivity(BoardActivity.class);
                     break;
             }
         }

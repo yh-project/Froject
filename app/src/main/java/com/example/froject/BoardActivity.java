@@ -1,126 +1,112 @@
 package com.example.froject;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-//
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BoardActivity extends AppCompatActivity {
-
-    public CardView mCardView;
+    LinearLayout postlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
-        mCardView = (CardView) findViewById(R.id.Board);
-    }
 
-    public void btnClick(View v) {
-        CardView myCardView = new CardView(this);
-        CardView.LayoutParams mParams = new CardView.LayoutParams(
-                CardView.LayoutParams.WRAP_CONTENT,
-                CardView.LayoutParams.WRAP_CONTENT);
-        mParams.topMargin = 400;
-        myCardView.setLayoutParams(mParams);
+        postlist = findViewById(R.id.postList);
 
-        //Button btn = new Button(this);
-        //btn.setText("버튼");
-        //btn.setBackgroundColor(Color.YELLOW);
-        //btn.setLayoutParams(mParams);
-        //myCardView.addView(btn);
-
-        //LinearLayout.LayoutParams tv_params = new LinearLayout.LayoutParams(
-        //        LinearLayout.LayoutParams.WRAP_CONTENT,
-        //        LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        //final RelativeLayout textView = new RelativeLayout(this);
-        //tv_params.gravity = Gravity.CENTER;
-        //tv_params.setMargins(0, 200, 0, 0);
-        //textView.setLayoutParams(tv_params);
-        //myCardView.addView(textView);
-
-
-        mCardView.addView(myCardView);
-
-        //btn.setOnClickListener(view -> textView.setText(editText.getText().toString()));
-    }
-
-
-
-    //
-    @Override
-    public void onBackPressed() {
-        backAlert();
+        findViewById(R.id.addBtn).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.logout:
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(LoginActivity.class);
-                    break;
-                case R.id.back:
-                    backAlert();
+                case R.id.addBtn:
+                    add_post();
                     break;
             }
         }
     };
 
+    private void add_post() {
+        // 레이아웃 생성, 설정
+        LinearLayout post = new LinearLayout(getApplicationContext());
 
-    private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        final int height_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
+        final int top_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        final int left_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        final int bottom_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        final int right_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams param_post = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height_post);
+        param_post.setMargins(left_post, top_post, right_post, bottom_post);
+
+        post.setBackgroundColor(Color.rgb(255,255,255));
+        post.setOrientation(LinearLayout.HORIZONTAL);
+        post.setGravity(Gravity.CENTER_VERTICAL);
+
+        post.setLayoutParams(param_post);
+        postlist.addView(post);
+
+
+        // 이미지뷰 생성, 설정
+        ImageView thumbnail = new ImageView(getApplicationContext());
+
+        final int width_thumbnail = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 52, getResources().getDisplayMetrics());
+        final int height_thumbnail = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 52, getResources().getDisplayMetrics());
+        final int left_thumbnail = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams param_thumbnail = new LinearLayout.LayoutParams(width_thumbnail, height_thumbnail);
+        param_thumbnail.leftMargin = left_thumbnail;
+
+        thumbnail.setBackgroundResource(R.mipmap.ic_launcher);
+
+        thumbnail.setLayoutParams(param_thumbnail);
+        post.addView(thumbnail);
+
+        // 콘텐츠 레이아웃 생성, 설정
+        LinearLayout content = new LinearLayout(getApplicationContext());
+
+        final int left_content = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams param_content = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        param_content.leftMargin = left_content;
+
+        content.setOrientation(LinearLayout.VERTICAL);
+        content.setGravity(Gravity.CENTER_VERTICAL);
+
+        content.setLayoutParams(param_content);
+        post.addView(content);
+
+        // 텍스트뷰1 생성, 설정
+        TextView text1 = new TextView(getApplicationContext());
+
+        LinearLayout.LayoutParams param_text1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        text1.setText("사람찾습니다");
+        text1.setTextSize(30);
+
+        text1.setLayoutParams(param_text1);
+        content.addView(text1);
+
+        // 텍스트뷰2 생성, 설정
+        TextView text2 = new TextView(getApplicationContext());
+
+        LinearLayout.LayoutParams param_text2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final int top_text2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        param_text2.topMargin = top_text2;
+        text2.setText("도와주세요");
+        text2.setTextSize(15);
+
+        text2.setLayoutParams(param_text2);
+        content.addView(text2);
     }
 
-    private void startActivity(Class c) {
-        Intent intent = new Intent(this, c);
-        startActivity(intent);
-    }
-    private void backAlert() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(BoardActivity.this)
-                .setTitle("나가기")
-                .setMessage("입력하신 내용이 사라집니다. \n정말 이 창을 나가시겠습니까?")
-                .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        startActivity(LoginActivity.class);
-                    }
-                })
-                .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
-                    }
-                });
-        AlertDialog msgDlg = msgBuilder.create();
-        msgDlg.show();
+    private int getDp(Integer i) {
+        final int result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, getResources().getDisplayMetrics());
+        return result;
     }
 }
-
-
