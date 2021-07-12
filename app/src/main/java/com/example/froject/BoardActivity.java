@@ -39,11 +39,12 @@ public class BoardActivity extends AppCompatActivity {
         // 레이아웃 생성, 설정
         LinearLayout post = new LinearLayout(getApplicationContext());
 
-        final int height_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
-        final int top_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
-        final int left_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
-        final int bottom_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
-        final int right_post = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        final int height_post = getDp(100);
+        final int top_post = getDp(10);
+        final int left_post = getDp(10);
+        final int bottom_post = getDp(10);
+        final int right_post = getDp(10);
+
         LinearLayout.LayoutParams param_post = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height_post);
         param_post.setMargins(left_post, top_post, right_post, bottom_post);
 
@@ -58,9 +59,10 @@ public class BoardActivity extends AppCompatActivity {
         // 이미지뷰 생성, 설정
         ImageView thumbnail = new ImageView(getApplicationContext());
 
-        final int width_thumbnail = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 52, getResources().getDisplayMetrics());
-        final int height_thumbnail = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 52, getResources().getDisplayMetrics());
-        final int left_thumbnail = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+        final int width_thumbnail = getDp(52);
+        final int height_thumbnail = getDp(52);
+        final int left_thumbnail = getDp(20);
+
         LinearLayout.LayoutParams param_thumbnail = new LinearLayout.LayoutParams(width_thumbnail, height_thumbnail);
         param_thumbnail.leftMargin = left_thumbnail;
 
@@ -72,7 +74,8 @@ public class BoardActivity extends AppCompatActivity {
         // 콘텐츠 레이아웃 생성, 설정
         LinearLayout content = new LinearLayout(getApplicationContext());
 
-        final int left_content = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
+        final int left_content = getDp(30);
+
         LinearLayout.LayoutParams param_content = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         param_content.leftMargin = left_content;
 
@@ -95,8 +98,8 @@ public class BoardActivity extends AppCompatActivity {
         // 텍스트뷰2 생성, 설정
         TextView text2 = new TextView(getApplicationContext());
 
+        final int top_text2 = getDp(10);
         LinearLayout.LayoutParams param_text2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        final int top_text2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
         param_text2.topMargin = top_text2;
         text2.setText("도와주세요");
         text2.setTextSize(15);
@@ -106,7 +109,7 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     private int getDp(Integer i) {
-        final int result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, getResources().getDisplayMetrics());
+        int result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, getResources().getDisplayMetrics());
         return result;
     }
 }
