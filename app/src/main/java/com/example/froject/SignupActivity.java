@@ -15,7 +15,15 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+//kang
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.google.firebase.FirebaseError.ERROR_EMAIL_ALREADY_IN_USE;
+
 
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -47,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch(v.getId()) {
+            switch (v.getId()) {
                 case R.id.signUp:
                     sign_Up();
                     break;
@@ -62,15 +70,19 @@ public class SignupActivity extends AppCompatActivity {
     };
 
     private void sign_Up() {
-        String email = ((EditText)findViewById(R.id.setEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.setPass)).getText().toString();
-        String checkpass = ((EditText)findViewById(R.id.passCheck)).getText().toString();
+        String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.setPass)).getText().toString();
+        String checkpass = ((EditText) findViewById(R.id.passCheck)).getText().toString();
 
-        if(email.length()>0 && password.length()>0 && checkpass.length()>0) {
-            if(password.length() >= 6) {
-                if(password.equals(checkpass)) {
+        if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0) {
+
+            if (!check_email(email)) {
+                startToast("시발련아 너 대학생아니지?");
+            }
+            else if (password.length() >= 6) {
+                if (password.equals(checkpass)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(this, (task) ->  {
+                            .addOnCompleteListener(this, (task) -> {
                                 if (task.isSuccessful()) {
                                     // 회원가입 성공시
                                     FirebaseUser user = mAuth.getCurrentUser();
@@ -79,14 +91,18 @@ public class SignupActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        startToast("메일을 전송했습니다.");
+                                                        checkAlert(email);
                                                         FirebaseAuth.getInstance().signOut();
                                                     }
                                                 }
                                             });
                                 } else {
                                     // 회원가입실패시
-                                    if(task.getException() != null) {
+
+                                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                        startToast("이메일이 이미 전송되었습니다");
+                                    }
+                                    else if (task.getException() != null) {
                                         startToast(task.getException().toString());
                                     }
                                 }
@@ -130,4 +146,27 @@ public class SignupActivity extends AppCompatActivity {
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
+
+    private void checkAlert(String email) {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(SignupActivity.this)
+                .setTitle("이메일 인증")
+                .setMessage(email+"\n이메일을 전송했습니다")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                    }
+                });
+        AlertDialog msgDlg = msgBuilder.create();
+        msgDlg.show();
+    }
+
+    //kang
+
+    private boolean check_email(String email) {
+        String pattern = "[0-9a-zA-Z]*\\@[0-9a-zA-Z]*\\.ac\\.kr"; //--@--.ac.kr
+        boolean regex = Pattern.matches(pattern, email);
+
+        return regex;
+    }
+
 }
