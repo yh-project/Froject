@@ -9,7 +9,30 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+//
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 
 public class BoardActivity extends AppCompatActivity {
     LinearLayout postlist;
@@ -111,5 +134,41 @@ public class BoardActivity extends AppCompatActivity {
     private int getDp(Integer i) {
         int result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, getResources().getDisplayMetrics());
         return result;
+    }
+
+
+
+    //
+    @Override
+    public void onBackPressed() {
+        backAlert();
+    }
+
+    private void startToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void startActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
+    }
+    private void backAlert() {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(BoardActivity.this)
+                .setTitle("나가기")
+                .setMessage("입력하신 내용이 사라집니다. \n정말 이 창을 나가시겠습니까?")
+                .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        startActivity(LoginActivity.class);
+                    }
+                })
+                .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        startToast("시발 그럼 왜눌러 개새끼야.");
+                    }
+                });
+        AlertDialog msgDlg = msgBuilder.create();
+        msgDlg.show();
     }
 }
