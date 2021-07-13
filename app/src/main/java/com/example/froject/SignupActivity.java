@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignupActivity extends AppCompatActivity {
+public class <SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override

@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
+                        startToast("시발 그럼 왜눌러 개새끼야.왜눌러");
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();
