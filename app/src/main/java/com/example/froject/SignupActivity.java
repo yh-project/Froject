@@ -124,7 +124,7 @@ public class SignupActivity extends AppCompatActivity {
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
+                        startToast("취소되었습니다.");
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();

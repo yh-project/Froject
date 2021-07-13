@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if(user.isEmailVerified()==true) {
                                     startToast("로그인 성공");
                                     //kang
-                                    startActivity(BoardActivity.class);
+                                    startActivity(BoardActivity2.class);
                                 }else {
                                     startToast("이메일 인증을 완료해주세요.");
                                     FirebaseAuth.getInstance().signOut();
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
+                        startToast("취소되었습니다.");
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();

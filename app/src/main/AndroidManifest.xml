@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Froject">
+        <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
         <activity android:name=".PassresetActivity" />
         <activity android:name=".UserinfoActivity" />
         <activity android:name=".BoardActivity" />
-
+        <activity android:name=".BoardActivity2" />
     </application>
 
 </manifest>
