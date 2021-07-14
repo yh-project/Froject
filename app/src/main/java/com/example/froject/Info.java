@@ -46,3 +46,4 @@ public class Info {
         this.univ=univ;
     }
 }
+

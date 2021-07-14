@@ -19,6 +19,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @Override
@@ -31,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         if(user == null) {
             startActivity(LoginActivity.class);
         }else{
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference docRef = db.collection("users").document(user.getUid());
+            FirebaseFirestore user_db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = user_db.collection("users").document(user.getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -52,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        //kang
+        FirebaseFirestore board_db = FirebaseFirestore.getInstance();
+        DocumentReference docRef2 = board_db.collection("board").document(user.getUid());
+
+
 
         findViewById(R.id.logout).setOnClickListener(onClickListener);
         findViewById(R.id.back).setOnClickListener(onClickListener);
@@ -108,4 +116,5 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
+
 }
