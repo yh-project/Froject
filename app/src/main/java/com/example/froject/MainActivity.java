@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.logout).setOnClickListener(onClickListener);
         findViewById(R.id.back).setOnClickListener(onClickListener);
         findViewById(R.id.gotoBoard).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoProfile).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.gotoBoard:
                     startActivity(BoardActivity.class);
                     break;
+                case R.id.gotoProfile:
+                    startActivity(ProfileActivity.class);
+                    break;
             }
         }
     };
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

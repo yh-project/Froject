@@ -1,4 +1,4 @@
-package com.example.froject;
+ package com.example.froject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -55,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()) {
+            switch (v.getId()) { 
                 case R.id.signUp:
                     sign_Up();
                     break;
@@ -124,6 +124,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

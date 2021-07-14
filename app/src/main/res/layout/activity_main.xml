@@ -47,6 +47,13 @@
             android:text="보드로"
             app:cornerRadius="5dp" />
 
+        <Button
+            android:id="@+id/gotoProfile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="프로필 화면으로"
+            app:cornerRadius="5dp" />
+
     </LinearLayout>
 
 </LinearLayout>
