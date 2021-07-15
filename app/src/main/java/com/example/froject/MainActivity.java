@@ -4,7 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,18 +13,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottomNavi);
+        getSupportFragmentManager().beginTransaction().add(R.id.main_frame, new Boardfragment()).commit();
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item_fragment1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                        break;
+                    case R.id.item_fragment2:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                        break;
+                }
+                return true;
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -52,39 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-        findViewById(R.id.logout).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoBoard).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoProfile).setOnClickListener(onClickListener);
     }
 
     @Override
     public void onBackPressed() {
         finishAlert();
     }
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()) {
-                case R.id.logout:
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(LoginActivity.class);
-                    break;
-                case R.id.back:
-                    finishAlert();
-                    break;
-                case R.id.gotoBoard:
-                    startActivity(BoardActivity.class);
-                    break;
-                case R.id.gotoProfile:
-                    startActivity(ProfileActivity.class);
-                    break;
-            }
-        }
-    };
-
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

@@ -115,7 +115,6 @@ public class EditprofileActivity extends AppCompatActivity {
 
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -126,7 +125,7 @@ public class EditprofileActivity extends AppCompatActivity {
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startActivity(ProfileActivity.class);
+                        startActivity(Profilefragment.class);
                     }
                 })
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -146,7 +145,7 @@ public class EditprofileActivity extends AppCompatActivity {
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startActivity(ProfileActivity.class);
+                        startActivity(Profilefragment.class);
                     }
                 })
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -159,3 +158,6 @@ public class EditprofileActivity extends AppCompatActivity {
         msgDlg.show();
     }
 }
+
+
+//응애

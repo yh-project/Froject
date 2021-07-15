@@ -6,27 +6,32 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import android.widget.Toast;
 
 
-public class BoardActivity extends AppCompatActivity {
+public class Boardfragment extends Fragment {
+
     LinearLayout postlist;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_board, container, false);
 
-        postlist = findViewById(R.id.postList);
+        postlist = v.findViewById(R.id.postList);
 
-        findViewById(R.id.addBtn).setOnClickListener(onClickListener);
+        v.findViewById(R.id.addBtn).setOnClickListener(onClickListener);
+
+        return v;
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -42,7 +47,7 @@ public class BoardActivity extends AppCompatActivity {
 
     private void add_post() {
         // 레이아웃 생성, 설정
-        LinearLayout post = new LinearLayout(getApplicationContext());
+        LinearLayout post = new LinearLayout(getActivity().getApplicationContext());
 
         final int height_post = getDp(100);
         final int top_post = getDp(10);
@@ -62,7 +67,7 @@ public class BoardActivity extends AppCompatActivity {
 
 
         // 이미지뷰 생성, 설정
-        ImageView thumbnail = new ImageView(getApplicationContext());
+        ImageView thumbnail = new ImageView(getActivity().getApplicationContext());
 
         final int width_thumbnail = getDp(52);
         final int height_thumbnail = getDp(52);
@@ -77,7 +82,7 @@ public class BoardActivity extends AppCompatActivity {
         post.addView(thumbnail);
 
         // 콘텐츠 레이아웃 생성, 설정
-        LinearLayout content = new LinearLayout(getApplicationContext());
+        LinearLayout content = new LinearLayout(getActivity().getApplicationContext());
 
         final int left_content = getDp(30);
 
@@ -91,7 +96,7 @@ public class BoardActivity extends AppCompatActivity {
         post.addView(content);
 
         // 텍스트뷰1 생성, 설정
-        TextView text1 = new TextView(getApplicationContext());
+        TextView text1 = new TextView(getActivity().getApplicationContext());
 
         LinearLayout.LayoutParams param_text1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         text1.setText("사람찾습니다");
@@ -101,7 +106,7 @@ public class BoardActivity extends AppCompatActivity {
         content.addView(text1);
 
         // 텍스트뷰2 생성, 설정
-        TextView text2 = new TextView(getApplicationContext());
+        TextView text2 = new TextView(getActivity().getApplicationContext());
 
         final int top_text2 = getDp(10);
         LinearLayout.LayoutParams param_text2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -118,25 +123,22 @@ public class BoardActivity extends AppCompatActivity {
         return result;
     }
 
-
-
-    //
-    @Override
     public void onBackPressed() {
         backAlert();
     }
 
     private void startToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
     private void startActivity(Class c) {
-        Intent intent = new Intent(this, c);
+        Intent intent = new Intent(getActivity(), c);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
     private void backAlert() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(BoardActivity.this)
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(getActivity())
                 .setTitle("나가기")
                 .setMessage("메인으로감")
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
