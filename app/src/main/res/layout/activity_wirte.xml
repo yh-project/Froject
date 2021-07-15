@@ -13,8 +13,10 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="166dp" />
+        android:layout_marginLeft="30dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="243dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"
@@ -22,7 +24,15 @@
         android:layout_height="wrap_content"
         android:text="Date"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="166dp" />
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="243dp"
+        tools:ignore="MissingConstraints" />
+
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="256dp"
+        android:layout_height="325dp"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="297dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

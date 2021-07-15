@@ -37,7 +37,7 @@ public class BoardActivity extends AppCompatActivity {
             switch(v.getId()) {
                 case R.id.addBtn:
                     add_post();
-                    setContentView(R.layout.activity_wirte);
+                    startActivity(WirteActivity.class);
                     break;
             }
         }
