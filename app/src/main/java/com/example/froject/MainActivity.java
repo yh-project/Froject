@@ -4,27 +4,64 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottomNavi);
+
+        Intent i = getIntent();
+        @Nullable String data = i.getStringExtra("data");
+        if(data == null) { data = "none"; }
+
+        switch(data) {
+            case "none":
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                break;
+            case "editprofile":
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                break;
+        }
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item_fragment1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                        break;
+                    case R.id.item_fragment2:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                        break;
+                }
+                return true;
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -52,10 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-        findViewById(R.id.logout).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoBoard).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -63,31 +96,13 @@ public class MainActivity extends AppCompatActivity {
         finishAlert();
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()) {
-                case R.id.logout:
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(LoginActivity.class);
-                    break;
-                case R.id.back:
-                    finishAlert();
-                    break;
-                case R.id.gotoBoard:
-                    startActivity(BoardActivity.class);
-                    break;
-            }
-        }
-    };
-
-
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -113,3 +128,5 @@ public class MainActivity extends AppCompatActivity {
         msgDlg.show();
     }
 }
+
+//응애

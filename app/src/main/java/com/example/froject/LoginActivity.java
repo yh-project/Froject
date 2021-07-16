@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if(user.isEmailVerified()==true) {
                                     startToast("로그인 성공");
                                     //kang
-                                    startActivity(BoardActivity.class);
+                                    startActivity(MainActivity.class);
                                 }else {
                                     startToast("이메일 인증을 완료해주세요.");
                                     FirebaseAuth.getInstance().signOut();

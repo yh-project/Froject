@@ -54,12 +54,14 @@ public class UserinfoActivity extends AppCompatActivity {
         String number = ((EditText)findViewById(R.id.setNumber)).getText().toString();
         String date = ((EditText)findViewById(R.id.setDate)).getText().toString();
         String univ = ((EditText)findViewById(R.id.setUniv)).getText().toString();
+        String level = ((EditText)findViewById(R.id.setLevel)).getText().toString();
+        String major = ((EditText)findViewById(R.id.setMajor)).getText().toString();
 
-        if(name.length()>0 && number.length() > 9 && date.length() > 5 && univ.length() > 0) {
+        if(name.length()>0 && number.length() > 9 && date.length() > 5 && univ.length() > 0 && level.length() > 0 && major.length() > 0) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-            Info info = new Info(name, number, date, univ);
+            Info info = new Info(name, number, date, univ, level, major);
 
             if(user != null) {
                 db.collection("users").document(user.getUid()).set(info)
