@@ -7,12 +7,20 @@ public class Info {
     private String number;
     private String date;
     private String univ;
+    private String level;
+    private String major;
 
-    public Info(String name, String number, String date, String univ) {
+    public Info(String name, String number, String date, String univ, String level, String major) {
         this.name = name;
         this.number = number;
         this.date = date;
         this.univ = univ;
+        this.level = level;
+        this.major = major;
+    }
+
+    public Info() {
+
     }
 
     public String getname() {
@@ -44,5 +52,19 @@ public class Info {
     }
     public void setuniv(String univ) {
         this.univ=univ;
+    }
+
+    public String getlevel() {
+        return this.level;
+    }
+    public void setlevel(String level) {
+        this.name=level;
+    }
+
+    public String getmajor() {
+        return this.major;
+    }
+    public void setmajor(String major) {
+        this.name=major;
     }
 }

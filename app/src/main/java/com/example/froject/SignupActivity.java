@@ -55,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch(v.getId()) {
+            switch (v.getId()) {
                 case R.id.signUp:
                     sign_Up();
                     break;
@@ -70,9 +70,9 @@ public class SignupActivity extends AppCompatActivity {
     };
 
     private void sign_Up() {
-        String email = ((EditText)findViewById(R.id.setEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.setPass)).getText().toString();
-        String checkpass = ((EditText)findViewById(R.id.passCheck)).getText().toString();
+        String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.setPass)).getText().toString();
+        String checkpass = ((EditText) findViewById(R.id.passCheck)).getText().toString();
 
         if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0) {
 
@@ -82,7 +82,7 @@ public class SignupActivity extends AppCompatActivity {
             else if (password.length() >= 6) {
                 if (password.equals(checkpass)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(this, (task) ->  {
+                            .addOnCompleteListener(this, (task) -> {
                                 if (task.isSuccessful()) {
                                     // 회원가입 성공시
                                     FirebaseUser user = mAuth.getCurrentUser();
