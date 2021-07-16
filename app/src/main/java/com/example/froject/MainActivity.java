@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.item_fragment2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
                         break;
+                    case R.id.item_writeactivity:
+                        startActivity(WriteActivity.class);
+                        break;
                 }
                 return true;
             }

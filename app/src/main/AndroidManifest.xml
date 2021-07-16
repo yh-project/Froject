@@ -23,6 +23,8 @@
         <activity android:name=".PassresetActivity" />
         <activity android:name=".UserinfoActivity" />
         <activity android:name=".EditprofileActivity" />
+        <activity android:name=".WriteActivity" />
+        <activity android:name=".CategoryActivity" />
 
     </application>
 
