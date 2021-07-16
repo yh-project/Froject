@@ -23,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EditprofileActivity extends AppCompatActivity {
     private static final String TAG = "EditprofileActivity";
@@ -90,23 +91,46 @@ public class EditprofileActivity extends AppCompatActivity {
         @Nullable String newmajor = ((EditText)findViewById(R.id.newMajor)).getText().toString();
         @Nullable String newlevel = ((EditText)findViewById(R.id.newLevel)).getText().toString();
         @Nullable String newuniv = ((EditText)findViewById(R.id.newUniv)).getText().toString();
+        String newlist = " ";
 
-        if(newname.length() == 0 && newmajor.length() == 0 && newlevel.length() == 0 && newuniv.length() ==0) {
-            checkAlert();
+        final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
+        final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("name", "major", "level", "univ"));
+
+        if(newinfolist.get(0).length() == 0 && newinfolist.get(1).length() == 0 && newinfolist.get(2).length() == 0 && newinfolist.get(3).length() == 0) {
+            cancelAlert();
         } else {
-            db.collection("users").document(user.getUid())
-                    .update(
-                            "name", newname,
-                            "major", newmajor,
-                            "level", newlevel,
-                            "univ", newuniv
-                    );
+            for(int i=0;i<4;i++) {
+                if(newinfolist.get(i).length() > 0) { newlist += (newinfolist.get(i) + " "); }
+            }
+            AlertDialog.Builder msgBuilder = new AlertDialog.Builder(EditprofileActivity.this)
+                    .setTitle("???")
+                    .setMessage(newlist + "\n이대로 바꿔?")
+                    .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            for(int j=0;j<4;j++){
+                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getUid()).update(keylist.get(j), newinfolist.get(j)); }
+                            }
+                            Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                            intent.putExtra("data", "editprofile");
+                            startActivity(intent);
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            startToast("시발 그럼 왜눌러 개새끼야.");
+                        }
+                    });
+            AlertDialog msgDlg = msgBuilder.create();
+            msgDlg.show();
         }
     }
 
     @Override
     public void onBackPressed() {
-        backAlert();
+        cancelAlert();
     }
 
     private void startToast(String msg) {
@@ -115,37 +139,21 @@ public class EditprofileActivity extends AppCompatActivity {
 
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
-    private void backAlert() {
+    private void cancelAlert() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(EditprofileActivity.this)
-                .setTitle("나가기")
+                .setTitle("???")
                 .setMessage("프로필화면으로감")
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startActivity(Profilefragment.class);
-                    }
-                })
-                .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
-                    }
-                });
-        AlertDialog msgDlg = msgBuilder.create();
-        msgDlg.show();
-    }
-
-    private void checkAlert() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(EditprofileActivity.this)
-                .setTitle("나가기")
-                .setMessage("수정안함?")
-                .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        startActivity(Profilefragment.class);
+                        Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                        intent.putExtra("data", "editprofile");
+                        startActivity(intent);
+                        finish();
                     }
                 })
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -158,6 +166,3 @@ public class EditprofileActivity extends AppCompatActivity {
         msgDlg.show();
     }
 }
-
-
-//응애
