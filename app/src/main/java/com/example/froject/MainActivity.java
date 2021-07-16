@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user == null) {
+        if (user == null) {
             startActivity(LoginActivity.class);
-        }else{
+        } else {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        if(document != null) {
+                        if (document != null) {
                             if (document.exists()) {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             } else {
@@ -55,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.logout).setOnClickListener(onClickListener);
         findViewById(R.id.back).setOnClickListener(onClickListener);
+        findViewById(R.id.profilebutton).setOnClickListener(onClickListener);
     }
+
 
     @Override
     public void onBackPressed() {
@@ -65,13 +69,16 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch(v.getId()) {
+            switch (v.getId()) {
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
                     startActivity(LoginActivity.class);
                     break;
                 case R.id.back:
                     finishAlert();
+                    break;
+                case R.id.profilebutton:
+                    startActivity(profileActivity.class);
                     break;
             }
         }
