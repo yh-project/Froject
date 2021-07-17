@@ -70,7 +70,7 @@
             android:hint="@string/email_hint"
             android:textColorHint="#9ABCDE"
             android:importantForAutofill="no"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:backgroundTint="#1B68B4"
             android:inputType="textEmailAddress" />
 
@@ -103,7 +103,7 @@
             android:hint="@string/pass_hint"
             android:textColorHint="#9ABCDE"
             android:importantForAutofill="no"
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:backgroundTint="#1B68B4"
             android:inputType="textEmailAddress" />
 
@@ -196,7 +196,9 @@
                 app:layout_constraintLeft_toLeftOf="@+id/logIn"
                 app:layout_constraintTop_toTopOf="@+id/logIn"
                 app:layout_constraintBottom_toBottomOf="@+id/logIn"
-                android:backgroundTint=""
+                android:layout_marginStart="20dp"
+                android:translationZ="2dp"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -208,87 +210,77 @@
 
     </LinearLayout>
 
-
-</LinearLayout>
-
-
-
-
-
-
-<!--<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff">
-
-    <FrameLayout
+    <!--빈공간-->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="10dp">
+        android:layout_height="0dp"
+        android:layout_weight="41"/>
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/backbtn" />
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo_" />
-
-    </FrameLayout>
-
+    <!--멘트-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:weightSum="100">
 
-        <EditText
-            android:id="@+id/loginEmail"
-            android:layout_width="350dp"
+        <View
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="이메일 주소를 입력해주세요."
-            android:inputType="textEmailAddress" />
+            android:layout_weight="28"
+            tools:ignore="NestedWeights" />
 
-        <EditText
-            android:id="@+id/loginPass"
-            android:layout_width="350dp"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="비밀번호를 입력해주세요."
-            android:inputType="textPassword" />
+            android:layout_weight="44"
+            android:text="@string/ment"
+            android:textColor="#959598"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/logIn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="로그인"
-            app:cornerRadius="5dp" />
-
-        <Button
-            android:id="@+id/gotoResetpass"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="비밀번호 재설정"
-            app:cornerRadius="5dp" />
-
-        <Button
-            android:id="@+id/gotoSignup"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="회원가입 하러가기"
-            app:cornerRadius="5dp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="28"
+            tools:ignore="NestedWeights" />
 
     </LinearLayout>
 
-</LinearLayout>-->
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+
+    <!--회원가입하러가기-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:weightSum="100">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:id="@+id/gotoSignup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="24"
+            android:text="@string/gotosignup"
+            android:textStyle="bold"
+            android:textColor="#959598"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="38"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+</LinearLayout>

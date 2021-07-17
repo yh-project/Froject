@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.logIn).setOnClickListener(onClickListener);
         findViewById(R.id.gotoSignup).setOnClickListener(onClickListener);
         findViewById(R.id.gotoResetpass).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
     }
 
     @Override
