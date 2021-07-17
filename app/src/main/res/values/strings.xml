@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Froject</string>
+
+    <!--로그인화면-->
+    <string name="logo">logo</string>
+    <string name="email_hint">froject@xx.ac.kr</string>
+    <string name="pass_hint">******</string>
+    <string name="resert_pass">패스워드 찾기</string>
+    <string name="login">시작하기</string>
     <string name="logout">로그아웃</string>
 </resources>
