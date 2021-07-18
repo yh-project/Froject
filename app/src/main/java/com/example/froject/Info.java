@@ -58,13 +58,13 @@ public class Info {
         return this.level;
     }
     public void setlevel(String level) {
-        this.name=level;
+        this.level=level;
     }
 
     public String getmajor() {
         return this.major;
     }
     public void setmajor(String major) {
-        this.name=major;
+        this.major=major;
     }
 }
