@@ -17,11 +17,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 //kang
 import java.util.Calendar;
 import java.util.Date;
@@ -32,7 +35,9 @@ import static com.google.firebase.FirebaseError.ERROR_EMAIL_ALREADY_IN_USE;
 
 
 public class SignupActivity extends AppCompatActivity {
+    private static final String TAG = "SignupActivity";
     private FirebaseAuth mAuth;
+    String gender = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,22 +50,7 @@ public class SignupActivity extends AppCompatActivity {
         findViewById(R.id.gotoLogin).setOnClickListener(onClickListener);
         findViewById(R.id.back).setOnClickListener(onClickListener);
         set_date();
-
-        Button mAn = ((Button)findViewById(R.id.man));
-        Button woMan = ((Button)findViewById(R.id.woman));
-
-        mAn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAn.setBackground(getDrawable(R.drawable.button_login));
-            }
-        });
-        woMan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                woMan.setBackground(getDrawable(R.drawable.button_login));
-            }
-        });
+        set_gender();
     }
 
     @Override
@@ -83,7 +73,7 @@ public class SignupActivity extends AppCompatActivity {
                     sign_Up();
                     break;
                 case R.id.gotoLogin:
-                    startActivity(LoginActivity.class);
+                    backAlert();
                     break;
                 case R.id.back:
                     backAlert();
@@ -114,6 +104,31 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+    private void set_gender() {
+        Button mAn = ((Button)findViewById(R.id.man));
+        Button woMan = ((Button)findViewById(R.id.woman));
+
+        mAn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAn.setBackground(getDrawable(R.drawable.button_login));
+                mAn.setTextColor(Color.rgb(255,255,255));
+                woMan.setBackground(getDrawable(R.drawable.borderline));
+                woMan.setTextColor(Color.rgb(154,188,222));
+                gender = "남";
+            }
+        });
+        woMan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                woMan.setBackground(getDrawable(R.drawable.button_login));
+                woMan.setTextColor(Color.rgb(255,255,255));
+                mAn.setBackground(getDrawable(R.drawable.borderline));
+                mAn.setTextColor(Color.rgb(154,188,222));
+                gender = "여";
+            }
+        });
+    }
     private void sign_Up() {
         String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();
         String password = ((EditText) findViewById(R.id.setPass)).getText().toString();
@@ -121,7 +136,7 @@ public class SignupActivity extends AppCompatActivity {
         String name = ((EditText) findViewById(R.id.setName)).getText().toString();
         String date = ((EditText) findViewById(R.id.setDate)).getText().toString();
 
-        if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0 && name.length() > 0 && date.length() > 0) {
+        if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0) {
             if (!check_email(email)) {
                 startToast("대학메일로 가입해주세요 ac.kr");
             }
@@ -132,6 +147,9 @@ public class SignupActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // 회원가입 성공시
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    Info info = new Info(name, "", date, "", "", "", gender);
+                                    db.collection("users").document(user.getEmail()).set(info);
                                     user.sendEmailVerification()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
