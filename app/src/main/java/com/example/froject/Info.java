@@ -1,22 +1,26 @@
 package com.example.froject;
 
-import android.widget.EditText;
+import android.app.Application;
 
-public class Info {
+import java.io.Serializable;
+
+public class Info implements Serializable {
     private String name;
     private String number;
     private String date;
     private String univ;
     private String level;
     private String major;
+    private String gender;
 
-    public Info(String name, String number, String date, String univ, String level, String major) {
+    public Info(String name, String number, String date, String univ, String level, String major, String gender) {
         this.name = name;
         this.number = number;
         this.date = date;
         this.univ = univ;
         this.level = level;
         this.major = major;
+        this.gender = gender;
     }
 
     public Info() {
@@ -54,17 +58,23 @@ public class Info {
         this.univ=univ;
     }
 
+
     public String getlevel() {
         return this.level;
     }
     public void setlevel(String level) {
-        this.name=level;
+        this.level=level;
     }
+
 
     public String getmajor() {
         return this.major;
     }
     public void setmajor(String major) {
-        this.name=major;
+        this.major=major;
     }
+
+
+    public String getgender() { return this.gender; }
+    public void setgender(String gender) { this.gender=gender; }
 }

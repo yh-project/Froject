@@ -105,7 +105,7 @@
             android:importantForAutofill="no"
             android:textSize="15sp"
             android:backgroundTint="#1B68B4"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
 
         <View
             android:layout_width="0dp"
@@ -131,18 +131,19 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="72"
+            android:layout_weight="10"
             tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/gotoResetpass"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="18"
+            android:layout_weight="80"
             android:text="@string/resert_pass"
             android:textSize="12sp"
-            android:textColor="#959598"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="end"
+            tools:ignore="UnusedAttribute" />
 
         <View
             android:layout_width="0dp"
@@ -226,22 +227,23 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="28"
+            android:layout_weight="5"
             tools:ignore="NestedWeights" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="44"
-            android:text="@string/ment"
+            android:layout_weight="90"
+            android:text="@string/login_ment"
             android:textColor="#959598"
             android:textSize="12sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="28"
+            android:layout_weight="5"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
@@ -262,23 +264,24 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="38"
+            android:layout_weight="5"
             tools:ignore="NestedWeights" />
 
         <TextView
             android:id="@+id/gotoSignup"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="24"
+            android:layout_weight="90"
             android:text="@string/gotosignup"
             android:textStyle="bold"
             android:textColor="#959598"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:gravity="center" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="38"
+            android:layout_weight="5"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
