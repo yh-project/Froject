@@ -30,7 +30,7 @@ public class EditprofileActivity extends AppCompatActivity {
     private static final String TAG = "EditprofileActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference docRref = db.collection("users").document(user.getUid());
+    DocumentReference docRref = db.collection("users").document(user.getEmail());
 
     Info my_info;
 

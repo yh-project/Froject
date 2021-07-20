@@ -16,32 +16,12 @@
         android:layout_weight="25"/>
 
     <!--로고-->
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="26"
-            tools:ignore="NestedWeights" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="48"
-            android:contentDescription="@string/logo"
-            app:srcCompat="@drawable/logo_"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="26"
-            tools:ignore="NestedWeights" />
-
-    </LinearLayout>
+        android:contentDescription="@string/logo"
+        app:srcCompat="@drawable/logo_"/>
 
     <!--빈공간-->
     <View
@@ -54,13 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="14"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            tools:ignore="NestedWeights" />
+        android:weightSum="100"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/loginEmail"
@@ -72,12 +47,7 @@
             android:importantForAutofill="no"
             android:textSize="15sp"
             android:backgroundTint="#1B68B4"
-            android:inputType="textEmailAddress" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
+            android:inputType="textEmailAddress"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
@@ -87,13 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="14"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            tools:ignore="NestedWeights" />
+        android:weightSum="100"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/loginPass"
@@ -105,12 +70,7 @@
             android:importantForAutofill="no"
             android:textSize="15sp"
             android:backgroundTint="#1B68B4"
-            android:inputType="textEmailAddress" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
+            android:inputType="textPassword"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
@@ -126,29 +86,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="72"
-            tools:ignore="NestedWeights" />
+        android:weightSum="100"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/gotoResetpass"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="18"
+            android:layout_weight="80"
             android:text="@string/resert_pass"
             android:textSize="12sp"
-            android:textColor="#959598"
-            android:textStyle="bold"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            tools:ignore="NestedWeights" />
+            android:textStyle="bold"
+            android:gravity="end"
+            tools:ignore="NestedWeights,UnusedAttribute" />
 
     </LinearLayout>
 
@@ -163,18 +113,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="12"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            tools:ignore="NestedWeights" />
+        android:weightSum="100"
+        android:gravity="center"
+        android:baselineAligned="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="80">
+            android:layout_weight="80"
+            tools:ignore="NestedWeights">
 
             <Button
                 android:id="@+id/logIn"
@@ -202,12 +149,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            tools:ignore="NestedWeights" />
-
     </LinearLayout>
 
     <!--빈공간-->
@@ -221,27 +162,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="28"
-            tools:ignore="NestedWeights" />
+        android:weightSum="100"
+        android:gravity="center">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="44"
-            android:text="@string/ment"
+            android:layout_weight="90"
+            android:text="@string/login_ment"
             android:textColor="#959598"
             android:textSize="12sp"
-            android:textStyle="bold"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="28"
+            android:textStyle="bold"
+            android:gravity="center"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
@@ -257,28 +189,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:weightSum="100">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="38"
-            tools:ignore="NestedWeights" />
+        android:weightSum="100"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/gotoSignup"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="24"
+            android:layout_weight="90"
             android:text="@string/gotosignup"
             android:textStyle="bold"
             android:textColor="#959598"
-            android:textSize="12sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="38"
+            android:textSize="12sp"
+            android:gravity="center"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>

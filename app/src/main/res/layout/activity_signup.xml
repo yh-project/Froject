@@ -1,78 +1,338 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:weightSum="215">
 
-    <FrameLayout
+    <!--빈공간-->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="10dp">
+        android:layout_height="0dp"
+        android:layout_weight="17" />
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/backbtn" />
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo_" />
-
-    </FrameLayout>
-
+    <!--백버튼-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="100">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            tools:ignore="NestedWeights" />
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:src="@drawable/back_btn"
+            tools:ignore="ContentDescription"
+            android:background="@color/white"/>
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <!--회원가입 문구-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="100"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            android:text="@string/signup_ment"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="27sp"
+            android:gravity="start"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" />
+
+    <!--이메일-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:weightSum="100"
         android:gravity="center">
 
         <EditText
             android:id="@+id/setEmail"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="이메일 주소를 입력해주세요."
-            android:inputType="textEmailAddress" />
+            android:layout_weight="80"
+            android:inputType="textEmailAddress"
+            android:hint="@string/signup_email_hint"
+            android:textColorHint="#9E9C9D"
+            android:backgroundTint="#1B68B4"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:importantForAutofill="no"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <!--비밀번호-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:weightSum="100"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/setPass"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="비밀번호를 입력해주세요."
-            android:inputType="textPassword" />
+            android:layout_weight="80"
+            android:inputType="textPassword"
+            android:hint="@string/signup_pass_hint"
+            android:textColorHint="#9E9C9D"
+            android:backgroundTint="#1B68B4"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:importantForAutofill="no"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <!--비밀번호 확인-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:weightSum="100"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/passCheck"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="한번 더 입력해주세요."
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/signUp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="회원가입"
-            app:cornerRadius="5dp" />
-
-        <Button
-            android:id="@+id/gotoLogin"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="로그인 하러가기"
-            app:cornerRadius="5dp" />
+            android:layout_weight="80"
+            android:inputType="textPassword"
+            android:hint="@string/signup_pass_check_hint"
+            android:textColorHint="#9E9C9D"
+            android:backgroundTint="#1B68B4"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:importantForAutofill="no"
+            tools:ignore="NestedWeights" />
 
     </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <!--이름-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:weightSum="100"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/setName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            android:inputType="textPersonName"
+            android:hint="@string/signup_name_hint"
+            android:textColorHint="#9E9C9D"
+            android:backgroundTint="#1B68B4"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:importantForAutofill="no"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" />
+
+    <!--생년월일-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:weightSum="100"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/setDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="80"
+            android:hint="@string/signup_date_hint"
+            android:textColorHint="#9E9C9D"
+            android:backgroundTint="#1B68B4"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:inputType="text|date"
+            android:importantForAutofill="no"
+            android:clickable="true"
+            android:focusable="false"
+            tools:ignore="KeyboardInaccessibleWidget,NestedWeights" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7" />
+
+    <!--성별선택-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="100">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:text="@string/signup_gender"
+            android:textStyle="bold"
+            android:textColor="#1B68B4"
+            android:textSize="16sp"
+            android:gravity="center" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            tools:ignore="NestedWeights" />
+
+        <Button
+            android:id="@+id/man"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="28"
+            android:background="@drawable/borderline"
+            android:text="@string/signup_man"
+            android:textStyle="bold"
+            android:textColor="#9ABCDE"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            tools:ignore="NestedWeights" />
+
+        <Button
+            android:id="@+id/woman"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="28"
+            android:background="@drawable/borderline"
+            android:text="@string/signup_woman"
+            android:textColor="#9ABCDE"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="53" />
+
+    <!--최종작동-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="14"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/gotoLogin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="49.5"
+            android:background="#28549C"
+            android:gravity="center"
+            android:text="@string/signup_cancel"
+            android:textColor="#BCBDC0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="NestedWeights" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:id="@+id/signUp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="49.5"
+            android:background="#28549C"
+            android:gravity="center"
+            android:text="@string/signup_complete"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--빈공간-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:background="#28549C"/>
 
 </LinearLayout>

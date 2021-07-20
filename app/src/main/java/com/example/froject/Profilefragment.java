@@ -32,7 +32,10 @@ public class Profilefragment extends Fragment {
     private static final String TAG = "ProfileFragment";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final ArrayList<String> userinfoList = new ArrayList<>();
-    Info my_info = new Info();
+    Info my_info;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRref = db.collection("users").document(user.getUid());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,8 +61,7 @@ public class Profilefragment extends Fragment {
         v.findViewById(R.id.editProfile).setOnClickListener(onClickListener);
         v.findViewById(R.id.logout).setOnClickListener(onClickListener);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRref = db.collection("users").document(user.getUid());
+
 
 
 
