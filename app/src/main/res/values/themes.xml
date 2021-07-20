@@ -15,4 +15,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#28549C</item>
+        <item name="colorControlActivated">#28549C</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 </resources>

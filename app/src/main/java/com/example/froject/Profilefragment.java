@@ -45,7 +45,7 @@ public class Profilefragment extends Fragment {
         final ArrayList<String> userinfoList = new ArrayList<>();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRref = db.collection("users").document(user.getUid());
+        DocumentReference docRref = db.collection("users").document(user.getEmail());
         docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

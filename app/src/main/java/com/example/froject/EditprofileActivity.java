@@ -109,7 +109,7 @@ public class EditprofileActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
                             for(int j=0;j<4;j++){
-                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getUid()).update(keylist.get(j), newinfolist.get(j)); }
+                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getEmail()).update(keylist.get(j), newinfolist.get(j)); }
                             }
                             Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
                             intent.putExtra("data", "editprofile");
