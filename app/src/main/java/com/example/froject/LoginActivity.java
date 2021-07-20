@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.logIn).setOnClickListener(onClickListener);
         findViewById(R.id.gotoSignup).setOnClickListener(onClickListener);
         findViewById(R.id.gotoResetpass).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -57,9 +59,6 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.gotoSignup:
                     startActivity(SignupActivity.class);
                     break;
-                case R.id.back:
-                    finishAlert();
-                    break;
             }
         }
     };
@@ -79,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if(user.isEmailVerified()==true) {
                                     startToast("로그인 성공");
+                                    //kang
                                     startActivity(MainActivity.class);
                                 }else {
                                     startToast("이메일 인증을 완료해주세요.");
@@ -86,9 +86,24 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             } else {
                                 //로그인 실패
-                                if(task.getException()!=null) {
+                                if (task.getException() instanceof FirebaseTooManyRequestsException) {
+                                    //오류시도 다수
+                                    startToast("최근 로그인 시도가 너무 많습니다.\n잠시 후 다시 시도해주세요.");
+                                }
+                                else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                    //비밀번호 오류
+                                    startToast("비밀번호가 틀렸습니다.");
+                                }
+                                else if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                                    //유저 존재 X
+                                    startToast("회원정보가 존재하지 않습니다.");
+                                }
+
+
+                                else {
                                     startToast(task.getException().toString());
                                 }
+
                             }
                         }
                     });
@@ -122,7 +137,6 @@ public class LoginActivity extends AppCompatActivity {
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.왜눌러");
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();

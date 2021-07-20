@@ -4,86 +4,107 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+import org.jetbrains.annotations.NotNull;
 
+public class MainActivity extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        bottomNavigationView = findViewById(R.id.bottomNavi);
 
-        if (user == null) {
+        Intent i = getIntent();
+        @Nullable String data = i.getStringExtra("data");
+        if(data == null) { data = "none"; }
+
+        switch(data) {
+            case "none":
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                break;
+            case "editprofile":
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                break;
+        }
+
+        if(user == null) {
             startActivity(LoginActivity.class);
-        } else {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference docRef = db.collection("users").document(user.getUid());
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        }else{
+            DocumentReference documentReference = db.collection("users").document(user.getEmail());
+            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document != null) {
-                            if (document.exists()) {
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Info info = documentSnapshot.toObject(Info.class);
+                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if(document != null) {
+                                    if (info.getuniv()=="") {
+                                        Log.d(TAG, "No such document");
+                                        startActivity(UserinfoActivity.class);
+                                    } else {
+                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                    }
+                                }
                             } else {
-                                Log.d(TAG, "No such document");
-                                startActivity(UserinfoActivity.class);
+                                Log.d(TAG, "get failed with ", task.getException());
                             }
                         }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
+                    });
                 }
             });
         }
 
-        findViewById(R.id.logout).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
-        findViewById(R.id.profilebutton).setOnClickListener(onClickListener);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item_fragment1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                        break;
+                    case R.id.item_fragment2:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                        break;
+                    case R.id.item_writeactivity:
+                        startActivity(WriteActivity.class);
+                        break;
+                }
+                return true;
+            }
+        });
     }
-
 
     @Override
     public void onBackPressed() {
         finishAlert();
     }
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.logout:
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(LoginActivity.class);
-                    break;
-                case R.id.back:
-                    finishAlert();
-                    break;
-                case R.id.profilebutton:
-                    startActivity(profileActivity.class);
-                    break;
-            }
-        }
-    };
-
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -91,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -116,3 +138,5 @@ public class MainActivity extends AppCompatActivity {
         msgDlg.show();
     }
 }
+
+//응애
