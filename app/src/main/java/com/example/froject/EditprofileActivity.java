@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +32,16 @@ public class EditprofileActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRref = db.collection("users").document(user.getUid());
 
+    Info my_info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
+
+        Intent intent = getIntent();
+        my_info = (Info) intent.getSerializableExtra("my_info");
+
 
         findViewById(R.id.newPass).setOnClickListener(onClickListener);
         findViewById(R.id.changeInfo).setOnClickListener(onClickListener);
@@ -45,23 +52,29 @@ public class EditprofileActivity extends AppCompatActivity {
         TextView originallevel = ((TextView)findViewById(R.id.originalLevel));
         TextView originaluniv = ((TextView)findViewById(R.id.originalUniv));
 
-        final ArrayList<String> originalinfoList = new ArrayList<>();
+        originalname.setText(my_info.getname());
+        originalmajor.setText(my_info.getmajor());
+        originallevel.setText(my_info.getlevel());
+        originaluniv.setText(my_info.getuniv());
 
-        docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+        //final ArrayList<String> originalinfoList = new ArrayList<>();
+
+        /*docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        originalinfoList.add(document.getData().get("name").toString());
+                        *//*originalinfoList.add(document.getData().get("name").toString());
                         originalname.setText(originalinfoList.get(0));
                         originalinfoList.add(document.getData().get("major").toString());
                         originalmajor.setText(originalinfoList.get(1));
                         originalinfoList.add(document.getData().get("level").toString());
                         originallevel.setText(originalinfoList.get(2));
                         originalinfoList.add(document.getData().get("univ").toString());
-                        originaluniv.setText(originalinfoList.get(3));
+                        originaluniv.setText(originalinfoList.get(3));*//*
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -69,7 +82,7 @@ public class EditprofileActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });
+        });*/
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -93,6 +106,7 @@ public class EditprofileActivity extends AppCompatActivity {
         @Nullable String newuniv = ((EditText)findViewById(R.id.newUniv)).getText().toString();
         String newlist = " ";
 
+
         final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
         final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("name", "major", "level", "univ"));
 
@@ -111,9 +125,44 @@ public class EditprofileActivity extends AppCompatActivity {
                             for(int j=0;j<4;j++){
                                 if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getUid()).update(keylist.get(j), newinfolist.get(j)); }
                             }
+                            if(newinfolist.get(0).length() > 0)
+                                my_info.setname(newinfolist.get(0));
+                            if(newinfolist.get(1).length() > 0)
+                                my_info.setmajor(newinfolist.get(1));
+                            if(newinfolist.get(2).length() > 0)
+                                my_info.setlevel(newinfolist.get(2));
+                            if(newinfolist.get(3).length() > 0)
+                                my_info.setuniv(newinfolist.get(3));
+
+                            Log.w(TAG, "name: " + my_info.getname());
+                            Log.w(TAG, "major: " + my_info.getmajor());
+                            Log.w(TAG, "level: " + my_info.getlevel());
+                            Log.w(TAG, "univ: " + my_info.getuniv());
+
+
                             Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                            intent.putExtra("data", "editprofile");
+                            intent.putExtra("my_info",my_info);
+                            intent.putExtra("data","editprofile");
+                            Log.w(TAG,"shit"+my_info);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
+
+                            /*Bundle bundle = new Bundle();
+                            bundle.putSerializable("my_info",my_info);
+                            Profilefragment profilefragment = new Profilefragment();
+                            profilefragment.setArguments(bundle);
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();*/
+
+
+                            /*Intent intent = new Intent(EditprofileActivity.this, Profilefragment.class);
+                            intent.putExtra("my_info",my_info);
+                            Log.w(TAG,"shit"+my_info);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);*/
+
+                            //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                            //intent.putExtra("data", "editprofile");
+                            //startActivity(intent);
                             finish();
                         }
                     })
@@ -151,7 +200,9 @@ public class EditprofileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                        intent.putExtra("data", "editprofile");
+                        intent.putExtra("my_info",my_info);
+                        Log.w(TAG,"shit"+my_info);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                         finish();
                     }

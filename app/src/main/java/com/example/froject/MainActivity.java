@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,13 +29,24 @@ import org.jetbrains.annotations.NotNull;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
+    Info my_info = new Info();
+
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        Log.w(TAG,"shit main "+(intent.getSerializableExtra("my_info") != null));
+        if (intent.getSerializableExtra("my_info") != null) {
+            my_info = (Info) intent.getSerializableExtra("my_info");
+            Log.w(TAG,"shit get main"+intent.getSerializableExtra("my_info"));
+        }
+
+
         bottomNavigationView = findViewById(R.id.bottomNavi);
+
 
         Intent i = getIntent();
         @Nullable String data = i.getStringExtra("data");
@@ -44,9 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
                 break;
             case "editprofile":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("my_info",my_info);
+                Profilefragment profilefragment = new Profilefragment();
+                profilefragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
                 break;
         }
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -56,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
                         break;
                     case R.id.item_fragment2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("my_info",my_info);
+                        Profilefragment profilefragment = new Profilefragment();
+                        profilefragment.setArguments(bundle);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
+                        Log.w(TAG,"shit"+my_info);
                         break;
                     case R.id.item_writeactivity:
                         startActivity(WriteActivity.class);
@@ -81,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
                         if(document != null) {
                             if (document.exists()) {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                my_info.setname(document.getData().get("name").toString());
+                                my_info.setmajor(document.getData().get("major").toString());
+                                my_info.setlevel(document.getData().get("level").toString());
+                                my_info.setuniv(document.getData().get("univ").toString());
                             } else {
                                 Log.d(TAG, "No such document");
                                 startActivity(UserinfoActivity.class);

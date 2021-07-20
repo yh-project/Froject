@@ -2,13 +2,17 @@ package com.example.froject;
 
 import android.widget.EditText;
 
-public class Info {
-    private String name;
-    private String number;
-    private String date;
-    private String univ;
-    private String level;
-    private String major;
+import java.io.Serializable;
+
+import javax.annotation.Nullable;
+
+public class Info implements Serializable {
+    private String name="";
+    private String number="";
+    private String date="";
+    private String univ="";
+    private String level="";
+    private String major="";
 
     public Info(String name, String number, String date, String univ, String level, String major) {
         this.name = name;
@@ -58,13 +62,14 @@ public class Info {
         return this.level;
     }
     public void setlevel(String level) {
-        this.name=level;
+        this.level=level;
     }
 
     public String getmajor() {
         return this.major;
     }
     public void setmajor(String major) {
-        this.name=major;
+        this.major=major;
     }
 }
+

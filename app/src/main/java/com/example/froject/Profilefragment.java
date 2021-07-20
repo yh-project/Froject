@@ -3,6 +3,7 @@ package com.example.froject;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,46 +30,81 @@ import java.util.zip.Inflater;
 
 public class Profilefragment extends Fragment {
     private static final String TAG = "ProfileFragment";
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    final ArrayList<String> userinfoList = new ArrayList<>();
+    Info my_info = new Info();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView username = ((TextView)v.findViewById(R.id.userName));
-        TextView usermajor = ((TextView)v.findViewById(R.id.userMajor));
-        TextView userlevel = ((TextView)v.findViewById(R.id.userLevel));
-        TextView useruniv = ((TextView)v.findViewById(R.id.userUniv));
+        //Log.w(TAG,"shit"+getActivity().getIntent().toString());
+
+        if (this.getArguments() != null) {
+            my_info = (Info) this.getArguments().getSerializable("my_info");
+
+            TextView username = ((TextView) v.findViewById(R.id.userName));
+            TextView usermajor = ((TextView) v.findViewById(R.id.userMajor));
+            TextView userlevel = ((TextView) v.findViewById(R.id.userLevel));
+            TextView useruniv = ((TextView) v.findViewById(R.id.userUniv));
+
+            username.setText(my_info.getname());
+            usermajor.setText(my_info.getmajor());
+            userlevel.setText(my_info.getlevel());
+            useruniv.setText(my_info.getuniv());
+        }
+
 
         v.findViewById(R.id.editProfile).setOnClickListener(onClickListener);
         v.findViewById(R.id.logout).setOnClickListener(onClickListener);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final ArrayList<String> userinfoList = new ArrayList<>();
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRref = db.collection("users").document(user.getUid());
-        docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        userinfoList.add(document.getData().get("name").toString());
+
+
+
+        /*Log.w(TAG,"already have data "+my_info.getname().equals(""));
+        if (my_info.getname().equals("")) {
+            docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        Log.d(TAG, "DocumentSnapshot profile: " + document.getData());
+                        if (document.exists()) {
+
+                            my_info.setname(document.getData().get("name").toString());
+                            my_info.setmajor(document.getData().get("major").toString());
+                            my_info.setlevel(document.getData().get("level").toString());
+                            my_info.setuniv(document.getData().get("univ").toString());
+
+                        *//*Log.w(TAG, "name: " + my_info.getname());
+                        Log.w(TAG, "major: " + my_info.getmajor());
+                        Log.w(TAG, "level: " + my_info.getlevel());
+                        Log.w(TAG, "univ: " + my_info.getuniv());*//*
+
+                            username.setText(my_info.getname());
+                            usermajor.setText(my_info.getmajor());
+                            userlevel.setText(my_info.getlevel());
+                            useruniv.setText(my_info.getuniv());
+
+                        *//*userinfoList.add(document.getData().get("name").toString());
                         username.setText(userinfoList.get(0));
                         userinfoList.add(document.getData().get("major").toString());
                         usermajor.setText(userinfoList.get(1));
                         userinfoList.add(document.getData().get("level").toString());
                         userlevel.setText(userinfoList.get(2));
                         userinfoList.add(document.getData().get("univ").toString());
-                        useruniv.setText(userinfoList.get(3));
+                        useruniv.setText(userinfoList.get(3));*//*
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
                     } else {
-                        Log.d(TAG, "No such document");
+                        Log.d(TAG, "get failed with ", task.getException());
                     }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
                 }
-            }
-        });
+            });
+        }*/
         return v;
     }
 
@@ -76,7 +113,10 @@ public class Profilefragment extends Fragment {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.editProfile:
-                    startActivity(EditprofileActivity.class);
+                    Intent intent = new Intent(getActivity(), EditprofileActivity.class);
+                    intent.putExtra("my_info",my_info);
+                    Log.w(TAG,"shit"+my_info);
+                    startActivity(intent);
                     break;
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();

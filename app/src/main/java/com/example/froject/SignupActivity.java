@@ -77,7 +77,7 @@ public class SignupActivity extends AppCompatActivity {
         if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0) {
 
             if (!check_email(email)) {
-                startToast("시발련아 너 대학생아니지?");
+                startToast("대학 이메일을 이용해주세요.");
             }
             else if (password.length() >= 6) {
                 if (password.equals(checkpass)) {

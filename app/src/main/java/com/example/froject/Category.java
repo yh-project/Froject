@@ -37,8 +37,4 @@ public class Category {
     public void setCategory_list(ArrayList<ArrayList<String>> category_list) {
         this.category_list = category_list;
     }
-
-
-
-
 }
