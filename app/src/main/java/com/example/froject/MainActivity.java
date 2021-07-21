@@ -39,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
 
-        Intent i = getIntent();
-        @Nullable String data = i.getStringExtra("data");
-        if(data == null) { data = "none"; }
-
-        switch(data) {
-            case "none":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
-                break;
-            case "editprofile":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
-                break;
-        }
-
         if(user == null) {
             startActivity(LoginActivity.class);
         }else{
@@ -65,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
+                                Info info = document.toObject(Info.class);
                                 if(document != null) {
                                     if (info.getuniv()=="") {
                                         Log.d(TAG, "No such document");
@@ -80,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             });
+        }
+
+        Intent i = getIntent();
+        @Nullable String data = i.getStringExtra("data");
+        if(data == null) { data = "none"; }
+
+        switch(data) {
+            case "none":
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                break;
+            case "editprofile":
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                break;
         }
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
