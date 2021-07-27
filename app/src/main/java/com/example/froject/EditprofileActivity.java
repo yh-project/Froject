@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,10 +41,8 @@ public class EditprofileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         my_info = (Info) intent.getSerializableExtra("my_info");
 
-
         findViewById(R.id.newPass).setOnClickListener(onClickListener);
         findViewById(R.id.changeInfo).setOnClickListener(onClickListener);
-
 
         TextView originalname = ((TextView)findViewById(R.id.originalName));
         TextView originalmajor = ((TextView)findViewById(R.id.originalMajor));
@@ -116,6 +113,7 @@ public class EditprofileActivity extends AppCompatActivity {
             for(int i=0;i<4;i++) {
                 if(newinfolist.get(i).length() > 0) { newlist += (newinfolist.get(i) + " "); }
             }
+
             AlertDialog.Builder msgBuilder = new AlertDialog.Builder(EditprofileActivity.this)
                     .setTitle("???")
                     .setMessage(newlist + "\n이대로 바꿔?")
@@ -123,7 +121,7 @@ public class EditprofileActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
                             for(int j=0;j<4;j++){
-                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getUid()).update(keylist.get(j), newinfolist.get(j)); }
+                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getEmail()).update(keylist.get(j), newinfolist.get(j)); }
                             }
                             if(newinfolist.get(0).length() > 0)
                                 my_info.setname(newinfolist.get(0));
@@ -133,6 +131,8 @@ public class EditprofileActivity extends AppCompatActivity {
                                 my_info.setlevel(newinfolist.get(2));
                             if(newinfolist.get(3).length() > 0)
                                 my_info.setuniv(newinfolist.get(3));
+
+                            db.collection("users").document(user.getEmail()).set(my_info);
 
                             Log.w(TAG, "name: " + my_info.getname());
                             Log.w(TAG, "major: " + my_info.getmajor());
@@ -144,6 +144,7 @@ public class EditprofileActivity extends AppCompatActivity {
                             intent.putExtra("my_info",my_info);
                             intent.putExtra("data","editprofile");
                             Log.w(TAG,"shit"+my_info);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
@@ -201,6 +202,7 @@ public class EditprofileActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
                         intent.putExtra("my_info",my_info);
+                        intent.putExtra("data","editprofile");
                         Log.w(TAG,"shit"+my_info);
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);

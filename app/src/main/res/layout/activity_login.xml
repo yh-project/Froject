@@ -75,6 +75,14 @@
 
     </LinearLayout>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="26"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
     <!--빈공간-->
     <View
         android:layout_width="match_parent"

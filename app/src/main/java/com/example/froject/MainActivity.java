@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Info my_info = new Info();
+    Boardfragment boardfragment;
+    Profilefragment profilefragment;
 
     private static final String TAG = "MainActivity";
     @Override
@@ -76,40 +80,27 @@ public class MainActivity extends AppCompatActivity {
         }
         //End = check Login state
 
-        //Case : Back to MainActivity
-        @Nullable String data = intent.getStringExtra("data");
-        if (data == null) {
-            data = "none";
-        }
-
-        switch (data) {
-            case "none":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
-                break;
-            case "editprofile":
-                //Start = put Info for next Activity
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("my_info", my_info);
-                Profilefragment profilefragment = new Profilefragment();
-                profilefragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
-                //End = put Info for next Activity
-                break;
-        }
-
         //Case : Select Button
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.item_fragment1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                        if (boardfragment == null) {
+                            boardfragment = new Boardfragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, boardfragment).commit();
+                        }
+                        else {
+                            getSupportFragmentManager().beginTransaction().show(boardfragment).commit();
+                        }
                         break;
                     case R.id.item_fragment2:
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("my_info", my_info);
-                        Profilefragment profilefragment = new Profilefragment();
+                        profilefragment = new Profilefragment();
                         profilefragment.setArguments(bundle);
+
+
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
                         Log.w(TAG, "shit" + my_info);
                         break;
@@ -123,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
+    @Override
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
@@ -135,27 +126,35 @@ public class MainActivity extends AppCompatActivity {
         }
         //End = get Info for past Activity
 
-        *//*@Nullable String data = intent.getStringExtra("data");
+        //Case : Back to MainActivity
+        @Nullable String data = intent.getStringExtra("data");
         if (data == null) {
             data = "none";
         }
 
         switch (data) {
             case "none":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                if (boardfragment == null) {
+                    boardfragment = new Boardfragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, boardfragment).commit();
+                }
+                else {
+                    getSupportFragmentManager().beginTransaction().show(boardfragment).commit();
+                }
                 break;
             case "editprofile":
                 //Start = put Info for next Activity
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("my_info", my_info);
+                Log.w(TAG,"성공함"+my_info);
                 Profilefragment profilefragment = new Profilefragment();
                 profilefragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
                 //End = put Info for next Activity
                 break;
-        }*//*
+        }
 
-    }*/
+    }
 
     @Override
     public void onBackPressed() {
