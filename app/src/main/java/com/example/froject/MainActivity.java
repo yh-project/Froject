@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             my_info = (Info) intent.getSerializableExtra("my_info");
             Log.w(TAG, "shit get main" + intent.getSerializableExtra("my_info"));
         }
+
         @Nullable String data = intent.getStringExtra("data");
         //End = get info for past Activity
 

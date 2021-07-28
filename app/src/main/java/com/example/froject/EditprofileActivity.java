@@ -129,7 +129,7 @@ public class EditprofileActivity extends AppCompatActivity {
                             Log.w(TAG, "univ: " + my_info.getuniv());
 
                             Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                            intent.putExtra("my_info", my_info);
+                            //intent.putExtra("my_info", my_info); 응애
                             intent.putExtra("data", "editprofile");
                             Log.w(TAG, "shit"+my_info);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -152,7 +152,6 @@ public class EditprofileActivity extends AppCompatActivity {
                             //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
                             //intent.putExtra("data", "editprofile");
                             //startActivity(intent);
-
                             finish();
                         }
                     })
@@ -190,6 +189,7 @@ public class EditprofileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                        intent.putExtra("my_info",my_info);
                         intent.putExtra("data", "editprofile");
                         startActivity(intent);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
