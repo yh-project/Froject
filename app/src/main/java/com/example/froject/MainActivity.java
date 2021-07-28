@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.ListFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -40,9 +43,12 @@ public class MainActivity extends AppCompatActivity {
     Profilefragment profilefragment;
 
     private static final String TAG = "MainActivity";
+    private static final String PROFILE_TAG = "ProfileFragment";
+    private static final String BOARD_TAG = "BoardFragment";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.w(TAG,"PRINT : "+savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavi);
 
@@ -80,6 +86,47 @@ public class MainActivity extends AppCompatActivity {
         }
         //End = check Login state
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        //Start = get Info for past Activity
+        if (intent.getSerializableExtra("my_info") != null) {
+            my_info = (Info) intent.getSerializableExtra("my_info");
+            Log.w(TAG, "shit get main" + intent.getSerializableExtra("my_info"));
+        }
+        @Nullable String data = intent.getStringExtra("data");
+        //End = get Info for past Activity
+
+        //Case : Back to MainActivity
+
+        if (data != null) {
+            switch (data) {
+                case "none":
+                    if (boardfragment == null) {
+                        startToast("새로운 화면으로 실행됨");
+                        boardfragment = new Boardfragment();
+                        addFragment(boardfragment);
+                    } else {
+                        startToast("기존 화면으로 실행됨");
+                        showFragment(boardfragment);
+                    }
+                    break;
+                case "editprofile":                                 //If change profile, FLAG will reset
+                    //Start = put Info for next Activity
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("my_info", my_info);
+                    Log.w(TAG, "성공함" + my_info);
+                    profilefragment = new Profilefragment();
+                    profilefragment.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment, PROFILE_TAG).commit();
+                    //End = put Info for next Activity
+                    break;
+            }
+        }
+
         //Case : Select Button
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -88,20 +135,23 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.item_fragment1:
                         if (boardfragment == null) {
                             boardfragment = new Boardfragment();
-                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, boardfragment).commit();
+                            addFragment(boardfragment);
                         }
                         else {
-                            getSupportFragmentManager().beginTransaction().show(boardfragment).commit();
+                            showFragment(boardfragment);
                         }
                         break;
                     case R.id.item_fragment2:
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("my_info", my_info);
-                        profilefragment = new Profilefragment();
-                        profilefragment.setArguments(bundle);
-
-
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
+                        if (profilefragment == null) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("my_info", my_info);
+                            profilefragment = new Profilefragment();
+                            profilefragment.setArguments(bundle);
+                            addFragment(profilefragment);
+                        }
+                        else {
+                            showFragment(profilefragment);
+                        }
                         Log.w(TAG, "shit" + my_info);
                         break;
                     case R.id.item_writeactivity:
@@ -111,48 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Intent intent = getIntent();
-        //Start = get Info for past Activity
-        Log.w(TAG, "shit main " + (intent.getSerializableExtra("my_info") != null));
-        if (intent.getSerializableExtra("my_info") != null) {
-            my_info = (Info) intent.getSerializableExtra("my_info");
-            Log.w(TAG, "shit get main" + intent.getSerializableExtra("my_info"));
-        }
-        //End = get Info for past Activity
-
-        //Case : Back to MainActivity
-        @Nullable String data = intent.getStringExtra("data");
-        if (data == null) {
-            data = "none";
-        }
-
-        switch (data) {
-            case "none":
-                if (boardfragment == null) {
-                    boardfragment = new Boardfragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, boardfragment).commit();
-                }
-                else {
-                    getSupportFragmentManager().beginTransaction().show(boardfragment).commit();
-                }
-                break;
-            case "editprofile":
-                //Start = put Info for next Activity
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("my_info", my_info);
-                Log.w(TAG,"성공함"+my_info);
-                Profilefragment profilefragment = new Profilefragment();
-                profilefragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();
-                //End = put Info for next Activity
-                break;
-        }
 
     }
 
@@ -191,6 +199,45 @@ public class MainActivity extends AppCompatActivity {
                 });
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
+
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame,fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<Fragment> List = fragmentManager.getFragments();
+        int listsize = List.size();
+        Log.w(TAG,"fragment data : "+listsize+List.toString());
+
+        for (int i=0;i<listsize;i++) {
+            fragmentTransaction.hide(List.get(i));
+        }
+        fragmentTransaction.add(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void showFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<Fragment> List = fragmentManager.getFragments();
+        int listsize = List.size();
+        Log.w(TAG,"fragment data : "+listsize+List.toString());
+
+        for (int i=0;i<listsize;i++) {
+            if (!(fragment.equals(List.get(i)))) {
+                fragmentTransaction.hide(List.get(i));
+            }
+        }
+
+        fragmentTransaction.show(fragment);
+        fragmentTransaction.commit();
     }
 }
 

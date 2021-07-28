@@ -144,8 +144,8 @@ public class EditprofileActivity extends AppCompatActivity {
                             intent.putExtra("my_info",my_info);
                             intent.putExtra("data","editprofile");
                             Log.w(TAG,"shit"+my_info);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
                             /*Bundle bundle = new Bundle();

@@ -33,6 +33,7 @@ public class Profilefragment extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final ArrayList<String> userinfoList = new ArrayList<>();
     Info my_info;
+    Intent intent;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRref = db.collection("users").document(user.getUid());
@@ -61,52 +62,6 @@ public class Profilefragment extends Fragment {
         v.findViewById(R.id.editProfile).setOnClickListener(onClickListener);
         v.findViewById(R.id.logout).setOnClickListener(onClickListener);
 
-
-
-
-
-        /*Log.w(TAG,"already have data "+my_info.getname().equals(""));
-        if (my_info.getname().equals("")) {
-            docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        Log.d(TAG, "DocumentSnapshot profile: " + document.getData());
-                        if (document.exists()) {
-
-                            my_info.setname(document.getData().get("name").toString());
-                            my_info.setmajor(document.getData().get("major").toString());
-                            my_info.setlevel(document.getData().get("level").toString());
-                            my_info.setuniv(document.getData().get("univ").toString());
-
-                        *//*Log.w(TAG, "name: " + my_info.getname());
-                        Log.w(TAG, "major: " + my_info.getmajor());
-                        Log.w(TAG, "level: " + my_info.getlevel());
-                        Log.w(TAG, "univ: " + my_info.getuniv());*//*
-
-                            username.setText(my_info.getname());
-                            usermajor.setText(my_info.getmajor());
-                            userlevel.setText(my_info.getlevel());
-                            useruniv.setText(my_info.getuniv());
-
-                        *//*userinfoList.add(document.getData().get("name").toString());
-                        username.setText(userinfoList.get(0));
-                        userinfoList.add(document.getData().get("major").toString());
-                        usermajor.setText(userinfoList.get(1));
-                        userinfoList.add(document.getData().get("level").toString());
-                        userlevel.setText(userinfoList.get(2));
-                        userinfoList.add(document.getData().get("univ").toString());
-                        useruniv.setText(userinfoList.get(3));*//*
-                        } else {
-                            Log.d(TAG, "No such document");
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
-                }
-            });
-        }*/
         return v;
     }
 
@@ -115,7 +70,7 @@ public class Profilefragment extends Fragment {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.editProfile:
-                    Intent intent = new Intent(getActivity(), EditprofileActivity.class);
+                    intent = new Intent(getActivity(), EditprofileActivity.class);
                     intent.putExtra("my_info",my_info);
                     Log.w(TAG,"shit"+my_info);
                     startActivity(intent);
@@ -161,4 +116,5 @@ public class Profilefragment extends Fragment {
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
+
 }
