@@ -120,9 +120,6 @@ public class EditprofileActivity extends AppCompatActivity {
                     .setPositiveButton("네", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
-                            for(int j=0;j<4;j++){
-                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getEmail()).update(keylist.get(j), newinfolist.get(j)); }
-                            }
                             if(newinfolist.get(0).length() > 0)
                                 my_info.setname(newinfolist.get(0));
                             if(newinfolist.get(1).length() > 0)
@@ -201,10 +198,9 @@ public class EditprofileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                        intent.putExtra("my_info",my_info);
                         intent.putExtra("data","editprofile");
                         Log.w(TAG,"shit"+my_info);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();
                     }

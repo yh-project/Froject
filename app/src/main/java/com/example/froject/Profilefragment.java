@@ -42,8 +42,6 @@ public class Profilefragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //Log.w(TAG,"shit"+getActivity().getIntent().toString());
-
         if (this.getArguments() != null) {
             my_info = (Info) this.getArguments().getSerializable("my_info");
 

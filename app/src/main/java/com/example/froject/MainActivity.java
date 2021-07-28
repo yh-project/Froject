@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //End = check Login state
 
+
     }
 
     @Override
@@ -102,9 +103,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Case : Back to MainActivity
 
-        if (data != null) {
+
+
+        if (data == null) {
+            data = "none";
+        }
             switch (data) {
                 case "none":
+                    //startToast("go"+boardfragment.toString());
                     if (boardfragment == null) {
                         startToast("새로운 화면으로 실행됨");
                         boardfragment = new Boardfragment();
@@ -114,18 +120,18 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(boardfragment);
                     }
                     break;
-                case "editprofile":                                 //If change profile, FLAG will reset
+                case "editprofile":                              //If change profile, FLAG will reset
                     //Start = put Info for next Activity
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("my_info", my_info);
                     Log.w(TAG, "성공함" + my_info);
                     profilefragment = new Profilefragment();
                     profilefragment.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment, PROFILE_TAG).commit();
+                    addFragment(profilefragment);
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment, PROFILE_TAG).commit();
                     //End = put Info for next Activity
                     break;
             }
-        }
 
         //Case : Select Button
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
