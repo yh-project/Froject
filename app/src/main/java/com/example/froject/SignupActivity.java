@@ -1,6 +1,7 @@
 package com.example.froject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.froject.databinding.ActivityLoginBinding;
+import com.example.froject.databinding.ActivitySignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,25 +41,43 @@ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     private FirebaseAuth mAuth;
     String gender = "";
+    private ActivitySignupBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        binding = ActivitySignupBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.signUp).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoLogin).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.signUp:
+                        sign_Up();
+                        break;
+                    case R.id.gotoLogin:
+                        backAlert();
+                        break;
+                    case R.id.back:
+                        backAlert();
+                        break;
+                }
+            }
+        };
+        binding.signUp.setOnClickListener(onClickListener);
+        binding.gotoLogin.setOnClickListener(onClickListener);
+        binding.back.setOnClickListener(onClickListener);
+
         set_date();
         set_gender();
     }
-
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
@@ -65,25 +86,8 @@ public class SignupActivity extends AppCompatActivity {
         backAlert();
     }
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.signUp:
-                    sign_Up();
-                    break;
-                case R.id.gotoLogin:
-                    backAlert();
-                    break;
-                case R.id.back:
-                    backAlert();
-                    break;
-            }
-        }
-    };
-
     private void set_date() {
-        EditText date = ((EditText)findViewById(R.id.setDate));
+        EditText date = (binding.setDate);
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -105,8 +109,8 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
     private void set_gender() {
-        Button mAn = ((Button)findViewById(R.id.man));
-        Button woMan = ((Button)findViewById(R.id.woman));
+        Button mAn = (binding.man);
+        Button woMan = (binding.woman);
 
         mAn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,13 +134,13 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
     private void sign_Up() {
-        String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();
-        String password = ((EditText) findViewById(R.id.setPass)).getText().toString();
-        String checkpass = ((EditText) findViewById(R.id.passCheck)).getText().toString();
-        String name = ((EditText) findViewById(R.id.setName)).getText().toString();
-        String date = ((EditText) findViewById(R.id.setDate)).getText().toString();
+        String email = (binding.setEmail).getText().toString();
+        String password = (binding.setPass).getText().toString();
+        String checkpass = (binding.passCheck).getText().toString();
+        String name = (binding.setName).getText().toString();
+        String date = (binding.setDate).getText().toString();
 
-        if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0) {
+        if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0 && name.length() > 0 && date.length() > 0) {
             if (!check_email(email)) {
                 startToast("대학메일로 가입해주세요 ac.kr");
             }
@@ -186,6 +190,7 @@ public class SignupActivity extends AppCompatActivity {
     }
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
     private void backAlert() {
@@ -213,6 +218,7 @@ public class SignupActivity extends AppCompatActivity {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
+                        startActivity(LoginActivity.class);
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();
@@ -224,5 +230,4 @@ public class SignupActivity extends AppCompatActivity {
 
         return regex;
     }
-
 }
