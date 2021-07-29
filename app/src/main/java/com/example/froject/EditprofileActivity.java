@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +38,8 @@ public class EditprofileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
+
+        Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
 
         Intent intent = getIntent();
         my_info = (Info) intent.getSerializableExtra("my_info");
@@ -123,16 +126,18 @@ public class EditprofileActivity extends AppCompatActivity {
                             if(newinfolist.get(2).length()>0) { my_info.setlevel(newinfolist.get(2)); }
                             if(newinfolist.get(3).length()>0) { my_info.setuniv(newinfolist.get(3)); }
 
+                            db.collection("users").document(user.getEmail()).set(my_info);
+
                             Log.w(TAG, "name: " + my_info.getname());
                             Log.w(TAG, "major: " + my_info.getmajor());
                             Log.w(TAG, "level: " + my_info.getlevel());
                             Log.w(TAG, "univ: " + my_info.getuniv());
 
                             Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                            //intent.putExtra("my_info", my_info); 응애
+                            intent.putExtra("my_info", my_info);
                             intent.putExtra("data", "editprofile");
                             Log.w(TAG, "shit"+my_info);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
@@ -188,11 +193,6 @@ public class EditprofileActivity extends AppCompatActivity {
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                        intent.putExtra("my_info",my_info);
-                        intent.putExtra("data", "editprofile");
-                        startActivity(intent);
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         finish();
                     }
                 })

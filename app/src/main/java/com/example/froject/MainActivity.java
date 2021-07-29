@@ -37,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Info my_info = new Info();
-    Boardfragment boardfragment;
+    Boardfragment boardfragment = new Boardfragment();
     Profilefragment profilefragment;
+
 
     private static final String TAG = "MainActivity";
     private static final String PROFILE_TAG = "ProfileFragment";
@@ -50,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         Log.w(TAG,"PRINT: "+savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavi);
-
-        Intent intent = getIntent();
 
         //Start = check Login State
         if(user == null) { //state == Logout -> goto LoginActivity
@@ -84,12 +83,17 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         //End = check Login state
+
+        addFragment(boardfragment);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
+
+        Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
+
         //Start = get info for past activity
         if(intent.getSerializableExtra("my_info") != null) {
             my_info = (Info) intent.getSerializableExtra("my_info");
@@ -100,32 +104,18 @@ public class MainActivity extends AppCompatActivity {
         //End = get info for past Activity
 
         //Case : Back to MainActivity
-        if(data != null) {
-            switch (data) {
-                case "none":
-                    if(boardfragment == null) {
-                        startToast("새로운 화면으로 실행됨");
-                        boardfragment = new Boardfragment();
-                        addFragment(boardfragment);
-                    } else {
-                        startToast("기존 화면으로 실행됨");
-                        showFragment(boardfragment);
-                    }
-                    break;
-                case "editprofile":
-                    //Start = put info for next Activity
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("my_info", my_info);
-                    Log.w(TAG,"성공함"+my_info);
-                    profilefragment = new Profilefragment();
-                    profilefragment.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment, PROFILE_TAG).commit();
-                    //End = put info for next Activity
-                    break;
+        if(data == "editprofile") {
+            //Start = put info for next Activity
+            if (profilefragment == null) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("my_info", my_info);
+                profilefragment = new Profilefragment();
+                profilefragment.setArguments(bundle);
+                addFragment(profilefragment);
+            } else {
+                showFragment(profilefragment);
             }
-        } else { // 응애 첨키면 보드가 나와야져 후에는 홈이 되곘지만여
-            boardfragment = new Boardfragment();
-            replaceFragment(boardfragment);
+            //End = put info for next Activity
         }
 
         //Case : Select Button
