@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,47 +29,45 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    Info my_info = new Info();
+    Boardfragment boardfragment = new Boardfragment();
+    Profilefragment profilefragment;
+
+
     private static final String TAG = "MainActivity";
+    private static final String PROFILE_TAG = "ProfileFragment";
+    private static final String BOARD_TAG = "BoardFragment";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.w(TAG,"PRINT: "+savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bottomNavigationView = findViewById(R.id.bottomNavi);
 
-        Intent i = getIntent();
-        @Nullable String data = i.getStringExtra("data");
-        if(data == null) { data = "none"; }
-
-        switch(data) {
-            case "none":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
-                break;
-            case "editprofile":
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
-                break;
-        }
-
-        if(user == null) {
+        //Start = check Login State
+        if(user == null) { //state == Logout -> goto LoginActivity
             startActivity(LoginActivity.class);
-        }else{
-            DocumentReference documentReference = db.collection("users").document(user.getEmail());
-            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        }else{ //state = Login -> get DB for firebase
+            DocumentReference docRef = db.collection("users").document(user.getEmail());
+            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Info info = documentSnapshot.toObject(Info.class);
-                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    my_info = documentSnapshot.toObject(Info.class);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
                                 if(document != null) {
-                                    if (info.getuniv()=="") {
+                                    if (my_info.getuniv() == "") { //Need fix
                                         Log.d(TAG, "No such document");
                                         startActivity(UserinfoActivity.class);
                                     } else {
@@ -81,16 +82,68 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        //End = check Login state
 
+        addFragment(boardfragment);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+
+        Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
+
+        //Start = get info for past activity
+        if(intent.getSerializableExtra("my_info") != null) {
+            my_info = (Info) intent.getSerializableExtra("my_info");
+            Log.w(TAG, "shit get main" + intent.getSerializableExtra("my_info"));
+        }
+
+        @Nullable String data = intent.getStringExtra("data");
+        //End = get info for past Activity
+
+        //Case : Back to MainActivity
+        if(data == "editprofile") {
+            //Start = put info for next Activity
+            if (profilefragment == null) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("my_info", my_info);
+                profilefragment = new Profilefragment();
+                profilefragment.setArguments(bundle);
+                addFragment(profilefragment);
+            } else {
+                showFragment(profilefragment);
+            }
+            //End = put info for next Activity
+        }
+
+        //Case : Select Button
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.item_fragment1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Boardfragment()).commit();
+                        if(boardfragment == null) {
+                            boardfragment = new Boardfragment();
+                            addFragment(boardfragment);
+                        }
+                        else {
+                            showFragment(boardfragment);
+                        }
                         break;
                     case R.id.item_fragment2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Profilefragment()).commit();
+                        if(profilefragment == null) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("my_info", my_info);
+                            profilefragment = new Profilefragment();
+                            profilefragment.setArguments(bundle);
+                            addFragment(profilefragment);
+                        }
+                        else {
+                            showFragment(profilefragment);
+                        }
+                        Log.w(TAG, "shit" + my_info);
                         break;
                     case R.id.item_writeactivity:
                         startActivity(WriteActivity.class);
@@ -131,12 +184,49 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
+                        startToast("취소되었습니다.");
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<Fragment> List = fragmentManager.getFragments();
+        int listsize = List.size();
+        Log.w(TAG, "fragment data : " + listsize + List.toString());
+
+        for(int i=0;i<listsize;i++) {
+            fragmentTransaction.hide(List.get(i));
+        }
+        fragmentTransaction.add(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void showFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<Fragment> List = fragmentManager.getFragments();
+        int listsize = List.size();
+        Log.w(TAG, "fragment data : "+listsize+List.toString());
+
+        for(int i=0;i<listsize;i++) {
+            if(!(fragment.equals(List.get(i)))) {
+                fragmentTransaction.hide(List.get(i));
+            }
+        }
+        fragmentTransaction.show(fragment);
+        fragmentTransaction.commit();
+     }
 }
 
 //응애
