@@ -133,7 +133,7 @@ public class EditprofileActivity extends AppCompatActivity {
                             Log.w(TAG, "level: " + my_info.getlevel());
                             Log.w(TAG, "univ: " + my_info.getuniv());
 
-                            //fix
+                            //need fix
                             Intent intent = getIntent();
                             intent.setClass(EditprofileActivity.this,MainActivity.class);
                             //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
@@ -143,8 +143,8 @@ public class EditprofileActivity extends AppCompatActivity {
                             Log.w(TAG,"Document "+intent.getComponent());
                             //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            //startActivity(intent);
-                            onBackPressed();
+                            startActivity(intent);
+                            finish();
                         }
                     })
                     .setNegativeButton("아니요", new DialogInterface.OnClickListener() {

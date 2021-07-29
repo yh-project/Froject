@@ -71,7 +71,7 @@ public class Profilefragment extends Fragment {
                     intent = new Intent(getActivity(), EditprofileActivity.class);
                     intent.putExtra("my_info", my_info);
                     Log.w(TAG,"shit"+my_info);
-                    startActivityForResult(intent,1234);
+                    startActivity(intent);
                     break;
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
