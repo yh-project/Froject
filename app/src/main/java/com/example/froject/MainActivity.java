@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
                                 if(document != null) {
-                                    if (my_info.getuniv() == "") { //Need fix
+                                    if (my_info.checkNull()) { //Need fix
                                         Log.d(TAG, "No such document");
                                         startActivity(UserinfoActivity.class);
                                     } else {
@@ -91,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
-
+        Log.w(TAG,"Document "+intent);
+        Log.w(TAG,"Document "+intent.getSerializableExtra("my_info"));
+        Log.w(TAG,"Document "+intent.getComponent());
+        Log.w(TAG,"Document "+intent.getStringExtra("data"));
         Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
 
         //Start = get info for past activity
@@ -104,18 +107,24 @@ public class MainActivity extends AppCompatActivity {
         //End = get info for past Activity
 
         //Case : Back to MainActivity
-        if(data == "editprofile") {
-            //Start = put info for next Activity
-            if (profilefragment == null) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("my_info", my_info);
-                profilefragment = new Profilefragment();
-                profilefragment.setArguments(bundle);
-                addFragment(profilefragment);
-            } else {
-                showFragment(profilefragment);
+
+        if (data!=null) {
+            switch (data) {
+                case "none":
+                    showFragment(boardfragment);
+                    break;
+                case "editprofile":
+                    if (profilefragment == null) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("my_info", my_info);
+                        profilefragment = new Profilefragment();
+                        profilefragment.setArguments(bundle);
+                        addFragment(profilefragment);
+                    } else {
+                        showFragment(profilefragment);
+                    }
+                    break;
             }
-            //End = put info for next Activity
         }
 
         //Case : Select Button

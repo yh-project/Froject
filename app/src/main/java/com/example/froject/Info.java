@@ -77,4 +77,11 @@ public class Info implements Serializable {
 
     public String getgender() { return this.gender; }
     public void setgender(String gender) { this.gender=gender; }
+
+    public boolean checkNull() {
+        if (this.name.length() > 0 && this.number.length() > 9 && this.date.length() > 5 && this.univ.length() > 0 && this.level.length() > 0 && this.major.length() > 0 && this.gender.length() > 0)
+            return false;
+        else
+            return true;
+    }
 }

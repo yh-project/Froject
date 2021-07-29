@@ -89,8 +89,8 @@ public class EditprofileActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.newPass:
-                    startActivity(PassresetActivity.class);
+                case R.id.newPass:      //fix 임시로 막아둠
+                    //startActivity(PassresetActivity.class);
                     break;
                 case R.id.changeInfo:
                     change_info();
@@ -133,31 +133,18 @@ public class EditprofileActivity extends AppCompatActivity {
                             Log.w(TAG, "level: " + my_info.getlevel());
                             Log.w(TAG, "univ: " + my_info.getuniv());
 
-                            Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                            //fix
+                            Intent intent = getIntent();
+                            intent.setClass(EditprofileActivity.this,MainActivity.class);
+                            //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
                             intent.putExtra("my_info", my_info);
                             intent.putExtra("data", "editprofile");
                             Log.w(TAG, "shit"+my_info);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            Log.w(TAG,"Document "+intent.getComponent());
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-
-                              /*Bundle bundle = new Bundle();
-                            bundle.putSerializable("my_info",my_info);
-                            Profilefragment profilefragment = new Profilefragment();
-                            profilefragment.setArguments(bundle);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profilefragment).commit();*/
-
-
-                            /*Intent intent = new Intent(EditprofileActivity.this, Profilefragment.class);
-                            intent.putExtra("my_info",my_info);
-                            Log.w(TAG,"shit"+my_info);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);*/
-
-                            //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                            //intent.putExtra("data", "editprofile");
                             //startActivity(intent);
-                            finish();
+                            onBackPressed();
                         }
                     })
                     .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -171,10 +158,10 @@ public class EditprofileActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         cancelAlert();
-    }
+    }*/
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
