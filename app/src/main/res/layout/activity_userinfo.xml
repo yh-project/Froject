@@ -127,7 +127,9 @@
                 android:text="@string/signup_man"
                 android:textStyle="bold"
                 android:textColor="#9ABCDE"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+
+                />
 
             <View
                 android:layout_width="0dp"

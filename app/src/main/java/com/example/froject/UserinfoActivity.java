@@ -46,6 +46,11 @@ public class UserinfoActivity extends AppCompatActivity {
         Button mAn = ((Button)findViewById(R.id.man));
         Button woMan = ((Button)findViewById(R.id.woman));
 
+        mAn.setBackground(getDrawable(R.drawable.borderline));
+        mAn.setTextColor(Color.rgb(154, 188, 222));
+        woMan.setBackground(getDrawable(R.drawable.borderline));
+        woMan.setTextColor(Color.rgb(154, 188, 222));
+
         set_date();
         set_gender(mAn, woMan);
         set_preview(mAn, woMan);
@@ -94,6 +99,7 @@ public class UserinfoActivity extends AppCompatActivity {
         });
     }
     private void set_gender(Button mAn, Button woMan) {
+
         mAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,13 +156,26 @@ public class UserinfoActivity extends AppCompatActivity {
         String major = ((EditText)findViewById(R.id.setMajor)).getText().toString();
         Info info = new Info(name, number, date, univ, level, major, gender);
 
-        if(name.length()>0 && number.length() > 9 && date.length() > 5 && univ.length() > 0 && level.length() > 0 && major.length() > 0 && gender.length() > 0) {
+        Log.w(TAG,"omg"+info.getname());
+        Log.w(TAG,"omg"+info.getnumber());
+        Log.w(TAG,"omg"+info.getdate());
+        Log.w(TAG,"omg"+info.getuniv());
+        Log.w(TAG,"omg"+info.getlevel());
+        Log.w(TAG,"omg"+info.getmajor());
+        Log.w(TAG,"omg"+info.getgender());
+        Log.w(TAG,"omg"+info.getClass().toString());
+
+        if(!info.checkNull()) {
             if(user != null) {
                 db.collection("users").document(user.getEmail()).set(info, SetOptions.merge())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 startToast("회원정보를 등록했습니다.");
+                                Intent intent = new Intent(UserinfoActivity.this, MainActivity.class);
+                                intent.putExtra("my_info", info);
+                                intent.putExtra("data","none");
+                                startActivity(intent);
                                 finish();
                             }
                         })
