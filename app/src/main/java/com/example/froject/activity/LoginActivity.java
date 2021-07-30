@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.froject.R;
 import com.example.froject.databinding.ActivityLoginBinding;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;

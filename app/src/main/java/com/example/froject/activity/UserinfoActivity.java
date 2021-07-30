@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.froject.Info;
+import com.example.froject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,8 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserinfoActivity extends AppCompatActivity {
     private static final String TAG = "UserinfoActivity";

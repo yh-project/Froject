@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.froject.R;
 
 import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 

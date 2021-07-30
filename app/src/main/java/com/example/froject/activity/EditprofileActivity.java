@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.froject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
