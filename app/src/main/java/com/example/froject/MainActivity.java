@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Info my_info = new Info();
     Boardfragment boardfragment = new Boardfragment();
     Profilefragment profilefragment;
+    Homefragment homefragment;
 
 
     private static final String TAG = "MainActivity";
@@ -155,6 +156,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.item_writeactivity:
                         startActivity(WriteActivity.class);
+                        break;
+                    case R.id.item_fragment3:
+                        if(homefragment == null) {
+                            homefragment = new Homefragment();
+                            addFragment(homefragment);
+                        }
+                        else {
+                            showFragment(homefragment);
+                        }
                         break;
                 }
                 return true;
