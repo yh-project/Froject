@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +15,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.froject.EditprofileActivity;
+import com.example.froject.Info;
+import com.example.froject.LoginActivity;
+import com.example.froject.MainActivity;
+import com.example.froject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
