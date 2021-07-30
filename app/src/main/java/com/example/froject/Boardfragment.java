@@ -1,4 +1,4 @@
-package com.example.froject.fragment;
+package com.example.froject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,9 +17,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.widget.Toast;
-
-import com.example.froject.MainActivity;
-import com.example.froject.R;
 
 
 public class Boardfragment extends Fragment {
