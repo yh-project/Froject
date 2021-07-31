@@ -38,8 +38,12 @@ public class Homefragment extends Fragment {
 
         recyclerView = v.findViewById(R.id.likerecyclerview);
         list = new ArrayList<>();
+        LikePostData likePostData1 = new LikePostData("배", "고", "파");
+        LikePostData likePostData2 = new LikePostData("배고", "프다", "니까");
+        list.add(likePostData1);
+        list.add(likePostData2);
         likelistAdapter = new LikelistAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(likelistAdapter);
 
         final Handler handler = new Handler();

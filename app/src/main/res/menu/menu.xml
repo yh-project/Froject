@@ -4,25 +4,25 @@
     <item
         android:id="@+id/item_fragment1"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_article_24"
-        android:title="게시판"/>
+        android:icon="@drawable/item_category"
+        android:title="카테고리"/>
 
     <item
         android:id="@+id/item_writeactivity"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_control_point_24"
+        android:icon="@drawable/item_wirtepost"
         android:title="게시글 작성"/>
 
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_person_24"
+        android:icon="@drawable/item_profile"
         android:title="프로필"/>
 
     <item
         android:id="@+id/item_fragment3"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/item_home"
         android:title="홈"/>
 
 </menu>

@@ -38,6 +38,11 @@ public class LikelistAdapter extends RecyclerView.Adapter<Holder> {
     public int getItemCount() {
         return list.size();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 }
 
 class Holder extends RecyclerView.ViewHolder {
