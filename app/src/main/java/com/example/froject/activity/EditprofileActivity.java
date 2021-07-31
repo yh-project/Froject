@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,18 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.froject.R;
+import com.example.froject.datafile.Info;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -135,7 +132,7 @@ public class EditprofileActivity extends AppCompatActivity {
 
                             //need fix
                             Intent intent = getIntent();
-                            intent.setClass(EditprofileActivity.this,MainActivity.class);
+                            intent.setClass(EditprofileActivity.this, MainActivity.class);
                             //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
                             intent.putExtra("my_info", my_info);
                             intent.putExtra("data", "editprofile");

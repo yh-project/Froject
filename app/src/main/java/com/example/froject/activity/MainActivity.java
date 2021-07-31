@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.froject.R;
+import com.example.froject.datafile.Info;
+import com.example.froject.fragment.Boardfragment;
+import com.example.froject.fragment.Homefragment;
+import com.example.froject.fragment.Profilefragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

@@ -1,7 +1,9 @@
-package com.example.froject;
+package com.example.froject.activity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.froject.R;
 
 public class DictionaryActivity extends AppCompatActivity {
 

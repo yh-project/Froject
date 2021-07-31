@@ -1,8 +1,6 @@
-package com.example.froject;
+package com.example.froject.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.froject.datafile.LikePostData;
+import com.example.froject.R;
+
 import java.util.ArrayList;
 
 public class LikelistAdapter extends RecyclerView.Adapter<Holder> {
     private ArrayList<LikePostData> list;
 
-    LikelistAdapter(ArrayList<LikePostData> list) {
+    public LikelistAdapter(ArrayList<LikePostData> list) {
         this.list = list;
     }
 

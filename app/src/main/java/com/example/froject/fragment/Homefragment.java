@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.froject.adapter.DictionaryViewPagerAdapter;
+import com.example.froject.datafile.LikePostData;
+import com.example.froject.adapter.LikelistAdapter;
+import com.example.froject.R;
 
 import java.util.ArrayList;
 import java.util.Timer;

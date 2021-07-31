@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.datafile;
 
 public class LikePostData {
     String title = "배고파";

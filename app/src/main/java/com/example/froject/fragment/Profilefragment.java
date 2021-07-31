@@ -1,4 +1,4 @@
-package com.example.froject;
+package com.example.froject.fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +13,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.froject.activity.EditprofileActivity;
+import com.example.froject.datafile.Info;
+import com.example.froject.activity.LoginActivity;
+import com.example.froject.activity.MainActivity;
+import com.example.froject.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
