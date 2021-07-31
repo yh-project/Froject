@@ -1,9 +1,12 @@
 package com.example.froject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.core.app.ComponentActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,33 +25,70 @@ import androidx.appcompat.app.AlertDialog;
 
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.okhttp.internal.DiskLruCache;
+
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Document;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 public class Boardfragment extends Fragment {
+    private static final String TAG = "Boardfragment";
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
-    private ArrayList<PostData> list;
+    private DocumentSnapshot snaplist;
+    private ArrayList<PostData> list = new ArrayList<>();
+    private PostData[] lists;
+    private int docSize;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef = db.collection("users").document(user.getEmail());
+    CollectionReference boardRef = docRef.collection("Board");
+    PostData tmp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
+        Log.w(TAG,"omg22"+boardRef.get().toString());
 
-        recyclerView = v.findViewById(R.id.boardRecyclerView);
-        list = new ArrayList<>();
-        for(int i=1;i<11;i++) {
-            PostData postData = new PostData("배"+i, "고"+i, "파"+i);
-            list.add(postData);
-        }
-        postAdapter = new PostAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(postAdapter);
+        boardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                boardRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        recyclerView = v.findViewById(R.id.boardRecyclerView);
+                        docSize=task.getResult().getDocuments().size();
+                        for (int i=0;i<docSize;i++) {
+                            list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                        }
+                        postAdapter = new PostAdapter(list);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                        recyclerView.setAdapter(postAdapter);
+                    }
+                });
+            }
+        });
 
         return v;
     }
 
+    //old data
     /*LinearLayout postlist;
 
     @Override

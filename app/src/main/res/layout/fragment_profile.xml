@@ -161,6 +161,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/review_1"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:paddingLeft="10dp"
@@ -168,6 +169,7 @@
                     android:layout_margin="10dp"/>
 
                 <TextView
+                    android:id="@+id/review_2"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:paddingLeft="10dp"
@@ -175,6 +177,7 @@
                     android:layout_margin="10dp"/>
 
                 <TextView
+                    android:id="@+id/review_3"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:paddingLeft="10dp"
@@ -182,6 +185,7 @@
                     android:layout_margin="10dp"/>
 
                 <TextView
+                    android:id="@+id/review_4"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:paddingLeft="10dp"
@@ -189,6 +193,7 @@
                     android:layout_margin="10dp"/>
 
                 <TextView
+                    android:id="@+id/review_5"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:paddingLeft="10dp"

@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Info my_info = new Info();
+
     Boardfragment boardfragment = new Boardfragment();
     Profilefragment profilefragment;
     Homefragment homefragment;
-
 
     private static final String TAG = "MainActivity";
     private static final String PROFILE_TAG = "ProfileFragment";
@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Nullable String data = intent.getStringExtra("data");
         //End = get info for past Activity
+
+
 
         //Case : Back to MainActivity
 
