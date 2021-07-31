@@ -1,27 +1,55 @@
 package com.example.froject;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
 
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
 
 public class Boardfragment extends Fragment {
+    private RecyclerView recyclerView;
+    private PostAdapter postAdapter;
+    private ArrayList<PostData> list;
 
-    LinearLayout postlist;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_board, container, false);
+
+        recyclerView = v.findViewById(R.id.boardRecyclerView);
+        list = new ArrayList<>();
+        for(int i=1;i<11;i++) {
+            PostData postData = new PostData("배"+i, "고"+i, "파"+i);
+            list.add(postData);
+        }
+        postAdapter = new PostAdapter(list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerView.setAdapter(postAdapter);
+
+        return v;
+    }
+
+    /*LinearLayout postlist;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -155,5 +183,5 @@ public class Boardfragment extends Fragment {
                 });
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
-    }
+    }*/
 }

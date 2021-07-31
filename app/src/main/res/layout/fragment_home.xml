@@ -126,6 +126,7 @@
                         android:layout_weight="20" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/design"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -137,6 +138,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/develop"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -148,6 +150,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/photo_video"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -159,6 +162,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/translate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -267,6 +271,7 @@
                         android:layout_weight="20" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/model"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -278,6 +283,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/planning"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -289,6 +295,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/interior"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -300,6 +307,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/voice_actor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -408,6 +416,7 @@
                         android:layout_weight="20" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/license"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
@@ -419,6 +428,7 @@
                         android:layout_weight="10" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/volunteering"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="17.5"
