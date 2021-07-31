@@ -1,10 +1,12 @@
 package com.example.froject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +33,14 @@ public class Homefragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ImageButton search = v.findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(SearchActivity.class);
+            }
+        });
 
         viewpager = v.findViewById(R.id.dictionary_banner);
         pagerAdapter = new DictionaryViewPagerAdapter(getActivity());
@@ -66,4 +76,12 @@ public class Homefragment extends Fragment {
         }, DELAY_MS, PERIOD_MS);
         return v;
     }
+
+    private void startActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
+
+

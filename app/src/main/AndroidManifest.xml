@@ -26,6 +26,8 @@
         <activity android:name=".WriteActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".DictionaryActivity" />
+        <activity android:name=".SearchActivity"
+                  android:windowSoftInputMode="adjustPan"/>
 
     </application>
 
