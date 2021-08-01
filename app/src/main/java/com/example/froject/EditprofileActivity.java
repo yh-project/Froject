@@ -109,9 +109,11 @@ public class EditprofileActivity extends AppCompatActivity {
         final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
         final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("name", "major", "level", "univ"));
 
+
         if(newinfolist.get(0).length() == 0 && newinfolist.get(1).length() == 0 && newinfolist.get(2).length() == 0 && newinfolist.get(3).length() == 0) {
             cancelAlert();
-        } else {
+        }
+        else {
             for(int i=0;i<4;i++) {
                 if(newinfolist.get(i).length() > 0) { newlist += (newinfolist.get(i) + " "); }
             }

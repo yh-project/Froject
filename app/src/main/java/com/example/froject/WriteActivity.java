@@ -63,7 +63,7 @@ public class WriteActivity extends AppCompatActivity {
 
                     new_post = new PostData(title,place,period);
                     Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdate = new SimpleDateFormat("yy-mm-dd hh:mm");
+                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm");
 
                     boardRef.document(sdate.format(date)).set(new_post);
 
