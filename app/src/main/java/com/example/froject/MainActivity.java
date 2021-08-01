@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     Info my_info = new Info();
 
-    Boardfragment boardfragment = new Boardfragment();
+    Categoryfragment categoryfragment = new Categoryfragment();
+    Boardfragment boardfragment;
     Profilefragment profilefragment;
     Homefragment homefragment;
 
@@ -84,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         }
         //End = check Login state
 
-        addFragment(boardfragment);
+        //addFragment(boardfragment);
+        addFragment(categoryfragment);
     }
 
     @Override
@@ -113,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
         if (data!=null) {
             switch (data) {
                 case "none":
-                    showFragment(boardfragment);
+                    // showFragment(boardfragment);
+                    showFragment(categoryfragment);
                     break;
                 case "editprofile":
                     if (profilefragment == null) {
@@ -135,12 +138,19 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.item_fragment1:
-                        if(boardfragment == null) {
+                        /*if(boardfragment == null) {
                             boardfragment = new Boardfragment();
                             addFragment(boardfragment);
                         }
                         else {
                             showFragment(boardfragment);
+                        }*/
+                        if(categoryfragment == null) {
+                            categoryfragment = new Categoryfragment();
+                            addFragment(categoryfragment);
+                        }
+                        else {
+                            showFragment(categoryfragment);
                         }
                         break;
                     case R.id.item_fragment2:
