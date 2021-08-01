@@ -47,7 +47,7 @@ public class ChatFragment extends Fragment {
     ArrayList<MsgData> messageItems = new ArrayList<>();
     MsgAdapter adapter;
     DocumentReference chatRef2;
-    DocumentReference youchatRef;
+    CollectionReference youchatRef;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,19 +71,20 @@ public class ChatFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_chat,container,false);
 
         v.findViewById(R.id.btn_send).setOnClickListener(onClickListener);
-        msg = v.findViewById(R.id.et_chatting).toString();
+        msg = ((EditText)v.findViewById(R.id.et_chatting)).getText().toString();
         you="yoha6865@yu.ac.kr";
         chatRef2 = chatRef.document(you);
-        youchatRef =db.collection("users").document(you);
+        DocumentReference youRef =db.collection("users").document(you);
+        youchatRef = youRef.collection("Chat");
+
         chatRef2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 chatRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                        Log.w(TAG,"omg"+chatRef2.get().toString());
 
-                        youchatRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        youRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                                 if(task.isSuccessful()) {
@@ -106,11 +107,11 @@ public class ChatFragment extends Fragment {
                 case R.id.btn_send:
                     Log.w(TAG,"omg btn_send");
                     Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm");
+                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
                     String time = sdate.format(date);
                     MsgData msgData = new MsgData(name,msg,time);
                     chatRef2.set(msgData);
-                    youchatRef.set(msgData);
+                    youchatRef.document(user.getEmail()).set(msgData);
                     break;
             }
         }
