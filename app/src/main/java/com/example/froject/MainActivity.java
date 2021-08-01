@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     Info my_info = new Info();
 
+    //Categoryfragment categoryfragment = new Categoryfragment();
     Boardfragment boardfragment;
     Profilefragment profilefragment;
     Homefragment homefragment;
