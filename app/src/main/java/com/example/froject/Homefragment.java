@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -24,6 +25,10 @@ public class Homefragment extends Fragment {
     private RecyclerView recyclerView;
     private LikelistAdapter likelistAdapter;
     private ArrayList<LikePostData> list;
+
+    private RecyclerView categoryView;
+    private CategoryAdapter categoryAdapter;
+    private ArrayList<CategoryData> categoryList;
 
     int currentPage = 0;
     Timer timer;
@@ -42,19 +47,10 @@ public class Homefragment extends Fragment {
             }
         });
 
+        // 분야사전 배너
         viewpager = v.findViewById(R.id.dictionary_banner);
         pagerAdapter = new DictionaryViewPagerAdapter(getActivity());
         viewpager.setAdapter(pagerAdapter);
-
-        recyclerView = v.findViewById(R.id.likerecyclerview);
-        list = new ArrayList<>();
-        LikePostData likePostData1 = new LikePostData("배", "고", "파");
-        LikePostData likePostData2 = new LikePostData("배고", "프다", "니까");
-        list.add(likePostData1);
-        list.add(likePostData2);
-        likelistAdapter = new LikelistAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(likelistAdapter);
 
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
@@ -74,6 +70,31 @@ public class Homefragment extends Fragment {
                 handler.post(Update);
             }
         }, DELAY_MS, PERIOD_MS);
+
+        // 카테고리 목록
+        categoryView = v.findViewById(R.id.homecategoryRecyclerview);
+        categoryList = new ArrayList<>();
+        for(int i=0; i<10; i++) {
+            CategoryData categoryData = new CategoryData(R.drawable.design, "사진·영상"+i);
+            categoryList.add(categoryData);
+        }
+        categoryAdapter = new CategoryAdapter(categoryList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        categoryView.setLayoutManager(gridLayoutManager);
+        categoryView.setAdapter(categoryAdapter);
+
+
+        // 즐겨찾기 목록
+        recyclerView = v.findViewById(R.id.likerecyclerview);
+        list = new ArrayList<>();
+        for(int i=0; i<10; i++) {
+            LikePostData likePostData = new LikePostData(""+i, ""+i, ""+i );
+            list.add(likePostData);
+        }
+        likelistAdapter = new LikelistAdapter(list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        recyclerView.setAdapter(likelistAdapter);
+
         return v;
     }
 
