@@ -2,17 +2,22 @@ package com.example.froject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class DictionaryViewPagerAdapter extends PagerAdapter {
-
     private Context context = null;
+
+    public static final String randomcategory[] = {"디자인", "개발", "사진·영상", "번역·통역", "기획", "인테리어"};
+    Random ram = new Random();
+    int num = ram.nextInt(randomcategory.length);
     public DictionaryViewPagerAdapter(Context context) {
         this.context = context;
     }
@@ -21,13 +26,14 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = null;
-        if(context != null) {
+
+        if (context != null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.dictionary_banner_page, container, false);
 
             TextView title = view.findViewById(R.id.category);
-            title.setText("분야 " + position);
 
+            title.setText(randomcategory[num]);
             TextView explain = view.findViewById(R.id.detailCategory);
             explain.setText("분야설명 " + position);
 
@@ -35,9 +41,10 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
             dictionary.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, DictionaryActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    context.startActivity(intent);
+                    Intent nowcategory = new Intent(context, DictionaryActivity.class);
+                    nowcategory.putExtra("contact_title", title.getText().toString());
+                    nowcategory.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    context.startActivity(nowcategory);
                 }
             });
         }

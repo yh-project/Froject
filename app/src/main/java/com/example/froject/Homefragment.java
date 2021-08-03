@@ -51,7 +51,6 @@ public class Homefragment extends Fragment {
         viewpager = v.findViewById(R.id.dictionary_banner);
         pagerAdapter = new DictionaryViewPagerAdapter(getActivity());
         viewpager.setAdapter(pagerAdapter);
-
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             @Override
