@@ -36,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Info my_info = new Info();
-    Boardfragment boardfragment = new Boardfragment();
-    Profilefragment profilefragment;
 
+    //Categoryfragment categoryfragment = new Categoryfragment();
+    Boardfragment boardfragment;
+    Profilefragment profilefragment;
+    Homefragment homefragment;
+    ChatFragment chatFragment;
 
     private static final String TAG = "MainActivity";
     private static final String PROFILE_TAG = "ProfileFragment";
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         if(user == null) { //state == Logout -> goto LoginActivity
             startActivity(LoginActivity.class);
         }else{ //state = Login -> get DB for firebase
+            boardfragment = new Boardfragment();
+            addFragment(boardfragment);
             DocumentReference docRef = db.collection("users").document(user.getEmail());
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -83,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         }
         //End = check Login state
 
-        addFragment(boardfragment);
     }
 
     @Override
@@ -104,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Nullable String data = intent.getStringExtra("data");
         //End = get info for past Activity
+
+
 
         //Case : Back to MainActivity
 
@@ -154,7 +160,25 @@ public class MainActivity extends AppCompatActivity {
                         Log.w(TAG, "shit" + my_info);
                         break;
                     case R.id.item_writeactivity:
-                        startActivity(WriteActivity.class);
+                        //startActivity(WriteActivity.class);   //need fix
+
+                        //임시    need fix
+                        if(chatFragment == null) {
+                            chatFragment = new ChatFragment();
+                            addFragment(chatFragment);
+                        }
+                        else {
+                            showFragment(chatFragment);
+                        }
+                        break;
+                    case R.id.item_fragment3:
+                        if(homefragment == null) {
+                            homefragment = new Homefragment();
+                            addFragment(homefragment);
+                        }
+                        else {
+                            showFragment(homefragment);
+                        }
                         break;
                 }
                 return true;
@@ -238,3 +262,4 @@ public class MainActivity extends AppCompatActivity {
 }
 
 //응애
+//오늘 저녁 막창임 개부럽제

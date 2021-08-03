@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_marginTop="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/categorysrc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/design" />
+
+    <TextView
+        android:id="@+id/categoryname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="사진·영상"
+        android:gravity="center"/>
+
+</LinearLayout>

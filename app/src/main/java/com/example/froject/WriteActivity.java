@@ -1,7 +1,9 @@
 package com.example.froject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -9,13 +11,30 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 
 public class WriteActivity extends AppCompatActivity {
 
+    private static final String TAG = "WriteActivity";
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef = db.collection("users").document(user.getEmail());
+    CollectionReference boardRef = docRef.collection("Board");
+
     LinearLayout contentslayout;
+    PostData new_post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +45,7 @@ public class WriteActivity extends AppCompatActivity {
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
 
         contentslayout = findViewById(R.id.contentsLayout);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -33,10 +53,26 @@ public class WriteActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.addContents:
-                    add_contents();
+                    //add_contents();
                     break;
                 case R.id.finishcontents:
+                    @Nullable String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
+                    @Nullable String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
+                    @Nullable String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
+                    @Nullable String count = ((EditText)findViewById(R.id.inputCount)).getText().toString();
 
+                    new_post = new PostData(title,place,period);
+                    Date date = new Date(System.currentTimeMillis());
+                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm");
+
+                    boardRef.document(sdate.format(date)).set(new_post);
+
+
+                    Intent intent = getIntent();
+                    intent.setClass(WriteActivity.this,MainActivity.class);
+                    intent.putExtra("reload",true);
+                    startActivity(intent);
+                    finish();
                     break;
             }
         }

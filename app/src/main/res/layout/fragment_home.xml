@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="250"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <!--로고, 검색버튼-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:weightSum="130">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="55" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:src="@drawable/logo_" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="35" />
+
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:src="@drawable/ic_baseline_search_24"
+            android:background="#ffffff" />
+
+    </LinearLayout>
+
+    <!--경계선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="#F1F2F4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="229.5">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--분야사전 배너-->
+                <LinearLayout
+                    android:id="@+id/dictionary_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:weightSum="130"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/dictionary_banner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="110"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                    </androidx.viewpager.widget.ViewPager>
+
+                </LinearLayout>
+
+                <!--카테고리배너-->
+                <LinearLayout
+                    android:id="@+id/category_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:paddingBottom="10dp"
+                    android:weightSum="130"
+                    android:gravity="center_horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/dictionary_layout"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homecategoryRecyclerview"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="110"/>
+
+                </LinearLayout>
+
+                <!--멘트-->
+                <LinearLayout
+                    android:id="@+id/ment_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="15"
+                    android:weightSum="130"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@+id/category_layout"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="110"
+                        android:gravity="center_vertical"
+                        android:text="즐겨찾기 목록"
+                        android:textSize="15sp"
+                        android:textColor="#000000"/>
+
+                </LinearLayout>
+
+                <!--즐겨찾기 목록-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="45"
+                    android:weightSum="130"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@+id/ment_layout"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="15dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/likerecyclerview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="110"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>
