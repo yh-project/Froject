@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,8 +49,18 @@ import java.util.List;
 
 public class Boardfragment extends Fragment {
     private static final String TAG = "Boardfragment";
-    private RecyclerView recyclerView;
+    private RecyclerView postrecyclerView;
     private PostAdapter postAdapter;
+
+    private RecyclerView bigcategoryrecyclerview;
+    private BigCategoryAdapter bigCategoryAdapter;
+    private String[] bigcategorylist;
+    private ClickCallbackListener callbackListener;
+
+    private RecyclerView smallcategoryrecyclerview;
+    private SmaillCategoryAdapter smaillCategoryAdapter;
+    private String[] smallcategorylist;
+
     private DocumentSnapshot snaplist;
     private ArrayList<PostData> list = new ArrayList<>();
     private PostData[] lists;
@@ -66,27 +77,78 @@ public class Boardfragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
         Log.w(TAG,"omg22"+boardRef.get().toString());
 
+        // 큰카테고리 뷰에따른 작은카테고리
+        bigcategoryrecyclerview = v.findViewById(R.id.bigcategoryRecyclerView);
+        bigcategorylist = getResources().getStringArray(R.array.Bigcategory);
+        bigCategoryAdapter = new BigCategoryAdapter(bigcategorylist);
+        callbackListener = new ClickCallbackListener() {
+            @Override
+            public void callBack(String name) {
+                switch(name) {
+                    case "디자인":
+                        smallcategorylist = getResources().getStringArray(R.array.Designcategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                    case "개발":
+                        smallcategorylist = getResources().getStringArray(R.array.Developcategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                    case "사진·영상":
+                        smallcategorylist = getResources().getStringArray(R.array.Photocategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                    case "번역·통역":
+                        smallcategorylist = getResources().getStringArray(R.array.Translatecategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                    case "기획":
+                        smallcategorylist = getResources().getStringArray(R.array.Plancategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                    case "인테리어":
+                        smallcategorylist = getResources().getStringArray(R.array.Interiorlcategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                    case "대외활동":
+                        smallcategorylist = getResources().getStringArray(R.array.Extracategory);
+                        setRecyclerView(v, smallcategorylist);
+                        break;
+                }
+            }
+        };
+        bigCategoryAdapter.setCallbackListener(callbackListener);
+        bigcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        bigcategoryrecyclerview.setAdapter(bigCategoryAdapter);
+
         boardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 boardRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                        recyclerView = v.findViewById(R.id.boardRecyclerView);
+                        postrecyclerView = v.findViewById(R.id.boardRecyclerView);
                         docSize=task.getResult().getDocuments().size();
                         for (int i=0;i<docSize;i++) {
                             list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
                         }
                         postAdapter = new PostAdapter(list);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        recyclerView.setAdapter(postAdapter);
+                        postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                        postrecyclerView.setAdapter(postAdapter);
                     }
                 });
             }
         });
-
         return v;
     }
+
+    public void setRecyclerView(View v, String[] smallcategorylist) {
+        smallcategoryrecyclerview = v.findViewById(R.id.smallcategoryRecyclerView);
+        smaillCategoryAdapter = new SmaillCategoryAdapter(smallcategorylist);
+        smallcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        smallcategoryrecyclerview.setAdapter(smaillCategoryAdapter);
+    }
+
+
 
     //old data
     /*LinearLayout postlist;
