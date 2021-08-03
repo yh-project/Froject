@@ -77,11 +77,14 @@ public class Boardfragment extends Fragment {
     CollectionReference boardRef = docRef.collection("Board");
     PostData tmp;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
         Log.w(TAG,"omg22"+boardRef.get().toString());
-        boardRef.orderBy("writetime", DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        db.collectionGroup("Board").orderBy("writetime",DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        //boardRef.orderBy("writetime", DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                         postrecyclerView = v.findViewById(R.id.boardRecyclerView);
