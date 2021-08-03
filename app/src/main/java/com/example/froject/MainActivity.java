@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     Info my_info = new Info();
 
-    //Categoryfragment categoryfragment = new Categoryfragment();
+    Categoryfragment categoryfragment;
     Boardfragment boardfragment;
     Profilefragment profilefragment;
     Homefragment homefragment;
@@ -58,8 +58,10 @@ public class MainActivity extends AppCompatActivity {
         if(user == null) { //state == Logout -> goto LoginActivity
             startActivity(LoginActivity.class);
         }else{ //state = Login -> get DB for firebase
-            boardfragment = new Boardfragment();
-            addFragment(boardfragment);
+            categoryfragment = new Categoryfragment();
+            addFragment(categoryfragment);
+            //boardfragment = new Boardfragment();                                                          need fix
+            //addFragment(boardfragment);                                                                   need fix
             DocumentReference docRef = db.collection("users").document(user.getEmail());
             docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -116,7 +118,8 @@ public class MainActivity extends AppCompatActivity {
         if (data!=null) {
             switch (data) {
                 case "none":
-                    showFragment(boardfragment);
+                    showFragment(categoryfragment);
+                    //showFragment(boardfragment);                                                  need fix
                     break;
                 case "editprofile":
                     if (profilefragment == null) {
@@ -137,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.item_fragment1:
+                    /*case R.id.item_fragment1:                           need fix
                         if(boardfragment == null) {
                             boardfragment = new Boardfragment();
                             addFragment(boardfragment);
@@ -145,7 +148,16 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             showFragment(boardfragment);
                         }
+                        break;*/
+                    case R.id.item_fragment1:
+                        if (categoryfragment == null) {
+                            categoryfragment = new Categoryfragment();
+                            addFragment(categoryfragment);
+                        } else {
+                            showFragment(categoryfragment);
+                        }
                         break;
+
                     case R.id.item_fragment2:
                         if(profilefragment == null) {
                             Bundle bundle = new Bundle();

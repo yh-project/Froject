@@ -1,6 +1,7 @@
 package com.example.froject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,16 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
 
             TextView explain = view.findViewById(R.id.detailCategory);
             explain.setText("분야설명 " + position);
+
+            TextView dictionary = view.findViewById(R.id.gotoDictionary);
+            dictionary.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DictionaryActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    context.startActivity(intent);
+                }
+            });
         }
         container.addView(view);
         return view;
@@ -48,4 +59,5 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
+
 }

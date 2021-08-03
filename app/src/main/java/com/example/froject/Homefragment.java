@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -58,7 +59,7 @@ public class Homefragment extends Fragment {
             public void run() {
                 if(currentPage == 5) {
                     currentPage = 0;
-                }
+                };
                 viewpager.setCurrentItem(currentPage++, true);
             }
         };
