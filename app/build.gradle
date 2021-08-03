@@ -53,4 +53,5 @@ dependencies {
 
     //kang
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.google.firebase:firebase-functions-ktx:20.0.0"
 }

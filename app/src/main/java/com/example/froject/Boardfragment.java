@@ -10,6 +10,7 @@ import androidx.core.app.ComponentActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.firestore.Query.Direction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,8 +36,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.OrderBy;
 import com.squareup.okhttp.internal.DiskLruCache;
 
 import org.jetbrains.annotations.NotNull;
@@ -45,6 +48,8 @@ import org.w3c.dom.Document;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import static com.google.firebase.firestore.Query.Direction.DESCENDING;
 
 
 public class Boardfragment extends Fragment {
@@ -76,7 +81,20 @@ public class Boardfragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
         Log.w(TAG,"omg22"+boardRef.get().toString());
-
+        boardRef.orderBy("writetime", DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        postrecyclerView = v.findViewById(R.id.boardRecyclerView);
+                        docSize=task.getResult().getDocuments().size();
+                        Log.w(TAG,"omg"+docSize);
+                        for (int i=0;i<docSize;i++) {
+                            list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                        }
+                        postAdapter = new PostAdapter(list);
+                        postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                        postrecyclerView.setAdapter(postAdapter);
+                    }
+                });
         // 큰카테고리 뷰에따른 작은카테고리
         bigcategoryrecyclerview = v.findViewById(R.id.bigcategoryRecyclerView);
         bigcategorylist = getResources().getStringArray(R.array.Bigcategory);
@@ -119,25 +137,6 @@ public class Boardfragment extends Fragment {
         bigCategoryAdapter.setCallbackListener(callbackListener);
         bigcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         bigcategoryrecyclerview.setAdapter(bigCategoryAdapter);
-
-        boardRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                boardRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                        postrecyclerView = v.findViewById(R.id.boardRecyclerView);
-                        docSize=task.getResult().getDocuments().size();
-                        for (int i=0;i<docSize;i++) {
-                            list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
-                        }
-                        postAdapter = new PostAdapter(list);
-                        postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        postrecyclerView.setAdapter(postAdapter);
-                    }
-                });
-            }
-        });
         return v;
     }
 

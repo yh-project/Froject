@@ -1,9 +1,11 @@
 package com.example.froject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +29,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_category, parent, false);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("data","board");
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intent);
+            }
+        });
+
         return new CategoryHolder(view);
     }
 
@@ -44,6 +57,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
     public int getItemViewType(int position) {
         return position;
     }
+
 }
 
 class CategoryHolder extends RecyclerView.ViewHolder {
@@ -60,4 +74,6 @@ class CategoryHolder extends RecyclerView.ViewHolder {
         categoryname.setText(categoryData.getName());
         categorysrc.setImageResource(categoryData.getSrc());
     }
+
+
 }

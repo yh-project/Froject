@@ -1,12 +1,10 @@
 package com.example.froject;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +21,34 @@ public class DictionaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
+
+        Intent intent = getIntent();
+        String contact_title = intent.getStringExtra("contact_title");
+
         final Spinner Bigspinner = (Spinner) findViewById(R.id.bigcategory);
         final Spinner Smallspinner = (Spinner) findViewById(R.id.smallcategory);
         Bigadapter = ArrayAdapter.createFromResource(this, R.array.Bigcategory, android.R.layout.simple_spinner_dropdown_item);
         Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
+
+        if(contact_title.equals("분야 0")){
+            Bigspinner.setSelection(0);
+
+        }else if(contact_title.equals("분야 1")){
+            Bigspinner.setSelection(1);
+        }else if(contact_title.equals("분야 2")){
+            Bigspinner.setSelection(2);
+        }
+        else if(contact_title.equals("분야 3")){
+            Bigspinner.setSelection(3);
+        }
+        else if(contact_title.equals("분야 4")){
+            Bigspinner.setSelection(4);
+        }
+        else if(contact_title.equals("분야 5")) {
+            Bigspinner.setSelection(5);
+        }else Bigspinner.setSelection(0);
+
         Bigspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -63,8 +84,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                if (Bigadapter.getItem(position).equals("사진·영상")) {
+                } else if (Bigadapter.getItem(position).equals("사진·영상")) {
                     choice_Big = "사진·영상";
                     Smalladapter = ArrayAdapter.createFromResource(DictionaryActivity.this, R.array.Photocategory, android.R.layout.simple_spinner_dropdown_item);
                     Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -80,8 +100,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                if (Bigadapter.getItem(position).equals("번역·통역")) {
+                } else if (Bigadapter.getItem(position).equals("번역·통역")) {
                     choice_Big = "번역·통역";
                     Smalladapter = ArrayAdapter.createFromResource(DictionaryActivity.this, R.array.Translatecategory, android.R.layout.simple_spinner_dropdown_item);
                     Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -97,8 +116,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                if (Bigadapter.getItem(position).equals("기획")) {
+                } else if (Bigadapter.getItem(position).equals("기획")) {
                     choice_Big = "기획";
                     Smalladapter = ArrayAdapter.createFromResource(DictionaryActivity.this, R.array.Plancategory, android.R.layout.simple_spinner_dropdown_item);
                     Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -114,8 +132,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                if (Bigadapter.getItem(position).equals("인테리어")) {
+                } else if (Bigadapter.getItem(position).equals("인테리어")) {
                     choice_Big = "인테리어";
                     Smalladapter = ArrayAdapter.createFromResource(DictionaryActivity.this, R.array.Interiorlcategory, android.R.layout.simple_spinner_dropdown_item);
                     Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -131,8 +148,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                if (Bigadapter.getItem(position).equals("대외활동")) {
+                } else if (Bigadapter.getItem(position).equals("대외활동")) {
                     choice_Big = "대외활동";
                     Smalladapter = ArrayAdapter.createFromResource(DictionaryActivity.this, R.array.Extracategory, android.R.layout.simple_spinner_dropdown_item);
                     Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
