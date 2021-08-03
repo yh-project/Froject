@@ -38,4 +38,6 @@
         android:text="자세히 >"
         android:gravity="center_vertical|end" />
 
+
+
 </LinearLayout>
