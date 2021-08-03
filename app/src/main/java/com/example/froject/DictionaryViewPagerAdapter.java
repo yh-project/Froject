@@ -53,7 +53,8 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent nowcategory = new Intent(context, DictionaryActivity.class);
-                    nowcategory.putExtra("contact_title", title.getText().toString());
+                    nowcategory.putExtra("contact_big", title.getText().toString());
+                    nowcategory.putExtra("contact_small", smallcat[position]);
                     nowcategory.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     context.startActivity(nowcategory);
                 }

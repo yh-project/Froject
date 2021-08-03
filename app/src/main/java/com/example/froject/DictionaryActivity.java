@@ -22,8 +22,11 @@ public class DictionaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
 
+        String[] bigcategory = getResources().getStringArray(R.array.Bigcategory);
+
         Intent intent = getIntent();
-        String contact_title = intent.getStringExtra("contact_title");
+        String contact_big = intent.getStringExtra("contact_big");
+        int contact_small = intent.getIntExtra("contact_small",0);
 
         final Spinner Bigspinner = (Spinner) findViewById(R.id.bigcategory);
         final Spinner Smallspinner = (Spinner) findViewById(R.id.smallcategory);
@@ -31,23 +34,36 @@ public class DictionaryActivity extends AppCompatActivity {
         Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
 
-        if(contact_title.equals("분야 0")){
-            Bigspinner.setSelection(0);
 
-        }else if(contact_title.equals("분야 1")){
-            Bigspinner.setSelection(1);
-        }else if(contact_title.equals("분야 2")){
-            Bigspinner.setSelection(2);
+        for (int i=0;i<bigcategory.length;i++) {
+            if(contact_big.equals(bigcategory[i]))
+                Bigspinner.setSelection(i);
         }
-        else if(contact_title.equals("분야 3")){
-            Bigspinner.setSelection(3);
-        }
-        else if(contact_title.equals("분야 4")){
-            Bigspinner.setSelection(4);
-        }
-        else if(contact_title.equals("분야 5")) {
-            Bigspinner.setSelection(5);
-        }else Bigspinner.setSelection(0);
+
+        /*for (int i=0;i<bigcategory.length;i++) {
+            Smallspinner.setSelection(contact_small);
+            *//*switch (Bigspinner.getSelectedItemPosition()) {
+                case 0:
+                    Smallspinner.setSelection(contact_small);
+                    break;
+                case 1:
+                    smallcat[i]=Developcategory[rand[i+5]];
+                    break;
+                case 2:
+                    smallcat[i]=Photocategory[rand[i+5]];
+                    break;
+                case 3:
+                    smallcat[i]=Translatecategory[rand[i+5]];
+                    break;
+                case 4:
+                    smallcat[i]=Plancategory[rand[i+5]];
+                    break;
+                case 5:
+                    smallcat[i]=Interiorlcategory[rand[i+5]];
+                    break;
+            }*//*
+        }*/
+
 
         Bigspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -87,10 +87,6 @@ public class Homefragment extends Fragment {
             }
         }
 
-
-
-
-
         // 분야사전 배너
         viewpager = v.findViewById(R.id.dictionary_banner);
         pagerAdapter = new DictionaryViewPagerAdapter(getActivity(),bigcat,smallcat);
