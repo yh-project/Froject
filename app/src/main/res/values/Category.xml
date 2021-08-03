@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Category">Froject</string>
+    <string-array name = "Bigcategory">
+        <item>디자인</item>
+        <item>개발</item>
+        <item>사진·영상</item>
+        <item>번역·통역</item>
+        <item>기획</item>
+        <item>인테리어</item>
+        <item>대외활동</item>
+    </string-array>
+    <string-array name = "Designcategory">
+        <item>로고·브랜딩</item>
+        <item>인쇄물</item>
+        <item>웹디자인</item>
+        <item>UX·UI</item>
+        <item>PPT·인포</item>
+        <item>일러스트</item>
+        <item>3D</item>
+    </string-array>
+    <string-array name = "Developcategory">
+        <item>모바일</item>
+        <item>웹</item>
+        <item>AI</item>
+        <item>빅데이터</item>
+        <item>임베디드</item>
+        <item>엑셀·메크로</item>
+    </string-array>
+    <string-array name = "Photocategory">
+        <item>다큐</item>
+        <item>초상</item>
+        <item>풍경</item>
+        <item>상업</item>
+        <item>스냅</item>
+        <item>광고</item>
+        <item>패션</item>
+        <item>뮤직비디오</item>
+        <item>성우</item>
+        <item>모델</item>
+        <item>영상편집</item>
+        <item>모션그래픽</item>
+    </string-array>
+    <string-array name = "Translatecategory">
+        <item>영어</item>
+        <item>중국어</item>
+        <item>일본어</item>
+        <item>스페인어</item>
+        <item>프랑스어</item>
+        <item>기타</item>
+    </string-array>
+    <string-array name = "Plancategory">
+        <item>기획</item>
+    </string-array>
+    <string-array name = "Interiorlcategory">
+        <item>인테리어</item>
+    </string-array>
+    <string-array name = "Extracategory">
+        <item>디자인</item>
+        <item>개발</item>
+        <item>사진·영상</item>
+        <item>번역·통역</item>
+        <item>기획</item>
+        <item>인테리어</item>
+        <item>봉사활동</item>
+    </string-array>
+</resources>

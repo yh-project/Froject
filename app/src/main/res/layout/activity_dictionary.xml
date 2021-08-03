@@ -45,13 +45,11 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         android:background="#000000" />
-
     <Spinner
         android:id="@+id/bigcategory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"/>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -70,13 +68,12 @@
         android:layout_weight="0.2"
         android:background="#000000" />
 
-    <EditText
+    <TextView
         android:id="@+id/explainCategory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="30"
         android:hint="분야설명"
-        android:inputType="textMultiLine"
         android:gravity="start"
         android:background="@null"
         android:padding="5dp"/>
@@ -100,5 +97,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         android:background="#000000" />
+
+
 
 </LinearLayout>
