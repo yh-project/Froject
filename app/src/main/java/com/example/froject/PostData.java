@@ -1,11 +1,14 @@
 package com.example.froject;
 
+import java.sql.Timestamp;
+
 public class PostData {
     String title;
     String place;
     String date;
+    //Timestamp writetime;
 
-    public PostData() {}
+    public PostData() { }
 
     public PostData(String title, String place, String date) {
         this.title = title;
@@ -36,6 +39,14 @@ public class PostData {
     public void setDate(String date) {
         this.date = date;
     }
+
+    /*public Timestamp getWritetime() {
+        return writetime;
+    }
+
+    public void setWritetime(Timestamp writetime) {
+        this.writetime = writetime;
+    }*/
 
 
 

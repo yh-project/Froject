@@ -3,15 +3,20 @@ package com.example.froject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LikelistAdapter extends RecyclerView.Adapter<Holder> {
     private ArrayList<LikePostData> list;
@@ -62,4 +67,5 @@ class Holder extends RecyclerView.ViewHolder {
         updatetime1.setText(likePostData.getUpdatetime1());
         updatetime2.setText(likePostData.getUpdatetime2());
     }
+
 }

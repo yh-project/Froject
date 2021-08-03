@@ -11,14 +11,24 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.ServerTimestamp;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,6 +54,13 @@ public class WriteActivity extends AppCompatActivity {
         findViewById(R.id.addContents).setOnClickListener(onClickListener);
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
 
+        db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                Log.w(TAG,"omg"+task.getResult().getDocuments().size());
+            }
+        });
+
         contentslayout = findViewById(R.id.contentsLayout);
 
     }
@@ -62,11 +79,15 @@ public class WriteActivity extends AppCompatActivity {
                     @Nullable String count = ((EditText)findViewById(R.id.inputCount)).getText().toString();
 
                     new_post = new PostData(title,place,period);
+                    //firebase::database::ServerTimestamp();
                     Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm");
+                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
+
+
+                    //boardRef.get().getResult().getDocuments().size();
 
                     boardRef.document(sdate.format(date)).set(new_post);
-
+                    boardRef.document(sdate.format(date)).update("writetime",date);
 
                     Intent intent = getIntent();
                     intent.setClass(WriteActivity.this,MainActivity.class);

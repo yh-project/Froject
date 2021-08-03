@@ -30,8 +30,10 @@ public class DictionaryActivity extends AppCompatActivity {
         Bigadapter = ArrayAdapter.createFromResource(this, R.array.Bigcategory, android.R.layout.simple_spinner_dropdown_item);
         Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
+
         if(contact_title.equals("분야 0")){
             Bigspinner.setSelection(0);
+
         }else if(contact_title.equals("분야 1")){
             Bigspinner.setSelection(1);
         }else if(contact_title.equals("분야 2")){
@@ -46,6 +48,7 @@ public class DictionaryActivity extends AppCompatActivity {
         else if(contact_title.equals("분야 5")) {
             Bigspinner.setSelection(5);
         }else Bigspinner.setSelection(0);
+
         Bigspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

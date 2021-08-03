@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -132,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
                         showFragment(profilefragment);
                     }
                     break;
+                case "board":
+                    boardfragment = new Boardfragment();
+                    addFragment(boardfragment);
+                    break;
             }
         }
 
@@ -172,17 +177,17 @@ public class MainActivity extends AppCompatActivity {
                         Log.w(TAG, "shit" + my_info);
                         break;
                     case R.id.item_writeactivity:
-                        //startActivity(WriteActivity.class);   //need fix
+                        startActivity(WriteActivity.class);   //need fix
 
                         //임시    need fix
-                        if(chatFragment == null) {
+                        /*if(chatFragment == null) {
                             chatFragment = new ChatFragment();
                             addFragment(chatFragment);
                         }
                         else {
                             showFragment(chatFragment);
                         }
-                        break;
+                        break;*/
                     case R.id.item_fragment3:
                         if(homefragment == null) {
                             homefragment = new Homefragment();
@@ -271,7 +276,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.show(fragment);
         fragmentTransaction.commit();
      }
+
 }
+
+
+
+
 
 //응애
 //오늘 저녁 막창임 개부럽제

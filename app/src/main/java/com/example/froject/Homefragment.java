@@ -6,7 +6,11 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -39,6 +43,14 @@ public class Homefragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
+        String[] bigcategory = getResources().getStringArray(R.array.Bigcategory);
+        String[] Designcategory = getResources().getStringArray(R.array.Designcategory);//7 7
+        String[] Developcategory = getResources().getStringArray(R.array.Developcategory);//6 13
+        String[] Photocategory = getResources().getStringArray(R.array.Photocategory);//12 25
+        String[] Translatecategory = getResources().getStringArray(R.array.Translatecategory);//5 30
+        String[] Plancategory = getResources().getStringArray(R.array.Plancategory);//1 31
+        String[] Interiorlcategory = getResources().getStringArray(R.array.Interiorlcategory);//1 32
+
         ImageButton search = v.findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,9 +59,41 @@ public class Homefragment extends Fragment {
             }
         });
 
+        int[] rand = make_num();
+        String[] smallcat = new String[5];
+        String[] bigcat = new String[5];
+
+        for(int i=0;i<5;i++) {
+            bigcat[i] = bigcategory[rand[i]];
+            switch(rand[i]) {
+                case 0:
+                    smallcat[i]=Designcategory[rand[i+5]];
+                    break;
+                case 1:
+                    smallcat[i]=Developcategory[rand[i+5]];
+                    break;
+                case 2:
+                    smallcat[i]=Photocategory[rand[i+5]];
+                    break;
+                case 3:
+                    smallcat[i]=Translatecategory[rand[i+5]];
+                    break;
+                case 4:
+                    smallcat[i]=Plancategory[rand[i+5]];
+                    break;
+                case 5:
+                    smallcat[i]=Interiorlcategory[rand[i+5]];
+                    break;
+            }
+        }
+
+
+
+
+
         // 분야사전 배너
         viewpager = v.findViewById(R.id.dictionary_banner);
-        pagerAdapter = new DictionaryViewPagerAdapter(getActivity());
+        pagerAdapter = new DictionaryViewPagerAdapter(getActivity(),bigcat,smallcat);
         viewpager.setAdapter(pagerAdapter);
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
@@ -71,10 +115,11 @@ public class Homefragment extends Fragment {
         }, DELAY_MS, PERIOD_MS);
 
         // 카테고리 목록
+        bigcategory = getResources().getStringArray(R.array.Bigcategory);
         categoryView = v.findViewById(R.id.homecategoryRecyclerview);
         categoryList = new ArrayList<>();
-        for(int i=0; i<10; i++) {
-            CategoryData categoryData = new CategoryData(R.drawable.design, "사진·영상"+i);
+        for(int i=0; i<7; i++) {
+            CategoryData categoryData = new CategoryData(R.drawable.design, bigcategory[i]);
             categoryList.add(categoryData);
         }
         categoryAdapter = new CategoryAdapter(categoryList);
@@ -101,6 +146,81 @@ public class Homefragment extends Fragment {
         Intent intent = new Intent(getActivity(), c);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public int[] make_num() {
+        int[] numbers = new int[5];
+        int[] a = new int[10];
+        int size = getResources().getStringArray(R.array.Designcategory).length;//7 7
+        size += getResources().getStringArray(R.array.Developcategory).length;//6 13
+        size += getResources().getStringArray(R.array.Interiorlcategory).length;//12 25
+        size += getResources().getStringArray(R.array.Photocategory).length - 1;//5 30
+        size += getResources().getStringArray(R.array.Plancategory).length;//1 31
+        size += getResources().getStringArray(R.array.Translatecategory).length;//1 32
+
+        for (int insertCur = 0; insertCur < numbers.length; insertCur++) {
+            numbers[insertCur] = (int) (Math.random() * size);
+            for (int searchCur = 0; searchCur < insertCur; searchCur++) {
+                if (numbers[insertCur] == numbers[searchCur]) {
+                    insertCur--;
+                }
+            }
+        }
+        for (int i = 0; i < numbers.length; i++) {
+            switch (numbers[i]) {       //분류별 값 넣기
+                case 0:                 //0~numbers.length-1 에는 대분류
+                case 1:                 //numbers.length~numbers.length*2-1 에는 소분류 넣음
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    a[i] = 0;
+                    a[i + numbers.length] = numbers[i];
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                    a[i] = 1;
+                    a[i + numbers.length] = numbers[i] - 7;
+                    break;
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                    a[i] = 2;
+                    a[i + numbers.length] = numbers[i] - 13;
+                    break;
+                case 25:
+                case 26:
+                case 27:
+                case 28:
+                case 29:
+                    a[i] = 3;
+                    a[i + numbers.length] = numbers[i] - 25;
+                    break;
+                case 30:
+                    a[i] = 4;
+                    a[i + numbers.length] = numbers[i] - 30;
+                    break;
+                case 31:
+                    a[i] = 5;
+                    a[i + numbers.length] = numbers[i] - 31;
+                    break;
+            }
+        }
+        return a;
     }
 }
 
