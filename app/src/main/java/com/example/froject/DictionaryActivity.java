@@ -50,12 +50,21 @@ public class DictionaryActivity extends AppCompatActivity {
         relativeMajor = findViewById(R.id.relativeMajor);
         String contact_big = intent.getStringExtra("contact_big");
         String contact_small = intent.getStringExtra("contact_small");
+        int i;
 
         final Spinner Bigspinner = (Spinner) findViewById(R.id.bigcategory);
         final Spinner Smallspinner = (Spinner) findViewById(R.id.smallcategory);
         Bigadapter = ArrayAdapter.createFromResource(this, R.array.Bigcategory, android.R.layout.simple_spinner_dropdown_item);
         Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
+
+        for (i = 0; i < bigcategory.length; i++) {
+            if (contact_big.equals(bigcategory[i])) {
+                Bigspinner.setSelection(i);
+                break;
+            }
+        }
+        final int big = i;
 
         Bigspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -299,16 +308,16 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
-                }
-                for (int i = 0; i < bigcategory.length; i++) {
-                    if (contact_big.equals(bigcategory[i])) {
-                        Bigspinner.setSelection(i);
-                        for(int j=0;j<array[i].length;j++) {
-                            if (contact_small.equals(array[i][j]))
-                                Smallspinner.setSelection(j);
-                        }
+                    Log.w("omg",Integer.toString(big));
+                    Log.w("omg",Integer.toString(array[big].length));
+                    }
+                for(int j=0;j<array[big].length;j++) {
+                    if (contact_small.equals(array[big][j])) {
+                        Smallspinner.setSelection(j);
+                        break;
                     }
                 }
+
             }
 
             @Override
