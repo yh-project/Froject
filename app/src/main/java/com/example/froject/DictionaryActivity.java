@@ -311,14 +311,14 @@ public class DictionaryActivity extends AppCompatActivity {
                     Log.w("omg",Integer.toString(big));
                     Log.w("omg",Integer.toString(array[big].length));
                     }
-                for(int j=0;j<array[big].length;j++) {
+                for(int j=0;j< Smalladapter.getCount();j++) {
                     if (contact_small.equals(array[big][j])) {
                         Smallspinner.setSelection(j);
                         break;
                     }
                 }
-
             }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
