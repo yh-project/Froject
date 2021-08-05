@@ -2,6 +2,7 @@ package com.example.froject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class DictionaryActivity extends AppCompatActivity {
@@ -24,50 +29,33 @@ public class DictionaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dictionary);
 
         String[] bigcategory = getResources().getStringArray(R.array.Bigcategory);
+        String[] Designcategory = getResources().getStringArray(R.array.Designcategory);//7 7
+        String[] Developcategory = getResources().getStringArray(R.array.Developcategory);//6 13
+        String[] Photocategory = getResources().getStringArray(R.array.Photocategory);//12 25
+        String[] Translatecategory = getResources().getStringArray(R.array.Translatecategory);//5 30
+        String[] Plancategory = getResources().getStringArray(R.array.Plancategory);//1 31
+        String[] Interiorlcategory = getResources().getStringArray(R.array.Interiorlcategory);//1 32
+
+        String[][] array = new String[6][];
+        array[0]=(Designcategory);
+        array[1]=(Developcategory);
+        array[2]=(Photocategory);
+        array[3]=(Translatecategory);
+        array[4]=(Plancategory);
+        array[5]=(Interiorlcategory);
 
         Intent intent = getIntent();
         String contact_title = intent.getStringExtra("contact_title");
         explainCategory = findViewById(R.id.explainCategory);
         relativeMajor = findViewById(R.id.relativeMajor);
         String contact_big = intent.getStringExtra("contact_big");
-        int contact_small = intent.getIntExtra("contact_small",0);
+        String contact_small = intent.getStringExtra("contact_small");
 
         final Spinner Bigspinner = (Spinner) findViewById(R.id.bigcategory);
         final Spinner Smallspinner = (Spinner) findViewById(R.id.smallcategory);
         Bigadapter = ArrayAdapter.createFromResource(this, R.array.Bigcategory, android.R.layout.simple_spinner_dropdown_item);
         Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
-
-
-        for (int i=0;i<bigcategory.length;i++) {
-            if(contact_big.equals(bigcategory[i]))
-                Bigspinner.setSelection(i);
-        }
-
-        /*for (int i=0;i<bigcategory.length;i++) {
-            Smallspinner.setSelection(contact_small);
-            *//*switch (Bigspinner.getSelectedItemPosition()) {
-                case 0:
-                    Smallspinner.setSelection(contact_small);
-                    break;
-                case 1:
-                    smallcat[i]=Developcategory[rand[i+5]];
-                    break;
-                case 2:
-                    smallcat[i]=Photocategory[rand[i+5]];
-                    break;
-                case 3:
-                    smallcat[i]=Translatecategory[rand[i+5]];
-                    break;
-                case 4:
-                    smallcat[i]=Plancategory[rand[i+5]];
-                    break;
-                case 5:
-                    smallcat[i]=Interiorlcategory[rand[i+5]];
-                    break;
-            }*//*
-        }*/
-
 
         Bigspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -311,6 +299,15 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         }
                     });
+                }
+                for (int i = 0; i < bigcategory.length; i++) {
+                    if (contact_big.equals(bigcategory[i])) {
+                        Bigspinner.setSelection(i);
+                        for(int j=0;j<array[i].length;j++) {
+                            if (contact_small.equals(array[i][j]))
+                                Smallspinner.setSelection(j);
+                        }
+                    }
                 }
             }
 

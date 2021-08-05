@@ -3,6 +3,7 @@ package com.example.froject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Homefragment extends Fragment {
+    private static final String TAG = "Homefragment";
     private ViewPager viewpager;
     private DictionaryViewPagerAdapter pagerAdapter;
 
@@ -33,6 +38,8 @@ public class Homefragment extends Fragment {
     private RecyclerView categoryView;
     private CategoryAdapter categoryAdapter;
     private ArrayList<CategoryData> categoryList;
+
+    private Boardfragment boardfragment;
 
     int currentPage = 0;
     Timer timer;
@@ -122,6 +129,18 @@ public class Homefragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         categoryView.setLayoutManager(gridLayoutManager);
         categoryView.setAdapter(categoryAdapter);
+
+        categoryAdapter.setOnItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(CategoryHolder holder, View view, int position) {
+                String name = holder.categoryname.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("bigcat",name);
+                boardfragment = new Boardfragment();
+                boardfragment.setArguments(bundle);
+                addFragment(boardfragment);
+            }
+        });
 
 
         // 즐겨찾기 목록
@@ -217,6 +236,43 @@ public class Homefragment extends Fragment {
             }
         }
         return a;
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<Fragment> List = fragmentManager.getFragments();
+        int listsize = List.size();
+        Log.w(TAG, "fragment data : " + listsize + List.toString());
+
+        for(int i=0;i<listsize;i++) {
+            fragmentTransaction.hide(List.get(i));
+        }
+        fragmentTransaction.add(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void showFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<Fragment> List = fragmentManager.getFragments();
+        int listsize = List.size();
+        Log.w(TAG, "fragment data : "+listsize+List.toString());
+
+        for(int i=0;i<listsize;i++) {
+            if(!(fragment.equals(List.get(i)))) {
+                fragmentTransaction.hide(List.get(i));
+            }
+        }
+        fragmentTransaction.show(fragment);
+        fragmentTransaction.commit();
     }
 }
 
