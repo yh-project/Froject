@@ -45,30 +45,31 @@ public class Categoryfragment extends Fragment {
         ItemHeightSpace itemHeightSpace = new ItemHeightSpace(100);
         categoryView.addItemDecoration(itemHeightSpace);
         categoryView.setAdapter(categoryAdapter);
-        /*if (categoryAdapter.onClick()) {
-            boardfragment = new Boardfragment();
-            addFragment(boardfragment);
-        }*/
-        /*categoryAdapter.setOnClickListener(new View.OnClickListener() {
+
+        categoryAdapter.setOnItemClickListener(new ItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(CategoryHolder holder, View view, int position) {
+                String name = holder.categoryname.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("bigcat",name);
                 boardfragment = new Boardfragment();
+                boardfragment.setArguments(bundle);
                 addFragment(boardfragment);
             }
-        });*/
+        });
 
         return v;
 
     }
     private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
 
     private void addFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         List<Fragment> List = fragmentManager.getFragments();
         int listsize = List.size();
@@ -82,7 +83,7 @@ public class Categoryfragment extends Fragment {
     }
 
     private void showFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         List<Fragment> List = fragmentManager.getFragments();
         int listsize = List.size();

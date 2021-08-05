@@ -77,31 +77,66 @@ public class Boardfragment extends Fragment {
     CollectionReference boardRef = docRef.collection("Board");
     PostData tmp;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
-        Log.w(TAG,"omg22"+boardRef.get().toString());
+        String bigcat="";
 
-        db.collectionGroup("Board").orderBy("writetime",DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-        //boardRef.orderBy("writetime", DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                        postrecyclerView = v.findViewById(R.id.boardRecyclerView);
-                        docSize=task.getResult().getDocuments().size();
-                        Log.w(TAG,"omg"+docSize);
-                        for (int i=0;i<docSize;i++) {
-                            list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
-                        }
-                        postAdapter = new PostAdapter(list);
-                        postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                        postrecyclerView.setAdapter(postAdapter);
-                    }
-                });
+        if (this.getArguments() != null)
+            bigcat = this.getArguments().getString("bigcat");
+
+        db.collectionGroup("Board").orderBy("writetime", DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                postrecyclerView = v.findViewById(R.id.boardRecyclerView);
+                docSize = task.getResult().getDocuments().size();
+                Log.w(TAG, "omg" + docSize);
+                for (int i = 0; i < docSize; i++) {
+                    list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                }
+                postAdapter = new PostAdapter(list);
+                postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                postrecyclerView.setAdapter(postAdapter);
+            }
+        });
         // 큰카테고리 뷰에따른 작은카테고리
         bigcategoryrecyclerview = v.findViewById(R.id.bigcategoryRecyclerView);
         bigcategorylist = getResources().getStringArray(R.array.Bigcategory);
         bigCategoryAdapter = new BigCategoryAdapter(bigcategorylist);
+
+        //이전 카테고리뷰에서 누른 카테고리의 하부 카테고리 기본 생성
+        switch(bigcat) {
+            case "디자인":
+                smallcategorylist = getResources().getStringArray(R.array.Designcategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+            case "개발":
+                smallcategorylist = getResources().getStringArray(R.array.Developcategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+            case "사진·영상":
+                smallcategorylist = getResources().getStringArray(R.array.Photocategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+            case "번역·통역":
+                smallcategorylist = getResources().getStringArray(R.array.Translatecategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+            case "기획":
+                smallcategorylist = getResources().getStringArray(R.array.Plancategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+            case "인테리어":
+                smallcategorylist = getResources().getStringArray(R.array.Interiorlcategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+            case "대외활동":
+                smallcategorylist = getResources().getStringArray(R.array.Extracategory);
+                setRecyclerView(v, smallcategorylist);
+                break;
+        }
+
+        //큰카테고리 선택시 작은카테고리 생성
         callbackListener = new ClickCallbackListener() {
             @Override
             public void callBack(String name) {

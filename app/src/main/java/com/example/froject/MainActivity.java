@@ -59,33 +59,28 @@ public class MainActivity extends AppCompatActivity {
         if(user == null) { //state == Logout -> goto LoginActivity
             startActivity(LoginActivity.class);
         }else{ //state = Login -> get DB for firebase
-            /*categoryfragment = new Categoryfragment();
-            addFragment(categoryfragment);*/
-            boardfragment = new Boardfragment();
-            addFragment(boardfragment);
+            categoryfragment = new Categoryfragment();
+            addFragment(categoryfragment);
+            /*boardfragment = new Boardfragment();
+            addFragment(boardfragment);*/
             DocumentReference docRef = db.collection("users").document(user.getEmail());
-            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    my_info = documentSnapshot.toObject(Info.class);
-                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if(document != null) {
-                                    if (my_info.checkNull()) { //Need fix
-                                        Log.d(TAG, "No such document");
-                                        startActivity(UserinfoActivity.class);
-                                    } else {
-                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                    }
-                                }
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null) {
+                            my_info = document.toObject(Info.class);
+                            if (my_info.checkNull()) { //Need fix
+                                Log.d(TAG, "No such document");
+                                startActivity(UserinfoActivity.class);
                             } else {
-                                Log.d(TAG, "get failed with ", task.getException());
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             }
                         }
-                    });
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
                 }
             });
         }
@@ -119,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
         if (data!=null) {
             switch (data) {
                 case "none":
-                    //showFragment(categoryfragment);
-                    showFragment(boardfragment);
+                    showFragment(categoryfragment);
+                    //showFragment(boardfragment);
                     break;
                 case "editprofile":
                     if (profilefragment == null) {
@@ -145,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.item_fragment1:
+                    /*case R.id.item_fragment1:
                         if(boardfragment == null) {
                             boardfragment = new Boardfragment();
                             addFragment(boardfragment);
@@ -153,15 +148,15 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             showFragment(boardfragment);
                         }
-                        break;
-                    /*case R.id.item_fragment1:
+                        break;*/
+                    case R.id.item_fragment1:
                         if (categoryfragment == null) {
                             categoryfragment = new Categoryfragment();
                             addFragment(categoryfragment);
                         } else {
                             showFragment(categoryfragment);
                         }
-                        break;*/
+                        break;
 
                     case R.id.item_fragment2:
                         if(profilefragment == null) {
