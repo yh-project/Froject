@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="250"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <!-- 탑바 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:weightSum="130">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:src="@drawable/item_back_button"
+            android:background="#ffffff" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="90" />
+
+        <ImageView
+            android:id="@+id/pickLike"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:src="@drawable/item_before_like" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="#F1F2F4" />
+
+    <!--타이틀-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+        android:weightSum="130"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="110"
+            android:weightSum="40"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/postTitle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:text="앱 개발 공모전 참가하실 디자이너/개발자 구합니다."
+                android:textSize="20sp"
+                android:maxLines="3"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"
+                android:paddingLeft="10dp"
+                android:weightSum="110">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20"
+                    android:src="@drawable/just_circle_will_be_deleted"/>
+
+                <TextView
+                    android:id="@+id/userId"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="90"
+                    android:text="김수현"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:background="#F1F2F4"
+        android:layout_marginTop="5dp"/>
+
+    <!-- 콘텐츠 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="174"
+        android:orientation="horizontal"
+        android:weightSum="130"
+        android:gravity="center_horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/postContentRecyclerView"
+            android:layout_width="0dp"
+            android:layout_weight="110"
+            android:layout_height="match_parent"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+    
+    <!--채팅 보내기 버튼-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:weightSum="130"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp">
+        
+        <Button
+            android:id="@+id/sendChatting"
+            android:layout_width="0dp"
+            android:layout_weight="110"
+            android:layout_height="match_parent"
+            android:background="@drawable/borderline_button"
+            android:text="채팅 보내기"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
+        
+    </LinearLayout>
+
+</LinearLayout>
