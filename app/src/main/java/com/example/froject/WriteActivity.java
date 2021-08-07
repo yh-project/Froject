@@ -32,6 +32,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 
@@ -43,7 +45,7 @@ public class WriteActivity extends AppCompatActivity {
     DocumentReference docRef = db.collection("users").document(user.getEmail());
     CollectionReference boardRef = docRef.collection("Board");
 
-    LinearLayout contentslayout;
+    //LinearLayout contentslayout;
     PostData new_post;
 
     @Override
@@ -61,7 +63,7 @@ public class WriteActivity extends AppCompatActivity {
             }
         });
 
-        contentslayout = findViewById(R.id.contentsLayout);
+        //contentslayout = findViewById(R.id.contentsLayout);
 
     }
 
@@ -76,13 +78,14 @@ public class WriteActivity extends AppCompatActivity {
                     @Nullable String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     @Nullable String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     @Nullable String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
-                    @Nullable String count = ((EditText)findViewById(R.id.inputCount)).getText().toString();
+                    @Nullable String totalcount = ((EditText)findViewById(R.id.totalCount)).getText().toString();
 
                     new_post = new PostData(title,place,period);
                     //firebase::database::ServerTimestamp();
                     Date date = new Date(System.currentTimeMillis());
-                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
-
+                    Log.d("sex", ""+date);
+                    SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+                    sdate.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 
                     //boardRef.get().getResult().getDocuments().size();
 
@@ -100,7 +103,7 @@ public class WriteActivity extends AppCompatActivity {
     };
 
 
-    private void add_contents() {
+    /*private void add_contents() {
         int id_contentlayout = 1;
         int id_contentfield = 10;
         int id_field1 = 100;
@@ -170,7 +173,7 @@ public class WriteActivity extends AppCompatActivity {
             contenttext.setLayoutParams(param_contenttext);
             contentlayout.addView(contenttext);
         }
-    }
+    }*/
 
 
 

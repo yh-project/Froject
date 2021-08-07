@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PostActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DetailPostAdapter detailPostAdapter;
-    private ArrayList<DetailPostData> list;
+    private ArrayList<PostData> list;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +19,12 @@ public class PostActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.postContentRecyclerView);
 
         list = new ArrayList<>();
-        DetailPostData detailPostData1  = new DetailPostData("모집 내용", "아 ㅁㅊ 컴퓨터는 9시에 켜놓고 4시간동안 유튜브봤네... 왜 새벽2시인건데......하....");
-        list.add(detailPostData1);
+        PostData postData1  = new PostData("모집 내용", "내용", "장소", "기간", "n명 ");
+        list.add(postData1);
 
-        for(int i=0; i<3; i++) {
-            DetailPostData detailPostData2 = new DetailPostData("내용", "대분야", "소분야", "구인 수:"+i);
-            list.add(detailPostData2);
+        for(int i=0; i<10; i++) {
+            PostData postData2 = new PostData("내용", "대분야", "소분야", "구인 수:"+i);
+            list.add(postData2);
         }
 
         detailPostAdapter = new DetailPostAdapter(list);

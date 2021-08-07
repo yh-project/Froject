@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class DetailPostAdapter extends RecyclerView.Adapter<PostDetailHolder> {
-    private ArrayList<DetailPostData> list;
+    private ArrayList<PostData> list;
 
-    DetailPostAdapter(ArrayList<DetailPostData> list) { this.list = list; }
+    DetailPostAdapter(ArrayList<PostData> list) { this.list = list; }
 
     View view;
 
@@ -61,6 +61,9 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
     TextView inputBigCategory;
     TextView inputSmallCategory;
     TextView countPeople;
+    TextView place;
+    TextView period;
+    TextView totalCount;
 
     public PostDetailHolder(@NonNull View itemView) {
         super(itemView);
@@ -69,17 +72,23 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
         inputBigCategory = itemView.findViewById(R.id.inputBigCategory);
         inputSmallCategory = itemView.findViewById(R.id.inputSmallCategory);
         countPeople = itemView.findViewById(R.id.countPeople);
+        place = itemView.findViewById(R.id.place);
+        period = itemView.findViewById(R.id.period);
+        totalCount = itemView.findViewById(R.id.totalCount);
     }
 
-    void onBind1(DetailPostData detailPostData) {
-        inputContentTitle.setText(detailPostData.getInputContentTitle());
-        inputContent.setText(detailPostData.getInputContent());
+    void onBind1(PostData postData) {
+        inputContentTitle.setText(postData.getTitle());
+        inputContent.setText(postData.getInputContent());
+        place.setText(postData.getPlace());
+        period.setText(postData.getDate());
+        totalCount.setText(postData.getTotalCount());
     }
 
-    void onBind2(DetailPostData detailPostData) {
-        inputContent.setText(detailPostData.getInputContent());
-        inputBigCategory.setText(detailPostData.getInputBigCategory());
-        inputSmallCategory.setText(detailPostData.getInputSmallCategory());
-        countPeople.setText(detailPostData.getCountPeople());
+    void onBind2(PostData postData) {
+        inputContent.setText(postData.getInputContent());
+        inputBigCategory.setText(postData.getInputBigCategory());
+        inputSmallCategory.setText(postData.getInputSmallCategory());
+        countPeople.setText(postData.getCountPeople());
     }
 }
