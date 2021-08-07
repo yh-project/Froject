@@ -1,5 +1,6 @@
 package com.example.froject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -184,7 +185,6 @@ public class Boardfragment extends Fragment {
         smallcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         smallcategoryrecyclerview.setAdapter(smaillCategoryAdapter);
     }
-
 
 
     //old data

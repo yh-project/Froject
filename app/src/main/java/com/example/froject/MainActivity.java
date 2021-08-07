@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Boardfragment boardfragment;
     Profilefragment profilefragment;
     Homefragment homefragment;
-    ChatFragment chatFragment;
+    ChatlistFragment chatlistFragment;
 
     private static final String TAG = "MainActivity";
     private static final String PROFILE_TAG = "ProfileFragment";
@@ -172,9 +172,17 @@ public class MainActivity extends AppCompatActivity {
                         Log.w(TAG, "shit" + my_info);
                         break;
                     case R.id.item_writeactivity:
-                        startActivity(WriteActivity.class);   //need fix
+                        //startActivity(WriteActivity.class);   //need fix
 
                         //임시    need fix
+                        if(chatlistFragment == null) {
+                            chatlistFragment = new ChatlistFragment();
+                            addFragment(chatlistFragment);
+                        }
+                        else {
+                            showFragment(chatlistFragment);
+                        }
+                        break;
                         /*if(chatFragment == null) {
                             chatFragment = new ChatFragment();
                             addFragment(chatFragment);

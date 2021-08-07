@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,18 +23,16 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
-public class ChatFragment extends Fragment {
+public class ChatActivity extends AppCompatActivity {
 
-    private static final String TAG = "ChatFragment";
+    private static final String TAG = "ChatActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     final ArrayList<String> chat = new ArrayList<>();
@@ -50,62 +48,57 @@ public class ChatFragment extends Fragment {
     DocumentReference chatRef2;
     CollectionReference youchatRef;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if(getArguments() != null) {
-            Info my_info = (Info)getArguments().getSerializable("my_info");
-            name = my_info.getname();
-            you= getArguments().getString("you_email");
-            Log.w(TAG,"OMG"+name);
-            Log.w(TAG,"omg"+you);
-        }
-
-    }
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("users").document(user.getEmail());
     CollectionReference chatRef = docRef.collection("Chat");
     DocumentReference chat2Ref = docRef.collection("Chat").document("MyBoard");
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_chat,container,false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat);
+        intent = getIntent();
+        if(intent != null) {
+            Info my_info = (Info)intent.getSerializableExtra("my_info");
+            name = my_info.getname();
+            you= intent.getStringExtra("you_email");
+            Log.w(TAG,"OMG"+name);
+            Log.w(TAG,"omg"+you);
+            findViewById(R.id.btn_send).setOnClickListener(onClickListener);
+            you="yoha6865@yu.ac.kr";
+            chatRef2 = chatRef.document(you);
+            DocumentReference youRef =db.collection("users").document(you);
+            youchatRef = youRef.collection("Chat");
 
-        v.findViewById(R.id.btn_send).setOnClickListener(onClickListener);
-        you="yoha6865@yu.ac.kr";
-        chatRef2 = chatRef.document(you);
-        DocumentReference youRef =db.collection("users").document(you);
-        youchatRef = youRef.collection("Chat");
+            chatRef2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    chatRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
 
-        chatRef2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                chatRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-
-                        youRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                                if(task.isSuccessful()) {
-                                    name = task.getResult().get("name").toString();
+                            youRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                                    if(task.isSuccessful()) {
+                                        name = task.getResult().get("name").toString();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                    }
-                });
-            }
-        });
+                        }
+                    });
+                }
+            });
+        }
 
-        return v;
     }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.btn_send:
-                    msg = ((EditText)getActivity().findViewById(R.id.et_chatting)).getText().toString();
+                    msg = ((EditText)findViewById(R.id.et_chatting)).getText().toString();
                     Log.w(TAG,"omg btn_send");
                     Date date = new Date(System.currentTimeMillis());
                     SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd hh:mm:ss");

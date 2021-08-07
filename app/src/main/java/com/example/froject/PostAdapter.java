@@ -1,6 +1,8 @@
 package com.example.froject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +24,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_postlist, parent, false);
+
         return new PostHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PostHolder holder, int position) {
         holder.onBind(list.get(position));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                View view = (View)holder.itemView.getParent();
+                Context context = view.getContext();
+                intent = new Intent(context, PostActivity.class);
+                intent.putExtra("PostNumber","a");
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -39,6 +54,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
     public int getItemViewType(int position) {
         return position;
     }
+
 }
 
 class PostHolder extends RecyclerView.ViewHolder {

@@ -34,12 +34,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_category, parent, false);
 
-view.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent(context, MainActivity.class);
-                intent.putExtra("data","board");
+                intent.putExtra("data", "board");
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
             }
