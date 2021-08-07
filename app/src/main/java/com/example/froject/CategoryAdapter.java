@@ -86,7 +86,7 @@ class CategoryHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = getAdapterPosition();
+                int position = getBindingAdapterPosition();
                 if (itemClickListener != null) {
                     itemClickListener.onItemClick(CategoryHolder.this, view, position);
                 }
