@@ -96,8 +96,6 @@ public class WriteActivity extends AppCompatActivity {
                     writingAdapter.getItemCount();
                     break;
                 case R.id.finishcontents:
-                    String sexy = writingAdapter.getSex(writeHolder);
-                    Log.d("sex", sexy);
                     @Nullable String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     @Nullable String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     @Nullable String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
