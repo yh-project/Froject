@@ -1,6 +1,8 @@
 package com.example.froject;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +56,7 @@ class WriteHolder extends RecyclerView.ViewHolder {
     Spinner smallcategory;
     Spinner count;
     EditText inputContent;
+    String sexy;
     public WriteHolder(@NonNull View v) {
         super(v);
         bigcategory = v.findViewById(R.id.bigcategory);
@@ -63,7 +66,29 @@ class WriteHolder extends RecyclerView.ViewHolder {
     }
 
     void onBind(PostData postData) {
+        inputContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                sexy = s.toString();
+                return;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().equals("")) {
+                    return;
+                }
+                else sexy = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                postData.setInputContent(sexy);
+                Log.d("하이2", postData.getInputContent());
+            }
+        });
     }
+
 }
 
 

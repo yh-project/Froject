@@ -7,9 +7,11 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +48,7 @@ public class WriteActivity extends AppCompatActivity {
     private ArrayList<PostData> list;
     private PostData[] postDataArray;
     private WriteHolder writeHolder;
+    private int a = 0;
 
     private static final String TAG = "WriteActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -90,20 +93,29 @@ public class WriteActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.addContents:
-                    writingAdapter.additem(new_post);
+                    if(a==2) {
+                        findViewById(R.id.addContents).setVisibility(View.INVISIBLE);
+                        break;
+                    }
+                    a++;
+                    PostData newpostdata = new PostData();
+                    writingAdapter.additem(newpostdata);
                     writingAdapter.notifyDataSetChanged();
                     Log.d("개수", ""+list.size());
                     writingAdapter.getItemCount();
                     break;
                 case R.id.finishcontents:
-                    String sexy = writingAdapter.getSex(writeHolder);
-                    Log.d("sex", sexy);
-                    @Nullable String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
-                    @Nullable String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
-                    @Nullable String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
-                    @Nullable String totalcount = ((EditText)findViewById(R.id.totalCount)).getText().toString();
+                    /*PostData postData1 = list.get(0);
+                    PostData postData2 = list.get(1);
+                    Log.d("하이3", postData1.getInputContent());
+                    Log.d("하이3", postData2.getInputContent());*/
+                    String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
+                    String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
+                    String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
+                    int totalcount = Integer.parseInt(((EditText)findViewById(R.id.totalCount)).getText().toString());
+                    String kangchanghanbabo = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
-                    new_post = new PostData(title,place,period);
+                    new_post = new PostData(title, place, period, kangchanghanbabo, totalcount);
                     //firebase::database::ServerTimestamp();
                     Date date = new Date(System.currentTimeMillis());
                     Log.d("sex", ""+date);

@@ -7,33 +7,27 @@ import java.sql.Timestamp;
 public class PostData {
     String title;
     String place;
-    String date;
+    String period;
+    String inputContent;
+    int totalCount;
 
     // 차례대로
     // 메인or분야별 내용,  대분야,  소분야,  분야별 구인 수,  총 구인 수
 
-    String inputContent;
     String inputBigCategory;
     String inputSmallCategory;
     String countPeople;
-    String totalCount;
 
     //Timestamp writetime;
 
     public PostData() { }
 
-    public PostData(String title, String place, String date) {
-        this.title = title;
-        this.place = place;
-        this.date = date;
-    }
-
     // 게시글 화면에서 보일 제목과 메인내용부분 생성자
-    public PostData(String title, String inputContent, String place, String date, String totalCount) {
+    public PostData(String title, String place, String period, String inputContent, int totalCount) {
         this.title = title;
-        this.inputContent = inputContent;
         this.place = place;
-        this.date = date;
+        this.period = period;
+        this.inputContent = inputContent;
         this.totalCount = totalCount;
     }
 
@@ -48,7 +42,6 @@ public class PostData {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -56,18 +49,22 @@ public class PostData {
     public String getPlace() {
         return place;
     }
-
     public void setPlace(String place) {
         this.place = place;
     }
 
-    public String getDate() {
-        return date;
+    public String getPeriod() {
+        return period;
+    }
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+    public String getInputContent() { return inputContent; }
+    public void setInputContent(String inputContent) { this.inputContent = inputContent; }
+
+    public int getTotalCount() { return totalCount; }
+    public void setTotalCount(int totalCount) { this.totalCount = totalCount; }
 
     /*public Timestamp getWritetime() {
         return writetime;
@@ -79,8 +76,6 @@ public class PostData {
 
 
     // 추가한 것들 관련 getter, setter
-    public String getInputContent() { return inputContent; }
-    public void setInputContent(String inputContent) { this.inputContent = inputContent; }
 
     public String getInputBigCategory() { return inputBigCategory; }
     public void setInputBigCategory(String inputBigCategory) { this.inputBigCategory = inputBigCategory; }
@@ -90,10 +85,5 @@ public class PostData {
 
     public String getCountPeople() { return countPeople; }
     public void setCountPeople(String countPeople) { this.countPeople = countPeople; }
-
-    public String getTotalCount() { return totalCount; }
-    public void setTotalCount(String totalCount) { this.totalCount = totalCount; }
-
-
 
 }

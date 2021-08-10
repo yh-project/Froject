@@ -72,6 +72,6 @@ class PostHolder extends RecyclerView.ViewHolder {
     void onBind(PostData postData) {
         title.setText(postData.getTitle());
         updatetime1.setText(postData.getPlace());
-        updatetime2.setText(postData.getDate());
+        updatetime2.setText(postData.getPeriod());
     }
 }
