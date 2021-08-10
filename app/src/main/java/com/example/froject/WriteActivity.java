@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +33,7 @@ import com.google.firebase.firestore.ServerTimestamp;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -38,6 +41,11 @@ import java.util.TimeZone;
 import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 
 public class WriteActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private WritingAdapter writingAdapter;
+    private ArrayList<PostData> list;
+    private PostData[] postDataArray;
+    private WriteHolder writeHolder;
 
     private static final String TAG = "WriteActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -56,6 +64,16 @@ public class WriteActivity extends AppCompatActivity {
         findViewById(R.id.addContents).setOnClickListener(onClickListener);
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
 
+        recyclerView = findViewById(R.id.categoryContentRecyclerView);
+        list = new ArrayList<>();
+        PostData postData = new PostData();
+        list.add(postData);
+        writingAdapter = new WritingAdapter(list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        ItemHeightSpace itemHeightSpace = new ItemHeightSpace(50);
+        recyclerView.addItemDecoration(itemHeightSpace);
+        recyclerView.setAdapter(writingAdapter);
+
         db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -72,9 +90,14 @@ public class WriteActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.addContents:
-                    //add_contents();
+                    writingAdapter.additem(new_post);
+                    writingAdapter.notifyDataSetChanged();
+                    Log.d("개수", ""+list.size());
+                    writingAdapter.getItemCount();
                     break;
                 case R.id.finishcontents:
+                    String sexy = writingAdapter.getSex(writeHolder);
+                    Log.d("sex", sexy);
                     @Nullable String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     @Nullable String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     @Nullable String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();

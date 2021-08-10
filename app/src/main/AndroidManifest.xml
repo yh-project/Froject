@@ -23,7 +23,8 @@
         <activity android:name=".PassresetActivity" />
         <activity android:name=".UserinfoActivity" />
         <activity android:name=".EditprofileActivity" />
-        <activity android:name=".WriteActivity" />
+        <activity android:name=".WriteActivity"
+                  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".DictionaryActivity" />
         <activity android:name=".SearchActivity"
                   android:windowSoftInputMode="adjustPan"/>
