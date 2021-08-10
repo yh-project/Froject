@@ -91,16 +91,15 @@ public class WriteActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.addContents:
-                    if(a==2) {
-                        findViewById(R.id.addContents).setVisibility(View.INVISIBLE);
-                        break;
-                    }
-                    a++;
                     PostData newpostdata = new PostData();
                     writingAdapter.additem(newpostdata);
                     writingAdapter.notifyDataSetChanged();
                     Log.d("개수", ""+list.size());
                     writingAdapter.getItemCount();
+                    if(++a==2) {
+                        findViewById(R.id.addContents).setVisibility(View.INVISIBLE);
+                        break;
+                    }
                     break;
                 case R.id.finishcontents:
                     /*PostData postData1 = list.get(0);
@@ -110,7 +109,7 @@ public class WriteActivity extends AppCompatActivity {
                     String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
-                    int totalcount = Integer.parseInt(((EditText)findViewById(R.id.totalCount)).getText().toString());
+                    String totalcount = ((EditText)findViewById(R.id.totalCount)).getText().toString();
                     String kangchanghanbabo = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
                     new_post = new PostData(title, place, period, kangchanghanbabo, totalcount);

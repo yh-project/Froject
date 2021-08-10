@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         }
         fragmentTransaction.show(fragment);
         fragmentTransaction.commit();
-     }
+    }
 
 }
 

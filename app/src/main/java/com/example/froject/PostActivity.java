@@ -19,7 +19,7 @@ public class PostActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.postContentRecyclerView);
 
         list = new ArrayList<>();
-        PostData postData1  = new PostData("모집 내용", "내용", "장소", "기간", 99);
+        PostData postData1  = new PostData("모집 내용", "내용", "장소", "기간", " 뭐요");
         list.add(postData1);
 
         for(int i=0; i<10; i++) {

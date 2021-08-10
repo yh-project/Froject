@@ -9,7 +9,7 @@ public class PostData {
     String place;
     String period;
     String inputContent;
-    int totalCount;
+    String totalCount;
 
     // 차례대로
     // 메인or분야별 내용,  대분야,  소분야,  분야별 구인 수,  총 구인 수
@@ -23,7 +23,7 @@ public class PostData {
     public PostData() { }
 
     // 게시글 화면에서 보일 제목과 메인내용부분 생성자
-    public PostData(String title, String place, String period, String inputContent, int totalCount) {
+    public PostData(String title, String place, String period, String inputContent, String totalCount) {
         this.title = title;
         this.place = place;
         this.period = period;
@@ -63,8 +63,8 @@ public class PostData {
     public String getInputContent() { return inputContent; }
     public void setInputContent(String inputContent) { this.inputContent = inputContent; }
 
-    public int getTotalCount() { return totalCount; }
-    public void setTotalCount(int totalCount) { this.totalCount = totalCount; }
+    public String getTotalCount() { return totalCount; }
+    public void setTotalCount(String totalCount) { this.totalCount = totalCount; }
 
     /*public Timestamp getWritetime() {
         return writetime;
