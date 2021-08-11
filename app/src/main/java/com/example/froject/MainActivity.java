@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         Log.w(TAG,"Document "+intent.getSerializableExtra("my_info"));
         Log.w(TAG,"Document "+intent.getComponent());
         Log.w(TAG,"Document "+intent.getStringExtra("data"));
-        Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
 
         //Start = get info for past activity
         if(intent.getSerializableExtra("my_info") != null) {

@@ -81,12 +81,16 @@ public class Boardfragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
-        String bigcat="";
+        String bigcat="", smallcat="";
+
 
         if (this.getArguments() != null)
             bigcat = this.getArguments().getString("bigcat");
 
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Log.w("omg get bigcat : ",bigcat);
+        //whereArrayContains("bigcategory",bigcat)
+        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+                whereArrayContains("bigcategory",bigcat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                 postrecyclerView = v.findViewById(R.id.boardRecyclerView);

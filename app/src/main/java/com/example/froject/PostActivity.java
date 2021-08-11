@@ -1,30 +1,45 @@
 package com.example.froject;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class PostActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DetailPostAdapter detailPostAdapter;
-    private ArrayList<PostData> list;
+    private ArrayList<PostData> list = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
+        PostData postdata = (PostData)getIntent().getSerializableExtra("PostData");
+        TextView titleView = findViewById(R.id.postTitle);
+        TextView nameView = findViewById(R.id.userId);
+
+        titleView.setText(postdata.getTitle());
+        nameView.setText(postdata.getAuthor());
+        list.add(postdata);
+
         recyclerView = findViewById(R.id.postContentRecyclerView);
 
-        list = new ArrayList<>();
-        PostData postData1  = new PostData("모집 내용", "내용", "장소", "기간", " 뭐요");
-        list.add(postData1);
-
-        for(int i=0; i<10; i++) {
-            PostData postData2 = new PostData("내용", "대분야", "소분야", "구인 수:"+i);
-            list.add(postData2);
+        for(int i=0; i< postdata.getBigCategory().size(); i++) {
+            list.add(postdata);
         }
 
         detailPostAdapter = new DetailPostAdapter(list);

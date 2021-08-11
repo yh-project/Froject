@@ -15,13 +15,14 @@ import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
     private ArrayList<PostData> list;
+    private Context context;
 
     PostAdapter(ArrayList<PostData> list) { this.list = list; }
 
     @NonNull
     @Override
     public PostHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_postlist, parent, false);
 
@@ -36,10 +37,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                View view = (View)holder.itemView.getParent();
-                Context context = view.getContext();
                 intent = new Intent(context, PostActivity.class);
-                intent.putExtra("PostNumber","a");
+                intent.putExtra("PostData",list.get(position));
                 context.startActivity(intent);
             }
         });

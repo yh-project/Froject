@@ -45,7 +45,7 @@ public class DetailPostAdapter extends RecyclerView.Adapter<PostDetailHolder> {
         if(position == 0) {
             holder.onBind1(list.get(position));
         } else {
-            holder.onBind2(list.get(position));
+            holder.onBind2(list.get(position),position);
         }
     }
 
@@ -78,17 +78,17 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
     }
 
     void onBind1(PostData postData) {
-        inputContentTitle.setText(postData.getTitle());
-        inputContent.setText(postData.getInputContent());
+        //inputContentTitle.setText(postData.getTitle());
+        inputContent.setText(postData.getContent());
         place.setText(postData.getPlace());
         period.setText(postData.getPeriod());
-        totalCount.setText(postData.getTotalCount());
+        totalCount.setText(postData.getTotalPeople()+"명");
     }
 
-    void onBind2(PostData postData) {
-        inputContent.setText(postData.getInputContent());
-        inputBigCategory.setText(postData.getInputBigCategory());
-        inputSmallCategory.setText(postData.getInputSmallCategory());
-        countPeople.setText(postData.getCountPeople());
+    void onBind2(PostData postData, int position) {
+        inputContent.setText(postData.getCategoryContent().get(position-1));
+        inputBigCategory.setText(postData.getBigCategory().get(position-1));
+        inputSmallCategory.setText(postData.getSmallCategory().get(position-1));
+        countPeople.setText(postData.getCategoryPeople().get(position-1));
     }
 }

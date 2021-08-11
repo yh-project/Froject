@@ -7,8 +7,10 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -43,10 +46,13 @@ import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 public class WriteActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private WritingAdapter writingAdapter;
-    private ArrayList<PostData> list;
+    private ArrayList<WriteData> list;
     private PostData[] postDataArray;
     private WriteHolder writeHolder;
     private int a = 0;
+    private String author;
+    private String email;
+
 
     private static final String TAG = "WriteActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -56,6 +62,8 @@ public class WriteActivity extends AppCompatActivity {
 
     //LinearLayout contentslayout;
     PostData new_post;
+
+    ArrayAdapter<CharSequence> Bigadapter, Smalladapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,23 +75,31 @@ public class WriteActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.categoryContentRecyclerView);
         list = new ArrayList<>();
-        PostData postData = new PostData();
-        list.add(postData);
+        WriteData writeData = new WriteData();
+        list.add(writeData);
         writingAdapter = new WritingAdapter(list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         ItemHeightSpace itemHeightSpace = new ItemHeightSpace(50);
         recyclerView.addItemDecoration(itemHeightSpace);
         recyclerView.setAdapter(writingAdapter);
 
-        db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                    author = task.getResult().getString("name");
+                    email = task.getResult().getString("email");
+            }
+        });
+
+
+        /*db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                 Log.w(TAG,"omg"+task.getResult().getDocuments().size());
             }
-        });
+        });*/
 
         //contentslayout = findViewById(R.id.contentsLayout);
-
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -91,11 +107,14 @@ public class WriteActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.addContents:
-                    PostData newpostdata = new PostData();
-                    writingAdapter.additem(newpostdata);
+                    /*PostData postData1 = list.get(0);
+                    Log.w("omg",postData1.getInputSmallCategory());
+                    Log.w("omg",postData1.getInputBigCategory());*/
+                    WriteData writeData = new WriteData();
+                    writingAdapter.additem(writeData);
                     writingAdapter.notifyDataSetChanged();
                     Log.d("개수", ""+list.size());
-                    writingAdapter.getItemCount();
+                    //writingAdapter.getItemCount();
                     if(++a==2) {
                         findViewById(R.id.addContents).setVisibility(View.INVISIBLE);
                         break;
@@ -110,9 +129,9 @@ public class WriteActivity extends AppCompatActivity {
                     String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
                     String totalcount = ((EditText)findViewById(R.id.totalCount)).getText().toString();
-                    String kangchanghanbabo = ((EditText)findViewById(R.id.inputContent)).getText().toString();
+                    String maincontent = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
-                    new_post = new PostData(title, place, period, kangchanghanbabo, totalcount);
+                    new_post = new PostData(title, place, period, maincontent, totalcount);
                     //firebase::database::ServerTimestamp();
                     Date date = new Date(System.currentTimeMillis());
                     Log.d("sex", ""+date);
@@ -121,12 +140,40 @@ public class WriteActivity extends AppCompatActivity {
 
                     //boardRef.get().getResult().getDocuments().size();
 
+                    ArrayList<String> BigCategory = new ArrayList<>();
+                    ArrayList<String> SmallCategory = new ArrayList<>();
+                    ArrayList<String> CategoryContent = new ArrayList<>();
+                    ArrayList<String> CountPeople = new ArrayList<>();
+
+                    int total=0;
+                    for(int i=0;i<list.size();i++) {
+                        BigCategory.add(list.get(i).getBigCategory());
+                        SmallCategory.add(list.get(i).getSmallCategory());
+                        CategoryContent.add(list.get(i).getContent());
+                        CountPeople.add(list.get(i).getCountPeople());
+                        total += Integer.parseInt(list.get(i).getCountPeople());
+                    }
+
+                    new_post.setAuthor(author);
+                    new_post.setEmail(email);
+                    new_post.setBigCategory(BigCategory);
+                    new_post.setSmallCategory(SmallCategory);
+                    new_post.setCategoryContent(CategoryContent);
+                    new_post.setCategoryPeople(CountPeople);
+                    new_post.setTotalPeople(""+total);
                     boardRef.document(sdate.format(date)).set(new_post);
                     boardRef.document(sdate.format(date)).update("writetime",date);
+                    db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                            boardRef.document(sdate.format(date)).update("postNumber",""+(task.getResult().getDocuments().size()+1));
+                        }
+                    });
 
                     Intent intent = getIntent();
                     intent.setClass(WriteActivity.this,MainActivity.class);
-                    intent.putExtra("reload",true);
+                    //intent.putExtra("reload",true);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                     break;
