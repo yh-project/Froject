@@ -71,7 +71,7 @@ public class PostData implements Serializable {
     }
 
     public String getContent() { return content; }
-    public void setContent(String content) { content = content; }
+    public void setContent(String content) { this.content = content; }
 
     public String getTotalPeople() { return totalPeople; }
     public void setTotalPeople(String totalPeople) { this.totalPeople = totalPeople; }
@@ -88,19 +88,19 @@ public class PostData implements Serializable {
     public void setStar(ArrayList<String> star) { this.star = star; }
 
     public String getEmail() { return Email; }
-    public void setEmail(String email) { Email = email; }
+    public void setEmail(String email) { this.Email = email; }
 
     public ArrayList<String> getBigCategory() { return BigCategory; }
-    public void setBigCategory(ArrayList<String> bigCategory) { BigCategory = bigCategory; }
+    public void setBigCategory(ArrayList<String> bigCategory) { this.BigCategory = bigCategory; }
 
     public ArrayList<String> getSmallCategory() { return SmallCategory; }
-    public void setSmallCategory(ArrayList<String> smallCategory) { SmallCategory = smallCategory; }
+    public void setSmallCategory(ArrayList<String> smallCategory) { this.SmallCategory = smallCategory; }
 
     public ArrayList<String> getCategoryPeople() { return categoryPeople; }
     public void setCategoryPeople(ArrayList<String> categoryPeople) { this.categoryPeople = categoryPeople; }
 
     public ArrayList<String> getCategoryContent() { return CategoryContent; }
-    public void setCategoryContent(ArrayList<String> categoryContent) { CategoryContent = categoryContent; }
+    public void setCategoryContent(ArrayList<String> categoryContent) { this.CategoryContent = categoryContent; }
 
     //
     public String getPostNumber() { return postNumber; }

@@ -78,7 +78,6 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
     }
 
     void onBind1(PostData postData) {
-        //inputContentTitle.setText(postData.getTitle());
         inputContent.setText(postData.getContent());
         place.setText(postData.getPlace());
         period.setText(postData.getPeriod());
@@ -89,6 +88,6 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
         inputContent.setText(postData.getCategoryContent().get(position-1));
         inputBigCategory.setText(postData.getBigCategory().get(position-1));
         inputSmallCategory.setText(postData.getSmallCategory().get(position-1));
-        countPeople.setText(postData.getCategoryPeople().get(position-1));
+        countPeople.setText("구인 수 : "+postData.getCategoryPeople().get(position-1));
     }
 }
