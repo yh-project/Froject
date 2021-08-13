@@ -185,9 +185,16 @@ public class Boardfragment extends Fragment {
     }
 
     public void setRecyclerView(View v, String[] smallcategorylist) {
+        callbackListener = new ClickCallbackListener() {
+            @Override
+            public void callBack(String name) {
+                getDBWithSort2(name,v);
+            }
+        };
         smallcategoryrecyclerview = v.findViewById(R.id.smallcategoryRecyclerView);
         smaillCategoryAdapter = new SmaillCategoryAdapter(smallcategorylist);
         smallcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        smaillCategoryAdapter.setCallbackListener(callbackListener);
         smallcategoryrecyclerview.setAdapter(smaillCategoryAdapter);
     }
 
@@ -195,6 +202,28 @@ public class Boardfragment extends Fragment {
         list.clear();
         db.collectionGroup("Board").orderBy("writetime", DESCENDING).
                 whereArrayContains("bigCategory",criteria).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if (!task.isSuccessful()) {
+                    return;
+                }
+                //postrecyclerView = v.findViewById(R.id.boardRecyclerView);
+                docSize = task.getResult().getDocuments().size();
+                Log.w(TAG, "omg" + docSize);
+                for (int i = 0; i < docSize; i++) {
+                    list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                }
+                postAdapter = new PostAdapter(list);
+                postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                postrecyclerView.setAdapter(postAdapter);
+            }
+        });
+    }
+
+    public void getDBWithSort2(String criteria, View v) {
+        list.clear();
+        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+                whereArrayContains("smallCategory",criteria).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                 if (!task.isSuccessful()) {

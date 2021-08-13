@@ -50,7 +50,7 @@ class SmallHolder extends RecyclerView.ViewHolder {
 
     public SmallHolder(@NonNull View itemView) {
         super(itemView);
-        smallcategoryname = itemView.findViewById(R.id.bigcategoryName);
+        smallcategoryname = itemView.findViewById(R.id.smallcategoryname);
         smallcategoryname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
