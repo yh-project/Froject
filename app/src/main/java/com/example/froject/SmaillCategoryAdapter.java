@@ -11,8 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SmaillCategoryAdapter extends RecyclerView.Adapter<SmallHolder> {
     private String[] list;
+    private ClickCallbackListener callbackListener;
 
     SmaillCategoryAdapter(String[] list) { this.list = list; }
+
+    public void setCallbackListener(ClickCallbackListener callbackListener) {
+        this.callbackListener = callbackListener;
+    }
 
     @NonNull
     @Override
@@ -25,7 +30,7 @@ public class SmaillCategoryAdapter extends RecyclerView.Adapter<SmallHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SmallHolder holder, int position) {
-        holder.onBind(list[position]);
+        holder.onBind(list[position],callbackListener);
     }
 
     @Override
@@ -41,11 +46,21 @@ public class SmaillCategoryAdapter extends RecyclerView.Adapter<SmallHolder> {
 
 class SmallHolder extends RecyclerView.ViewHolder {
     TextView smallcategoryname;
+    ClickCallbackListener callbackListener;
 
     public SmallHolder(@NonNull View itemView) {
         super(itemView);
-        smallcategoryname = itemView.findViewById(R.id.smallcategoryname);
+        smallcategoryname = itemView.findViewById(R.id.bigcategoryName);
+        smallcategoryname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callbackListener.callBack(smallcategoryname.getText().toString());
+            }
+        });
     }
 
-    void onBind(String name) { smallcategoryname.setText(name); }
+    void onBind(String name, ClickCallbackListener callbackListener) {
+        smallcategoryname.setText(name);
+        this.callbackListener = callbackListener;
+    }
 }

@@ -88,7 +88,7 @@ public class Boardfragment extends Fragment {
             bigcat = this.getArguments().getString("bigcat");
 
         Log.w("omg get bigcat : ",bigcat);
-        //whereArrayContains("bigcategory",bigcat)
+        //whereArrayContains("bigCategory",bigcat)
         db.collectionGroup("Board").orderBy("writetime", DESCENDING).
                 whereArrayContains("bigCategory",bigcat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -175,6 +175,7 @@ public class Boardfragment extends Fragment {
                         setRecyclerView(v, smallcategorylist);
                         break;
                 }
+                getDBWithSort(name,v);
             }
         };
         bigCategoryAdapter.setCallbackListener(callbackListener);
@@ -188,5 +189,27 @@ public class Boardfragment extends Fragment {
         smaillCategoryAdapter = new SmaillCategoryAdapter(smallcategorylist);
         smallcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         smallcategoryrecyclerview.setAdapter(smaillCategoryAdapter);
+    }
+
+    public void getDBWithSort(String criteria, View v) {
+        list.clear();
+        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+                whereArrayContains("bigCategory",criteria).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if (!task.isSuccessful()) {
+                    return;
+                }
+                //postrecyclerView = v.findViewById(R.id.boardRecyclerView);
+                docSize = task.getResult().getDocuments().size();
+                Log.w(TAG, "omg" + docSize);
+                for (int i = 0; i < docSize; i++) {
+                    list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                }
+                postAdapter = new PostAdapter(list);
+                postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                postrecyclerView.setAdapter(postAdapter);
+            }
+        });
     }
 }
