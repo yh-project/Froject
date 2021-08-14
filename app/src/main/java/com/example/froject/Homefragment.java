@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -133,6 +135,8 @@ public class Homefragment extends Fragment {
         categoryAdapter.setOnItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(CategoryHolder holder, View view, int position) {
+                BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavi);
+                bottomNavigationView.setSelectedItemId(R.id.item_fragment1);
                 String name = holder.categoryname.getText().toString();
                 Bundle bundle = new Bundle();
                 bundle.putString("bigcat",name);

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,12 +61,14 @@ class PostHolder extends RecyclerView.ViewHolder {
     TextView title;
     TextView updatetime1;
     TextView updatetime2;
+    ImageView like;
 
     public PostHolder(@NonNull View itemView) {
         super(itemView);
         title = itemView.findViewById(R.id.posttitle);
         updatetime1 = itemView.findViewById(R.id.uploadtime1);
         updatetime2 = itemView.findViewById(R.id.uploadtime2);
+        like = itemView.findViewById(R.id.like);
     }
 
     void onBind(PostData postData) {
