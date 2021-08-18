@@ -154,7 +154,7 @@ public class UserinfoActivity extends AppCompatActivity {
         String univ = ((EditText)findViewById(R.id.setUniv)).getText().toString();
         String level = ((EditText)findViewById(R.id.setLevel)).getText().toString();
         String major = ((EditText)findViewById(R.id.setMajor)).getText().toString();
-        Info info = new Info(name, number, date, univ, level, major, gender);
+        Info info = new Info(name, number, date, univ, level, major, gender, user.getEmail());
 
         Log.w(TAG,"omg"+info.getname());
         Log.w(TAG,"omg"+info.getnumber());

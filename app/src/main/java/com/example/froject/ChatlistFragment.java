@@ -67,7 +67,7 @@ public class ChatlistFragment extends Fragment {
     class RecyclerViewAdapter extends FirestoreAdapter<CustomViewHolder> {
         //final private RequestOptions requestOptions = new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(90));
         //private StorageReference storageReference;
-        private String myUid = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        private String myUid = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         RecyclerViewAdapter(Query query) {
             super(query);
@@ -77,7 +77,7 @@ public class ChatlistFragment extends Fragment {
         @Override
         public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new CustomViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_mymsgbox, parent, false));
+                    .inflate(R.layout.item_othermsgobx, parent, false));
         }
 
         @Override
@@ -85,7 +85,7 @@ public class ChatlistFragment extends Fragment {
             DocumentSnapshot documentSnapshot = getSnapshot(position);
             final Info user = documentSnapshot.toObject(Info.class);
 
-            if (myUid.equals(user.getnumber())) {
+            if (myUid.equals(user.getEmail())) {
                 viewHolder.itemView.setVisibility(View.INVISIBLE);
                 viewHolder.itemView.getLayoutParams().height = 0;
                 return;
@@ -107,8 +107,9 @@ public class ChatlistFragment extends Fragment {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getView().getContext(), WriteActivity.class);
-                    intent.putExtra("you_email", user.getname());
+                    //Intent intent = new Intent(getView().getContext(), WriteActivity.class);
+                    Intent intent = new Intent(getView().getContext(), ChatActivity.class);
+                    intent.putExtra("you_email", user.getEmail());
                     startActivity(intent);
                 }
             });
@@ -122,8 +123,8 @@ public class ChatlistFragment extends Fragment {
 
         CustomViewHolder(View view) {
             super(view);
-            user_name = view.findViewById(R.id.tv_name);
-            user_msg = view.findViewById(R.id.tv_msg);
+            user_name = view.findViewById(R.id.msg_name);
+            user_msg = view.findViewById(R.id.msg_item);
         }
     }
 }

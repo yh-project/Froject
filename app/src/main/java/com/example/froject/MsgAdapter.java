@@ -1,3 +1,4 @@
+/*
 package com.example.froject;
 
 
@@ -59,7 +60,8 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgHolder> {
         return msglist.size();
     }
 
-    /*@Override
+    */
+/*@Override
     public int getCount() { return msglist.size();}
 
     @Override
@@ -101,7 +103,8 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgHolder> {
         Glide.with(itemView).load(item.getPofileUrl()).into(iv);
 
         return itemView;
-    }*/
+    }*//*
+
 
 
 }
@@ -123,6 +126,6 @@ class MsgHolder extends RecyclerView.ViewHolder {
     void onBind(MsgData msgData) {
         name.setText(msgData.getName());
         msg.setText(msgData.getMsg());
-        time.setText(msgData.getTime());
+        time.setText(msgData.getTime().toString());
     }
-}
+}*/

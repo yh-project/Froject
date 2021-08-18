@@ -12,8 +12,9 @@ public class Info implements Serializable {
     private String level;
     private String major;
     private String gender;
+    private String Email;
 
-    public Info(String name, String number, String date, String univ, String level, String major, String gender) {
+    public Info(String name, String number, String date, String univ, String level, String major, String gender, String Email) {
         this.name = name;
         this.number = number;
         this.date = date;
@@ -77,6 +78,14 @@ public class Info implements Serializable {
 
     public String getgender() { return this.gender; }
     public void setgender(String gender) { this.gender=gender; }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
 
     public boolean checkNull() {
         if (this.name.length() > 0 && this.number.length() > 9 && this.date.length() > 5 && this.univ.length() > 0 && this.level.length() > 0 && this.major.length() > 0 && this.gender.length() > 0)

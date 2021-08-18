@@ -148,7 +148,7 @@ public class SignupActivity extends AppCompatActivity {
                                     // 회원가입 성공시
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    Info info = new Info(name, "", date, "", "", "", gender);
+                                    Info info = new Info(name, "", date, "", "", "", gender, email);
                                     db.collection("users").document(user.getEmail()).set(info);
                                     user.sendEmailVerification()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
