@@ -2,25 +2,24 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/layout"
+        android:background="#ffffff"
         android:orientation="vertical"
         android:weightSum="250">
 
         <!--탑바-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="19.5"
+            android:layout_height="50dp"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:weightSum="130"
-            android:gravity="center">
+            android:weightSum="130">
 
             <Button
                 android:id="@+id/back"
@@ -34,11 +33,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="90"
+                android:gravity="center"
                 android:text="김수현"
                 android:textColor="#5768CB"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center" />
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -49,24 +48,22 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_height="2dp"
             android:background="#F1F2F4" />
 
         <!--채팅창-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="230"
-            android:weightSum="130"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="10dp">
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:weightSum="130">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_list"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="120" />
 
         </LinearLayout>
@@ -75,8 +72,9 @@
 
     <!--채팅입력-->
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="#F1F2F4"
         android:weightSum="130"
         android:orientation="horizontal"
@@ -115,10 +113,6 @@
     </LinearLayout>
 
 </RelativeLayout>
-
-
-
-
 
 
 <!--
