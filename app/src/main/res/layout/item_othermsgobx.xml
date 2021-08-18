@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="10dp">
 
     <LinearLayout
         android:id="@+id/divider"
@@ -38,64 +39,80 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:layout_marginTop="15dp"
+        android:gravity="left"
+        android:layout_gravity="left"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/user_photo"
                 android:layout_width="48dp"
-                android:layout_height="48dp" />
+                android:layout_height="match_parent"
+                android:src="@drawable/soon_deleted"/>
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_marginLeft="5dp">
+
             <TextView
                 android:id="@+id/msg_name"
-                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="name" />
 
-            <TextView
-                android:id="@+id/msg_item"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="3dp"
-                android:textSize="18dp"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxWidth="270dp"
-                android:autoLink="all"
-                android:text="msg"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/msg_item"
+                    android:padding="7dp"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:maxWidth="270dp"
+                    android:autoLink="all"
+                    android:text="msg"
+                    android:background="@drawable/item_otherchat"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/read_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_marginBottom="5dp"
+                        android:text="0"/>
+
+                    <TextView
+                        android:id="@+id/timestamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="time"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/read_counter"
-                android:layout_gravity="top"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:text="0"/>
-
-            <TextView
-                android:id="@+id/timestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="time"/>
-
-        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

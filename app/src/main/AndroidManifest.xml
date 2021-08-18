@@ -29,7 +29,8 @@
         <activity android:name=".SearchActivity"
                   android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".PostActivity" />
-        <activity android:name=".ChatActivity" />
+        <activity android:name=".ChatActivity"
+                  android:windowSoftInputMode="adjustResize"/>
 
 
     </application>
