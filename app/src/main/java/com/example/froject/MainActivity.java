@@ -171,9 +171,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.w(TAG, "shit" + my_info);
                         break;
                     case R.id.item_writeactivity:
-                        //startActivity(WriteActivity.class);   //need fix
-
-                        //임시    need fix
+                        startActivity(WriteActivity.class);   //need fix
+                        /*//임시    need fix
                         if(chatlistFragment == null) {
                             chatlistFragment = new ChatlistFragment();
                             addFragment(chatlistFragment);
@@ -182,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                             showFragment(chatlistFragment);
                         }
                         break;
-                        /*if(chatFragment == null) {
+                        *//*if(chatFragment == null) {
                             chatFragment = new ChatFragment();
                             addFragment(chatFragment);
                         }
@@ -197,6 +196,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             showFragment(homefragment);
+                        }
+                        break;
+                    case R.id.item_fragment4:
+                        if(chatlistFragment == null) {
+                            chatlistFragment = new ChatlistFragment();
+                            addFragment(chatlistFragment);
+                        }
+                        else {
+                            showFragment(chatlistFragment);
                         }
                         break;
                 }

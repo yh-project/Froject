@@ -77,7 +77,7 @@ public class ChatlistFragment extends Fragment {
         @Override
         public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new CustomViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_othermsgobx, parent, false));
+                    .inflate(R.layout.item_chatlist, parent, false));
         }
 
         @Override
