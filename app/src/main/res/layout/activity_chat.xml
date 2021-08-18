@@ -21,10 +21,10 @@
             android:orientation="horizontal"
             android:weightSum="130">
 
-            <Button
+            <ImageButton
                 android:id="@+id/back"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:background="@drawable/item_back_button" />
 
@@ -98,14 +98,16 @@
             android:layout_marginBottom="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:background="@drawable/borderline_post"
             android:backgroundTint="#ffffff"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_send"
             android:layout_width="0dp"
-            android:layout_weight="15"
-            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:layout_height="30dp"
             android:background="@drawable/item_send_chat"
             android:layout_marginLeft="15dp"
             android:enabled="true" />

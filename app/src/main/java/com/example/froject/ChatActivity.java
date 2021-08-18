@@ -665,6 +665,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -735,7 +736,7 @@ public class ChatActivity extends AppCompatActivity {
     private static final int PICK_FROM_FILE = 2;
     //private static String rootPath = Util9.getRootPath()+"/DirectTalk9/";
 
-    private Button sendBtn;
+    private ImageButton sendBtn;
     private EditText msg_input;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter mAdapter;
