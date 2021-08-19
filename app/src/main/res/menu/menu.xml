@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/item_fragment3"
+        android:enabled="true"
+        android:icon="@drawable/item_home"
+        android:title="홈"/>
+
+    <item
         android:id="@+id/item_fragment1"
         android:enabled="true"
         android:icon="@drawable/item_category"
@@ -14,21 +20,15 @@
         android:title="게시글 작성"/>
 
     <item
-        android:id="@+id/item_fragment2"
-        android:enabled="true"
-        android:icon="@drawable/item_profile"
-        android:title="프로필"/>
-
-    <item
-        android:id="@+id/item_fragment3"
-        android:enabled="true"
-        android:icon="@drawable/item_home"
-        android:title="홈"/>
-
-    <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
         android:icon="@drawable/item_chatting"
         android:title="채팅"/>
+
+    <item
+        android:id="@+id/item_fragment2"
+        android:enabled="true"
+        android:icon="@drawable/item_profile"
+        android:title="프로필"/>
 
 </menu>

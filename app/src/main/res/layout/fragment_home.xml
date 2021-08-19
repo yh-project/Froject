@@ -69,7 +69,6 @@
                     android:id="@+id/dictionary_layout"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:weightSum="130"
                     android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -77,9 +76,8 @@
 
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/dictionary_banner"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="110"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp">
 
