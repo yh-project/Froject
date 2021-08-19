@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,50 +24,64 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class Profilefragment extends Fragment {
     private static final String TAG = "ProfileFragment";
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    final ArrayList<String> userinfoList = new ArrayList<>();
+    Info my_info;
+    Intent intent;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef = db.collection("users").document(user.getEmail());
+    DocumentReference boardRef = docRef.collection("Board").document("MyBoard");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView username = ((TextView)v.findViewById(R.id.userName));
-        TextView usermajor = ((TextView)v.findViewById(R.id.userMajor));
-        TextView userlevel = ((TextView)v.findViewById(R.id.userLevel));
-        TextView useruniv = ((TextView)v.findViewById(R.id.userUniv));
+        //Log.w(TAG,"shit"+getActivity().getIntent().toString());
+
+        //test for doc
+        boardRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                boardRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if(document != null) {
+                                    Log.d(TAG, "No such document");
+                                } else {
+                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                }
+                            }
+                        else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
+        });
+
+        if(this.getArguments() != null) {
+            my_info = (Info)this.getArguments().getSerializable("my_info");
+
+            TextView username = ((TextView)v.findViewById(R.id.userName));
+            TextView usermajor = ((TextView)v.findViewById(R.id.userMajor));
+            TextView userlevel = ((TextView)v.findViewById(R.id.userLevel));
+            TextView useruniv = ((TextView)v.findViewById(R.id.userUniv));
+
+            username.setText(my_info.getname());
+            usermajor.setText(my_info.getmajor());
+            userlevel.setText(my_info.getlevel());
+            useruniv.setText(my_info.getuniv());
+        }
 
         v.findViewById(R.id.editProfile).setOnClickListener(onClickListener);
         v.findViewById(R.id.logout).setOnClickListener(onClickListener);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final ArrayList<String> userinfoList = new ArrayList<>();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRref = db.collection("users").document(user.getUid());
-        docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        userinfoList.add(document.getData().get("name").toString());
-                        username.setText(userinfoList.get(0));
-                        userinfoList.add(document.getData().get("major").toString());
-                        usermajor.setText(userinfoList.get(1));
-                        userinfoList.add(document.getData().get("level").toString());
-                        userlevel.setText(userinfoList.get(2));
-                        userinfoList.add(document.getData().get("univ").toString());
-                        useruniv.setText(userinfoList.get(3));
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
         return v;
     }
 
@@ -76,7 +90,10 @@ public class Profilefragment extends Fragment {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.editProfile:
-                    startActivity(EditprofileActivity.class);
+                    intent = new Intent(getActivity(), EditprofileActivity.class);
+                    intent.putExtra("my_info", my_info);
+                    Log.w(TAG,"shit"+my_info);
+                    startActivity(intent);
                     break;
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();

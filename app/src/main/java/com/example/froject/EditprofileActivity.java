@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,12 +30,19 @@ public class EditprofileActivity extends AppCompatActivity {
     private static final String TAG = "EditprofileActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference docRref = db.collection("users").document(user.getUid());
+    DocumentReference docRref = db.collection("users").document(user.getEmail());
+
+    Info my_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
+
+        Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
+
+        Intent intent = getIntent();
+        my_info = (Info) intent.getSerializableExtra("my_info");
 
         findViewById(R.id.newPass).setOnClickListener(onClickListener);
         findViewById(R.id.changeInfo).setOnClickListener(onClickListener);
@@ -45,9 +53,14 @@ public class EditprofileActivity extends AppCompatActivity {
         TextView originallevel = ((TextView)findViewById(R.id.originalLevel));
         TextView originaluniv = ((TextView)findViewById(R.id.originalUniv));
 
-        final ArrayList<String> originalinfoList = new ArrayList<>();
+        originalname.setText(my_info.getname());
+        originalmajor.setText(my_info.getmajor());
+        originallevel.setText(my_info.getlevel());
+        originaluniv.setText(my_info.getuniv());
 
-        docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        //final ArrayList<String> originalinfoList = new ArrayList<>();
+
+        /*docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -69,15 +82,15 @@ public class EditprofileActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });
+        });*/
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.newPass:
-                    startActivity(PassresetActivity.class);
+                case R.id.newPass:      //fix 임시로 막아둠
+                    //startActivity(PassresetActivity.class);
                     break;
                 case R.id.changeInfo:
                     change_info();
@@ -96,9 +109,11 @@ public class EditprofileActivity extends AppCompatActivity {
         final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
         final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("name", "major", "level", "univ"));
 
+
         if(newinfolist.get(0).length() == 0 && newinfolist.get(1).length() == 0 && newinfolist.get(2).length() == 0 && newinfolist.get(3).length() == 0) {
             cancelAlert();
-        } else {
+        }
+        else {
             for(int i=0;i<4;i++) {
                 if(newinfolist.get(i).length() > 0) { newlist += (newinfolist.get(i) + " "); }
             }
@@ -108,11 +123,28 @@ public class EditprofileActivity extends AppCompatActivity {
                     .setPositiveButton("네", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
-                            for(int j=0;j<4;j++){
-                                if(newinfolist.get(j).length() > 0){ db.collection("users").document(user.getUid()).update(keylist.get(j), newinfolist.get(j)); }
-                            }
-                            Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                            if(newinfolist.get(0).length()>0) { my_info.setname(newinfolist.get(0)); }
+                            if(newinfolist.get(1).length()>0) { my_info.setmajor(newinfolist.get(1)); }
+                            if(newinfolist.get(2).length()>0) { my_info.setlevel(newinfolist.get(2)); }
+                            if(newinfolist.get(3).length()>0) { my_info.setuniv(newinfolist.get(3)); }
+
+                            db.collection("users").document(user.getEmail()).set(my_info);
+
+                            Log.w(TAG, "name: " + my_info.getname());
+                            Log.w(TAG, "major: " + my_info.getmajor());
+                            Log.w(TAG, "level: " + my_info.getlevel());
+                            Log.w(TAG, "univ: " + my_info.getuniv());
+
+                            //need fix
+                            Intent intent = getIntent();
+                            intent.setClass(EditprofileActivity.this,MainActivity.class);
+                            //Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
+                            intent.putExtra("my_info", my_info);
                             intent.putExtra("data", "editprofile");
+                            Log.w(TAG, "shit"+my_info);
+                            Log.w(TAG,"Document "+intent.getComponent());
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
                         }
@@ -128,10 +160,10 @@ public class EditprofileActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         cancelAlert();
-    }
+    }*/
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -150,9 +182,6 @@ public class EditprofileActivity extends AppCompatActivity {
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        Intent intent = new Intent(EditprofileActivity.this, MainActivity.class);
-                        intent.putExtra("data", "editprofile");
-                        startActivity(intent);
                         finish();
                     }
                 })

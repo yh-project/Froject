@@ -1,22 +1,27 @@
 package com.example.froject;
 
-import android.widget.EditText;
+import android.app.Application;
 
-public class Info {
+import java.io.Serializable;
+
+public class Info implements Serializable {
     private String name;
     private String number;
     private String date;
     private String univ;
     private String level;
     private String major;
+    private String gender;
+    private String Email;
 
-    public Info(String name, String number, String date, String univ, String level, String major) {
+    public Info(String name, String number, String date, String univ, String level, String major, String gender, String Email) {
         this.name = name;
         this.number = number;
         this.date = date;
         this.univ = univ;
         this.level = level;
         this.major = major;
+        this.gender = gender;
     }
 
     public Info() {
@@ -54,17 +59,38 @@ public class Info {
         this.univ=univ;
     }
 
+
     public String getlevel() {
         return this.level;
     }
     public void setlevel(String level) {
-        this.name=level;
+        this.level=level;
     }
+
 
     public String getmajor() {
         return this.major;
     }
     public void setmajor(String major) {
-        this.name=major;
+        this.major=major;
+    }
+
+
+    public String getgender() { return this.gender; }
+    public void setgender(String gender) { this.gender=gender; }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public boolean checkNull() {
+        if (this.name.length() > 0 && this.number.length() > 9 && this.date.length() > 5 && this.univ.length() > 0 && this.level.length() > 0 && this.major.length() > 0 && this.gender.length() > 0)
+            return false;
+        else
+            return true;
     }
 }

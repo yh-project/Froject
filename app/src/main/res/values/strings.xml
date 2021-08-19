@@ -1,4 +1,30 @@
 <resources>
     <string name="app_name">Froject</string>
+
+    <!--로그인화면-->
+    <string name="logo">logo</string>
+    <string name="email_hint">froject@xx.ac.kr</string>
+    <string name="pass_hint">******</string>
+    <string name="resert_pass">패스워드 찾기</string>
+    <string name="login">시작하기</string>
+    <string name="login_ment">아직 퓨로젝트의 회원이 아니시라면</string>
+    <string name="gotosignup"><u>이메일로 회원가입</u></string>
+
+    <!--회원가입화면-->
+    <string name="signup_ment">회원가입</string>
+    <string name="signup_email_hint">EMAIL</string>
+    <string name="signup_pass_hint">PASSWORD</string>
+    <string name="signup_pass_check_hint">PASSWORD 확인</string>
+    <string name="signup_name_hint">이름</string>
+    <string name="signup_date_hint">생년월일</string>
+    <string name="signup_gender">성별</string>
+    <string name="signup_woman">여</string>
+    <string name="signup_man">남</string>
+    <string name="signup_cancel">취 소</string>
+    <string name="signup_complete">확 인</string>
+
+
     <string name="logout">로그아웃</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

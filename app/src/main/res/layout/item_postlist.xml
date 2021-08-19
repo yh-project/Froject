@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow_right_bottom"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:weightSum="130">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/postimage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15"
+            android:src="@drawable/logo_"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#D3D3D3"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5" />
+
+        <TextView
+            android:id="@+id/posttitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="90"
+            android:text="앱 개발 공모전 참가하실 디자이너/개발자 구합니다."
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="15sp"
+            android:autoSizeMinTextSize="12sp"
+            android:textSize="12sp"
+            android:maxLines="2"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/like"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_baseline_star_border_24"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:weightSum="130">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="15" />
+
+        <TextView
+            android:id="@+id/uploadtime1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="35"
+            android:text="20:00"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_vertical"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30" />
+
+        <TextView
+            android:id="@+id/uploadtime2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="45"
+            android:text="1개월"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:gravity="center_vertical|end"/>
+    </LinearLayout>
+
+</LinearLayout>

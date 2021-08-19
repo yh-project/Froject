@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:weightSum="100"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/rank"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:text="배"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rankContent"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="90"
+        android:text="고파"
+        android:textColor="#000000"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"/>
+
+</LinearLayout>
