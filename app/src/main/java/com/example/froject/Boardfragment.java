@@ -39,6 +39,7 @@ public class Boardfragment extends Fragment {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.addBtn:
+                    getActivity().setContentView(R.layout.activity_write);
                     add_post();
                     break;
             }
