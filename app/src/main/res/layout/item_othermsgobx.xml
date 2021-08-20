@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
 
     <LinearLayout
         android:id="@+id/divider"
@@ -52,7 +53,7 @@
 
             <ImageView
                 android:id="@+id/user_photo"
-                android:layout_width="48dp"
+                android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/soon_deleted"/>
         </LinearLayout>
@@ -83,21 +84,22 @@
                     android:layout_marginTop="5dp"
                     android:maxWidth="270dp"
                     android:autoLink="all"
-                    android:text="msg"
+                    android:text="msg \ndoraemi"
                     android:background="@drawable/item_otherchat"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:gravity="bottom">
 
                     <TextView
                         android:id="@+id/read_counter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="invisible"
-                        android:layout_marginBottom="5dp"
+                        android:gravity="left|bottom"
                         android:text="0"/>
 
                     <TextView
