@@ -79,8 +79,8 @@ public class Categoryfragment extends Fragment {
             if (List.get(i).toString().indexOf("Boardfragment")!= -1) {
                 Log.w("omg","wow");
                 List.get(i).setArguments(fragment.getArguments());      //need fix // it need add in Homefragment
-                showFragment(List.get(i));
-                return;
+                fragmentTransaction.remove(List.get(i));
+                break;
             }
             fragmentTransaction.hide(List.get(i));
         }

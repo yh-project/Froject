@@ -23,8 +23,6 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
     private String[] bigcat;
     private String[] smallcat;
 
-    public static final String randomcategory[] = {"디자인", "개발", "사진·영상", "번역·통역", "기획", "인테리어"};
-
     public DictionaryViewPagerAdapter(Context context,String[] bigcat, String[] smallcat) {
         this.context = context;
         this.bigcat = bigcat;
@@ -35,8 +33,6 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = null;
-
-        Log.w(TAG,"OMG"+context.toString());
 
         if (context != null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

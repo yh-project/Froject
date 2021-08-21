@@ -263,6 +263,12 @@ public class Homefragment extends Fragment {
         Log.w(TAG, "fragment data : " + listsize + List.toString());
 
         for(int i=0;i<listsize;i++) {
+            if (List.get(i).toString().indexOf("Boardfragment")!= -1) {
+                Log.w("omg","wow");
+                List.get(i).setArguments(fragment.getArguments());
+                fragmentTransaction.remove(List.get(i));
+                break;
+            }
             fragmentTransaction.hide(List.get(i));
         }
         fragmentTransaction.add(R.id.main_frame, fragment);
