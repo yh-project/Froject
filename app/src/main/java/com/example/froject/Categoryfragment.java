@@ -76,6 +76,12 @@ public class Categoryfragment extends Fragment {
         Log.w(TAG, "fragment data : " + listsize + List.toString());
 
         for(int i=0;i<listsize;i++) {
+            if (List.get(i).toString().indexOf("Boardfragment")!= -1) {
+                Log.w("omg","wow");
+                List.get(i).setArguments(fragment.getArguments());      //need fix // it need add in Homefragment
+                showFragment(List.get(i));
+                return;
+            }
             fragmentTransaction.hide(List.get(i));
         }
         fragmentTransaction.add(R.id.main_frame, fragment);

@@ -39,8 +39,6 @@ public class EditprofileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
 
-        Log.d(TAG, "Call stack" + Log.getStackTraceString(new Exception("get stacks")));
-
         Intent intent = getIntent();
         my_info = (Info) intent.getSerializableExtra("my_info");
 

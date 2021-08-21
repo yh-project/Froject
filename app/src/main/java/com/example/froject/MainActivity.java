@@ -2,6 +2,7 @@ package com.example.froject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         if(user == null) { //state == Logout -> goto LoginActivity
             startActivity(LoginActivity.class);
         }else{ //state = Login -> get DB for firebase
-            categoryfragment = new Categoryfragment();
-            addFragment(categoryfragment);
+            homefragment = new Homefragment();
+            addFragment(homefragment);
             /*boardfragment = new Boardfragment();
             addFragment(boardfragment);*/
             DocumentReference docRef = db.collection("users").document(user.getEmail());
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         if (data!=null) {
             switch (data) {
                 case "none":
-                    showFragment(categoryfragment);
+                    showFragment(homefragment);
                     //showFragment(boardfragment);
                     break;
                 case "editprofile":
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;*/
                     case R.id.item_fragment1:
+
                         if (categoryfragment == null) {
                             categoryfragment = new Categoryfragment();
                             addFragment(categoryfragment);
