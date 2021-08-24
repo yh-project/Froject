@@ -26,8 +26,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserinfoActivity extends AppCompatActivity {
     private static final String TAG = "UserinfoActivity";
@@ -103,7 +101,7 @@ public class UserinfoActivity extends AppCompatActivity {
         mAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAn.setBackground(getDrawable(R.drawable.button_login));
+                mAn.setBackground(getDrawable(R.drawable.borderline_button_5768c3));
                 mAn.setTextColor(Color.rgb(255, 255, 255));
                 woMan.setBackground(getDrawable(R.drawable.borderline));
                 woMan.setTextColor(Color.rgb(154, 188, 222));
@@ -113,7 +111,7 @@ public class UserinfoActivity extends AppCompatActivity {
         woMan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                woMan.setBackground(getDrawable(R.drawable.button_login));
+                woMan.setBackground(getDrawable(R.drawable.borderline_button_5768c3));
                 woMan.setTextColor(Color.rgb(255, 255, 255));
                 mAn.setBackground(getDrawable(R.drawable.borderline));
                 mAn.setTextColor(Color.rgb(154, 188, 222));
@@ -134,12 +132,12 @@ public class UserinfoActivity extends AppCompatActivity {
                 String gender = info.getgender();
                 Log.d(TAG, "성별: "+gender);
                 if(gender.equals("남")) {
-                    mAn.setBackground(getDrawable(R.drawable.button_login));
+                    mAn.setBackground(getDrawable(R.drawable.borderline_button_5768c3));
                     mAn.setTextColor(Color.rgb(255, 255, 255));
                     woMan.setBackground(getDrawable(R.drawable.borderline));
                     woMan.setTextColor(Color.rgb(154, 188, 222));
                 } else if(gender.equals("여")) {
-                    woMan.setBackground(getDrawable(R.drawable.button_login));
+                    woMan.setBackground(getDrawable(R.drawable.borderline_button_5768c3));
                     woMan.setTextColor(Color.rgb(255, 255, 255));
                     mAn.setBackground(getDrawable(R.drawable.borderline));
                     mAn.setTextColor(Color.rgb(154, 188, 222));

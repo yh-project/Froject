@@ -1,16 +1,21 @@
 <resources>
     <string name="app_name">Froject</string>
 
-    <!--로그인화면-->
+    <!--로그인 화면-->
     <string name="logo">logo</string>
-    <string name="email_hint">froject@xx.ac.kr</string>
-    <string name="pass_hint">******</string>
-    <string name="resert_pass">패스워드 찾기</string>
-    <string name="login">시작하기</string>
-    <string name="login_ment">아직 퓨로젝트의 회원이 아니시라면</string>
-    <string name="gotosignup"><u>이메일로 회원가입</u></string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="ment_keeplogin">로그인 상태 유지</string>
+    <string name="resert_pass">비밀번호 찾기</string>
+    <string name="partline">|</string>
+    <string name="login">로그인</string>
+    <string name="gotosignup">회원가입</string>
 
-    <!--회원가입화면-->
+    <!--비밀번호 재설정 화면-->
+    <string name="putemail">이메일을 입력해주세요</string>
+    <string name="sendmail">확인</string>
+
+    <!--회원가입 화면-->
     <string name="signup_ment">회원가입</string>
     <string name="signup_email_hint">EMAIL</string>
     <string name="signup_pass_hint">PASSWORD</string>

@@ -28,7 +28,7 @@ public class PassresetActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.sendEmail).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
+        //findViewById(R.id.back).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -50,9 +50,9 @@ public class PassresetActivity extends AppCompatActivity {
                 case R.id.sendEmail:
                     send_resetpass();
                     break;
-                case R.id.back:
+                /*case R.id.back:
                     backAlert();
-                    break;
+                    break;*/
             }
         }
     };

@@ -7,46 +7,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    android:weightSum="215">
+    android:weightSum="250">
 
     <!--빈공간-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="25"/>
+        android:layout_weight="50"/>
 
     <!--로고-->
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40"
-        android:contentDescription="@string/logo"
-        app:srcCompat="@drawable/logo_"/>
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/item_logo"/>
+
+    </LinearLayout>
 
     <!--빈공간-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="18"/>
+        android:layout_weight="10"/>
 
     <!--이메일 입력-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="14"
-        android:weightSum="100"
-        android:gravity="center">
+        android:layout_weight="15"
+        android:paddingBottom="2.5dp"
+        android:weightSum="130"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/loginEmail"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="80"
+            android:layout_weight="110"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:background="@drawable/borderline_909090"
             android:hint="@string/email_hint"
-            android:textColorHint="#9ABCDE"
+            android:textColorHint="#909090"
             android:importantForAutofill="no"
             android:textSize="15sp"
-            android:backgroundTint="#1B68B4"
             android:inputType="textEmailAddress"
             tools:ignore="NestedWeights" />
 
@@ -56,96 +66,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="14"
-        android:weightSum="100"
-        android:gravity="center">
+        android:layout_weight="15"
+        android:paddingTop="2.5dp"
+        android:weightSum="130"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/loginPass"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="80"
+            android:layout_weight="110"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:background="@drawable/borderline_909090"
             android:hint="@string/pass_hint"
-            android:textColorHint="#9ABCDE"
+            android:textColorHint="#909090"
             android:importantForAutofill="no"
             android:textSize="15sp"
-            android:backgroundTint="#1B68B4"
             android:inputType="textPassword"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
 
-    <!--빈공간-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"/>
-
-    <!--패스워드 찾기-->
+    <!--로그인 유지 (후에 추가 예정)-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:weightSum="100"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/gotoResetpass"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="80"
-            android:text="@string/resert_pass"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:gravity="end"
-            tools:ignore="NestedWeights,UnusedAttribute" />
-
-    </LinearLayout>
-
-    <!--빈공간-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"/>
-
-    <!--로그인버튼-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="12"
-        android:weightSum="100"
-        android:gravity="center"
+        android:layout_weight="10"
+        android:weightSum="130"
+        android:orientation="horizontal"
+        android:gravity="center|bottom"
         android:baselineAligned="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="80"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
             tools:ignore="NestedWeights">
 
-            <Button
-                android:id="@+id/logIn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+            <CheckBox
+                android:id="@+id/keepLogin"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                android:button="@null"
+                android:background="@drawable/item_checkbox_custom"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@string/login"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:background="@drawable/button_login"/>
+                app:layout_constraintRight_toLeftOf="@+id/ment_keeplogin"/>
 
-            <ImageView
+            <TextView
+                android:id="@+id/ment_keeplogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_login_24"
-                app:layout_constraintLeft_toLeftOf="@+id/logIn"
-                app:layout_constraintTop_toTopOf="@+id/logIn"
-                app:layout_constraintBottom_toBottomOf="@+id/logIn"
-                android:layout_marginStart="20dp"
-                android:translationZ="2dp"
-                tools:ignore="ContentDescription" />
+                android:text="@string/ment_keeplogin"
+                android:textColor="#909090"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -155,54 +135,67 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="41"/>
+        android:layout_weight="7"/>
 
-    <!--멘트-->
+    <!--로그인버튼-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:weightSum="100"
-        android:gravity="center">
+        android:layout_weight="13"
+        android:weightSum="130"
+        android:gravity="center"
+        android:baselineAligned="false">
 
-        <TextView
+        <Button
+            android:id="@+id/logIn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="90"
-            android:text="@string/login_ment"
-            android:textColor="#959598"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:gravity="center"
+            android:layout_weight="110"
+            android:text="@string/login"
+            android:textColor="#ffffff"
+            android:background="@drawable/borderline_button_5768c3"
             tools:ignore="NestedWeights" />
 
     </LinearLayout>
 
-    <!--빈공간-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"/>
-
-    <!--회원가입하러가기-->
+    <!--비밀번호 찾기, 회원가입-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:weightSum="100"
-        android:gravity="center">
+        android:layout_weight="10"
+        android:weightSum="130"
+        android:orientation="horizontal"
+        android:gravity="center|bottom"
+        android:baselineAligned="false">
 
+        <!--패스워드 찾기-->
+        <TextView
+            android:id="@+id/gotoResetpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resert_pass"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#909090"/>
+
+        <!--경계선-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/partline"
+            android:textColor="#909090" />
+
+        <!--회원가입-->
         <TextView
             android:id="@+id/gotoSignup"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/gotosignup"
             android:textStyle="bold"
-            android:textColor="#959598"
-            android:textSize="12sp"
-            android:gravity="center"
-            tools:ignore="NestedWeights" />
+            android:textColor="#909090"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
