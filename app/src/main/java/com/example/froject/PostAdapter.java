@@ -12,17 +12,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentReference;
+
 import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
     private ArrayList<PostData> list;
     private Context context;
+    private ArrayList<DocumentReference> listDoc;
     LikeClickListener likeClickListener;
     String user;
 
     PostAdapter(ArrayList<PostData> list) { this.list = list; }
 
     public void setUser(String user) { this.user = user; }
+    public void setListDoc(ArrayList<DocumentReference> listDoc) { this.listDoc = listDoc; }
 
     @NonNull
     @Override
@@ -30,8 +34,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
         context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_postlist, parent, false);
-
-        //Log.w("omg","create");
 
         return new PostHolder(view);
     }
@@ -41,7 +43,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
         holder.setUser(user);
         holder.onBind(list.get(position));
         holder.setLikeClickListener(likeClickListener);
-        //Log.w("omg","bindviewholder");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
                 Intent intent;
                 intent = new Intent(context, PostActivity.class);
                 intent.putExtra("PostData",list.get(position));
+                intent.putExtra("DocRef",listDoc.get(position).getId());
                 context.startActivity(intent);
             }
         });
@@ -84,8 +86,6 @@ class PostHolder extends RecyclerView.ViewHolder {
         updatetime2 = itemView.findViewById(R.id.uploadtime2);
         like = itemView.findViewById(R.id.like);
 
-        //Log.w("omg","postholder");
-
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,10 +102,7 @@ class PostHolder extends RecyclerView.ViewHolder {
         updatetime1.setText(postData.getPlace());
         updatetime2.setText(postData.getPeriod());
 
-        Log.w("omg","onbind");
-
         Boolean isStar = postData.getStar().contains(user);
-        Log.w("omg",isStar+user);
         if (isStar) {
             like.setImageResource(R.drawable.ic_baseline_star_24);
         }

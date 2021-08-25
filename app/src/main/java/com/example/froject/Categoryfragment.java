@@ -84,7 +84,7 @@ public class Categoryfragment extends Fragment {
             }
             fragmentTransaction.hide(List.get(i));
         }
-        fragmentTransaction.add(R.id.main_frame, fragment);
+        fragmentTransaction.add(R.id.main_frame, fragment,fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
 

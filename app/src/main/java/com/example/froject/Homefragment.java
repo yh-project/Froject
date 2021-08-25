@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,12 +22,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.google.firebase.firestore.Query.Direction.DESCENDING;
 
 public class Homefragment extends Fragment {
     private static final String TAG = "Homefragment";
@@ -34,8 +46,8 @@ public class Homefragment extends Fragment {
     private DictionaryViewPagerAdapter pagerAdapter;
 
     private RecyclerView recyclerView;
-    private LikelistAdapter likelistAdapter;
-    private ArrayList<LikePostData> list;
+    private PostAdapter likelistAdapter;
+    private ArrayList<PostData> list;
 
     private RecyclerView categoryView;
     private CategoryAdapter categoryAdapter;
@@ -156,13 +168,31 @@ public class Homefragment extends Fragment {
         // 즐겨찾기 목록
         recyclerView = v.findViewById(R.id.likerecyclerview);
         list = new ArrayList<>();
-        for(int i=0; i<10; i++) {
-            LikePostData likePostData = new LikePostData(""+i, ""+i, ""+i );
-            list.add(likePostData);
-        }
-        likelistAdapter = new LikelistAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        recyclerView.setAdapter(likelistAdapter);
+        ArrayList<DocumentReference> listDoc = new ArrayList<>();
+        list.clear();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+                whereArrayContains("star",user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                if (!task.isSuccessful()) {
+                    return;
+                }
+                //postrecyclerView = v.findViewById(R.id.boardRecyclerView);
+                int docSize = task.getResult().getDocuments().size();
+                Log.w(TAG, "omg" + docSize);
+                for (int i = 0; i < docSize; i++) {
+                    list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                    listDoc.add(task.getResult().getDocuments().get(i).getReference());
+                }
+                likelistAdapter = new PostAdapter(list);
+                likelistAdapter.setListDoc(listDoc);
+                likelistAdapter.setUser(user.getEmail());
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+                recyclerView.setAdapter(likelistAdapter);
+            }
+        });
 
         return v;
     }
@@ -271,7 +301,7 @@ public class Homefragment extends Fragment {
             }
             fragmentTransaction.hide(List.get(i));
         }
-        fragmentTransaction.add(R.id.main_frame, fragment);
+        fragmentTransaction.add(R.id.main_frame, fragment,fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
 

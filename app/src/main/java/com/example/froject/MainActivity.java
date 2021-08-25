@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     ChatlistFragment chatlistFragment;
 
     private static final String TAG = "MainActivity";
-    private static final String PROFILE_TAG = "ProfileFragment";
-    private static final String BOARD_TAG = "BoardFragment";
+
+    int selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Log.w(TAG,"PRINT: "+savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavi);
+        selected = R.id.item_fragment1;
 
         //Start = check Login State
         if(user == null) { //state == Logout -> goto LoginActivity
@@ -107,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
         @Nullable String data = intent.getStringExtra("data");
         //End = get info for past Activity
 
-
-
         //Case : Back to MainActivity
 
+        Bundle bundle = new Bundle();
         if (data!=null) {
             switch (data) {
                 case "none":
@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case "editprofile":
                     if (profilefragment == null) {
-                        Bundle bundle = new Bundle();
                         bundle.putSerializable("my_info", my_info);
                         profilefragment = new Profilefragment();
                         profilefragment.setArguments(bundle);
@@ -139,7 +138,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
+                if (menuItem.getItemId() == R.id.item_writeactivity) {
+                    intent.setClass(MainActivity.this, WriteActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);   //need fix
+                }
+                else {
+                    switch (menuItem.getItemId()) {
                     /*case R.id.item_fragment1:
                         if(boardfragment == null) {
                             boardfragment = new Boardfragment();
@@ -149,70 +154,70 @@ public class MainActivity extends AppCompatActivity {
                             showFragment(boardfragment);
                         }
                         break;*/
-                    case R.id.item_fragment1:
-
-                        if (categoryfragment == null) {
-                            categoryfragment = new Categoryfragment();
-                            addFragment(categoryfragment);
-                        } else {
-                            showFragment(categoryfragment);
-                        }
-                        break;
-
-                    case R.id.item_fragment2:
-                        if(profilefragment == null) {
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("my_info", my_info);
-                            profilefragment = new Profilefragment();
-                            profilefragment.setArguments(bundle);
-                            addFragment(profilefragment);
-                        }
-                        else {
-                            showFragment(profilefragment);
-                        }
-                        Log.w(TAG, "shit" + my_info);
-                        break;
-                    case R.id.item_writeactivity:
-                        startActivity(WriteActivity.class);   //need fix
-                        /*//임시    need fix
-                        if(chatlistFragment == null) {
-                            chatlistFragment = new ChatlistFragment();
-                            addFragment(chatlistFragment);
-                        }
-                        else {
-                            showFragment(chatlistFragment);
-                        }
-                        break;
-                        *//*if(chatFragment == null) {
-                            chatFragment = new ChatFragment();
-                            addFragment(chatFragment);
-                        }
-                        else {
-                            showFragment(chatFragment);
-                        }
+                        case R.id.item_fragment1:
+                            boardfragment = (Boardfragment)getSupportFragmentManager().findFragmentByTag("Boardfragment");
+                            if (boardfragment == null) {
+                                if (categoryfragment == null) {
+                                    categoryfragment = new Categoryfragment();
+                                    addFragment(categoryfragment);
+                                } else {
+                                    showFragment(categoryfragment);
+                                }
+                            }
+                            else {
+                                showFragment(boardfragment);
+                            }
+                            break;
+                        case R.id.item_fragment2:
+                            if (profilefragment == null) {
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("my_info", my_info);
+                                profilefragment = new Profilefragment();
+                                profilefragment.setArguments(bundle);
+                                addFragment(profilefragment);
+                            } else {
+                                showFragment(profilefragment);
+                            }
+                            Log.w(TAG, "shit" + my_info);
+                            break;
+                    /*case R.id.item_writeactivity:
+                        intent.setClass(MainActivity.this,WriteActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(intent);   //need fix
                         break;*/
-                    case R.id.item_fragment3:
-                        if(homefragment == null) {
-                            homefragment = new Homefragment();
-                            addFragment(homefragment);
-                        }
-                        else {
-                            showFragment(homefragment);
-                        }
-                        break;
-                    case R.id.item_fragment4:
-                        if(chatlistFragment == null) {
-                            chatlistFragment = new ChatlistFragment();
-                            addFragment(chatlistFragment);
-                        }
-                        else {
-                            showFragment(chatlistFragment);
-                        }
-                        break;
+                        case R.id.item_fragment3:
+                            if (homefragment == null) {
+                                homefragment = new Homefragment();
+                                addFragment(homefragment);
+                            } else {
+                                showFragment(homefragment);
+                            }
+                            break;
+                        case R.id.item_fragment4:
+                            if (chatlistFragment == null) {
+                                chatlistFragment = new ChatlistFragment();
+                                addFragment(chatlistFragment);
+                            } else {
+                                showFragment(chatlistFragment);
+                            }
+                            break;
+                    }
+                    selected = menuItem.getItemId();
                 }
+
                 return true;
             }
         });
+        if (bottomNavigationView.getSelectedItemId() == R.id.item_writeactivity ) {
+            if (bottomNavigationView.getSelectedItemId() == R.id.item_fragment1) {
+                bottomNavigationView.setSelectedItemId(selected);
+                boardfragment = (Boardfragment)getSupportFragmentManager().findFragmentByTag("Boardfragment");
+                showFragment(boardfragment);
+            }
+            else {
+                bottomNavigationView.setSelectedItemId(selected);
+            }
+        }
     }
 
     @Override
@@ -269,7 +274,8 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<listsize;i++) {
             fragmentTransaction.hide(List.get(i));
         }
-        fragmentTransaction.add(R.id.main_frame, fragment);
+        Log.w("omg",fragment.toString());
+        fragmentTransaction.add(R.id.main_frame, fragment,fragment.getClass().getSimpleName());
         fragmentTransaction.commit();
     }
 

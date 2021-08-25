@@ -72,6 +72,7 @@ public class WriteActivity extends AppCompatActivity {
 
         findViewById(R.id.addContents).setOnClickListener(onClickListener);
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
+        findViewById(R.id.cancelWriting).setOnClickListener(onClickListener);
 
         recyclerView = findViewById(R.id.categoryContentRecyclerView);
         list = new ArrayList<>();
@@ -90,14 +91,6 @@ public class WriteActivity extends AppCompatActivity {
                     email = task.getResult().getString("email");
             }
         });
-
-
-        /*db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                Log.w(TAG,"omg"+task.getResult().getDocuments().size());
-            }
-        });*/
 
         //contentslayout = findViewById(R.id.contentsLayout);
     }
@@ -132,7 +125,6 @@ public class WriteActivity extends AppCompatActivity {
                     String maincontent = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
                     new_post = new PostData(title, place, period, maincontent, totalcount);
-                    //firebase::database::ServerTimestamp();
                     Date date = new Date(System.currentTimeMillis());
                     Log.d("sex", ""+date);
                     SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
@@ -177,6 +169,9 @@ public class WriteActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                     break;
+                case R.id.cancelWriting:
+                    finish();
+                    //finishAndRemoveTask();
             }
         }
     };
