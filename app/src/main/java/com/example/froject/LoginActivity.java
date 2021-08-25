@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +24,21 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+
+    /*private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        hideKeyboard();
+        return super.dispatchTouchEvent(ev);
+    } 이원일 아조찌 언양불고기 개꿀맛 7장에 얼마 안한대여 다들 주문하세여 넘무 마싯써여 */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
