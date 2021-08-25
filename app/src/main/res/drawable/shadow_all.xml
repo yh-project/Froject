@@ -4,11 +4,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#00CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#20CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -19,11 +17,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#06CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#23CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -34,11 +30,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#09CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#26CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -49,11 +43,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#0BCCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#29CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -64,11 +56,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#0DCCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#2BCCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -79,11 +69,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#10CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#2DCCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -94,11 +82,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#12CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#30CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -109,11 +95,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#15CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#32CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -124,11 +108,9 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#17CCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#35CCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -139,11 +121,22 @@
     <item>
         <shape>
             <padding
-                android:bottom="2dp"
-                android:right="2dp"
-                android:top="2dp"
-                android:left="2dp" />
-            <solid android:color="#1ACCCCCC" />
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#37CCCCCC" />
+            <corners
+                android:topRightRadius="5dp"
+                android:bottomRightRadius="5dp"
+                android:topLeftRadius="5dp"
+                android:bottomLeftRadius="5dp" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding
+                android:bottom="1dp"
+                android:right="1dp" />
+            <solid android:color="#3ACCCCCC" />
             <corners
                 android:topRightRadius="5dp"
                 android:bottomRightRadius="5dp"
@@ -164,7 +157,7 @@
 
             <stroke
                 android:width="1dp"
-                android:color="@android:color/transparent" />
+                android:color="#000000" />
 
             <corners
                 android:topRightRadius="5dp"

@@ -14,21 +14,25 @@
         android:layout_weight="80" />
 
     <!--로고-->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="45"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_gravity="center"
+        android:src="@drawable/real_logo"
+        android:padding="15dp" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:src="@drawable/real_logo"
-            android:padding="15dp" />
-
-    </LinearLayout>
+    <!--Froject-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/app_name"
+        android:textColor="#5768C3"
+        android:textSize="30sp"
+        android:fontFamily="@font/nanumsquareroundeb"/>
 
 </LinearLayout>

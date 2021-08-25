@@ -59,7 +59,8 @@
             android:importantForAutofill="no"
             android:textSize="15sp"
             android:inputType="textEmailAddress"
-            tools:ignore="NestedWeights" />
+            tools:ignore="NestedWeights"
+            android:fontFamily="@font/nanumsquareroundeb"/>
 
     </LinearLayout>
 
@@ -86,7 +87,8 @@
             android:importantForAutofill="no"
             android:textSize="15sp"
             android:inputType="textPassword"
-            tools:ignore="NestedWeights" />
+            tools:ignore="NestedWeights"
+            android:fontFamily="@font/nanumsquareroundeb" />
 
     </LinearLayout>
 
@@ -124,9 +126,10 @@
                 android:text="@string/ment_keeplogin"
                 android:textColor="#909090"
                 android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareroundb"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -154,6 +157,7 @@
             android:layout_weight="110"
             android:text="@string/login"
             android:textColor="#ffffff"
+            android:fontFamily="@font/nanumsquareroundb"
             android:background="@drawable/borderline_button_5768c3"
             tools:ignore="NestedWeights" />
 
@@ -177,7 +181,8 @@
             android:text="@string/resert_pass"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="#909090"/>
+            android:textColor="#909090"
+            android:fontFamily="@font/nanumsquareroundb"/>
 
         <!--경계선-->
         <TextView
@@ -196,7 +201,8 @@
             android:text="@string/gotosignup"
             android:textStyle="bold"
             android:textColor="#909090"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:fontFamily="@font/nanumsquareroundb" />
 
     </LinearLayout>
 

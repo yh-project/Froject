@@ -49,6 +49,7 @@
             android:textSize="15sp"
             android:hint="@string/putemail"
             android:textColorHint="#B1B1B1"
+            android:fontFamily="@font/nanumsquareroundeb"
             android:backgroundTint="#C0C0C0"
             android:inputType="textEmailAddress"
             android:importantForAutofill="no"
@@ -72,6 +73,7 @@
             android:layout_weight="110"
             android:text="@string/sendmail"
             android:textColor="#ffffff"
+            android:fontFamily="@font/nanumsquareroundb"
             android:background="@drawable/borderline_button_5768c3"
             tools:ignore="NestedWeights" />
 
