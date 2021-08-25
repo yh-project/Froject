@@ -46,6 +46,7 @@ import com.squareup.okhttp.internal.DiskLruCache;
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -100,8 +101,10 @@ public class Boardfragment extends Fragment {
                     list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
                 }
                 postAdapter = new PostAdapter(list);
+                postAdapter.setUser(user.getEmail());
                 postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
                 postrecyclerView.setAdapter(postAdapter);
+                setLikeClickListener(postAdapter,task);
             }
         });
         // 큰카테고리 뷰에따른 작은카테고리
@@ -214,8 +217,10 @@ public class Boardfragment extends Fragment {
                     list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
                 }
                 postAdapter = new PostAdapter(list);
+                postAdapter.setUser(user.getEmail());
                 postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
                 postrecyclerView.setAdapter(postAdapter);
+                setLikeClickListener(postAdapter,task);
             }
         });
     }
@@ -236,9 +241,37 @@ public class Boardfragment extends Fragment {
                     list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
                 }
                 postAdapter = new PostAdapter(list);
+                postAdapter.setUser(user.getEmail());
                 postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
                 postrecyclerView.setAdapter(postAdapter);
+                setLikeClickListener(postAdapter,task);
             }
         });
     }
+
+    public void setLikeClickListener(PostAdapter postAdapter, Task<QuerySnapshot> task) {
+        postAdapter.setLikeClickListener(new LikeClickListener() {
+            @Override
+            public void onStarClick(View view, int position) {
+                Boolean isStar = false;
+                ImageView imageView =(ImageView)view;
+                for (int i=0;i<list.get(position).getStar().size();i++) {
+                    if (list.get(position).getStar().get(i).equals(user.getEmail())) {
+                        isStar = true;
+                    }
+                }
+                if (isStar) {
+                    imageView.setImageResource(R.drawable.ic_baseline_star_border_24);
+                    list.get(position).getStar().remove(user.getEmail());
+                    task.getResult().getDocuments().get(position).getReference().update("star",list.get(position).getStar());
+                }
+                else {
+                    imageView.setImageResource(R.drawable.ic_baseline_star_24);
+                    list.get(position).getStar().add(user.getEmail());
+                    task.getResult().getDocuments().get(position).getReference().update("star",list.get(position).getStar());
+                }
+            }
+        });
+    }
+
 }
