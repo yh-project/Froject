@@ -283,6 +283,7 @@
                         app:layout_constraintHorizontal_weight="0.1"
                         android:src="@drawable/item_remove_contents"
                         android:background="#ffffff"
+                        android:visibility="invisible"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/totalCount"
                         app:layout_constraintBottom_toBottomOf="parent"

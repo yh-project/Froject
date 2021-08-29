@@ -2,10 +2,10 @@ package com.example.froject;
 
 public class WriteData {
 
-    String Content;
-    String BigCategory;
-    String SmallCategory;
-    String countPeople;
+    String Content="";
+    String BigCategory="";
+    String SmallCategory="";
+    String countPeople="";
 
     public WriteData() {}
     // 게시글 화면에서 보일 분야별내용부분 생성자

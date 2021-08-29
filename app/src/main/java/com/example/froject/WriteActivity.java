@@ -1,5 +1,6 @@
 package com.example.froject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -9,12 +10,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +52,7 @@ public class WriteActivity extends AppCompatActivity {
     private ArrayList<WriteData> list;
     private PostData[] postDataArray;
     private WriteHolder writeHolder;
-    private int a = 0;
+    private TextView totalCount;
     private String author;
     private String email;
 
@@ -69,7 +72,9 @@ public class WriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+        totalCount = findViewById(R.id.totalCount);
 
+        findViewById(R.id.minusContents).setOnClickListener(onClickListener);
         findViewById(R.id.addContents).setOnClickListener(onClickListener);
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
         findViewById(R.id.cancelWriting).setOnClickListener(onClickListener);
@@ -82,7 +87,30 @@ public class WriteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         ItemHeightSpace itemHeightSpace = new ItemHeightSpace(50);
         recyclerView.addItemDecoration(itemHeightSpace);
+
         recyclerView.setAdapter(writingAdapter);
+
+        writingAdapter.setDelClickListener(new DelClickListener() {
+            @Override
+            public void onDelClick(View view, int position) {
+                AlertDialog.Builder msgBuilder = new AlertDialog.Builder(WriteActivity.this)
+                        .setTitle("글 삭제")
+                        .setMessage("해당 카테고리 글을 삭제하시겠습니까?")
+                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                list.remove(position);
+                                writingAdapter.resetItem(list);
+                                //writingAdapter.notifyItemRangeChanged(position,list.size()-position);
+                                writingAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("아니요", new DialogInterface.OnClickListener(){@Override public void onClick(DialogInterface dialog, int which) { }});
+                AlertDialog msgDlg;
+                msgDlg = msgBuilder.create();
+                msgDlg.show();
+            }
+        });
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -99,19 +127,44 @@ public class WriteActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
+                //봉사활동 버튼이 체크되면 실행되야함.
+                case R.id.minusContents:
                 case R.id.addContents:
-                    /*PostData postData1 = list.get(0);
-                    Log.w("omg",postData1.getInputSmallCategory());
-                    Log.w("omg",postData1.getInputBigCategory());*/
-                    WriteData writeData = new WriteData();
-                    writingAdapter.additem(writeData);
+                    int count = Integer.parseInt(totalCount.getText().toString());
+
+                    //list.add(new WriteData());
+                    writingAdapter.additem(new WriteData());
                     writingAdapter.notifyDataSetChanged();
-                    Log.d("개수", ""+list.size());
-                    //writingAdapter.getItemCount();
-                    if(++a==2) {
-                        findViewById(R.id.addContents).setVisibility(View.INVISIBLE);
-                        break;
+
+                    if(R.id.addContents == v.getId()) {
+                        totalCount.setText((++count)+"");
                     }
+                    else {
+                        totalCount.setText((--count)+"");
+                    }
+                    //count 변화를 먼저 할 때
+                    switch (count) {
+                        case 1:
+                        case 3:
+                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
+                            break;
+                        case 2:
+                            findViewById(R.id.minusContents).setVisibility(View.VISIBLE);
+                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
+                            break;
+                    }
+                    //count 변화를 나중에 할 때
+                    /*switch (count) {
+                        case 1:
+                            findViewById(R.id.minusContents).setVisibility(View.VISIBLE);
+                            break;
+                        case 2:
+                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
+                            break;
+                        case 3:
+                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
+                            break;
+                    }*/
                     break;
                 case R.id.finishcontents:
                     /*PostData postData1 = list.get(0);
@@ -121,12 +174,11 @@ public class WriteActivity extends AppCompatActivity {
                     String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
-                    String totalcount = ((EditText)findViewById(R.id.totalCount)).getText().toString();
+                    String totalcount = ((TextView)findViewById(R.id.totalCount)).getText().toString();
                     String maincontent = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
                     new_post = new PostData(title, place, period, maincontent, totalcount);
                     Date date = new Date(System.currentTimeMillis());
-                    Log.d("sex", ""+date);
                     SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
                     sdate.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
 
