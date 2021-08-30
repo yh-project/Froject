@@ -28,19 +28,26 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
     private AddClickListener addClickListener;
     private DelClickListener delClickListener;
 
-    WritingAdapter(ArrayList<WriteData> list) { this.list = list; }
+    WritingAdapter(ArrayList<WriteData> list) {
+        this.list = list;
+    }
 
     public void additem(WriteData postData) {
         list.add(postData);
     }
 
-    public void resetItem(ArrayList<WriteData> list) { this.list = list; }
-    public ArrayList<WriteData> getItem() { return list; }
+    public void resetItem(ArrayList<WriteData> list) {
+        this.list = list;
+    }
+
+    public ArrayList<WriteData> getItem() {
+        return list;
+    }
 
     @NonNull
     @Override
     public WriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.w("omg","1on create");
+        Log.w("omg", "1on create");
         context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_categorycontent, parent, false);
@@ -50,13 +57,14 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull WriteHolder holder, int position) {
-        Log.w("omg","2on bindviewholder");
+        Log.w("omg", "2on bindviewholder");
         //holder.onBind(list.get(position));
         holder.setAddClickListener(addClickListener);
         holder.setDelClickListener(delClickListener);
 
         String[] bigcategory = holder.itemView.getResources().getStringArray(R.array.Bigcategory);
-        ArrayList<String> a = new ArrayList<>(Arrays.asList(bigcategory));  a.remove(a.size()-1);
+        ArrayList<String> a = new ArrayList<>(Arrays.asList(bigcategory));
+        a.remove(a.size() - 1);
         String[] Designcategory = holder.itemView.getResources().getStringArray(R.array.Designcategory);//7 7
         String[] Developcategory = holder.itemView.getResources().getStringArray(R.array.Developcategory);//6 13
         String[] Photocategory = holder.itemView.getResources().getStringArray(R.array.Photocategory);//12 25
@@ -65,26 +73,36 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
         String[] Interiorlcategory = holder.itemView.getResources().getStringArray(R.array.Interiorlcategory);//1 32
 
         String[][] array = new String[6][];
-        array[0]=(Designcategory);
-        array[1]=(Developcategory);
-        array[2]=(Photocategory);
-        array[3]=(Translatecategory);
-        array[4]=(Plancategory);
-        array[5]=(Interiorlcategory);
+        array[0] = (Designcategory);
+        array[1] = (Developcategory);
+        array[2] = (Photocategory);
+        array[3] = (Translatecategory);
+        array[4] = (Plancategory);
+        array[5] = (Interiorlcategory);
+
+        holder.onBind(list.get(position));
 
         if (!list.get(position).getBigCategory().equals("")) {
-            holder.Smalladapter = new ArrayAdapter<String>(holder.itemView.getContext(),android.R.layout.simple_spinner_dropdown_item,array[a.indexOf(list.get(position).getBigCategory())]);
+            holder.Bigspinner.setSelection(holder.Bigadapter.getPosition(list.get(position).getBigCategory()));
+            //holder.Smallspinner.setSelection(holder.Smalladapter.getPosition(list.get(position).getSmallCategory()));
+            holder.countSpinner.setSelection(holder.CountAdapter.getPosition(list.get(position).getCountPeople() + "명"));
         }
-        holder.onBind(list.get(position));
+        else {
+            holder.Bigspinner.setSelection(0);
+            holder.Smallspinner.setSelection(0);
+            holder.countSpinner.setSelection(0);
+        }
+
         holder.Bigspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
-                Log.w("omg","start bindholder");
+                Log.w("omg", "start bindholder");
                 list.get(position).setBigCategory(holder.Bigadapter.getItem(position2));
                 holder.Smalladapter = new ArrayAdapter<String>(holder.itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, array[position2]);
                 //Smalladapter = ArrayAdapter.createFromResource(v.getContext(), R.array.Designcategory, android.R.layout.simple_spinner_dropdown_item);
                 holder.Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 holder.Smallspinner.setAdapter(holder.Smalladapter);
+                holder.Smallspinner.setSelection(holder.Smalladapter.getPosition(list.get(position).getSmallCategory()));
                 holder.Smallspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position3, long id) {
@@ -93,26 +111,27 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
+                        Log.w("omg", "small not");
                     }
                 });
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Log.w("omg", "big not");
             }
         });
 
         holder.countSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
-                list.get(position).setCountPeople(""+(position2+1));
+                list.get(position).setCountPeople("" + (position2 + 1));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Log.w("omg", "count not");
             }
         });
 
@@ -187,6 +206,7 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
     void setAddClickListener(AddClickListener addClickListener) {
         this.addClickListener = addClickListener;
     }
+
     void setDelClickListener(DelClickListener delClickListener) {
         this.delClickListener = delClickListener;
     }
@@ -213,19 +233,19 @@ class WriteHolder extends RecyclerView.ViewHolder {
         String[] cnt = new String[5];
         ContentText = v.findViewById(R.id.inputContent1);
 
-        for(int i=0;i<5;i++)
-            cnt[i]=(i+1)+"명";
+        for (int i = 0; i < 5; i++)
+            cnt[i] = (i + 1) + "명";
         String[] bigcategory = v.getResources().getStringArray(R.array.Bigcategory);
         ArrayList<String> a = new ArrayList<>(Arrays.asList(bigcategory));
-        a.remove(a.size()-1);
+        a.remove(a.size() - 1);
 
-        CountAdapter = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_spinner_dropdown_item,cnt);
+        CountAdapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, cnt);
         CountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countSpinner.setAdapter(CountAdapter);
 
         Bigspinner = (Spinner) v.findViewById(R.id.bigcategory);
         Smallspinner = (Spinner) v.findViewById(R.id.smallcategory);
-        Bigadapter = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_spinner_dropdown_item,a);
+        Bigadapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_spinner_dropdown_item, a);
         //Bigadapter = ArrayAdapter.createFromResource(v.getContext(), R.array.Bigcategory, android.R.layout.simple_spinner_dropdown_item);
         Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
@@ -241,34 +261,13 @@ class WriteHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
-        Log.w("omg","3on writeholder");
+        Log.w("omg", "3on writeholder");
     }
 
     void onBind(WriteData writeData) {
-        Log.w("omg","4on bind");
+        Log.w("omg", "4on bind");
 
         ContentText.setText(writeData.getContent());
-
-        if (writeData.getBigCategory().equals("")) {
-            Bigspinner.setSelection(0);
-        }
-        else {
-            Log.w("omg",Bigadapter.getPosition(writeData.getBigCategory())+writeData.getBigCategory());
-            Bigspinner.setSelection(Bigadapter.getPosition(writeData.getBigCategory()));
-        }
-        if (writeData.getSmallCategory().equals(""))
-            Smallspinner.setSelection(0);
-
-        else {
-            Log.w("omg",Smalladapter.getPosition(writeData.getSmallCategory())+writeData.getSmallCategory());
-            Smallspinner.setSelection(Smalladapter.getPosition(writeData.getSmallCategory()));
-        }
-        if (writeData.getCountPeople().equals(""))
-            countSpinner.setSelection(0);
-        else {
-            Log.w("omg",CountAdapter.getPosition(writeData.getCountPeople()+"명")+writeData.getCountPeople());
-            countSpinner.setSelection(CountAdapter.getPosition(writeData.getCountPeople()+"명"));
-        }
 
         ContentText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -279,10 +278,9 @@ class WriteHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")) {
+                if (s.toString().equals("")) {
                     return;
-                }
-                else input = s.toString();
+                } else input = s.toString();
             }
 
             @Override
@@ -296,6 +294,7 @@ class WriteHolder extends RecyclerView.ViewHolder {
     void setAddClickListener(AddClickListener addClickListener) {
         this.addClickListener = addClickListener;
     }
+
     void setDelClickListener(DelClickListener delClickListener) {
         this.delClickListener = delClickListener;
     }
@@ -306,6 +305,7 @@ class WriteHolder extends RecyclerView.ViewHolder {
 interface AddClickListener {
     void onAddClick(View view, int position);
 }
+
 interface DelClickListener {
     void onDelClick(View view, int position);
 }

@@ -87,7 +87,6 @@ public class WriteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         ItemHeightSpace itemHeightSpace = new ItemHeightSpace(50);
         recyclerView.addItemDecoration(itemHeightSpace);
-
         recyclerView.setAdapter(writingAdapter);
 
         writingAdapter.setDelClickListener(new DelClickListener() {
@@ -101,13 +100,32 @@ public class WriteActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int i) {
                                 list.remove(position);
                                 writingAdapter.resetItem(list);
-                                //writingAdapter.notifyItemRangeChanged(position,list.size()-position);
                                 writingAdapter.notifyDataSetChanged();
                             }
                         })
                         .setNegativeButton("아니요", new DialogInterface.OnClickListener(){@Override public void onClick(DialogInterface dialog, int which) { }});
+                AlertDialog.Builder msgBuilder_alone = new AlertDialog.Builder(WriteActivity.this)
+                        .setTitle("내용 삭제")
+                        .setMessage("해당 카테고리 내용을 초기화 하시겠습니까?")
+                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                list.remove(0);
+                                list.add(new WriteData());
+                                writingAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
                 AlertDialog msgDlg;
-                msgDlg = msgBuilder.create();
+                if (list.size() == 1) {
+                    msgDlg = msgBuilder_alone.create();
+                } else {
+                    msgDlg = msgBuilder.create();
+                }
                 msgDlg.show();
             }
         });
