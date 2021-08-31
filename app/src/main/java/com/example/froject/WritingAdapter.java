@@ -3,6 +3,7 @@ package com.example.froject;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,21 +13,26 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
     private ArrayList<WriteData> list;
     private Context context;
     private AddClickListener addClickListener;
     private DelClickListener delClickListener;
+    private ViewGroup parent;
 
     WritingAdapter(ArrayList<WriteData> list) {
         this.list = list;
@@ -48,10 +54,16 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
     @Override
     public WriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.w("omg", "1on create");
+        this.parent = parent;
         context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_categorycontent, parent, false);
 
+        View view;
+        //if (list.size()-1 == viewType && viewType < 2)
+        if (viewType == 1)
+            view = inflater.inflate(R.layout.item_addcontent, parent, false);
+        else
+            view = inflater.inflate(R.layout.item_categorycontent, parent, false);
         return new WriteHolder(view);
     }
 
@@ -135,59 +147,15 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             }
         });
 
-        /*holder.delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder msgBuilder = new AlertDialog.Builder(v.getContext())
-                        .setTitle("글 삭제")
-                        .setMessage("해당 카테고리 글을 삭제하시겠습니까?")
-                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-*//*                                Log.w("omggg",list.get(position).getBigCategory());
-                                Log.w("omggg",list.get(position).getSmallCategory());
-                                Log.w("omggg",list.get(position).getContent());
-                                Log.w("omggg",list.get(position).getCountPeople());*//*
-                                Log.w("omggg","123"+holder.getBindingAdapterPosition());
-                                list.remove(holder.getBindingAdapterPosition());
-                                notifyItemRemoved(holder.getBindingAdapterPosition());
-                                holder.setIsRecyclable(false);
-                                notifyDataSetChanged();
-
-                                //notifyItemRangeChanged(position,list.size());
-                                Log.w("omggg","123"+list.get(0).getBigCategory()+list.get(1).getBigCategory());
-                            }
-                        })
-                        .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        });
-                AlertDialog.Builder msgBuilder2 = new AlertDialog.Builder(v.getContext())
-                        .setTitle("내용 삭제")
-                        .setMessage("해당 카테고리 내용을 초기화 하시겠습니까?")
-                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                list.remove(0);
-                                WritingAdapter.this.notifyDataSetChanged();
-                            }
-                        })
-                        .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        });
-                AlertDialog msgDlg;
-                *//*if (holder.countSpinner.getSelectedItemPosition()+1 != 1) {
-                    msgDlg = msgBuilder.create();
+        if (getItemViewType(position) == 1) {
+            holder.addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (addClickListener != null)
+                        addClickListener.onAddClick(view, position);
                 }
-                else*//* {
-                    msgDlg = msgBuilder.create();
-                }
-                msgDlg.show();
-            }
-        });*/
+            });
+        }
 
         //list.get(position).setInputBigCategory(holder.Bigspinner.getSelectedItem().toString());
         //list.get(position).setInputSmallCategory(holder.Smallspinner.getSelectedItem().toString());
@@ -199,8 +167,16 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
     }
 
     @Override
+    public void onViewRecycled(@NonNull @NotNull WriteHolder holder) {
+        super.onViewRecycled(holder);
+    }
+
+    @Override
     public int getItemViewType(int position) {
-        return position;
+        if (list.size()-1 == position && position < 2)
+            return 1;
+        else
+            return 0;
     }
 
     void setAddClickListener(AddClickListener addClickListener) {
@@ -224,6 +200,7 @@ class WriteHolder extends RecyclerView.ViewHolder {
     AddClickListener addClickListener;
     DelClickListener delClickListener;
     ImageButton delButton;
+    ImageButton addButton;
     int position;
 
 
@@ -251,6 +228,7 @@ class WriteHolder extends RecyclerView.ViewHolder {
         Bigspinner.setAdapter(Bigadapter);
 
         delButton = v.findViewById(R.id.deleteContent);
+        addButton = v.findViewById(R.id.addContents);
 
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,6 +239,19 @@ class WriteHolder extends RecyclerView.ViewHolder {
                 }
             }
         });
+
+        /*if (this.getBindingAdapter().getItemViewType(getBindingAdapterPosition()) == 1) {
+            addButton = v.findViewById(R.id.addContents);
+            addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    position = getBindingAdapterPosition();
+                    if (addClickListener != null)
+                        addClickListener.onAddClick(view, position);
+                }
+            });
+        }*/
+
         Log.w("omg", "3on writeholder");
     }
 

@@ -75,7 +75,7 @@ public class WriteActivity extends AppCompatActivity {
         totalCount = findViewById(R.id.totalCount);
 
         findViewById(R.id.minusContents).setOnClickListener(onClickListener);
-        findViewById(R.id.addContents).setOnClickListener(onClickListener);
+        findViewById(R.id.plus).setOnClickListener(onClickListener);
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
         findViewById(R.id.cancelWriting).setOnClickListener(onClickListener);
 
@@ -130,11 +130,19 @@ public class WriteActivity extends AppCompatActivity {
             }
         });
 
+        writingAdapter.setAddClickListener(new AddClickListener() {
+            @Override
+            public void onAddClick(View view, int position) {
+                writingAdapter.additem(new WriteData());
+                writingAdapter.notifyDataSetChanged();
+            }
+        });
+
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                    author = task.getResult().getString("name");
-                    email = task.getResult().getString("email");
+                author = task.getResult().getString("name");
+                email = task.getResult().getString("email");
             }
         });
 
