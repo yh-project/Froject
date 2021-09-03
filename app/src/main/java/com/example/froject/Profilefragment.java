@@ -40,8 +40,6 @@ public class Profilefragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //Log.w(TAG,"shit"+getActivity().getIntent().toString());
-
         //test for doc
         boardRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -92,7 +90,7 @@ public class Profilefragment extends Fragment {
                 case R.id.editProfile:
                     intent = new Intent(getActivity(), EditprofileActivity.class);
                     intent.putExtra("my_info", my_info);
-                    Log.w(TAG,"shit"+my_info);
+                    Log.w(TAG,"ha.."+my_info);
                     startActivity(intent);
                     break;
                 case R.id.logout:
@@ -130,7 +128,7 @@ public class Profilefragment extends Fragment {
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        startToast("시발 그럼 왜눌러 개새끼야.");
+
                     }
                 });
         AlertDialog msgDlg = msgBuilder.create();
