@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -32,7 +33,9 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
     private Context context;
     private AddClickListener addClickListener;
     private DelClickListener delClickListener;
+    private CountChangedListener countChangedListener;
     private ViewGroup parent;
+    private TextView totalCount;
 
     WritingAdapter(ArrayList<WriteData> list) {
         this.list = list;
@@ -59,7 +62,6 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view;
-        //if (list.size()-1 == viewType && viewType < 2)
         if (viewType == 1)
             view = inflater.inflate(R.layout.item_addcontent, parent, false);
         else
@@ -135,18 +137,6 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             }
         });
 
-        holder.countSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
-                list.get(position).setCountPeople("" + (position2 + 1));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Log.w("omg", "count not");
-            }
-        });
-
         if (getItemViewType(position) == 1) {
             holder.addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -156,6 +146,20 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
                 }
             });
         }
+
+        holder.countSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
+                list.get(position).setCountPeople(""+(position2 + 1));
+                if (countChangedListener != null)
+                    countChangedListener.onCountChanged(position2+1,position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.w("omg", "count not");
+            }
+        });
 
         //list.get(position).setInputBigCategory(holder.Bigspinner.getSelectedItem().toString());
         //list.get(position).setInputSmallCategory(holder.Smallspinner.getSelectedItem().toString());
@@ -185,6 +189,10 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
 
     void setDelClickListener(DelClickListener delClickListener) {
         this.delClickListener = delClickListener;
+    }
+
+    public void setCountChangedListener(CountChangedListener countChangedListener) {
+        this.countChangedListener = countChangedListener;
     }
 }
 
@@ -301,5 +309,7 @@ interface DelClickListener {
     void onDelClick(View view, int position);
 }
 
-
+interface CountChangedListener {
+    void onCountChanged(int count, int position);
+}
 

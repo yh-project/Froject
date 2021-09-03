@@ -9,6 +9,8 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -55,7 +57,13 @@ public class WriteActivity extends AppCompatActivity {
     private TextView totalCount;
     private String author;
     private String email;
+    private int totalPeople=0;
+    private int count = 1;
+    private CheckBox checkPeriod;
+    private CheckBox checkVolunteer;
+    private CheckBox checkInternational;
 
+    private static final int MAX_COUNT = 10;
 
     private static final String TAG = "WriteActivity";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -73,9 +81,13 @@ public class WriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
         totalCount = findViewById(R.id.totalCount);
+        checkPeriod = findViewById(R.id.checkperiod);
+        checkInternational = findViewById(R.id.checkinternational);
+        checkVolunteer = findViewById(R.id.checkvolunteer);
 
-        findViewById(R.id.minusContents).setOnClickListener(onClickListener);
-        findViewById(R.id.plus).setOnClickListener(onClickListener);
+        findViewById(R.id.minus).setOnClickListener(onCountListener);
+        findViewById(R.id.plus).setOnClickListener(onCountListener);
+
         findViewById(R.id.finishcontents).setOnClickListener(onClickListener);
         findViewById(R.id.cancelWriting).setOnClickListener(onClickListener);
 
@@ -89,6 +101,34 @@ public class WriteActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(itemHeightSpace);
         recyclerView.setAdapter(writingAdapter);
 
+        checkVolunteer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (count != 1)
+                        findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    if (count != MAX_COUNT)
+                        findViewById(R.id.plus).setVisibility(View.VISIBLE);
+                    ((CheckBox)findViewById(R.id.checkinternational)).setChecked(true);
+                    findViewById(R.id.checkinternational).setClickable(false);
+                    list.clear();
+                    writingAdapter.notifyDataSetChanged();
+                    totalCount.setText(count+"명");
+                }
+                else {
+                    findViewById(R.id.minus).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.plus).setVisibility(View.INVISIBLE);
+                    ((CheckBox)findViewById(R.id.checkinternational)).setChecked(false);
+                    findViewById(R.id.checkinternational).setClickable(true);
+                    if (list.isEmpty()) {
+                        list.add(new WriteData());
+                        writingAdapter.notifyDataSetChanged();
+                    }
+                    setTotalPeople();
+                }
+            }
+        });
+
         writingAdapter.setDelClickListener(new DelClickListener() {
             @Override
             public void onDelClick(View view, int position) {
@@ -101,6 +141,7 @@ public class WriteActivity extends AppCompatActivity {
                                 list.remove(position);
                                 writingAdapter.resetItem(list);
                                 writingAdapter.notifyDataSetChanged();
+                                setTotalPeople();
                             }
                         })
                         .setNegativeButton("아니요", new DialogInterface.OnClickListener(){@Override public void onClick(DialogInterface dialog, int which) { }});
@@ -133,8 +174,15 @@ public class WriteActivity extends AppCompatActivity {
         writingAdapter.setAddClickListener(new AddClickListener() {
             @Override
             public void onAddClick(View view, int position) {
-                writingAdapter.additem(new WriteData());
+                list.add(new WriteData());
                 writingAdapter.notifyDataSetChanged();
+            }
+        });
+
+        writingAdapter.setCountChangedListener(new CountChangedListener() {
+            @Override
+            public void onCountChanged(int count, int position) {
+                setTotalPeople();
             }
         });
 
@@ -153,45 +201,6 @@ public class WriteActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                //봉사활동 버튼이 체크되면 실행되야함.
-                case R.id.minusContents:
-                case R.id.addContents:
-                    int count = Integer.parseInt(totalCount.getText().toString());
-
-                    //list.add(new WriteData());
-                    writingAdapter.additem(new WriteData());
-                    writingAdapter.notifyDataSetChanged();
-
-                    if(R.id.addContents == v.getId()) {
-                        totalCount.setText((++count)+"");
-                    }
-                    else {
-                        totalCount.setText((--count)+"");
-                    }
-                    //count 변화를 먼저 할 때
-                    switch (count) {
-                        case 1:
-                        case 3:
-                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
-                            break;
-                        case 2:
-                            findViewById(R.id.minusContents).setVisibility(View.VISIBLE);
-                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
-                            break;
-                    }
-                    //count 변화를 나중에 할 때
-                    /*switch (count) {
-                        case 1:
-                            findViewById(R.id.minusContents).setVisibility(View.VISIBLE);
-                            break;
-                        case 2:
-                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
-                            break;
-                        case 3:
-                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
-                            break;
-                    }*/
-                    break;
                 case R.id.finishcontents:
                     /*PostData postData1 = list.get(0);
                     PostData postData2 = list.get(1);
@@ -251,6 +260,62 @@ public class WriteActivity extends AppCompatActivity {
                     finish();
                     //finishAndRemoveTask();
             }
+        }
+    };
+
+    View.OnClickListener onCountListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                //봉사활동 버튼이 체크되면 실행되야함.
+                case R.id.minus:
+                    count--;
+                    break;
+                case R.id.plus:
+                    count++;
+                    break;
+            }
+
+            switch (count) {
+                case 1:
+                    findViewById(R.id.minus).setVisibility(View.INVISIBLE);
+                    break;
+                case MAX_COUNT:
+                    findViewById(R.id.plus).setVisibility(View.INVISIBLE);
+                    break;
+                default:
+                    findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.plus).setVisibility(View.VISIBLE);
+                    break;
+            }
+
+            totalCount.setText((count)+"명");
+            /*if (count == 1)
+                findViewById(R.id.minus).setVisibility(View.INVISIBLE);
+                    //count 변화를 먼저 할 때
+                    switch (count) {
+                        case 1:
+                        case 3:
+                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
+                            break;
+                        case 2:
+                            findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
+                            break;
+                    }
+                    //count 변화를 나중에 할 때
+                    switch (count) {
+                        case 1:
+                            findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                            break;
+                        case 2:
+                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
+                            break;
+                        case 3:
+                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
+                            break;
+            }*/
         }
     };
 
@@ -327,16 +392,13 @@ public class WriteActivity extends AppCompatActivity {
         }
     }*/
 
-
-
-
-
-
-
-
-
-
-
+    private void setTotalPeople() {
+        totalPeople = 0;
+        for(int i=0;i<list.size();i++) {
+            totalPeople += Integer.parseInt(list.get(i).getCountPeople());
+        }
+        totalCount.setText(totalPeople+"명");
+    }
 
     private void finish_contents() {
 

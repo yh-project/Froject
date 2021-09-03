@@ -11,7 +11,7 @@ public class PostData implements Serializable {
     String title;
     String place;
     String period;
-    String content;
+    String mainContent;
     String totalPeople;
 
     String author;      //작성자
@@ -33,11 +33,11 @@ public class PostData implements Serializable {
     public PostData() { }
 
     // 게시글 화면에서 보일 제목과 메인내용부분 생성자
-    public PostData(String title, String place, String period, String content, String totalPeople) {
+    public PostData(String title, String place, String period, String mainContent, String totalPeople) {
         this.title = title;
         this.place = place;
         this.period = period;
-        this.content = content;
+        this.mainContent = mainContent;
         this.totalPeople = totalPeople;
     }
 
@@ -70,8 +70,8 @@ public class PostData implements Serializable {
         this.period = period;
     }
 
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
+    public String getMainContent() { return mainContent; }
+    public void setMainContent(String mainContent) { this.mainContent = mainContent; }
 
     public String getTotalPeople() { return totalPeople; }
     public void setTotalPeople(String totalPeople) { this.totalPeople = totalPeople; }

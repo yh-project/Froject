@@ -274,10 +274,10 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/minusContents"/>
+                        app:layout_constraintRight_toLeftOf="@+id/minus"/>
 
                     <ImageButton
-                        android:id="@+id/minusContents"
+                        android:id="@+id/minus"
                         android:layout_width="0dp"
                         android:layout_height="49.5dp"
                         app:layout_constraintHorizontal_weight="0.1"
@@ -302,13 +302,14 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/plus"
-                        app:layout_constraintLeft_toRightOf="@+id/minusContents" />
+                        app:layout_constraintLeft_toRightOf="@+id/minus" />
 
                     <ImageButton
                         android:id="@+id/plus"
                         android:layout_width="0dp"
                         android:layout_height="49.5dp"
                         app:layout_constraintHorizontal_weight="0.1"
+                        android:visibility="invisible"
                         android:src="@drawable/item_add_contents"
                         android:background="#ffffff"
                         app:layout_constraintTop_toTopOf="parent"
