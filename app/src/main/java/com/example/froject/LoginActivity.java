@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         hideKeyboard();
         return super.dispatchTouchEvent(ev);
-    } 이원일 아조찌 언양불고기 개꿀맛 7장에 얼마 안한대여 다들 주문하세여 넘무 마싯써여 */
+    } 이원일 셰프님 언양불고기 진짜 너무맛있다 다들 주문하세여 넘무 마싯써여 */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

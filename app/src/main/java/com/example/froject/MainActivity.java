@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         //Start = get info for past activity
         if(intent.getSerializableExtra("my_info") != null) {
             my_info = (Info) intent.getSerializableExtra("my_info");
-            Log.w(TAG, "shit get main" + intent.getSerializableExtra("my_info"));
+            Log.w(TAG, "get main" + intent.getSerializableExtra("my_info"));
         }
 
         @Nullable String data = intent.getStringExtra("data");
@@ -296,10 +296,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-
-
-
-//응애
-//오늘 저녁 막창임 개부럽제
