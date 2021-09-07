@@ -42,11 +42,11 @@ public class EditprofileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         my_info = (Info) intent.getSerializableExtra("my_info");
 
-        findViewById(R.id.newPass).setOnClickListener(onClickListener);
         findViewById(R.id.changeInfo).setOnClickListener(onClickListener);
 
 
-        TextView originalname = ((TextView)findViewById(R.id.originalName));
+        // 49~57 editprofile 화면 수정하면서 기존꺼 주석처리
+        /*TextView originalname = ((TextView)findViewById(R.id.originalName));
         TextView originalmajor = ((TextView)findViewById(R.id.originalMajor));
         TextView originallevel = ((TextView)findViewById(R.id.originalLevel));
         TextView originaluniv = ((TextView)findViewById(R.id.originalUniv));
@@ -54,7 +54,7 @@ public class EditprofileActivity extends AppCompatActivity {
         originalname.setText(my_info.getname());
         originalmajor.setText(my_info.getmajor());
         originallevel.setText(my_info.getlevel());
-        originaluniv.setText(my_info.getuniv());
+        originaluniv.setText(my_info.getuniv());*/
 
         //final ArrayList<String> originalinfoList = new ArrayList<>();
 
@@ -87,9 +87,6 @@ public class EditprofileActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.newPass:      //fix 임시로 막아둠
-                    //startActivity(PassresetActivity.class);
-                    break;
                 case R.id.changeInfo:
                     change_info();
                     break;
@@ -98,13 +95,13 @@ public class EditprofileActivity extends AppCompatActivity {
     };
 
     private void change_info() {
-        @Nullable String newname = ((EditText)findViewById(R.id.newName)).getText().toString();
+       /* @Nullable String newname = ((EditText)findViewById(R.id.newName)).getText().toString();*/
         @Nullable String newmajor = ((EditText)findViewById(R.id.newMajor)).getText().toString();
-        @Nullable String newlevel = ((EditText)findViewById(R.id.newLevel)).getText().toString();
+        /*@Nullable String newlevel = ((EditText)findViewById(R.id.newLevel)).getText().toString();*/
         @Nullable String newuniv = ((EditText)findViewById(R.id.newUniv)).getText().toString();
         String newlist = " ";
 
-        final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
+        /*final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
         final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("name", "major", "level", "univ"));
 
 
@@ -155,7 +152,7 @@ public class EditprofileActivity extends AppCompatActivity {
                     });
             AlertDialog msgDlg = msgBuilder.create();
             msgDlg.show();
-        }
+        }*/
     }
 
     /*@Override
