@@ -1,5 +1,6 @@
 package com.example.froject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -319,6 +320,12 @@ public class Homefragment extends Fragment {
         }
         fragmentTransaction.show(fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.w("omg","hidden"+hidden+isHidden());
     }
 }
 
