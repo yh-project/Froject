@@ -18,19 +18,23 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10"
-            android:src="@drawable/item_back_button"
-            android:background="#ffffff" />
+            android:src="@drawable/cancel"
+            android:padding="10dp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="90"
-            android:src="@drawable/logo_" />
+            android:gravity="center"
+            android:text="프로필 수정"
+            android:textColor="#5768C0"
+            android:textSize="15sp"
+            android:fontFamily="@font/nanumsquareroundb" />
 
         <View
             android:layout_width="0dp"
@@ -42,13 +46,162 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10" />
+        android:layout_weight="0.5"
+        android:background="#e7e8ea"/>
 
-    <!--이름 or 닉네임-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5" />
+
+    <!--프로필 사진-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
+        android:layout_weight="65"
+        android:weightSum="130"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="70"
+            android:src="@drawable/profile_image"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"/>
+
+    </LinearLayout>
+
+    <!--이름-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="23"
+        android:weightSum="130"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:weightSum="23">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:paddingStart="15dp"
+                android:gravity="center_vertical"
+                android:text="성"
+                android:textColor="#5768C0"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareroundb"/>
+
+            <EditText
+                android:id="@+id/firstName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="13"
+                android:background="@drawable/borderline_textbox_dee2e5"
+                android:paddingStart="15dp"
+                android:hint="성"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:fontFamily="@font/nanumsquareroundb" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="vertical"
+            android:weightSum="23">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:paddingStart="15dp"
+                android:gravity="center_vertical"
+                android:text="이름"
+                android:textColor="#5768C0"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareroundb"/>
+
+            <EditText
+                android:id="@+id/secondName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="13"
+                android:background="@drawable/borderline_textbox_dee2e5"
+                android:paddingStart="15dp"
+                android:hint="이름"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:fontFamily="@font/nanumsquareroundb" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--학교-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="23"
+        android:orientation="horizontal"
+        android:weightSum="130"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="110"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:paddingStart="15dp"
+                android:gravity="center_vertical"
+                android:text="학교"
+                android:textColor="#5768C0"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareroundb"/>
+
+            <EditText
+                android:id="@+id/newUniv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="13"
+                android:background="@drawable/borderline_textbox_dee2e5"
+                android:paddingStart="15dp"
+                android:hint="이름"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:fontFamily="@font/nanumsquareroundb" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--학년-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="23"
         android:weightSum="130"
         android:orientation="horizontal"
         android:gravity="center">
@@ -59,38 +212,27 @@
             android:layout_weight="110"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal">
+                android:layout_weight="10"
+                android:paddingStart="15dp"
+                android:gravity="center_vertical"
+                android:text="학년"
+                android:textColor="#5768C0"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareroundb"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="이름 or 닉네임"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/originalName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="원래이름"
-                    android:layout_marginLeft="20dp"/>
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/newName"
+            <Spinner
+                android:id="@+id/newLevel"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
-                android:inputType="textPersonName"
-                android:hint="새로운 이름 or 닉네임을 입력하세요."
-                android:textColorHint="#BFBFBF"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:backgroundTint="#F1F2F4" />
+                android:layout_weight="13"
+                android:background="@drawable/item_spinner_editprofile"
+                android:paddingStart="15dp"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:fontFamily="@font/nanumsquareroundb" />
 
         </LinearLayout>
 
@@ -100,11 +242,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
-        android:weightSum="130"
+        android:layout_weight="23"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:weightSum="130"
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -112,154 +253,39 @@
             android:layout_weight="110"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="전공"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/originalMajor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="원래전공"
-                    android:layout_marginLeft="20dp" />
-
-            </LinearLayout>
+                android:layout_weight="10"
+                android:paddingStart="15dp"
+                android:gravity="center_vertical"
+                android:text="전공"
+                android:textColor="#5768C0"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanumsquareroundb"/>
 
             <EditText
                 android:id="@+id/newMajor"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"
-                android:inputType="textPersonName"
-                android:hint="새로운 전공을 입력하세요."
-                android:textColorHint="#BFBFBF"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:backgroundTint="#F1F2F4" />
+                android:layout_weight="13"
+                android:background="@drawable/borderline_textbox_dee2e5"
+                android:paddingStart="15dp"
+                android:hint="전공"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                android:fontFamily="@font/nanumsquareroundb" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <!--학년-->
-    <LinearLayout
+    <!--view-->
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="학년"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/originalLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:text="원래학년"/>
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/newLevel"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:inputType="number"
-                android:hint="학년을 입력해주세요."
-                android:textColorHint="#BFBFBF"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:backgroundTint="#F1F2F4" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--대학-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="30"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="대학"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/originalUniv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:text="원래대학" />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/newUniv"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:inputType="textPersonName"
-                android:hint="대학을 입력해주세요."
-                android:textColorHint="#BFBFBF"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:backgroundTint="#F1F2F4" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_weight="48" />
 
     <!--수정완료-->
     <LinearLayout
@@ -276,30 +302,10 @@
             android:layout_width="0dp"
             android:layout_weight="110"
             android:layout_height="match_parent"
-            android:background="@drawable/borderline_button"
-            android:text="수정 완료"
-            android:textColor="#ffffff" />
-
-    </LinearLayout>
-
-    <!--비번 재설정 삭제예정-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="130"
-        android:layout_marginTop="20dp">
-
-        <Button
-            android:id="@+id/newPass"
-            android:layout_width="0dp"
-            android:layout_weight="110"
-            android:layout_height="match_parent"
-            android:background="@drawable/borderline_button"
-            android:text="비밀번호 재설정"
-            android:textColor="#ffffff" />
+            android:background="@drawable/borderline_button_e7e8ea"
+            android:text="확인"
+            android:textColor="#858585"
+            android:fontFamily="@font/nanumsquareroundeb"/>
 
     </LinearLayout>
 
