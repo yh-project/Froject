@@ -212,7 +212,12 @@ public class SignupActivity extends AppCompatActivity {
     }
     private boolean check_email(String email) {
         String pattern = "[0-9a-zA-Z]*\\@[0-9a-zA-Z]*\\.ac\\.kr"; //--@--.ac.kr
+        String pattern2 = "[0-9a-zA-Z]*\\@[0-9a-zA-Z]*\\.edu"; //--@--.edu
         boolean regex = Pattern.matches(pattern, email);
+
+        if (!regex) {
+            regex = Pattern.matches(pattern2,email);
+        }
 
         return regex;
     }

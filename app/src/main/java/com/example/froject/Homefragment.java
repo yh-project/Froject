@@ -172,7 +172,7 @@ public class Homefragment extends Fragment {
         list.clear();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
                 whereArrayContains("star",user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {

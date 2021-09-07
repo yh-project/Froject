@@ -61,7 +61,7 @@ public class WriteActivity extends AppCompatActivity {
     private int count = 1;
     private CheckBox checkPeriod;
     private CheckBox checkVolunteer;
-    private CheckBox checkInternational;
+    private CheckBox checkContest;
 
     private static final int MAX_COUNT = 10;
 
@@ -71,7 +71,6 @@ public class WriteActivity extends AppCompatActivity {
     DocumentReference docRef = db.collection("users").document(user.getEmail());
     CollectionReference boardRef = docRef.collection("Board");
 
-    //LinearLayout contentslayout;
     PostData new_post;
 
     ArrayAdapter<CharSequence> Bigadapter, Smalladapter;
@@ -82,7 +81,7 @@ public class WriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_write);
         totalCount = findViewById(R.id.totalCount);
         checkPeriod = findViewById(R.id.checkperiod);
-        checkInternational = findViewById(R.id.checkinternational);
+        checkContest = findViewById(R.id.checkcontest);
         checkVolunteer = findViewById(R.id.checkvolunteer);
 
         findViewById(R.id.minus).setOnClickListener(onCountListener);
@@ -101,7 +100,7 @@ public class WriteActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(itemHeightSpace);
         recyclerView.setAdapter(writingAdapter);
 
-        checkVolunteer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        checkVolunteer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {    //체크되었을 때 저장방식 다르게 하기?
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -109,8 +108,8 @@ public class WriteActivity extends AppCompatActivity {
                         findViewById(R.id.minus).setVisibility(View.VISIBLE);
                     if (count != MAX_COUNT)
                         findViewById(R.id.plus).setVisibility(View.VISIBLE);
-                    ((CheckBox)findViewById(R.id.checkinternational)).setChecked(true);
-                    findViewById(R.id.checkinternational).setClickable(false);
+                    ((CheckBox)findViewById(R.id.checkcontest)).setChecked(true);
+                    findViewById(R.id.checkcontest).setClickable(false);
                     list.clear();
                     writingAdapter.notifyDataSetChanged();
                     totalCount.setText(count+"명");
@@ -118,8 +117,8 @@ public class WriteActivity extends AppCompatActivity {
                 else {
                     findViewById(R.id.minus).setVisibility(View.INVISIBLE);
                     findViewById(R.id.plus).setVisibility(View.INVISIBLE);
-                    ((CheckBox)findViewById(R.id.checkinternational)).setChecked(false);
-                    findViewById(R.id.checkinternational).setClickable(true);
+                    ((CheckBox)findViewById(R.id.checkcontest)).setChecked(false);
+                    findViewById(R.id.checkcontest).setClickable(true);
                     if (list.isEmpty()) {
                         list.add(new WriteData());
                         writingAdapter.notifyDataSetChanged();
@@ -138,8 +137,11 @@ public class WriteActivity extends AppCompatActivity {
                         .setPositiveButton("네", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
+                                for(int j=0;j<list.size();j++)
+                                    Log.w("omg","left"+j+list.get(j).getContent());
                                 list.remove(position);
-                                writingAdapter.resetItem(list);
+                                for(int j=0;j<list.size();j++)
+                                    Log.w("omg","right"+j+list.get(j).getContent());
                                 writingAdapter.notifyDataSetChanged();
                                 setTotalPeople();
                             }
@@ -174,7 +176,11 @@ public class WriteActivity extends AppCompatActivity {
         writingAdapter.setAddClickListener(new AddClickListener() {
             @Override
             public void onAddClick(View view, int position) {
+                for(int j=0;j<list.size();j++)
+                    Log.w("omg","left"+j+list.get(j).getContent());
                 list.add(new WriteData());
+                for(int j=0;j<list.size();j++)
+                    Log.w("omg","right"+j+list.get(j).getContent());
                 writingAdapter.notifyDataSetChanged();
             }
         });
@@ -195,6 +201,7 @@ public class WriteActivity extends AppCompatActivity {
         });
 
         //contentslayout = findViewById(R.id.contentsLayout);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -209,10 +216,10 @@ public class WriteActivity extends AppCompatActivity {
                     String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();
-                    String totalcount = ((TextView)findViewById(R.id.totalCount)).getText().toString();
-                    String maincontent = ((EditText)findViewById(R.id.inputContent)).getText().toString();
+                    String totalCnt = ((TextView)findViewById(R.id.totalCount)).getText().toString();
+                    String mainContent = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
-                    new_post = new PostData(title, place, period, maincontent, totalcount);
+                    new_post = new PostData(title, place, period, mainContent, totalCnt);
                     Date date = new Date(System.currentTimeMillis());
                     SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
                     sdate.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
@@ -239,9 +246,15 @@ public class WriteActivity extends AppCompatActivity {
                     new_post.setSmallCategory(SmallCategory);
                     new_post.setCategoryContent(CategoryContent);
                     new_post.setCategoryPeople(CountPeople);
-                    new_post.setTotalPeople(""+total);
+                    //new_post.setTotalPeople(""+total);
+                    new_post.setTotalPeople(totalCount.getText().toString().replace("명",""));
+                    new_post.setVolunteer(checkVolunteer.isChecked());
+                    new_post.setContest(checkContest.isChecked());
+                    new_post.setPeriodNegotiable(checkPeriod.isChecked());
+                    new_post.settingSearchData();
+
                     boardRef.document(sdate.format(date)).set(new_post);
-                    boardRef.document(sdate.format(date)).update("writetime",date);
+                    boardRef.document(sdate.format(date)).update("writeTime",date);
                     db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -291,31 +304,6 @@ public class WriteActivity extends AppCompatActivity {
             }
 
             totalCount.setText((count)+"명");
-            /*if (count == 1)
-                findViewById(R.id.minus).setVisibility(View.INVISIBLE);
-                    //count 변화를 먼저 할 때
-                    switch (count) {
-                        case 1:
-                        case 3:
-                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
-                            break;
-                        case 2:
-                            findViewById(R.id.minus).setVisibility(View.VISIBLE);
-                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
-                            break;
-                    }
-                    //count 변화를 나중에 할 때
-                    switch (count) {
-                        case 1:
-                            findViewById(R.id.minus).setVisibility(View.VISIBLE);
-                            break;
-                        case 2:
-                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
-                            break;
-                        case 3:
-                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
-                            break;
-            }*/
         }
     };
 

@@ -100,6 +100,7 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             holder.Bigspinner.setSelection(holder.Bigadapter.getPosition(list.get(position).getBigCategory()));
             //holder.Smallspinner.setSelection(holder.Smalladapter.getPosition(list.get(position).getSmallCategory()));
             holder.countSpinner.setSelection(holder.CountAdapter.getPosition(list.get(position).getCountPeople() + "명"));
+            holder.ContentText.setText(list.get(position).getContent());
         }
         else {
             holder.Bigspinner.setSelection(0);
@@ -147,6 +148,15 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             });
         }
 
+        holder.delButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (delClickListener != null) {
+                    delClickListener.onDelClick(view, position);
+                }
+            }
+        });
+
         holder.countSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
@@ -170,10 +180,10 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
         return list.size();
     }
 
-    @Override
+    /*@Override
     public void onViewRecycled(@NonNull @NotNull WriteHolder holder) {
         super.onViewRecycled(holder);
-    }
+    }*/
 
     @Override
     public int getItemViewType(int position) {
@@ -238,16 +248,6 @@ class WriteHolder extends RecyclerView.ViewHolder {
         delButton = v.findViewById(R.id.deleteContent);
         addButton = v.findViewById(R.id.addContents);
 
-        delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                position = getBindingAdapterPosition();
-                if (delClickListener != null) {
-                    delClickListener.onDelClick(view, position);
-                }
-            }
-        });
-
         /*if (this.getBindingAdapter().getItemViewType(getBindingAdapterPosition()) == 1) {
             addButton = v.findViewById(R.id.addContents);
             addButton.setOnClickListener(new View.OnClickListener() {
@@ -266,27 +266,34 @@ class WriteHolder extends RecyclerView.ViewHolder {
     void onBind(WriteData writeData) {
         Log.w("omg", "4on bind");
 
-        ContentText.setText(writeData.getContent());
+        Log.w("omg", writeData.getContent());
 
+        ContentText.setText(writeData.getContent());
         ContentText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 input = s.toString();
+                //Log.w("omg","before"+s);
                 return;
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")) {
+                /*if (s.toString().equals("")) {
                     return;
-                } else input = s.toString();
+                } else input = s.toString();*/
+                writeData.setContent(ContentText.getText().toString());
+                //Log.w("omg","changed"+s);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                writeData.setContent(input);
+                //Log.w("omg","after"+s);
+                //writeData.setContent(ContentText.getText().toString());
             }
         });
+
+        //ContentText.setText(writeData.getContent());
 
     }
 

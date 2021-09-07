@@ -206,7 +206,7 @@
                             android:gravity="center">
 
                             <CheckBox
-                                android:id="@+id/checkinternational"
+                                android:id="@+id/checkcontest"
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:button="@null"

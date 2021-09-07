@@ -23,6 +23,7 @@
             android:background="#ffffff"/>
         
         <EditText
+            android:id="@+id/searchdata"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="100"
