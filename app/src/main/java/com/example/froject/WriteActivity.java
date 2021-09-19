@@ -71,6 +71,7 @@ public class WriteActivity extends AppCompatActivity {
     DocumentReference docRef = db.collection("users").document(user.getEmail());
     CollectionReference boardRef = docRef.collection("Board");
 
+    //LinearLayout contentslayout;
     PostData new_post;
 
     ArrayAdapter<CharSequence> Bigadapter, Smalladapter;
@@ -304,6 +305,31 @@ public class WriteActivity extends AppCompatActivity {
             }
 
             totalCount.setText((count)+"명");
+            /*if (count == 1)
+                findViewById(R.id.minus).setVisibility(View.INVISIBLE);
+                    //count 변화를 먼저 할 때
+                    switch (count) {
+                        case 1:
+                        case 3:
+                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
+                            break;
+                        case 2:
+                            findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
+                            break;
+                    }
+                    //count 변화를 나중에 할 때
+                    switch (count) {
+                        case 1:
+                            findViewById(R.id.minus).setVisibility(View.VISIBLE);
+                            break;
+                        case 2:
+                            findViewById(v.getId()).setVisibility(View.INVISIBLE);
+                            break;
+                        case 3:
+                            findViewById(R.id.addContents).setVisibility(View.VISIBLE);
+                            break;
+            }*/
         }
     };
 
