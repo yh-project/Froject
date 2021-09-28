@@ -80,7 +80,7 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
     void onBind1(PostData postData) {
         inputContent.setText(postData.getMainContent());
         place.setText(postData.getPlace());
-        period.setText(postData.getPeriod());
+        period.setText(postData.getPeriod()+((postData.periodNegotiable) ? " (협의가능)" : ""));
         totalCount.setText(postData.getTotalPeople()+"명");
     }
 

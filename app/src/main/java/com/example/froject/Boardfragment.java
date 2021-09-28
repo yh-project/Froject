@@ -90,7 +90,7 @@ public class Boardfragment extends Fragment {
 
         Log.w("omg get bigcat : ",bigcat);
         //whereArrayContains("bigCategory",bigcat)
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
                 whereArrayContains("bigCategory",bigcat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -205,7 +205,7 @@ public class Boardfragment extends Fragment {
 
     public void getDBWithSort(String criteria, View v) {
         list.clear();
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
                 whereArrayContains("bigCategory",criteria).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -231,7 +231,7 @@ public class Boardfragment extends Fragment {
 
     public void getDBWithSort2(String criteria, View v) {
         list.clear();
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
                 whereArrayContains("smallCategory",criteria).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -282,7 +282,7 @@ public class Boardfragment extends Fragment {
         super.onResume();
         Log.w("omg","onResume");
         //whereArrayContains("bigCategory",bigcat)
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
                 whereArrayContains("bigCategory",bigcat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {

@@ -11,8 +11,12 @@ public class PostData implements Serializable {
     String title;
     String place;
     String period;
+    boolean periodNegotiable;
     String mainContent;
     String totalPeople;
+
+    boolean volunteer;
+    boolean contest;
 
     String author;      //작성자
     String Email;       //Uid 대체
@@ -20,7 +24,8 @@ public class PostData implements Serializable {
     ArrayList<String> star = new ArrayList<>();
 
     String postNumber;  //post id
-    Date writetime;
+    Date writeTime;
+    String searchData = title + place + period + ((periodNegotiable) ? "(협의가능)" : "") + mainContent + totalPeople + ((volunteer) ? "봉사활동" : "") + ((contest) ? "대외활동" : "") + author + Email;
 
     // 차례대로
     // 메인or분야별 내용,  대분야,  소분야,  분야별 구인 수,  총 구인 수
@@ -76,7 +81,14 @@ public class PostData implements Serializable {
     public String getTotalPeople() { return totalPeople; }
     public void setTotalPeople(String totalPeople) { this.totalPeople = totalPeople; }
 
-    // 추가한 것들 관련 getter, setter
+    public void setPeriodNegotiable(boolean periodNegotiable) { this.periodNegotiable = periodNegotiable; }
+    public boolean isPeriodNegotiable() { return periodNegotiable; }
+
+    public void setContest(boolean contest) { this.contest = contest; }
+    public boolean isContest() { return contest; }
+
+    public void setVolunteer(boolean volunteer) { this.volunteer = volunteer; }
+    public boolean isVolunteer() { return volunteer; }
 
     public String getAuthor() { return author; }
     public void setAuthor(String author) { this.author = author; }
@@ -106,13 +118,14 @@ public class PostData implements Serializable {
     public String getPostNumber() { return postNumber; }
     public void setPostNumber(String postNumber) { this.postNumber = postNumber; }
 
-    public Date getWritetime() {
-        return writetime;
+    public Date getWriteTime() {
+        return writeTime;
+    }
+    public void setWriteTime(Date writeTime) {
+        this.writeTime = writeTime;
     }
 
-    public void setWritetime(Date writetime) {
-        this.writetime = writetime;
-    }
-
-
+    public String getSearchData() { return searchData; }
+    public void setSearchData(String searchData) { this.searchData = searchData; }
+    public void settingSearchData() { this.searchData = title + place + period + ((periodNegotiable) ? "(협의가능)" : "") + mainContent + totalPeople + ((volunteer) ? "봉사활동" : "") + ((contest) ? "대외활동" : "") + author + Email; }
 }

@@ -66,7 +66,25 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             view = inflater.inflate(R.layout.item_addcontent, parent, false);
         else
             view = inflater.inflate(R.layout.item_categorycontent, parent, false);
-        return new WriteHolder(view);
+
+        WriteHolder vh = new WriteHolder(view, new WriteHolder.ITextWatcher() {
+            @Override
+            public void beforeTextChanged(int position, CharSequence s, int start, int count, int after) {
+                // do something
+            }
+
+            @Override
+            public void onTextChanged(int position, CharSequence s, int start, int before, int count) {
+                list.get(position).setContent(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(int position, Editable s) {
+                // do something
+            }
+        });
+
+        return vh;
     }
 
     @Override
@@ -100,6 +118,7 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             holder.Bigspinner.setSelection(holder.Bigadapter.getPosition(list.get(position).getBigCategory()));
             //holder.Smallspinner.setSelection(holder.Smalladapter.getPosition(list.get(position).getSmallCategory()));
             holder.countSpinner.setSelection(holder.CountAdapter.getPosition(list.get(position).getCountPeople() + "명"));
+            holder.ContentText.setText(list.get(position).getContent());
         }
         else {
             holder.Bigspinner.setSelection(0);
@@ -147,6 +166,15 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
             });
         }
 
+        holder.delButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (delClickListener != null) {
+                    delClickListener.onDelClick(view, position);
+                }
+            }
+        });
+
         holder.countSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
@@ -170,10 +198,10 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
         return list.size();
     }
 
-    @Override
+    /*@Override
     public void onViewRecycled(@NonNull @NotNull WriteHolder holder) {
         super.onViewRecycled(holder);
-    }
+    }*/
 
     @Override
     public int getItemViewType(int position) {
@@ -210,13 +238,41 @@ class WriteHolder extends RecyclerView.ViewHolder {
     ImageButton delButton;
     ImageButton addButton;
     int position;
+    ITextWatcher mTextWatcher;
 
+    public interface ITextWatcher {
+        // you can add/remove methods as you please, maybe you dont need this much
+        void beforeTextChanged(int position, CharSequence s, int start, int count, int after);
 
-    public WriteHolder(@NonNull View v) {
+        void onTextChanged(int position, CharSequence s, int start, int before, int count);
+
+        void afterTextChanged(int position, Editable s);
+    }
+
+    public WriteHolder(@NonNull View v, ITextWatcher textWatcher) {
         super(v);
         countSpinner = v.findViewById(R.id.count);
         String[] cnt = new String[5];
         ContentText = v.findViewById(R.id.inputContent1);
+
+        this.mTextWatcher = textWatcher;
+
+        this.ContentText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                mTextWatcher.beforeTextChanged(getBindingAdapterPosition(), s, start, count, after);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mTextWatcher.onTextChanged(getBindingAdapterPosition(), s, start, before, count);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mTextWatcher.afterTextChanged(getBindingAdapterPosition(), s);
+            }
+        });
 
         for (int i = 0; i < 5; i++)
             cnt[i] = (i + 1) + "명";
@@ -238,16 +294,6 @@ class WriteHolder extends RecyclerView.ViewHolder {
         delButton = v.findViewById(R.id.deleteContent);
         addButton = v.findViewById(R.id.addContents);
 
-        delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                position = getBindingAdapterPosition();
-                if (delClickListener != null) {
-                    delClickListener.onDelClick(view, position);
-                }
-            }
-        });
-
         /*if (this.getBindingAdapter().getItemViewType(getBindingAdapterPosition()) == 1) {
             addButton = v.findViewById(R.id.addContents);
             addButton.setOnClickListener(new View.OnClickListener() {
@@ -266,27 +312,35 @@ class WriteHolder extends RecyclerView.ViewHolder {
     void onBind(WriteData writeData) {
         Log.w("omg", "4on bind");
 
+        Log.w("omg", writeData.getContent());
+
         ContentText.setText(writeData.getContent());
 
-        ContentText.addTextChangedListener(new TextWatcher() {
+        /*ContentText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 input = s.toString();
+                //Log.w("omg","before"+s);
                 return;
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")) {
+                *//*if (s.toString().equals("")) {
                     return;
-                } else input = s.toString();
+                } else input = s.toString();*//*
+                writeData.setContent(ContentText.getText().toString());
+                //Log.w("omg","changed"+s);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                writeData.setContent(input);
+                //Log.w("omg","after"+s);
+                //writeData.setContent(ContentText.getText().toString());
             }
-        });
+        });*/
+
+        //ContentText.setText(writeData.getContent());
 
     }
 

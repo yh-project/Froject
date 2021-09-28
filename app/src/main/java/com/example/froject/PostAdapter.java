@@ -73,8 +73,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
 
 class PostHolder extends RecyclerView.ViewHolder {
     TextView title;
-    TextView updatetime1;
-    TextView updatetime2;
+    TextView updateTime1;
+    TextView updateTime2;
     ImageView like;
     LikeClickListener likeClickListener;
     String user;
@@ -82,8 +82,8 @@ class PostHolder extends RecyclerView.ViewHolder {
     public PostHolder(@NonNull View itemView) {
         super(itemView);
         title = itemView.findViewById(R.id.posttitle);
-        updatetime1 = itemView.findViewById(R.id.uploadtime1);
-        updatetime2 = itemView.findViewById(R.id.uploadtime2);
+        updateTime1 = itemView.findViewById(R.id.uploadtime1);
+        updateTime2 = itemView.findViewById(R.id.uploadtime2);
         like = itemView.findViewById(R.id.like);
 
         like.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +99,8 @@ class PostHolder extends RecyclerView.ViewHolder {
 
     void onBind(PostData postData) {
         title.setText(postData.getTitle());
-        updatetime1.setText(postData.getPlace());
-        updatetime2.setText(postData.getPeriod());
+        updateTime1.setText(postData.getPlace());
+        updateTime2.setText(postData.getPeriod());
 
         Boolean isStar = postData.getStar().contains(user);
         if (isStar) {

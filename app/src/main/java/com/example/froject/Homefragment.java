@@ -1,5 +1,6 @@
 package com.example.froject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -172,7 +173,7 @@ public class Homefragment extends Fragment {
         list.clear();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collectionGroup("Board").orderBy("writetime", DESCENDING).
+        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
                 whereArrayContains("star",user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
@@ -319,6 +320,12 @@ public class Homefragment extends Fragment {
         }
         fragmentTransaction.show(fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.w("omg","hidden"+hidden+isHidden());
     }
 }
 
