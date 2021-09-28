@@ -21,7 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.ktx.Firebase;
 //kang
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
@@ -39,10 +42,9 @@ public class SignupActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.signUp).setOnClickListener(onClickListener);
-        findViewById(R.id.gotoLogin).setOnClickListener(onClickListener);
-        findViewById(R.id.back).setOnClickListener(onClickListener);
-        set_date();
-        set_gender();
+        findViewById(R.id.sendMail).setOnClickListener(onClickListener);
+        //set_date();
+        //set_gender();
     }
 
     @Override
@@ -64,11 +66,8 @@ public class SignupActivity extends AppCompatActivity {
                 case R.id.signUp:
                     sign_Up();
                     break;
-                case R.id.gotoLogin:
-                    backAlert();
-                    break;
-                case R.id.back:
-                    backAlert();
+                case R.id.sendMail:
+                    send_mail();
                     break;
             }
         }
@@ -121,41 +120,37 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
-    private void sign_Up() {
+
+    private void send_mail() {
         String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();
         String password = ((EditText) findViewById(R.id.setPass)).getText().toString();
         String checkpass = ((EditText) findViewById(R.id.passCheck)).getText().toString();
-        String name = ((EditText) findViewById(R.id.setName)).getText().toString();
-        String date = ((EditText) findViewById(R.id.setDate)).getText().toString();
 
-        if (email.length() > 0 && password.length() > 0 && checkpass.length() > 0) {
-            if (!check_email(email)) {
-                startToast("대학메일로 가입해주세요 ac.kr");
+        if(email.length()>0 && password.length()>0 && checkpass.length()>0) {
+            if(!check_email(email)) {
+                startToast("대학메일로 가입해주세요 ac..kr");
             }
             else if (password.length() >= 6) {
-                if (password.equals(checkpass)) {
+                if(password.equals(checkpass)) {
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(this, (task) -> {
-                                if (task.isSuccessful()) {
-                                    // 회원가입 성공시
+                                if(task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    Info info = new Info(name, "", date, "", "", "", gender, email);
+                                    Info info = new Info("", "", "", "", "", "", "", email);
                                     db.collection("users").document(user.getEmail()).set(info);
                                     user.sendEmailVerification()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
+                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                    if(task.isSuccessful()) {
                                                         checkAlert(email);
-                                                        FirebaseAuth.getInstance().signOut();
                                                     }
                                                 }
                                             });
                                 } else {
-                                    // 회원가입실패시
-                                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                        startToast("이메일이 이미 전송되었습니다");
+                                    if(task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                        startToast("이메일이 이미 전송되엇습니다");
                                     }
                                     else if (task.getException() != null) {
                                         startToast(task.getException().toString());
@@ -172,14 +167,26 @@ public class SignupActivity extends AppCompatActivity {
             startToast("입력되지 않은 정보가 있습니다.");
         }
     }
+    private void sign_Up() { // 수정필요
+        startActivity(LoginActivity.class);
+        /*FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if(firebaseUser.isEmailVerified()) {
+            startToast("이메일 인증 완료");
+            startActivity(UserinfoActivity.class);
+        } else {
+            startToast("이메일 인증을 완료해주세요.");
+        }*/
+    }
 
     private void startToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
     private void startActivity(Class c) {
         Intent intent = new Intent(this, c);
         startActivity(intent);
     }
+
     private void backAlert() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(SignupActivity.this)
                 .setTitle("나가기")
@@ -198,6 +205,7 @@ public class SignupActivity extends AppCompatActivity {
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
+
     private void checkAlert(String email) {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(SignupActivity.this)
                 .setTitle("이메일 인증")
@@ -210,11 +218,11 @@ public class SignupActivity extends AppCompatActivity {
         AlertDialog msgDlg = msgBuilder.create();
         msgDlg.show();
     }
+
     private boolean check_email(String email) {
         String pattern = "[0-9a-zA-Z]*\\@[0-9a-zA-Z]*\\.ac\\.kr"; //--@--.ac.kr
         boolean regex = Pattern.matches(pattern, email);
 
         return regex;
     }
-
 }

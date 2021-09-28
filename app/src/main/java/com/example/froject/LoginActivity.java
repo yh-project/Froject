@@ -116,12 +116,9 @@ public class LoginActivity extends AppCompatActivity {
                                     //유저 존재 X
                                     startToast("회원정보가 존재하지 않습니다.");
                                 }
-
-
                                 else {
                                     startToast(task.getException().toString());
                                 }
-
                             }
                         }
                     });
