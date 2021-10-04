@@ -1,162 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:background="#FFFFFF">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="10dp">
-
-        <Button
-            android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/backbtn" />
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo_" />
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!--회원정보 문구-->
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:text="회원정보"
+        android:textSize="19sp"
+        android:textColor="#33529F"
+        android:lineSpacingExtra="3.8sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintBottom_toTopOf="@+id/setNumber"
+        android:layout_marginBottom="119.4dp"
+        android:layout_marginStart="3.5dp" />
 
-        <EditText
-            android:id="@+id/setName"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="이름을 입력해주세요." />
+    <!--이름-->
+    <TextView
+        android:id="@+id/nameMent1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성"
+        android:textColor="#33529F"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setName"
+        app:layout_constraintBottom_toTopOf="@+id/setName"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="7.1dp" />
 
-        <EditText
-            android:id="@+id/setNumber"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="phone"
-            android:hint="번호를 입력해주세요." />
+    <EditText
+        android:id="@+id/setName"
+        android:layout_width="128.6dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/input_box_eefof5"
+        android:hint="홍"
+        android:textColorHint="#727272"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="0dp"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintBottom_toTopOf="@+id/setNumber"
+        android:layout_marginBottom="39dp" />
 
-        <EditText
-            android:id="@+id/setDate"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="date"
-            android:hint="생일을 입력해주세요."
-            android:clickable="true"
-            android:focusable="false"
-            tools:ignore="KeyboardInaccessibleWidget"/>
+    <TextView
+        android:id="@+id/nameMent2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이름"
+        android:textColor="#33529F"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setName2"
+        app:layout_constraintBottom_toTopOf="@+id/setName2"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="7.1dp" />
+
+    <EditText
+        android:id="@+id/setName2"
+        android:layout_width="128.6dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/input_box_eefof5"
+        android:hint="길동"
+        android:textColorHint="#727272"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/setNumber"
+        app:layout_constraintBottom_toTopOf="@+id/setNumber"
+        android:layout_marginBottom="39dp" />
 
 
-        <EditText
-            android:id="@+id/setUniv"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="학교를 입력해주세요." />
+    <!--전화번호-->
+    <TextView
+        android:id="@+id/numberMent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        android:textColor="#33529F"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintBottom_toTopOf="@+id/setNumber"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="7.1dp" />
 
-        <EditText
-            android:id="@+id/setLevel"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:inputType="number"
-            android:hint="학년을 입력해주세요." />
+    <EditText
+        android:id="@+id/setNumber"
+        android:layout_width="278.2dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/input_box_eefof5"
+        android:inputType="phone"
+        android:hint="01012345678"
+        android:textColorHint="#727272"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="15.9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="220.9dp" />
 
-        <EditText
-            android:id="@+id/setMajor"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="전공을 입력해주세요."
-            android:inputType="textPersonName" />
+    <!--학교-->
+    <TextView
+        android:id="@+id/univMent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학교"
+        android:textColor="#33529F"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setUniv"
+        app:layout_constraintBottom_toTopOf="@+id/setUniv"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="7.1dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:weightSum="100">
+    <EditText
+        android:id="@+id/setUniv"
+        android:layout_width="278.2dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/input_box_eefof5"
+        android:inputType="text"
+        android:hint="길동대학교"
+        android:textColorHint="#727272"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="15.9dp"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintTop_toBottomOf="@+id/setNumber"
+        android:layout_marginTop="27.1dp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                tools:ignore="NestedWeights" />
+    <!--학년-->
+    <TextView
+        android:id="@+id/levelMent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="학년"
+        android:textColor="#33529F"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setLevel"
+        app:layout_constraintBottom_toTopOf="@+id/setLevel"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="7.1dp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:text="@string/signup_gender"
-                android:textStyle="bold"
-                android:textColor="#1B68B4"
-                android:textSize="16sp"
-                android:gravity="center" />
+    <EditText
+        android:id="@+id/setLevel"
+        android:layout_width="278.2dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/input_box_eefof5"
+        android:inputType="text"
+        android:hint="3학년"
+        android:textColorHint="#727272"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="15.9dp"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintTop_toBottomOf="@+id/setNumber"
+        android:layout_marginTop="86.7dp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="9"
-                tools:ignore="NestedWeights" />
+    <!--전공-->
+    <TextView
+        android:id="@+id/majorMent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전공"
+        android:textColor="#33529F"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="@+id/setMajor"
+        app:layout_constraintBottom_toTopOf="@+id/setMajor"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="7.1dp" />
 
-            <Button
-                android:id="@+id/man"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="28"
-                android:background="@drawable/borderline"
-                android:text="@string/signup_man"
-                android:textStyle="bold"
-                android:textColor="#9ABCDE"
-                android:textSize="16sp"
+    <EditText
+        android:id="@+id/setMajor"
+        android:layout_width="278.2dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/input_box_eefof5"
+        android:inputType="text"
+        android:hint="시각디자인학과과"
+       android:textColorHint="#727272"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="15.9dp"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintTop_toBottomOf="@+id/setNumber"
+        android:layout_marginTop="146.3dp" />
 
-                />
+    <!--완료버튼-->
+    <Button
+        android:id="@+id/checkInfo"
+        android:layout_width="283.3dp"
+        android:layout_height="33.2dp"
+        android:background="@drawable/login_box"
+        android:text="완료"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:lineSpacingExtra="2.4sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="57.3dp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                tools:ignore="NestedWeights" />
+    <EditText
+        android:id="@+id/setDate"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="date"
+        android:background="@drawable/input_box_eefof5"
+        android:hint="생일을 입력해주세요."
+        android:clickable="true"
+        android:focusable="false"
+        tools:ignore="KeyboardInaccessibleWidget"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="150dp"/>
 
-            <Button
-                android:id="@+id/woman"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="28"
-                android:background="@drawable/borderline"
-                android:text="@string/signup_woman"
-                android:textColor="#9ABCDE"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/checkInfo"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="확인"
-            app:cornerRadius="5dp" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

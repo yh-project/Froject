@@ -95,7 +95,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
-    private void set_gender() {
+    /*private void set_gender() {
         Button mAn = ((Button)findViewById(R.id.man));
         Button woMan = ((Button)findViewById(R.id.woman));
 
@@ -119,7 +119,7 @@ public class SignupActivity extends AppCompatActivity {
                 gender = "여";
             }
         });
-    }
+    }*/
 
     private void send_mail() {
         String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();

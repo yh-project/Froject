@@ -39,19 +39,19 @@ public class UserinfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfo);
 
-        findViewById(R.id.back).setOnClickListener(onClickListener);
+        //findViewById(R.id.back).setOnClickListener(onClickListener);
         findViewById(R.id.checkInfo).setOnClickListener(onClickListener);
-        Button mAn = ((Button)findViewById(R.id.man));
-        Button woMan = ((Button)findViewById(R.id.woman));
+        /*Button mAn = ((Button)findViewById(R.id.man));
+        Button woMan = ((Button)findViewById(R.id.woman));*/
 
-        mAn.setBackground(getDrawable(R.drawable.borderline));
+        /*mAn.setBackground(getDrawable(R.drawable.borderline));
         mAn.setTextColor(Color.rgb(154, 188, 222));
         woMan.setBackground(getDrawable(R.drawable.borderline));
-        woMan.setTextColor(Color.rgb(154, 188, 222));
+        woMan.setTextColor(Color.rgb(154, 188, 222));*/
 
         set_date();
-        set_gender(mAn, woMan);
-        set_preview(mAn, woMan);
+        /*set_gender(mAn, woMan);
+        set_preview(mAn, woMan);*/
     }
 
     @Override
@@ -63,9 +63,9 @@ public class UserinfoActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.back:
+                /*case R.id.back:
                     backAlert();
-                    break;
+                    break;*/
                 case R.id.checkInfo:
                     user_info();
                     break;
@@ -96,7 +96,7 @@ public class UserinfoActivity extends AppCompatActivity {
             }
         });
     }
-    private void set_gender(Button mAn, Button woMan) {
+    /*private void set_gender(Button mAn, Button woMan) {
 
         mAn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,8 +118,8 @@ public class UserinfoActivity extends AppCompatActivity {
                 gender = "여";
             }
         });
-    }
-    private void set_preview(Button mAn, Button woMan) {
+    }*/
+    /*private void set_preview(Button mAn, Button woMan) {
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -144,7 +144,7 @@ public class UserinfoActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    }*/
     private void user_info() {
         String name = ((EditText)findViewById(R.id.setName)).getText().toString();
         String number = ((EditText)findViewById(R.id.setNumber)).getText().toString();
