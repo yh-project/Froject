@@ -79,6 +79,8 @@ public class Profilefragment extends Fragment {
 
         v.findViewById(R.id.editProfile).setOnClickListener(onClickListener);
         v.findViewById(R.id.logout).setOnClickListener(onClickListener);
+        v.findViewById(R.id.gotoLikeList).setOnClickListener(onClickListener);
+        v.findViewById(R.id.gotoMyPost).setOnClickListener(onClickListener);
 
         return v;
     }
@@ -96,6 +98,16 @@ public class Profilefragment extends Fragment {
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
                     startActivity(LoginActivity.class);
+                    break;
+                case R.id.gotoLikeList:
+                    intent = new Intent(getActivity(), LikeListActivity.class);
+                    intent.putExtra("my_info",my_info);
+                    startActivity(intent);
+                    break;
+                case R.id.gotoMyPost:
+                    intent = new Intent(getActivity(), MyListActivity.class);
+                    intent.putExtra("my_info",my_info);
+                    startActivity(intent);
                     break;
             }
         }

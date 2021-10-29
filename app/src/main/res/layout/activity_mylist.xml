@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="즐겨찾기"
+            android:text="내 게시글"
             android:textSize="15.5sp"
             android:textColor="#33529f"
             android:fontFamily="@font/nanumsquareroundeb"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/topLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/likeRecyclerView"
+        android:id="@+id/listRecyclerView"
         android:layout_width="322.5dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
