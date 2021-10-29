@@ -2,10 +2,15 @@ package com.example.froject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +38,7 @@ public class EditprofileActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRref = db.collection("users").document(user.getEmail());
+    ArrayList<String> list;
 
     Info my_info;
 
@@ -49,13 +55,45 @@ public class EditprofileActivity extends AppCompatActivity {
         ArrayList<String> levels = new ArrayList<>(5);
         for (int i=0;i<5;i++)
             levels.add((i+1)+"학년");
+        list = new ArrayList<>(4);
+        list.add(my_info.getFirst_name());
+        list.add(my_info.getLast_name());
+        list.add(my_info.getmajor());
+        list.add(my_info.getuniv());
 
-        // 49~57 editprofile 화면 수정하면서 기존꺼 주석처리
         TextView originalFirst = ((TextView)findViewById(R.id.firstName));
         TextView originalLast = ((TextView)findViewById(R.id.lastName));
         TextView originalmajor = ((TextView)findViewById(R.id.newMajor));
         final Spinner levelSpinner = ((Spinner)findViewById(R.id.newLevel));
         TextView originaluniv = ((TextView)findViewById(R.id.newUniv));
+
+        // 49~57 editprofile 화면 수정하면서 기존꺼 주석처리
+        ((TextView) findViewById(R.id.firstName)).addTextChangedListener(watcher);
+        ((TextView) findViewById(R.id.lastName)).addTextChangedListener(watcher);
+        ((TextView) findViewById(R.id.newMajor)).addTextChangedListener(watcher);
+        ((TextView) findViewById(R.id.newUniv)).addTextChangedListener(watcher);
+
+        ((Spinner) findViewById(R.id.newLevel)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!my_info.getlevel().equals(levels.get(position))) {
+                    ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_33529f);
+                    ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(255,255,255));
+                }
+                else {
+                    ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_e0e1ef);
+                    ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(114,114,114));
+                }
+                Log.d("123","321");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ((Button)findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_e0e1ef);
+                Log.d("123","12321");
+            }
+        });
+
 
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, levels);
         levelAdapter.setDropDownViewResource(R.layout.spinner_item);
@@ -117,33 +155,65 @@ public class EditprofileActivity extends AppCompatActivity {
         }
     };
 
+    View.OnFocusChangeListener onFocusChangeListener = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if (!hasFocus) {
+                switch (v.getId()) {
+
+                }
+            }
+        }
+    };
+
+    TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            for(int i=0;i<4;i++) {
+                if (!list.get(i).equals(s.toString())) {
+                    ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_33529f);
+                    ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(255,255,255));
+                }
+                else {
+                    ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_e0e1ef);
+                    ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(114,114,114));
+                }
+            }
+        }
+    };
+
+
     private void change_info() {
         @Nullable String newFirstName = ((EditText)findViewById(R.id.firstName)).getText().toString();
         @Nullable String newLastName = ((EditText)findViewById(R.id.lastName)).getText().toString();
         @Nullable String newmajor = ((EditText)findViewById(R.id.newMajor)).getText().toString();
         @Nullable String newlevel = ((Spinner)findViewById(R.id.newLevel)).getSelectedItem().toString();
         @Nullable String newuniv = ((EditText)findViewById(R.id.newUniv)).getText().toString();
-        String newlist = " ";
 
         final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newFirstName,newLastName, newmajor, newlevel, newuniv));
         final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("first_name","last_name", "major", "level", "univ"));
 
-
         if(newinfolist.get(0).length() == 0 && newinfolist.get(1).length() == 0 && newinfolist.get(2).length() == 0 && newinfolist.get(3).length() == 0 && newinfolist.get(4).length() == 0)  {
-            cancelAlert();
+            //cancelAlert();
+            finish();
         }
         else {
-            for(int i=0;i<5;i++) {
-                if(newinfolist.get(i).length() > 0) { newlist += (newinfolist.get(i) + " "); }
-            }
             AlertDialog.Builder msgBuilder = new AlertDialog.Builder(EditprofileActivity.this)
                     .setTitle("프로필수정")
                     .setMessage("수정하시겠습니까?")
                     .setPositiveButton("네", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
-                            if(newinfolist.get(0).length()>0) { my_info.setname(newinfolist.get(0)+newinfolist.get(1)); }
-                            if(newinfolist.get(1).length()>0) { my_info.setname(newinfolist.get(0)+newinfolist.get(1)); }
+                            if(newinfolist.get(0).length()>0) { my_info.setFirst_name(newinfolist.get(0)); my_info.setname(newinfolist.get(0)+newinfolist.get(1)); }
+                            if(newinfolist.get(1).length()>0) { my_info.setLast_name(newinfolist.get(1)); my_info.setname(newinfolist.get(0)+newinfolist.get(1)); }
                             if(newinfolist.get(2).length()>0) { my_info.setmajor(newinfolist.get(2)); }
                             if(newinfolist.get(3).length()>0) { my_info.setlevel(newinfolist.get(3)); }
                             if(newinfolist.get(4).length()>0) { my_info.setuniv(newinfolist.get(4)); }
