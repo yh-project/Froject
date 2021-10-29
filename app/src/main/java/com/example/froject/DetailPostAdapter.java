@@ -58,8 +58,7 @@ public class DetailPostAdapter extends RecyclerView.Adapter<PostDetailHolder> {
 class PostDetailHolder extends RecyclerView.ViewHolder {
     TextView inputContentTitle;
     TextView inputContent;
-    TextView inputBigCategory;
-    TextView inputSmallCategory;
+    TextView inputCategory;
     TextView countPeople;
     TextView place;
     TextView period;
@@ -69,8 +68,7 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
         super(itemView);
         inputContentTitle = itemView.findViewById(R.id.inputContentTitle);
         inputContent = itemView.findViewById(R.id.inputContent);
-        inputBigCategory = itemView.findViewById(R.id.inputBigCategory);
-        inputSmallCategory = itemView.findViewById(R.id.inputSmallCategory);
+        inputCategory = itemView.findViewById(R.id.inputCategory);
         countPeople = itemView.findViewById(R.id.countPeople);
         place = itemView.findViewById(R.id.place);
         period = itemView.findViewById(R.id.period);
@@ -86,8 +84,7 @@ class PostDetailHolder extends RecyclerView.ViewHolder {
 
     void onBind2(PostData postData, int position) {
         inputContent.setText(postData.getCategoryContent().get(position-1));
-        inputBigCategory.setText(postData.getBigCategory().get(position-1));
-        inputSmallCategory.setText(postData.getSmallCategory().get(position-1));
+        inputCategory.setText(postData.getBigCategory().get(position-1) + " " + postData.getSmallCategory().get(position-1));
         countPeople.setText("구인 수 : "+postData.getCategoryPeople().get(position-1));
     }
 }

@@ -52,10 +52,10 @@ public class PostActivity extends AppCompatActivity {
 
         Boolean isStar = postdata.getStar().contains(user.getEmail());
         if (isStar) {
-            like.setImageResource(R.drawable.ic_baseline_star_24);
+            like.setImageResource(R.drawable.star);
         }
         else {
-            like.setImageResource(R.drawable.ic_baseline_star_border_24);
+            like.setImageResource(R.drawable.unstar);
         }
 
         recyclerView = findViewById(R.id.postContentRecyclerView);
@@ -98,12 +98,12 @@ public class PostActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Boolean isStar = postdata.getStar().contains(user.getEmail());
                     if (isStar) {
-                        like.setImageResource(R.drawable.ic_baseline_star_border_24);
+                        like.setImageResource(R.drawable.unstar);
                         postdata.getStar().remove(user.getEmail());
                         FirebaseFirestore.getInstance().collection("users").document(postdata.getEmail()).collection("Board").document(docRef).update("star",postdata.getStar());
                     }
                     else {
-                        like.setImageResource(R.drawable.ic_baseline_star_24);
+                        like.setImageResource(R.drawable.star);
                         postdata.getStar().add(user.getEmail());
                         FirebaseFirestore.getInstance().collection("users").document(postdata.getEmail()).collection("Board").document(docRef).update("star",postdata.getStar());
                     }
