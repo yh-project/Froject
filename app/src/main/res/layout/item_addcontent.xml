@@ -1,16 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/boxLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/borderline_content_box"
-        android:padding="10dp"
-        android:orientation="vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/borderline_content_box">
+
+        <Spinner
+            android:id="@+id/bigcategory"
+            android:layout_width="64.3dp"
+            android:layout_height="13.7dp"
+            app:autoSizeTextType="uniform"
+            android:background="@drawable/item_background_spinnerbig"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16.2dp"
+            android:layout_marginTop="13.6dp" />
+
+        <Spinner
+            android:id="@+id/smallcategory"
+            android:layout_width="64.3dp"
+            android:layout_height="13.7dp"
+            app:autoSizeTextType="uniform"
+            android:background="@drawable/item_background_spinnerbig"
+            app:layout_constraintStart_toEndOf="@+id/bigcategory"
+            app:layout_constraintTop_toTopOf="@+id/bigcategory"
+            android:layout_marginStart="18.2dp"/>
+
+        <Spinner
+            android:id="@+id/count"
+            android:layout_width="64.3dp"
+            android:layout_height="13.7dp"
+            app:autoSizeTextType="uniform"
+            android:background="@drawable/item_background_spinnerbig"
+            app:layout_constraintStart_toEndOf="@+id/smallcategory"
+            app:layout_constraintTop_toTopOf="@+id/smallcategory"
+            android:layout_marginStart="18.2dp" />
+
+        <EditText
+            android:id="@+id/inputContent1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.3dp"
+            android:hint="글을 입력해주세요."
+            android:backgroundTint="@android:color/transparent"
+            android:textColorHint="#a6a5a5"
+            android:textColor="#000000"
+            android:textSize="11.5sp"
+            android:fontFamily="@font/nanumsquareroundeb"
+            android:lineSpacingExtra="2.3sp"
+            android:gravity="start"
+            app:layout_constraintStart_toStartOf="@+id/bigcategory"
+            app:layout_constraintTop_toBottomOf="@+id/smallcategory"/>
+
+        <ImageButton
+            android:id="@+id/deleteContent"
+            android:layout_width="13.7dp"
+            android:layout_height="13.7dp"
+            android:background="#ffffff"
+            android:src="@drawable/remove"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="13.6dp"
+            android:layout_marginEnd="16.2dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/addContents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:src="@drawable/add_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boxLayout"
+        android:layout_marginTop="17.7dp"/>
+<!--
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,56 +94,56 @@
         android:orientation="horizontal"
         android:weightSum="100">
 
-        <Spinner
+        &lt;!&ndash;<Spinner
             android:id="@+id/bigcategory"
             android:layout_width="0dp"
             android:layout_weight="30"
             android:layout_height="20dp"
             app:autoSizeTextType="uniform"
-            android:background="@drawable/item_background_spinnerbig" />
+            android:background="@drawable/item_background_spinnerbig" />&ndash;&gt;
 
         <View
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="20dp" />
 
-        <Spinner
+        &lt;!&ndash;<Spinner
             android:id="@+id/smallcategory"
             android:layout_width="0dp"
             android:layout_weight="30"
             android:layout_height="20dp"
             app:autoSizeTextType="uniform"
-            android:background="@drawable/item_background_spinnerbig" />
+            android:background="@drawable/item_background_spinnerbig" />&ndash;&gt;
 
         <View
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="20dp" />
 
-        <Spinner
+        &lt;!&ndash;<Spinner
             android:id="@+id/count"
             android:layout_width="0dp"
             android:layout_weight="20"
             android:layout_height="20dp"
             app:autoSizeTextType="uniform"
-            android:background="@drawable/item_background_spinnerbig" />
+            android:background="@drawable/item_background_spinnerbig" />&ndash;&gt;
 
         <View
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="20dp" />
 
-        <ImageButton
+        &lt;!&ndash;<ImageButton
             android:id="@+id/deleteContent"
             android:layout_width="0dp"
             android:layout_weight="7"
             android:layout_height="20dp"
             android:background="#ffffff"
-            android:src="@drawable/ic_baseline_highlight_off_24"/>
+            android:src="@drawable/ic_baseline_highlight_off_24"/>&ndash;&gt;
 
     </LinearLayout>
 
-    <EditText
+    &lt;!&ndash;<EditText
         android:id="@+id/inputContent1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,14 +155,9 @@
         android:textSize="12sp"
         android:fontFamily="@font/nanumsquareroundeb"
         android:lines="5"
-        android:gravity="start"/>
+        android:gravity="start"/>&ndash;&gt;
 
     </LinearLayout>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_weight="3"
-        android:layout_height="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,26 +165,21 @@
         android:orientation="horizontal"
         android:weightSum="100">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="50"
-            android:layout_height="20dp" />
-
-        <ImageButton
+        &lt;!&ndash;<ImageButton
             android:id="@+id/addContents"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_launcher_background"
             android:src="@drawable/item_add_contents">
-        </ImageButton>
+        </ImageButton>&ndash;&gt;
 
         <View
             android:layout_width="0dp"
             android:layout_weight="50"
             android:layout_height="20dp" />
-    </LinearLayout>
+    </LinearLayout>-->
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 <!--
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
