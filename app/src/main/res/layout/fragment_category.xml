@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="250"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
+        android:id="@+id/titleMent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="카테고리"
-        android:textColor="#5768CA"
-        android:textSize="20sp"
-        android:gravity="center" />
+        android:textColor="#33529f"
+        android:textSize="15.5sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        android:lineSpacingExtra="3.1sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="34.9dp"/>
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="230"
-        android:weightSum="130"
-        android:gravity="center">
+        android:layout_height="1dp"
+        android:background="#f1f2f4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleMent"
+        android:layout_marginTop="9.5dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryRecyclerview"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRecyclerview"
+        android:layout_width="254.8dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="89dp" />
 
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

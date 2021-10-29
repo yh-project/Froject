@@ -36,7 +36,7 @@ public class Categoryfragment extends Fragment {
         categoryView = v.findViewById(R.id.categoryRecyclerview);
         categoryList = new ArrayList<>();
         for(int i=0; i<7; i++) {
-            CategoryData categoryData = new CategoryData(R.drawable.design, a[i]);
+            CategoryData categoryData = new CategoryData(R.drawable.category_design, a[i]);
             categoryList.add(categoryData);
         }
         categoryAdapter = new CategoryAdapter(categoryList);
