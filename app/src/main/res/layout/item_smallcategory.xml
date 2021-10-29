@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로고·브랜딩"
-        android:textColor="#6c6c6d"
+        android:textColor="#bebebd"
         android:textSize="11sp"
         android:lineSpacingExtra="2.2sp"
         android:fontFamily="@font/nanumsquareroundb"

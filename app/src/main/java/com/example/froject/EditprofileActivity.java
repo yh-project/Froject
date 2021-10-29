@@ -79,18 +79,18 @@ public class EditprofileActivity extends AppCompatActivity {
                 if (!my_info.getlevel().equals(levels.get(position))) {
                     ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_33529f);
                     ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(255,255,255));
+                    ((Button) findViewById(R.id.changeInfo)).setClickable(true);
                 }
                 else {
                     ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_e0e1ef);
                     ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(114,114,114));
+                    ((Button) findViewById(R.id.changeInfo)).setClickable(false);
                 }
-                Log.d("123","321");
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 ((Button)findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_e0e1ef);
-                Log.d("123","12321");
             }
         });
 
@@ -181,10 +181,12 @@ public class EditprofileActivity extends AppCompatActivity {
                 if (!list.get(i).equals(s.toString())) {
                     ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_33529f);
                     ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(255,255,255));
+                    ((Button) findViewById(R.id.changeInfo)).setClickable(true);
                 }
                 else {
                     ((Button) findViewById(R.id.changeInfo)).setBackgroundResource(R.drawable.button_e0e1ef);
                     ((Button) findViewById(R.id.changeInfo)).setTextColor(Color.rgb(114,114,114));
+                    ((Button) findViewById(R.id.changeInfo)).setClickable(false);
                 }
             }
         }
