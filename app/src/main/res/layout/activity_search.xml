@@ -1,110 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="250">
+    android:layout_height="match_parent">
 
-    <!--검색창-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:weightSum="130"
-        android:gravity="center">
+    <ImageButton
+        android:id="@+id/searchBtn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/searchbtn"
+        android:background="#ffffff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30.9dp"
+        android:layout_marginStart="26.6dp" />
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:src="@drawable/item_back_button"
-            android:background="#ffffff"/>
-        
-        <EditText
-            android:id="@+id/searchdata"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="100"
-            android:hint="검색어를 입력하세요."
-            android:textColorHint="#858585"
-            android:textSize="16sp"
-            android:maxLines="1"
-            android:paddingLeft="5dp"
-            android:background="@android:color/transparent"
-            android:gravity="center_vertical"/>
+    <EditText
+        android:id="@+id/searchdata"
+        android:layout_width="291.6dp"
+        android:layout_height="24dp"
+        android:hint="검색어를 입력하세요."
+        android:textColorHint="#bebebd"
+        android:textSize="13.5sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@+id/searchBtn"
+        app:layout_constraintStart_toEndOf="@+id/searchBtn" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/recentMent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최근 검색어"
+        android:textColor="#6c6c6d"
+        android:fontFamily="@font/nanumsquareroundeb"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="36.3dp"
+        android:layout_marginTop="74.3dp"/>
 
-    <!--멘트-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:weightSum="130">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recentRecyclerView"
+        android:layout_width="300dp"
+        android:layout_height="29.3dp"
+        app:layout_constraintStart_toStartOf="@+id/recentMent"
+        app:layout_constraintTop_toBottomOf="@+id/recentMent"
+        android:layout_marginTop="10dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="15" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rankRecyclerView"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/recentMent"
+        app:layout_constraintTop_toBottomOf="@+id/recentRecyclerView"
+        android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="105"
-            android:text="최근 검색어"
-            android:textColor="#858585"
-            android:gravity="center_vertical"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-
-    <!--검색 기록-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:gravity="center"
-        android:weightSum="130">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"
-            android:weightSum="10"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recentRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="7" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--인기 검색어-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="200"
-        android:weightSum="130">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="20" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rankRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="100" />
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

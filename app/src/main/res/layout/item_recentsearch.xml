@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="130dp"
     android:layout_height="match_parent"
-    android:background="@drawable/shadow_right_bottom_recentsearch"
-    android:weightSum="100"
-    android:orientation="horizontal"
-    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/box_afbde1"
     android:layout_marginRight="10dp">
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="10" />
 
     <TextView
         android:id="@+id/selectedCategory"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="65"
-        android:text="상세페이지"
-        android:textColor="#858585"
-        android:maxLines="1"
-        android:gravity="center_vertical"/>
-
-    <ImageButton
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:background="@android:color/transparent"
-        android:src="@drawable/item_remove_button"
-        android:layout_gravity="center"/>
+        android:text="상세페이지"
+        android:textColor="#294075"
+        android:textSize="13sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2.6sp"
+        android:maxLines="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="14.2dp"/>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/remove"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="12dp"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
