@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,7 +74,7 @@ public class Homefragment extends Fragment {
         String[] Plancategory = getResources().getStringArray(R.array.Plancategory);//1 31
         String[] Interiorlcategory = getResources().getStringArray(R.array.Interiorlcategory);//1 32
 
-        ImageButton search = v.findViewById(R.id.search);
+        ImageView search = v.findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

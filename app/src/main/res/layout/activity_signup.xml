@@ -80,7 +80,8 @@
         android:fontFamily="@font/nanumsquareroundr"
         app:layout_constraintTop_toBottomOf="@+id/setEmail"
         app:layout_constraintStart_toStartOf="@+id/emailMent"
-        android:layout_marginTop="31.2dp" />
+        android:layout_marginTop="31.2dp"
+        android:visibility="invisible" />
 
     <!--비밀번호 입력-->
     <EditText
@@ -99,7 +100,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="289.6dp" />
+        android:layout_marginTop="289.6dp"
+        android:visibility="invisible"/>
 
     <!--비밀번호 재입력-->
     <EditText
@@ -118,7 +120,8 @@
         app:layout_constraintTop_toBottomOf="@+id/setPass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="6.8dp" />
+        android:layout_marginTop="6.8dp"
+        android:visibility="invisible"/>
 
     <!--다음창으로-->
     <Button
