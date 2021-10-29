@@ -167,7 +167,22 @@
         android:layout_marginStart="13dp"
         android:layout_marginBottom="7.1dp" />
 
-    <EditText
+    <Spinner
+        android:id="@+id/setLevel"
+        android:layout_width="278.2dp"
+        android:layout_height="32.5dp"
+        android:background="@drawable/item_spinner_editprofile"
+        android:paddingStart="15.9dp"
+        android:paddingEnd="15.9dp"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        android:lineSpacingExtra="2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toStartOf="@+id/setNumber"
+        app:layout_constraintTop_toBottomOf="@+id/setNumber"
+        android:layout_marginTop="86.7dp"/>
+
+    <!--<EditText
         android:id="@+id/setLevel"
         android:layout_width="278.2dp"
         android:layout_height="32.5dp"
@@ -183,7 +198,7 @@
         android:paddingEnd="15.9dp"
         app:layout_constraintStart_toStartOf="@+id/setNumber"
         app:layout_constraintTop_toBottomOf="@+id/setNumber"
-        android:layout_marginTop="86.7dp" />
+        android:layout_marginTop="86.7dp" />-->
 
     <!--전공-->
     <TextView
