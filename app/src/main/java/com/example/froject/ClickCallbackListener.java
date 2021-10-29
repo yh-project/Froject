@@ -1,5 +1,5 @@
 package com.example.froject;
 
 public interface ClickCallbackListener {
-    void callBack(String name);
+    void callBack(String name, int a);
 }
