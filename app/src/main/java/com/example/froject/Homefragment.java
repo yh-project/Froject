@@ -144,7 +144,7 @@ public class Homefragment extends Fragment {
         categoryView = v.findViewById(R.id.homecategoryRecyclerview);
         categoryList = new ArrayList<>();
         for(int i=0; i<7; i++) {
-            CategoryData categoryData = new CategoryData(R.drawable.design, bigcategory[i]);
+            CategoryData categoryData = new CategoryData(R.drawable.category_design, bigcategory[i]);
             categoryList.add(categoryData);
         }
         categoryAdapter = new CategoryAdapter(categoryList);

@@ -4,37 +4,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#eef0f5">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Froject"
-        android:fontFamily="@font/nanumsquareroundeb"
-        android:textSize="19.4sp"
-        android:textColor="#33529f"
-        android:lineSpacingExtra="3.9sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="33.5dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="62.1dp"
+        android:background="#ffffff">
 
-    <ImageView
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/searchbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30.9dp"
-        android:layout_marginEnd="17.7dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Froject"
+            android:fontFamily="@font/nanumsquareroundeb"
+            android:textSize="19.4sp"
+            android:textColor="#33529f"
+            android:lineSpacingExtra="3.9sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="33.5dp" />
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/searchbtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="30.9dp"
+            android:layout_marginEnd="17.7dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
         android:scrollbars="vertical"
-        android:background="#eef0f5"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="62.1dp">
 

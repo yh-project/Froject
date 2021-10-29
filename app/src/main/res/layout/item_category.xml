@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_category"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#ffffff"
-    android:clickable="true"
-    android:layout_marginTop="10dp">
+    android:background="@android:color/transparent"
+    android:clickable="true">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/categorysrc"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/design" />
+        android:src="@drawable/category_design"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/categoryname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사진·영상"
-        android:gravity="center"/>
+        android:text="디자인"
+        android:textColor="#294075"
+        android:textSize="10.5sp"
+        android:lineSpacingExtra="2.1sp"
+        android:fontFamily="@font/nanumsquareroundr"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categorysrc"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

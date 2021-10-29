@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,7 +73,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
 
 class CategoryHolder extends RecyclerView.ViewHolder {
     TextView categoryname;
-    CircleImageView categorysrc;
+    ImageView categorysrc;
     ItemClickListener itemClickListener;
 
     public CategoryHolder(@NonNull View itemView) {
