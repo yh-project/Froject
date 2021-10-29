@@ -74,7 +74,7 @@ public class Boardfragment extends Fragment {
     private PostData[] lists;
     private int docSize;
 
-    private int prev=0;
+    private int prev=0, prev_big=0;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -83,6 +83,7 @@ public class Boardfragment extends Fragment {
     PostData tmp;
     String bigcat="";
     boolean[] is_checked = new boolean[10];
+    boolean[] is_checked_big = new boolean[7];
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,6 +91,8 @@ public class Boardfragment extends Fragment {
 
         for(int i=0;i<10;i++)
             is_checked[i]=false;
+        for(int i=0;i<7;i++)
+            is_checked_big[i]=false;
 
         if (this.getArguments() != null)
             bigcat = this.getArguments().getString("bigcat");
@@ -118,7 +121,16 @@ public class Boardfragment extends Fragment {
         // 큰카테고리 뷰에따른 작은카테고리
         bigcategoryrecyclerview = v.findViewById(R.id.bigcategoryRecyclerView);
         bigcategorylist = getResources().getStringArray(R.array.Bigcategory);
-        bigCategoryAdapter = new BigCategoryAdapter(bigcategorylist);
+        int cnt=0;
+        for(String cat:bigcategorylist) {
+            if(cat.equals(bigcat)) {
+                prev_big = cnt;
+                is_checked_big[cnt]=true;
+                break;
+            }
+            cnt++;
+        }
+        bigCategoryAdapter = new BigCategoryAdapter(bigcategorylist, is_checked_big);
 
         //이전 카테고리뷰에서 누른 카테고리의 하부 카테고리 기본 생성
         switch(bigcat) {
@@ -154,8 +166,16 @@ public class Boardfragment extends Fragment {
 
         //큰카테고리 선택시 작은카테고리 생성
         callbackListener = new ClickCallbackListener() {
+
             @Override
-            public void callBack(String name) {
+            public void callBack(String name, int a) {
+                for(int i=0;i<10;i++)
+                    is_checked[i]=false;
+                is_checked_big[a]=true;
+                is_checked_big[prev_big]=false;
+                bigCategoryAdapter.notifyItemChanged(a);
+                bigCategoryAdapter.notifyItemChanged(prev_big);
+                prev_big = a;
                 switch(name) {
                     case "디자인":
                         smallcategorylist = getResources().getStringArray(R.array.Designcategory);

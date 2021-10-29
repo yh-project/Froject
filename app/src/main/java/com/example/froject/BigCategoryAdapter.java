@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BigCategoryAdapter extends RecyclerView.Adapter<NameHolder> {
     private String[] list;
     private ClickCallbackListener callbackListener;
+    private boolean[] is_checked;
 
-    BigCategoryAdapter(String[] list) {
+    BigCategoryAdapter(String[] list, boolean[] is_checked) {
         this.list = list;
+        this.is_checked=is_checked;
     }
 
     public void setCallbackListener(ClickCallbackListener callbackListener) {
@@ -29,7 +31,11 @@ public class BigCategoryAdapter extends RecyclerView.Adapter<NameHolder> {
     public NameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.item_bigcategory, parent, false);
+        View view;
+        if (viewType==1)
+            view = inflater.inflate(R.layout.item_bigcategory, parent, false);
+        else
+            view = inflater.inflate(R.layout.item_bigcategory2, parent, false);
         return new NameHolder(view);
     }
 
@@ -45,7 +51,10 @@ public class BigCategoryAdapter extends RecyclerView.Adapter<NameHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        if (is_checked[position])
+            return 1;
+        else
+            return 0;
     }
 }
 
@@ -66,7 +75,7 @@ class NameHolder extends RecyclerView.ViewHolder {
         bigcategoryname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callbackListener.callBack(bigcategoryname.getText().toString());
+                callbackListener.callBack(bigcategoryname.getText().toString(),getBindingAdapterPosition());
             }
         });
     }
