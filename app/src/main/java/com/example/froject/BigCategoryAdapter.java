@@ -51,17 +51,17 @@ public class BigCategoryAdapter extends RecyclerView.Adapter<NameHolder> {
 
 class NameHolder extends RecyclerView.ViewHolder {
     TextView bigcategoryname;
-    View sibal;
+    //View sibal;
     ClickCallbackListener callbackListener;
 
     public NameHolder(@NonNull View itemView) {
         super(itemView);
-        bigcategoryname = itemView.findViewById(R.id.bigcategoryName);
+        bigcategoryname = itemView.findViewById(R.id.bigcategoryName);/*
         sibal = itemView.findViewById(R.id.sibal);
         int gaesibal = bigcategoryname.getWidth();
 
         LinearLayout.LayoutParams param_sibal = new LinearLayout.LayoutParams(30, gaesibal);
-        sibal.setLayoutParams(param_sibal);
+        sibal.setLayoutParams(param_sibal);*/
 
         bigcategoryname.setOnClickListener(new View.OnClickListener() {
             @Override

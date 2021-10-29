@@ -104,10 +104,10 @@ class PostHolder extends RecyclerView.ViewHolder {
 
         Boolean isStar = postData.getStar().contains(user);
         if (isStar) {
-            like.setImageResource(R.drawable.ic_baseline_star_24);
+            like.setImageResource(R.drawable.star);
         }
         else {
-            like.setImageResource(R.drawable.ic_baseline_star_border_24);
+            like.setImageResource(R.drawable.unstar);
         }
     }
 
