@@ -142,9 +142,19 @@ public class Homefragment extends Fragment {
         // 카테고리 목록
         bigcategory = getResources().getStringArray(R.array.Bigcategory);
         categoryView = v.findViewById(R.id.homecategoryRecyclerview);
+        int[] imageList = new int[7];
+        imageList[0] = (R.drawable.category_design);
+        imageList[1] = (R.drawable.category_develop);
+        imageList[2] = (R.drawable.category_picture);
+        imageList[3] = (R.drawable.category_trans);
+        imageList[4] = (R.drawable.category_plan);
+        imageList[5] = (R.drawable.category_interior);
+        imageList[6] = (R.drawable.category_bongsa);
+
         categoryList = new ArrayList<>();
         for(int i=0; i<7; i++) {
-            CategoryData categoryData = new CategoryData(R.drawable.category_design, bigcategory[i]);
+            //CategoryData categoryData = new CategoryData(R.drawable.category_design, bigcategory[i]);
+            CategoryData categoryData = new CategoryData(imageList[i], bigcategory[i]);
             categoryList.add(categoryData);
         }
         categoryAdapter = new CategoryAdapter(categoryList);
