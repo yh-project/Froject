@@ -156,6 +156,8 @@ public class Boardfragment extends Fragment {
         callbackListener = new ClickCallbackListener() {
             @Override
             public void callBack(String name) {
+                for(int i=0;i<10;i++)
+                    is_checked[i]=false;
                 switch(name) {
                     case "디자인":
                         smallcategorylist = getResources().getStringArray(R.array.Designcategory);
