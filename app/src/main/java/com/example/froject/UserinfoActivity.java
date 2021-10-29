@@ -7,9 +7,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class UserinfoActivity extends AppCompatActivity {
@@ -32,6 +36,7 @@ public class UserinfoActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference documentReference = db.collection("users").document(user.getEmail());
+    String level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,27 @@ public class UserinfoActivity extends AppCompatActivity {
 
         //findViewById(R.id.back).setOnClickListener(onClickListener);
         findViewById(R.id.checkInfo).setOnClickListener(onClickListener);
+        final Spinner levelSpinner = ((Spinner)findViewById(R.id.setLevel));
+        ArrayList<String> levels = new ArrayList<>(5);
+        for (int i=0;i<5;i++)
+            levels.add((i+1)+"학년");
+        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, levels);
+        levelAdapter.setDropDownViewResource(R.layout.spinner_item);
+        levelSpinner.setAdapter(levelAdapter);
+
+        ((Spinner) findViewById(R.id.setLevel)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               level = levels.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         /*Button mAn = ((Button)findViewById(R.id.man));
         Button woMan = ((Button)findViewById(R.id.woman));*/
 
@@ -150,7 +176,7 @@ public class UserinfoActivity extends AppCompatActivity {
         String number = ((EditText)findViewById(R.id.setNumber)).getText().toString();
         //String date = ((EditText)findViewById(R.id.setDate)).getText().toString();
         String univ = ((EditText)findViewById(R.id.setUniv)).getText().toString();
-        String level = ((EditText)findViewById(R.id.setLevel)).getText().toString();
+        //String level = ((EditText)findViewById(R.id.setLevel)).getText().toString();
         String major = ((EditText)findViewById(R.id.setMajor)).getText().toString();
         Info info = new Info(first_name,last_name, number, univ, level, major, user.getEmail());
 
