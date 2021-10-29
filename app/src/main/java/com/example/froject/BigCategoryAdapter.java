@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,11 +51,18 @@ public class BigCategoryAdapter extends RecyclerView.Adapter<NameHolder> {
 
 class NameHolder extends RecyclerView.ViewHolder {
     TextView bigcategoryname;
+    View sibal;
     ClickCallbackListener callbackListener;
 
     public NameHolder(@NonNull View itemView) {
         super(itemView);
         bigcategoryname = itemView.findViewById(R.id.bigcategoryName);
+        sibal = itemView.findViewById(R.id.sibal);
+        int gaesibal = bigcategoryname.getWidth();
+
+        LinearLayout.LayoutParams param_sibal = new LinearLayout.LayoutParams(30, gaesibal);
+        sibal.setLayoutParams(param_sibal);
+
         bigcategoryname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

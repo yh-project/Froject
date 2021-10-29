@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/bigcategoryName"
@@ -11,10 +10,22 @@
         android:layout_height="match_parent"
         android:text="사진·영상"
         android:textColor="#000000"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:maxLines="1"
         android:gravity="center"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:paddingRight="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</LinearLayout>
+    <View
+        android:id="@+id/sibal"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:src="@drawable/real_logo"
+        app:layout_constraintLeft_toLeftOf="@+id/bigcategoryName"
+        app:layout_constraintRight_toRightOf="@+id/bigcategoryName"
+        app:layout_constraintTop_toTopOf="@+id/bigcategoryName"
+        app:layout_constraintBottom_toBottomOf="@+id/bigcategoryName"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
