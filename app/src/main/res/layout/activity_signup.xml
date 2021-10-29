@@ -125,7 +125,7 @@
 
     <!--다음창으로-->
     <Button
-        android:id="@+id/signUp"
+        android:id="@+id/nextSignUp"
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
         android:background="@drawable/login_box"

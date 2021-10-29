@@ -86,19 +86,19 @@
             android:layout_marginBottom="7.2dp"/>
 
         <EditText
-            android:id="@+id/secondName"
+            android:id="@+id/lastName"
             android:layout_width="124dp"
             android:layout_height="32dp"
             android:background="@drawable/borderline_button_eef0f5"
+            android:fontFamily="@font/nanumsquareroundb"
             android:hint="지수"
+            android:lineSpacingExtra="2sp"
+            android:paddingStart="15.7dp"
             android:textColor="#2a3448"
             android:textColorHint="#2a3448"
             android:textSize="10sp"
-            android:lineSpacingExtra="2sp"
-            android:fontFamily="@font/nanumsquareroundb"
-            android:paddingStart="15.7dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,8 +108,8 @@
             android:textSize="10sp"
             android:fontFamily="@font/nanumsquareroundb"
             android:lineSpacingExtra="2sp"
-            app:layout_constraintStart_toStartOf="@+id/secondName"
-            app:layout_constraintBottom_toTopOf="@+id/secondName"
+            app:layout_constraintStart_toStartOf="@+id/lastName"
+            app:layout_constraintBottom_toTopOf="@+id/lastName"
             android:layout_marginStart="15.7dp"
             android:layout_marginBottom="7.2dp"/>
 
