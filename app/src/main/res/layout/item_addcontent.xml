@@ -56,7 +56,7 @@
             android:textSize="11.5sp"
             android:fontFamily="@font/nanumsquareroundeb"
             android:lineSpacingExtra="2.3sp"
-            android:minLines="5"
+            android:minLines="7"
             android:gravity="start"
             app:layout_constraintStart_toStartOf="@+id/bigcategory"
             app:layout_constraintTop_toBottomOf="@+id/smallcategory"/>
