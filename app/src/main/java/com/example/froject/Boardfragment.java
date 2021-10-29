@@ -63,6 +63,7 @@ public class Boardfragment extends Fragment {
     private BigCategoryAdapter bigCategoryAdapter;
     private String[] bigcategorylist;
     private ClickCallbackListener callbackListener;
+    private ClickCallbackListener2 callbackListener2;
 
     private RecyclerView smallcategoryrecyclerview;
     private SmaillCategoryAdapter smaillCategoryAdapter;
@@ -73,17 +74,22 @@ public class Boardfragment extends Fragment {
     private PostData[] lists;
     private int docSize;
 
+    private int prev=0;
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("users").document(user.getEmail());
     CollectionReference boardRef = docRef.collection("Board");
     PostData tmp;
     String bigcat="";
+    boolean[] is_checked = new boolean[10];
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_board, container, false);
 
+        for(int i=0;i<10;i++)
+            is_checked[i]=false;
 
         if (this.getArguments() != null)
             bigcat = this.getArguments().getString("bigcat");
@@ -190,16 +196,23 @@ public class Boardfragment extends Fragment {
     }
 
     public void setRecyclerView(View v, String[] smallcategorylist) {
-        callbackListener = new ClickCallbackListener() {
+        callbackListener2 = new ClickCallbackListener2() {
             @Override
-            public void callBack(String name) {
+            public void callBack(String name, int a) {
+                Log.d("click",name+a);
                 getDBWithSort2(name,v);
+                is_checked[a]=true;
+                is_checked[prev]=false;
+                smaillCategoryAdapter.notifyItemChanged(a);
+                smaillCategoryAdapter.notifyItemChanged(prev);
+                prev = a;
+
             }
         };
         smallcategoryrecyclerview = v.findViewById(R.id.smallcategoryRecyclerView);
-        smaillCategoryAdapter = new SmaillCategoryAdapter(smallcategorylist);
+        smaillCategoryAdapter = new SmaillCategoryAdapter(smallcategorylist, is_checked);
         smallcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        smaillCategoryAdapter.setCallbackListener(callbackListener);
+        smaillCategoryAdapter.setCallbackListener2(callbackListener2);
         smallcategoryrecyclerview.setAdapter(smaillCategoryAdapter);
     }
 
@@ -210,6 +223,7 @@ public class Boardfragment extends Fragment {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                 if (!task.isSuccessful()) {
+
                     return;
                 }
                 //postrecyclerView = v.findViewById(R.id.boardRecyclerView);
