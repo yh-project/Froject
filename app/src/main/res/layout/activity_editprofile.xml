@@ -210,6 +210,7 @@
         android:layout_height="33.2dp"
         android:background="@drawable/button_e0e1ef"
         android:text="확인"
+        android:clickable="false"
         android:textColor="#727272"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="parent"
