@@ -32,7 +32,6 @@ public class UserinfoActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference documentReference = db.collection("users").document(user.getEmail());
-    String gender = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class UserinfoActivity extends AppCompatActivity {
         woMan.setBackground(getDrawable(R.drawable.borderline));
         woMan.setTextColor(Color.rgb(154, 188, 222));*/
 
-        set_date();
+        //set_date();
         /*set_gender(mAn, woMan);
         set_preview(mAn, woMan);*/
     }
@@ -74,7 +73,7 @@ public class UserinfoActivity extends AppCompatActivity {
     };
 
 
-    private void set_date() {
+    /*private void set_date() {
         EditText date = ((EditText)findViewById(R.id.setDate));
 
         Calendar c = Calendar.getInstance();
@@ -95,7 +94,7 @@ public class UserinfoActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-    }
+    }*/
     /*private void set_gender(Button mAn, Button woMan) {
 
         mAn.setOnClickListener(new View.OnClickListener() {
@@ -146,21 +145,21 @@ public class UserinfoActivity extends AppCompatActivity {
         });
     }*/
     private void user_info() {
-        String name = ((EditText)findViewById(R.id.setName)).getText().toString();
+        String first_name = ((EditText)findViewById(R.id.setName)).getText().toString();
+        String last_name = ((EditText)findViewById(R.id.setName2)).getText().toString();
         String number = ((EditText)findViewById(R.id.setNumber)).getText().toString();
-        String date = ((EditText)findViewById(R.id.setDate)).getText().toString();
+        //String date = ((EditText)findViewById(R.id.setDate)).getText().toString();
         String univ = ((EditText)findViewById(R.id.setUniv)).getText().toString();
         String level = ((EditText)findViewById(R.id.setLevel)).getText().toString();
         String major = ((EditText)findViewById(R.id.setMajor)).getText().toString();
-        Info info = new Info(name, number, date, univ, level, major, gender, user.getEmail());
+        Info info = new Info(first_name,last_name, number, univ, level, major, user.getEmail());
 
         Log.w(TAG,"omg"+info.getname());
         Log.w(TAG,"omg"+info.getnumber());
-        Log.w(TAG,"omg"+info.getdate());
+        //Log.w(TAG,"omg"+info.getdate());
         Log.w(TAG,"omg"+info.getuniv());
         Log.w(TAG,"omg"+info.getlevel());
         Log.w(TAG,"omg"+info.getmajor());
-        Log.w(TAG,"omg"+info.getgender());
         Log.w(TAG,"omg"+info.getClass().toString());
 
         if(!info.checkNull()) {

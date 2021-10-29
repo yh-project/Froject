@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,35 +46,56 @@ public class EditprofileActivity extends AppCompatActivity {
 
         findViewById(R.id.changeInfo).setOnClickListener(onClickListener);
 
+        ArrayList<String> levels = new ArrayList<>(5);
+        for (int i=0;i<5;i++)
+            levels.add((i+1)+"학년");
 
         // 49~57 editprofile 화면 수정하면서 기존꺼 주석처리
-        /*TextView originalname = ((TextView)findViewById(R.id.originalName));
-        TextView originalmajor = ((TextView)findViewById(R.id.originalMajor));
-        TextView originallevel = ((TextView)findViewById(R.id.originalLevel));
-        TextView originaluniv = ((TextView)findViewById(R.id.originalUniv));
+        TextView originalFirst = ((TextView)findViewById(R.id.firstName));
+        TextView originalLast = ((TextView)findViewById(R.id.lastName));
+        TextView originalmajor = ((TextView)findViewById(R.id.newMajor));
+        final Spinner levelSpinner = ((Spinner)findViewById(R.id.newLevel));
+        TextView originaluniv = ((TextView)findViewById(R.id.newUniv));
 
-        originalname.setText(my_info.getname());
+        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, levels);
+        levelAdapter.setDropDownViewResource(R.layout.spinner_item);
+        levelSpinner.setAdapter(levelAdapter);
+
+        originalFirst.setText(my_info.getFirst_name());
+        originalLast.setText(my_info.getLast_name());
         originalmajor.setText(my_info.getmajor());
-        originallevel.setText(my_info.getlevel());
-        originaluniv.setText(my_info.getuniv());*/
+        for (int i = 0; i < levels.size(); i++) {
+            if (my_info.getlevel().equals(levels.get(i))) {
+                levelSpinner.setSelection(i);
+                break;
+            }
+        }
+        originaluniv.setText(my_info.getuniv());
 
-        //final ArrayList<String> originalinfoList = new ArrayList<>();
+        final ArrayList<String> originalinfoList = new ArrayList<>();
 
-        /*docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        docRref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        originalinfoList.add(document.getData().get("name").toString());
-                        originalname.setText(originalinfoList.get(0));
+                        originalinfoList.add(document.getData().get("first_name").toString());
+                        originalFirst.setText(originalinfoList.get(0));
+                        originalinfoList.add(document.getData().get("last_name").toString());
+                        originalLast.setText(originalinfoList.get(1));
                         originalinfoList.add(document.getData().get("major").toString());
-                        originalmajor.setText(originalinfoList.get(1));
+                        originalmajor.setText(originalinfoList.get(2));
                         originalinfoList.add(document.getData().get("level").toString());
-                        originallevel.setText(originalinfoList.get(2));
+                        for (int i = 0; i < levels.size(); i++) {
+                            if (originalinfoList.get(3).equals(levels.get(i))) {
+                                levelSpinner.setSelection(i);
+                                break;
+                            }
+                        }
                         originalinfoList.add(document.getData().get("univ").toString());
-                        originaluniv.setText(originalinfoList.get(3));
+                        originaluniv.setText(originalinfoList.get(4));
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -80,7 +103,7 @@ public class EditprofileActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });*/
+        });
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -95,40 +118,37 @@ public class EditprofileActivity extends AppCompatActivity {
     };
 
     private void change_info() {
-       /* @Nullable String newname = ((EditText)findViewById(R.id.newName)).getText().toString();*/
+        @Nullable String newFirstName = ((EditText)findViewById(R.id.firstName)).getText().toString();
+        @Nullable String newLastName = ((EditText)findViewById(R.id.lastName)).getText().toString();
         @Nullable String newmajor = ((EditText)findViewById(R.id.newMajor)).getText().toString();
-        /*@Nullable String newlevel = ((EditText)findViewById(R.id.newLevel)).getText().toString();*/
+        @Nullable String newlevel = ((Spinner)findViewById(R.id.newLevel)).getSelectedItem().toString();
         @Nullable String newuniv = ((EditText)findViewById(R.id.newUniv)).getText().toString();
         String newlist = " ";
 
-        /*final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newname, newmajor, newlevel, newuniv));
-        final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("name", "major", "level", "univ"));
+        final ArrayList<String> newinfolist = new ArrayList<String>(Arrays.asList(newFirstName,newLastName, newmajor, newlevel, newuniv));
+        final ArrayList<String> keylist = new ArrayList<String>(Arrays.asList("first_name","last_name", "major", "level", "univ"));
 
 
-        if(newinfolist.get(0).length() == 0 && newinfolist.get(1).length() == 0 && newinfolist.get(2).length() == 0 && newinfolist.get(3).length() == 0) {
+        if(newinfolist.get(0).length() == 0 && newinfolist.get(1).length() == 0 && newinfolist.get(2).length() == 0 && newinfolist.get(3).length() == 0 && newinfolist.get(4).length() == 0)  {
             cancelAlert();
         }
         else {
-            for(int i=0;i<4;i++) {
+            for(int i=0;i<5;i++) {
                 if(newinfolist.get(i).length() > 0) { newlist += (newinfolist.get(i) + " "); }
             }
             AlertDialog.Builder msgBuilder = new AlertDialog.Builder(EditprofileActivity.this)
-                    .setTitle("???")
-                    .setMessage(newlist + "\n이대로 바꿔?")
+                    .setTitle("프로필수정")
+                    .setMessage("수정하시겠습니까?")
                     .setPositiveButton("네", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
-                            if(newinfolist.get(0).length()>0) { my_info.setname(newinfolist.get(0)); }
-                            if(newinfolist.get(1).length()>0) { my_info.setmajor(newinfolist.get(1)); }
-                            if(newinfolist.get(2).length()>0) { my_info.setlevel(newinfolist.get(2)); }
-                            if(newinfolist.get(3).length()>0) { my_info.setuniv(newinfolist.get(3)); }
+                            if(newinfolist.get(0).length()>0) { my_info.setname(newinfolist.get(0)+newinfolist.get(1)); }
+                            if(newinfolist.get(1).length()>0) { my_info.setname(newinfolist.get(0)+newinfolist.get(1)); }
+                            if(newinfolist.get(2).length()>0) { my_info.setmajor(newinfolist.get(2)); }
+                            if(newinfolist.get(3).length()>0) { my_info.setlevel(newinfolist.get(3)); }
+                            if(newinfolist.get(4).length()>0) { my_info.setuniv(newinfolist.get(4)); }
 
                             db.collection("users").document(user.getEmail()).set(my_info);
-
-                            Log.w(TAG, "name: " + my_info.getname());
-                            Log.w(TAG, "major: " + my_info.getmajor());
-                            Log.w(TAG, "level: " + my_info.getlevel());
-                            Log.w(TAG, "univ: " + my_info.getuniv());
 
                             //need fix
                             Intent intent = getIntent();
@@ -152,7 +172,7 @@ public class EditprofileActivity extends AppCompatActivity {
                     });
             AlertDialog msgDlg = msgBuilder.create();
             msgDlg.show();
-        }*/
+        }
     }
 
     /*@Override

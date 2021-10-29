@@ -6,26 +6,32 @@ import java.io.Serializable;
 
 public class Info implements Serializable {
     private String name;
+    private String first_name;
+    private String last_name;
     private String number;
-    private String date;
     private String univ;
     private String level;
     private String major;
-    private String gender;
     private String Email;
 
-    public Info(String name, String number, String date, String univ, String level, String major, String gender, String Email) {
-        this.name = name;
+    public Info(String first_name, String last_name, String number, String univ, String level, String major, String Email) {
+        this.name = first_name + last_name;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.number = number;
-        this.date = date;
         this.univ = univ;
         this.level = level;
         this.major = major;
-        this.gender = gender;
+        this.Email = Email;
     }
+
 
     public Info() {
 
+    }
+
+    public Info(String Email) {
+        this("","","","","","",Email);
     }
 
     public String getname() {
@@ -42,15 +48,6 @@ public class Info implements Serializable {
     public void setnumber(String number) {
         this.number=number;
     }
-
-
-    public String getdate() {
-        return this.date;
-    }
-    public void setdate(String date) {
-        this.date=date;
-    }
-
 
     public String getuniv() {
         return this.univ;
@@ -76,9 +73,6 @@ public class Info implements Serializable {
     }
 
 
-    public String getgender() { return this.gender; }
-    public void setgender(String gender) { this.gender=gender; }
-
     public String getEmail() {
         return Email;
     }
@@ -88,9 +82,25 @@ public class Info implements Serializable {
     }
 
     public boolean checkNull() {
-        if (this.name.length() > 0 && this.number.length() > 9 && this.date.length() > 5 && this.univ.length() > 0 && this.level.length() > 0 && this.major.length() > 0 && this.gender.length() > 0)
+        if (this.name.length() > 0 && this.number.length() > 9 && this.univ.length() > 0 && this.level.length() > 0 && this.major.length() > 0)
             return false;
         else
             return true;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String fisrt_name) {
+        this.first_name = fisrt_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 }

@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         //Start = check Login State
         if(user == null) { //state == Logout -> goto LoginActivity
             startActivity(LoginActivity.class);
-        }else{ //state = Login -> get DB for firebase
+        }
+        else{ //state = Login -> get DB for firebase
             homefragment = new Homefragment();
             addFragment(homefragment);
             /*boardfragment = new Boardfragment();

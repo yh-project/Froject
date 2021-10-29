@@ -219,20 +219,21 @@
         android:layout_marginTop="146.3dp" />
 
     <!--완료버튼-->
+
     <Button
         android:id="@+id/checkInfo"
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/login_box"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2.4sp"
         android:text="완료"
         android:textColor="#ffffff"
         android:textSize="12sp"
-        android:lineSpacingExtra="2.4sp"
-        android:fontFamily="@font/nanumsquareroundb"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="57.3dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/setDate"
