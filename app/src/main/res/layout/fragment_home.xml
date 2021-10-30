@@ -49,13 +49,13 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/dictionary_banner"
                 android:layout_width="match_parent"
-                android:layout_height="182.5dp"
+                android:layout_height="186.5dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="19.1dp"/>
+                android:layout_marginTop="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/homecategoryRecyclerview"

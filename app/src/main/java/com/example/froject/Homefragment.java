@@ -59,8 +59,8 @@ public class Homefragment extends Fragment {
 
     int currentPage = 0;
     Timer timer;
-    final long DELAY_MS = 500;
-    final long PERIOD_MS = 3000;
+    final long DELAY_MS = 1000;
+    final long PERIOD_MS = 10000;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class Homefragment extends Fragment {
             }
         });*/
 
-        int[] rand = make_num();
+        /*int[] rand = make_num();
         String[] smallcat = new String[5];
         String[] bigcat = new String[5];
 
@@ -108,11 +108,11 @@ public class Homefragment extends Fragment {
                     smallcat[i]=Interiorlcategory[rand[i+5]];
                     break;
             }
-        }
+        }*/
 
         // 분야사전 배너
         viewpager = v.findViewById(R.id.dictionary_banner);
-        pagerAdapter = new DictionaryViewPagerAdapter(getActivity(),bigcat,smallcat);
+        pagerAdapter = new DictionaryViewPagerAdapter(getActivity(), bigcategory);
         viewpager.setClipToPadding(false);
         int dpValue = 36;
         float d = getResources().getDisplayMetrics().density;
@@ -124,7 +124,7 @@ public class Homefragment extends Fragment {
         final Runnable Update = new Runnable() {
             @Override
             public void run() {
-                if(currentPage == 5) {
+                if(currentPage == 7) {
                     currentPage = 0;
                 };
                 viewpager.setCurrentItem(currentPage++, true);

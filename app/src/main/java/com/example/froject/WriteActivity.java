@@ -73,12 +73,20 @@ public class WriteActivity extends AppCompatActivity {
 
     //LinearLayout contentslayout;
     PostData new_post;
+    Intent intent;
 
     ArrayAdapter<CharSequence> Bigadapter, Smalladapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        intent = getIntent();
+        new_post = (PostData)intent.getSerializableExtra("postData");
+        if(new_post!=null) {
+
+        }
+
         setContentView(R.layout.activity_write);
         totalCount = findViewById(R.id.totalCount);
         checkPeriod = findViewById(R.id.checkperiod);
@@ -263,7 +271,6 @@ public class WriteActivity extends AppCompatActivity {
                         }
                     });
 
-                    Intent intent = getIntent();
                     intent.setClass(WriteActivity.this,MainActivity.class);
                     //intent.putExtra("reload",true);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -416,6 +423,12 @@ public class WriteActivity extends AppCompatActivity {
 
     private void finish_contents() {
 
+    }
+
+    private void startActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
 

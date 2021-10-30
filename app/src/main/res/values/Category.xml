@@ -11,10 +11,10 @@
         <item>대외활동</item>
     </string-array>
     <string-array name = "Designcategory">
+        <item>UX/UI</item>
         <item>로고·브랜딩</item>
         <item>인쇄물</item>
         <item>웹디자인</item>
-        <item>UX·UI</item>
         <item>PPT·인포</item>
         <item>일러스트</item>
         <item>3D</item>

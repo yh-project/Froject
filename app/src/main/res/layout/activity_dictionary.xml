@@ -9,7 +9,6 @@
         android:id="@+id/category_image"
         android:layout_width="match_parent"
         android:layout_height="372.4dp"
-        android:src="@drawable/last_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="분야이름"
-        android:textColor="#2a3448"
+        android:textColor="#ffffff"
         android:textSize="17.5sp"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="분야설명"
-        android:textColor="#33529f"
+        android:textColor="#ffffff"
         android:textSize="12.5sp"
         android:textAlignment="center"
         android:fontFamily="@font/nanumsquareroundr"
@@ -77,6 +76,7 @@
         android:textAlignment="center" />
 
     <Button
+        android:id="@+id/gotoPost"
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
         android:background="@drawable/login_box"

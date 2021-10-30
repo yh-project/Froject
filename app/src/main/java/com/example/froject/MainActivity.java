@@ -130,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case "board":
                     boardfragment = new Boardfragment();
+                    if(getIntent().hasExtra("bigcat")) {
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putSerializable("bigcat", getIntent().getStringExtra("bigcat"));
+                        boardfragment.setArguments(bundle2);
+                    }
                     addFragment(boardfragment);
                     break;
             }
@@ -157,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                         break;*/
                         case R.id.item_fragment1:
                             boardfragment = (Boardfragment)getSupportFragmentManager().findFragmentByTag("Boardfragment");
+
                             if (boardfragment == null) {
                                 if (categoryfragment == null) {
                                     categoryfragment = new Categoryfragment();

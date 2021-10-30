@@ -6,11 +6,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Array;
@@ -26,6 +29,16 @@ public class DictionaryActivity extends AppCompatActivity {
     private RecyclerView smallcategoryrecyclerview;
     private SmaillCategoryAdapter smaillCategoryAdapter;
     private String[] smallcategorylist;
+    int prev = -1;
+    boolean[] is_checked = new boolean[10];
+    ClickCallbackListener callbackListener;
+    ClickCallbackListener2 callbackListener2;
+    ImageView background;
+    TextView bigname;
+    TextView bigdetail;
+    TextView smalldetail;
+    Button gotopost;
+    int which;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +46,130 @@ public class DictionaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dictionary);
 
         smallcategoryrecyclerview = findViewById(R.id.smallcategoryRecyclerView);
+        background = findViewById(R.id.category_image);
+        bigname = findViewById(R.id.bigcategoryName);
+        bigdetail = findViewById(R.id.bigcategoryDetail);
+        smalldetail = findViewById(R.id.smallcategoryDetail);
+        gotopost = findViewById(R.id.gotoPost);
+
 
         Intent intent = getIntent();
-        String contact_big = intent.getStringExtra("contact_big");
-        String contact_small = intent.getStringExtra("contact_small");
+        String bigcat = intent.getStringExtra("contact_big");
+        bigname.setText(bigcat);
+        if(bigcat.equals("디자인")) {
+            String content = "디자인학과에서는 인간생활의 편리함과 아름다움을 추구하는디자인 전반에 대한 지식과 이론을 습득하고 실기를 한다.";
+            background.setBackgroundResource(R.drawable.design_image);
+            bigdetail.setText(content + " 분야");
+        }
+        else if(bigcat.equals("개발")) {
+            String content = "개발학과에서는 사람이 살아가면서 불필요하고 불편한 점들을 해소하면서 나아가 편의를 주기 위해 다양한 학습을 한다.";;
+            background.setBackgroundResource(R.drawable.develop_image);
+            bigdetail.setText(content);
+        }
+        else {
+            return;
+        }
 
-        Log.d("ㅎㅇ", contact_big);
-        Log.d("ㅎㅇ", contact_small);
+        gotopost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(DictionaryActivity.this, MainActivity.class);
+                intent2.putExtra("bigcat", bigcat);
+                intent2.putExtra("data","board");
+                startActivity(intent2);
+            }
+        });
 
-        TextView bigcategory = ((TextView)findViewById(R.id.bigcategoryName));
-        bigcategory.setText(contact_big);
 
+        //이전 카테고리뷰에서 누른 카테고리의 하부 카테고리 기본 생성
+        switch (bigcat) {
+            case "디자인":
+                smallcategorylist = getResources().getStringArray(R.array.Designcategory);
+                setRecyclerView(smallcategorylist);
+                break;
+            case "개발":
+                smallcategorylist = getResources().getStringArray(R.array.Developcategory);
+                setRecyclerView(smallcategorylist);
+                break;
+            case "사진·영상":
+                smallcategorylist = getResources().getStringArray(R.array.Photocategory);
+                setRecyclerView(smallcategorylist);
+                break;
+            case "번역·통역":
+                smallcategorylist = getResources().getStringArray(R.array.Translatecategory);
+                setRecyclerView(smallcategorylist);
+                break;
+            case "기획":
+                smallcategorylist = getResources().getStringArray(R.array.Plancategory);
+                setRecyclerView(smallcategorylist);
+                break;
+            case "인테리어":
+                smallcategorylist = getResources().getStringArray(R.array.Interiorlcategory);
+                setRecyclerView(smallcategorylist);
+                break;
+            case "대외활동":
+                smallcategorylist = getResources().getStringArray(R.array.Extracategory);
+                setRecyclerView(smallcategorylist);
+                break;
+        }
 
+        //큰카테고리 선택시 작은카테고리 생성
+
+        //return v;
+    }
+
+    public void setRecyclerView(String[] smallcategorylist) {
+        callbackListener2 = new ClickCallbackListener2() {
+            @Override
+            public void callBack(String name, int a) {
+                which = a;
+                if (prev != -1)
+                    is_checked[prev] = false;
+                is_checked[a] = true;
+                smaillCategoryAdapter.notifyItemChanged(a);
+                smaillCategoryAdapter.notifyItemChanged(prev);
+                prev = a;
+                setMent(smallcategorylist[which]);
+            }
+        };
+        smallcategoryrecyclerview = findViewById(R.id.smallcategoryRecyclerView);
+        smaillCategoryAdapter = new SmaillCategoryAdapter(smallcategorylist, is_checked);
+        smallcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        smaillCategoryAdapter.setCallbackListener2(callbackListener2);
+        smallcategoryrecyclerview.setAdapter(smaillCategoryAdapter);
+    }
+
+    public void setMent(String name) {
+        switch(name) {
+            case "UX/UI":
+                smalldetail.setText("UX(User Experience)디자인은 쉽게 말해 사용자 경험을\n" +
+                        "의미한. 사용자가 어떤 제품, 시스템, 서비스 등을 직접적\n" +
+                        "혹은 간접적으로 이용하면서 느끼는 반응과 행동들과 같은\n" +
+                        "경험을 총체적으로 설계하는 것이다.\n" +
+                        "UI(User Interface Design)디자인은 사용자 인터페이스\n" +
+                        "디자인이라 하며, 컴퓨터와 사용자 사이를 연결하는\n" +
+                        "상호소통 매개체의 모양과 동작의 흐름을 디자인한다.");
+                break;
+            case "로고·브랜딩":
+                smalldetail.setText("로고와 브랜딩에 관한 설명입니다.");
+                break;
+            case "모바일":
+                smalldetail.setText("모바일 개발은 우리가 사용하는 스마트폰들의 운영체제 즉, 안드로이드나 ios와 같은 시스템들을 개발, " +
+                        "보수하는 분야와 각 운영체제와 시스템에 맞는 다양한 소프트웨어를 개발하는 분야로 생각해볼 수 있다. " +
+                        "이들은 스마트폰 뿐만아니라 휴대성을 지니는 기기들에서도 개발이 이루어질 수 있다. 예를 들면, 타블렛pc, 스마트워치와 같은 것들이 포함된다.");
+                break;
+            case "웹":
+                smalldetail.setText("웹 개발이란 인터넷이나 인트라넷에 호스팅되는 웹사이트나 웹페이지를 개발하는 과정이라고 할 수 있습니다 쇼핑몰이든 블로그든 SNS든 동영상 스트리밍 사이트든 아니면 다른 인터넷 어플리케이션(Internet Application)이든 모두 웹 개발자가 만든 사이트입니다");
+                break;
+
+        }
+    }
+    private void startActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+}
         /*String[] bigcategory = getResources().getStringArray(R.array.Bigcategory);
         String[] Designcategory = getResources().getStringArray(R.array.Designcategory);//7 7
         String[] Developcategory = getResources().getStringArray(R.array.Developcategory);//6 13
@@ -341,6 +466,6 @@ public class DictionaryActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(DictionaryActivity.this, choice_Big + "=" + choice_Small, Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
     }
-}
+}*/
