@@ -7,15 +7,11 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <TextView
+    <ImageView
         android:id="@+id/topLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Froject"
-        android:textSize="19.4sp"
-        android:textColor="#33529f"
-        android:lineSpacingExtra="3.9sp"
-        android:fontFamily="@font/nanumsquareroundeb"
+        android:layout_width="67dp"
+        android:layout_height="21.5dp"
+        android:src="@drawable/last_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

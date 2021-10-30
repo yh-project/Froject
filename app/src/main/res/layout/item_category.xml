@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
-    android:clickable="true">
+    android:clickable="true"
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:id="@+id/categorysrc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:src="@drawable/category_design"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="디자인"
         android:textColor="#294075"
-        android:textSize="10.5sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundr"
         app:layout_constraintStart_toStartOf="parent"

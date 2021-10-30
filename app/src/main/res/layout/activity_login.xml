@@ -76,7 +76,7 @@
             android:lineSpacingExtra="1.7sp"
             android:text="로그인 상태 유지"
             android:textColor="#727272"
-            android:textSize="8.5sp"
+            android:textSize="9.5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginPass" />
 
@@ -93,7 +93,7 @@
         <!--로그인버튼-->
         <Button
             android:id="@+id/logIn"
-            android:layout_width="283.3dp"
+            android:layout_width="290dp"
             android:layout_height="33.2dp"
             android:layout_marginTop="37.2dp"
             android:background="@drawable/login_box"
@@ -127,7 +127,7 @@
             android:lineSpacingExtra="1.6sp"
             android:text="회원가입"
             android:textColor="#727272"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/partLine"
             app:layout_constraintTop_toBottomOf="@+id/logIn" />
 
@@ -141,7 +141,7 @@
             android:lineSpacingExtra="1.6sp"
             android:text="비밀번호 찾기"
             android:textColor="#727272"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@+id/partLine"
             app:layout_constraintTop_toBottomOf="@+id/logIn" />
 

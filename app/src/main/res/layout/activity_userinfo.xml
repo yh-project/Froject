@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원정보"
-        android:textSize="19sp"
+        android:textSize="20sp"
         android:textColor="#33529F"
         android:lineSpacingExtra="3.8sp"
         android:fontFamily="@font/nanumsquareroundeb"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="성"
         android:textColor="#33529F"
-        android:textSize="10.5sp"
+        android:textSize="12sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="@+id/setName"
@@ -38,13 +38,13 @@
 
     <EditText
         android:id="@+id/setName"
-        android:layout_width="128.6dp"
+        android:layout_width="135dp"
         android:layout_height="32.5dp"
         android:background="@drawable/input_box_eefof5"
         android:hint="홍"
         android:textColorHint="#727272"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2sp"
         android:fontFamily="@font/nanumsquareroundb"
         android:paddingStart="15.9dp"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:text="이름"
         android:textColor="#33529F"
-        android:textSize="10.5sp"
+        android:textSize="12sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="@+id/setName2"
@@ -69,13 +69,13 @@
 
     <EditText
         android:id="@+id/setName2"
-        android:layout_width="128.6dp"
+        android:layout_width="135dp"
         android:layout_height="32.5dp"
         android:background="@drawable/input_box_eefof5"
         android:hint="길동"
         android:textColorHint="#727272"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2sp"
         android:fontFamily="@font/nanumsquareroundb"
         android:paddingStart="15.9dp"
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:text="전화번호"
         android:textColor="#33529F"
-        android:textSize="10.5sp"
+        android:textSize="12sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="@+id/setNumber"
@@ -102,14 +102,14 @@
 
     <EditText
         android:id="@+id/setNumber"
-        android:layout_width="278.2dp"
+        android:layout_width="285dp"
         android:layout_height="32.5dp"
         android:background="@drawable/input_box_eefof5"
         android:inputType="phone"
         android:hint="01012345678"
         android:textColorHint="#727272"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2sp"
         android:fontFamily="@font/nanumsquareroundb"
         android:paddingStart="15.9dp"
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:text="학교"
         android:textColor="#33529F"
-        android:textSize="10.5sp"
+        android:textSize="12sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="@+id/setUniv"
@@ -136,14 +136,14 @@
 
     <EditText
         android:id="@+id/setUniv"
-        android:layout_width="278.2dp"
+        android:layout_width="285dp"
         android:layout_height="32.5dp"
         android:background="@drawable/input_box_eefof5"
         android:inputType="text"
         android:hint="길동대학교"
         android:textColorHint="#727272"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2sp"
         android:fontFamily="@font/nanumsquareroundb"
         android:paddingStart="15.9dp"
@@ -159,7 +159,7 @@
         android:layout_height="wrap_content"
         android:text="학년"
         android:textColor="#33529F"
-        android:textSize="10.5sp"
+        android:textSize="12sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="@+id/setLevel"
@@ -169,36 +169,18 @@
 
     <Spinner
         android:id="@+id/setLevel"
-        android:layout_width="278.2dp"
+        android:layout_width="285dp"
         android:layout_height="32.5dp"
         android:background="@drawable/item_spinner_editprofile"
         android:paddingStart="15.9dp"
         android:paddingEnd="15.9dp"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2sp"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toStartOf="@+id/setNumber"
         app:layout_constraintTop_toBottomOf="@+id/setNumber"
         android:layout_marginTop="86.7dp"/>
-
-    <!--<EditText
-        android:id="@+id/setLevel"
-        android:layout_width="278.2dp"
-        android:layout_height="32.5dp"
-        android:background="@drawable/input_box_eefof5"
-        android:inputType="text"
-        android:hint="3학년"
-        android:textColorHint="#727272"
-        android:textColor="#000000"
-        android:textSize="10sp"
-        android:lineSpacingExtra="2sp"
-        android:fontFamily="@font/nanumsquareroundb"
-        android:paddingStart="15.9dp"
-        android:paddingEnd="15.9dp"
-        app:layout_constraintStart_toStartOf="@+id/setNumber"
-        app:layout_constraintTop_toBottomOf="@+id/setNumber"
-        android:layout_marginTop="86.7dp" />-->
 
     <!--전공-->
     <TextView
@@ -207,7 +189,7 @@
         android:layout_height="wrap_content"
         android:text="전공"
         android:textColor="#33529F"
-        android:textSize="10.5sp"
+        android:textSize="12sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundeb"
         app:layout_constraintStart_toStartOf="@+id/setMajor"
@@ -217,14 +199,14 @@
 
     <EditText
         android:id="@+id/setMajor"
-        android:layout_width="278.2dp"
+        android:layout_width="285dp"
         android:layout_height="32.5dp"
         android:background="@drawable/input_box_eefof5"
         android:inputType="text"
         android:hint="시각디자인학과과"
        android:textColorHint="#727272"
         android:textColor="#000000"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:lineSpacingExtra="2sp"
         android:fontFamily="@font/nanumsquareroundb"
         android:paddingStart="15.9dp"
@@ -237,7 +219,7 @@
 
     <Button
         android:id="@+id/checkInfo"
-        android:layout_width="283.3dp"
+        android:layout_width="300dp"
         android:layout_height="33.2dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/login_box"
@@ -245,12 +227,12 @@
         android:lineSpacingExtra="2.4sp"
         android:text="완료"
         android:textColor="#ffffff"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/setDate"
         android:layout_width="350dp"
         android:layout_height="40dp"
@@ -264,6 +246,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="150dp"/>
+        android:layout_marginBottom="150dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,10 +15,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="41.6dp"
-        android:layout_marginTop="30.9dp"
+        android:layout_marginTop="27dp"
         android:visibility="visible" />
 
-    <ImageView
+   <ImageView
         android:id="@+id/option"
         android:layout_width="3dp"
         android:layout_height="14dp"
@@ -25,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="28.4dp"
-        android:layout_marginTop="35.8dp" />
+        android:layout_marginTop="27dp" />
 
     <View
         android:layout_width="match_parent"

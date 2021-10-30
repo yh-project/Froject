@@ -10,8 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Froject">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.Froject"
+        android:largeHeap="true">
+        <activity android:name=".LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,6 +34,7 @@
                   android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".LikeListActivity" />
         <activity android:name=".MyListActivity" />
+        <activity android:name=".MainActivity" />
 
 
     </application>

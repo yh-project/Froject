@@ -228,7 +228,7 @@ public class SignupActivity extends AppCompatActivity {
             startToast("비밀번호는 6자이상 입력해 주세요.");
             return true;
         }
-        else if ( Pattern.matches(pattern,pass)) {
+        else if ( !Pattern.matches(pattern,pass)) {
             startToast("문자와 숫자를 하나이상 사용해주세요.");
             return true;
         }

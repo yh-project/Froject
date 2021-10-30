@@ -2,27 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eef0f5">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="62.1dp"
-        android:background="#ffffff">
+        android:layout_height="45dp"
+        android:background="#ffffff"
+        tools:ignore="MissingConstraints">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Froject"
-            android:fontFamily="@font/nanumsquareroundeb"
-            android:textSize="19.4sp"
-            android:textColor="#33529f"
-            android:lineSpacingExtra="3.9sp"
+        <ImageView
+            android:layout_width="67dp"
+            android:layout_height="21.5dp"
+            android:src="@drawable/last_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="33.5dp" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
             android:id="@+id/search"
@@ -31,7 +29,7 @@
             android:src="@drawable/searchbtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="30.9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="17.7dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,30 +59,30 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/homecategoryRecyclerview"
-                android:layout_width="300dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dictionary_banner"
-                android:layout_marginTop="15.4dp"/>
+                android:layout_marginTop="25.4dp"/>
 
             <TextView
                 android:id="@+id/likeMent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="즐겨찾기 목록"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textColor="#33529f"
                 android:fontFamily="@font/nanumsquareroundb"
                 app:layout_constraintStart_toStartOf="@+id/homecategoryRecyclerview"
                 app:layout_constraintTop_toBottomOf="@+id/homecategoryRecyclerview"
-                android:layout_marginTop="17.7dp"/>
+                android:layout_marginTop="25.7dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/likerecyclerview"
-                android:layout_width="322.5dp"
+                android:layout_width="335dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7.8dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/likeMent"

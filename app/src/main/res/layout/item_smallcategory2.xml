@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/smallItem"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="97.4dp"
-    android:layout_height="22.5dp"
+    android:layout_width="98dp"
+    android:layout_height="23.5dp"
     android:layout_marginEnd="13.3dp"
     android:background="@drawable/checked_category"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="로고·브랜딩"
         android:textColor="#294075"
-        android:textSize="11sp"
+        android:textSize="13sp"
         android:lineSpacingExtra="2.2sp"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toStartOf="parent"
