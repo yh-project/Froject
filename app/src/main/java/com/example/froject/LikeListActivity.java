@@ -2,6 +2,7 @@ package com.example.froject;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,6 +59,13 @@ public class LikeListActivity extends AppCompatActivity {
                 likelistAdapter.setUser(user.getEmail());
                 recyclerView.setLayoutManager(new LinearLayoutManager(LikeListActivity.this, RecyclerView.VERTICAL, false));
                 recyclerView.setAdapter(likelistAdapter);
+            }
+        });
+
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

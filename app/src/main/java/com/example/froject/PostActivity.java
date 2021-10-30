@@ -115,6 +115,7 @@ public class PostActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(PostActivity.this, ChatActivity.class);
                     intent.putExtra("you_email", postdata.Email);
+                    intent.putExtra("title",postdata.title);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }

@@ -312,16 +312,17 @@
         android:id="@+id/inputReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="396dp"
         android:background="@drawable/box_review"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="400dp"
+        android:gravity="start"
+        android:hint="다음 프로젝트를 위해 솔직하고 상세한 평가 부탁드려요!\n(10자 이상)"
         android:padding="10dp"
-        android:hint="다음 프로젝트를 위해 솔직하ㅗㄱ 상세한 평가 부탁드려요!\n(10자 이상)"
         android:textColorHint="#bebebd"
         android:textSize="8.8sp"
-        android:gravity="start" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/finishBtn"

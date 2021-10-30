@@ -245,6 +245,13 @@ public class EditprofileActivity extends AppCompatActivity {
             AlertDialog msgDlg = msgBuilder.create();
             msgDlg.show();
         }
+
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     /*@Override

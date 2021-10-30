@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 
 
@@ -66,6 +67,13 @@ public class MyListActivity extends AppCompatActivity {
                 mylistAdapter.setUser(user.getEmail());
                 recyclerView.setLayoutManager(new LinearLayoutManager(MyListActivity.this, RecyclerView.VERTICAL, false));
                 recyclerView.setAdapter(mylistAdapter);
+            }
+        });
+
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

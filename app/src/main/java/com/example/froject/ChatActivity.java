@@ -755,6 +755,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog = null;
     private Integer userCount = 0;
+    private String title;
 
     /*public static final ChatFragment getInstance(String toUid, String roomID) {
         ChatFragment f = new ChatFragment();
@@ -769,6 +770,8 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        title = getIntent().getStringExtra("title");
 
         recyclerView = findViewById(R.id.rv_list);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -921,6 +924,7 @@ public class ChatActivity extends AppCompatActivity {
                 userCount = users.size();
                 users.put(myUid, (long) 0);
                 document.getReference().update("users", users);
+                document.getReference().update("title",title);
             }
         });
     }
