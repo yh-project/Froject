@@ -1,62 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#ffffff">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="프로필"
+        android:textSize="15.5sp"
+        android:textColor="#33529f"
+        android:lineSpacingExtra="3.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="31.3dp"/>
+
+    <View
+        android:id="@+id/firstLine"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="10dp">
+        android:layout_height="0.5dp"
+        android:background="#e2e2e4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBar"
+        android:layout_marginTop="10dp"/>
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/backbtn" />
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="44.9dp"
+        android:layout_height="44.9dp"
+        android:src="@drawable/profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/firstLine"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="38.3dp" />
 
-        <ImageView
-            android:id="@+id/logo"
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="김수현"
+        android:textColor="#070304"
+        android:textSize="14.3sp"
+        android:lineSpacingExtra="2.9sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintTop_toTopOf="@+id/profileImage"
+        android:layout_marginTop="6.1dp"
+        android:layout_marginStart="13.8dp" />
+
+    <TextView
+        android:id="@+id/userMajor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시각디자인학과"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintBottom_toBottomOf="@+id/profileImage"
+        android:layout_marginBottom="6.5dp"
+        android:layout_marginStart="13.8dp"/>
+
+    <TextView
+        android:id="@+id/divideInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/userMajor"
+        app:layout_constraintTop_toTopOf="@+id/userMajor"
+        app:layout_constraintBottom_toBottomOf="@+id/userMajor"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/userLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3학년"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/divideInfo"
+        app:layout_constraintBottom_toBottomOf="@+id/divideInfo"
+        android:layout_marginStart="13.8dp"/>
+
+    <TextView
+        android:id="@+id/divideInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/userLevel"
+        app:layout_constraintTop_toTopOf="@+id/userLevel"
+        app:layout_constraintBottom_toBottomOf="@+id/userLevel"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/userUniv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="영남대학교"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/divideInfo2"
+        app:layout_constraintBottom_toBottomOf="@+id/divideInfo2"
+        android:layout_marginStart="13.8dp"/>
+
+    <ImageView
+        android:id="@+id/gotoMyPost"
+        android:layout_width="54.6dp"
+        android:layout_height="54.6dp"
+        android:src="@drawable/mypost"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage"
+        android:layout_marginStart="65.8dp"
+        android:layout_marginTop="31.7dp" />
+
+    <ImageView
+        android:id="@+id/gotoLikeList"
+        android:layout_width="54.6dp"
+        android:layout_height="54.6dp"
+        android:src="@drawable/likepost"
+        app:layout_constraintStart_toEndOf="@+id/gotoMyPost"
+        app:layout_constraintEnd_toStartOf="@+id/gotoFinishList"
+        app:layout_constraintTop_toTopOf="@+id/gotoMyPost" />
+
+    <ImageView
+        android:id="@+id/gotoFinishList"
+        android:layout_width="54.6dp"
+        android:layout_height="54.6dp"
+        android:src="@drawable/finishpost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gotoMyPost"
+        android:layout_marginEnd="65.8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="올린 게시글"
+        android:textSize="10sp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2sp"
+        app:layout_constraintStart_toStartOf="@+id/gotoMyPost"
+        app:layout_constraintEnd_toEndOf="@+id/gotoMyPost"
+        app:layout_constraintTop_toBottomOf="@+id/gotoMyPost"
+        android:layout_marginTop="12.3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="즐겨찾기"
+        android:textSize="10sp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2sp"
+        app:layout_constraintStart_toStartOf="@+id/gotoLikeList"
+        app:layout_constraintEnd_toEndOf="@+id/gotoLikeList"
+        app:layout_constraintTop_toBottomOf="@+id/gotoLikeList"
+        android:layout_marginTop="12.3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료된 프로젝트"
+        android:textSize="10sp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2sp"
+        app:layout_constraintStart_toStartOf="@+id/gotoFinishList"
+        app:layout_constraintEnd_toEndOf="@+id/gotoFinishList"
+        app:layout_constraintTop_toBottomOf="@+id/gotoFinishList"
+        android:layout_marginTop="12.3dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="265dp"
+        android:background="@drawable/behind_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@null"
-            app:srcCompat="@drawable/logo_" />
+            android:text="평가"
+            android:textColor="#294075"
+            android:textSize="14.3sp"
+            android:lineSpacingExtra="2.9sp"
+            android:fontFamily="@font/nanumsquareroundb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="19.8dp"
+            android:layout_marginStart="34.9dp"/>
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/moreReview"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/item_add_contents"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="19.8dp"
+            android:layout_marginEnd="37.6dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="137dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviewlistRecyclerView"
+            android:layout_width="260dp"
+            android:layout_height="170.6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="58.3dp"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="149dp"
-            android:layout_weight="1">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/userlist"
-                android:layout_width="match_parent"
-                android:layout_height="138dp"
-                android:layout_marginLeft="100dp" />
-
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="139dp">
-
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,285 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical"
-    android:weightSum="250">
+    android:background="#ffffff">
 
-    <!--설정버튼(?)-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:weightSum="130"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110" />
-
-        <ImageButton
-            android:id="@+id/settingButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:src="@drawable/item_profile_setting"
-            android:background="#ffffff" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 정보"
+        android:textSize="15.5sp"
+        android:textColor="#33529f"
+        android:lineSpacingExtra="3.1sp"
+        android:fontFamily="@font/nanumsquareroundeb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="31.3dp"
+        android:layout_marginStart="29.7dp"/>
 
     <View
+        android:id="@+id/firstLine"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10" />
+        android:layout_height="0.5dp"
+        android:background="#e2e2e4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBar"
+        android:layout_marginTop="10dp"/>
 
-    <!--프로필정보-->
-    <LinearLayout
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="44.9dp"
+        android:layout_height="44.9dp"
+        android:src="@drawable/profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/firstLine"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="38.3dp" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="김수현"
+        android:textColor="#070304"
+        android:textSize="14.3sp"
+        android:lineSpacingExtra="2.9sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintTop_toTopOf="@+id/profileImage"
+        android:layout_marginTop="6.1dp"
+        android:layout_marginStart="13.8dp" />
+
+    <TextView
+        android:id="@+id/userMajor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시각디자인학과"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintBottom_toBottomOf="@+id/profileImage"
+        android:layout_marginBottom="6.5dp"
+        android:layout_marginStart="13.8dp"/>
+
+    <TextView
+        android:id="@+id/divideInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/userMajor"
+        app:layout_constraintTop_toTopOf="@+id/userMajor"
+        app:layout_constraintBottom_toBottomOf="@+id/userMajor"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/userLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3학년"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/divideInfo"
+        app:layout_constraintBottom_toBottomOf="@+id/divideInfo"
+        android:layout_marginStart="13.8dp"/>
+
+    <TextView
+        android:id="@+id/divideInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/userLevel"
+        app:layout_constraintTop_toTopOf="@+id/userLevel"
+        app:layout_constraintBottom_toBottomOf="@+id/userLevel"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/userUniv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="영남대학교"
+        android:textColor="#8d8d8d"
+        android:textSize="10.8sp"
+        android:lineSpacingExtra="2.2sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        app:layout_constraintStart_toEndOf="@+id/divideInfo2"
+        app:layout_constraintBottom_toBottomOf="@+id/divideInfo2"
+        android:layout_marginStart="13.8dp"/>
+
+    <Button
+        android:id="@+id/editProfile"
+        android:layout_width="283.3dp"
+        android:layout_height="30dp"
+        android:text="프로필 수정"
+        android:textColor="#ffffff"
+        android:textSize="13sp"
+        android:lineSpacingExtra="2.6sp"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:background="@drawable/button_33529f"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage"
+        android:layout_marginTop="33.2dp"/>
+
+    <ImageView
+        android:id="@+id/gotoMyPost"
+        android:layout_width="54.6dp"
+        android:layout_height="54.6dp"
+        android:src="@drawable/mypost"
+        app:layout_constraintStart_toStartOf="@+id/editProfile"
+        app:layout_constraintTop_toBottomOf="@+id/editProfile"
+        android:layout_marginStart="27.6dp"
+        android:layout_marginTop="13.3dp" />
+
+    <ImageView
+        android:id="@+id/gotoLikeList"
+        android:layout_width="54.6dp"
+        android:layout_height="54.6dp"
+        android:src="@drawable/likepost"
+        app:layout_constraintStart_toEndOf="@+id/gotoMyPost"
+        app:layout_constraintEnd_toStartOf="@+id/gotoFinishList"
+        app:layout_constraintTop_toBottomOf="@+id/editProfile"
+        android:layout_marginTop="13.3dp" />
+
+    <ImageView
+        android:id="@+id/gotoFinishList"
+        android:layout_width="54.6dp"
+        android:layout_height="54.6dp"
+        android:src="@drawable/finishpost"
+        app:layout_constraintEnd_toEndOf="@+id/editProfile"
+        app:layout_constraintTop_toBottomOf="@+id/editProfile"
+        android:layout_marginEnd="27.6dp"
+        android:layout_marginTop="13.3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="올린 게시글"
+        android:textSize="10sp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2sp"
+        app:layout_constraintStart_toStartOf="@+id/gotoMyPost"
+        app:layout_constraintEnd_toEndOf="@+id/gotoMyPost"
+        app:layout_constraintTop_toBottomOf="@+id/gotoMyPost"
+        android:layout_marginTop="12.3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="즐겨찾기"
+        android:textSize="10sp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2sp"
+        app:layout_constraintStart_toStartOf="@+id/gotoLikeList"
+        app:layout_constraintEnd_toEndOf="@+id/gotoLikeList"
+        app:layout_constraintTop_toBottomOf="@+id/gotoLikeList"
+        android:layout_marginTop="12.3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료된 프로젝트"
+        android:textSize="10sp"
+        android:textColor="#8d8d8d"
+        android:fontFamily="@font/nanumsquareroundb"
+        android:lineSpacingExtra="2sp"
+        app:layout_constraintStart_toStartOf="@+id/gotoFinishList"
+        app:layout_constraintEnd_toEndOf="@+id/gotoFinishList"
+        app:layout_constraintTop_toBottomOf="@+id/gotoFinishList"
+        android:layout_marginTop="12.3dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:weightSum="130"
-        android:orientation="horizontal">
+        android:layout_height="265dp"
+        android:background="@drawable/behind_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="평가"
+            android:textColor="#294075"
+            android:textSize="14.3sp"
+            android:lineSpacingExtra="2.9sp"
+            android:fontFamily="@font/nanumsquareroundb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="19.8dp"
+            android:layout_marginStart="34.9dp"/>
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImage"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:src="@drawable/logo_" />
+        <ImageView
+            android:id="@+id/moreReview"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/item_add_contents"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="19.8dp"
+            android:layout_marginEnd="37.6dp"/>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="100"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="6"
-                android:text="내이름"
-                android:textColor="#000000"
-                android:textSize="17sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp">
-
-                <TextView
-                    android:id="@+id/userMajor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Major"
-                    android:textColor="#A9A9A9"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="/"
-                    android:textColor="#A9A9A9"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/userLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Level"
-                    android:textColor="#A9A9A9"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="/"
-                    android:textColor="#A9A9A9"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/userUniv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="University"
-                    android:textColor="#A9A9A9"
-                    android:textSize="13sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="17" />
-
-    <!--프로필수정버튼-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="13"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/editProfile"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"
-            android:text="프로필 수정"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:background="@drawable/borderline_button"/>
-
-    </LinearLayout>
-
-    <!--내 게시글, 즐겨찾기-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="30"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="15" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/gotoMyPost"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="60"
-                android:src="@drawable/logo_" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="25"
-                android:text="올린 게시글"
-                android:textColor="#A9A9A9"
-                android:gravity="center" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="30"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="15" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/gotoLikeList"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="60"
-                android:src="@drawable/logo_" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="25"
-                android:text="즐겨찾기"
-                android:textColor="#A9A9A9"
-                android:gravity="center" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--리뷰-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="110"
-        android:background="@drawable/shadow_top_dictionary"
-        android:weightSum="130"
-        android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="20"
-                android:text="평가"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                android:gravity="center" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="80" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--로그아웃-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="13"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviewlistRecyclerView"
+            android:layout_width="260dp"
+            android:layout_height="110.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="58.3dp"/>
 
         <Button
             android:id="@+id/logout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="110"
+            android:layout_width="283.3dp"
+            android:layout_height="30dp"
             android:text="로그아웃"
-            android:textColor="#5768CA"
-            android:textStyle="bold"
-            android:background="@drawable/borderline_button"
-            android:backgroundTint="#F1F2F4"/>
+            android:textColor="#2a3448"
+            android:textSize="13sp"
+            android:background="@drawable/box_white"
+            android:fontFamily="@font/nanumsquareroundb"
+            android:lineSpacingExtra="2.6sp"
+            app:layout_constraintTop_toBottomOf="@+id/reviewlistRecyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="28.1dp"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
