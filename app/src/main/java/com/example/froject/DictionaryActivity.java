@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,17 +19,33 @@ import java.util.Arrays;
 
 
 public class DictionaryActivity extends AppCompatActivity {
-    ArrayAdapter<CharSequence> Bigadapter, Smalladapter;
+    /*ArrayAdapter<CharSequence> Bigadapter, Smalladapter;
     String choice_Big = "";
     String choice_Small = "";
-    TextView explainCategory, relativeMajor;
+    TextView explainCategory, relativeMajor;*/
+    private RecyclerView smallcategoryrecyclerview;
+    private SmaillCategoryAdapter smaillCategoryAdapter;
+    private String[] smallcategorylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
 
-        String[] bigcategory = getResources().getStringArray(R.array.Bigcategory);
+        smallcategoryrecyclerview = findViewById(R.id.smallcategoryRecyclerView);
+
+        Intent intent = getIntent();
+        String contact_big = intent.getStringExtra("contact_big");
+        String contact_small = intent.getStringExtra("contact_small");
+
+        Log.d("ㅎㅇ", contact_big);
+        Log.d("ㅎㅇ", contact_small);
+
+        TextView bigcategory = ((TextView)findViewById(R.id.bigcategoryName));
+        bigcategory.setText(contact_big);
+
+
+        /*String[] bigcategory = getResources().getStringArray(R.array.Bigcategory);
         String[] Designcategory = getResources().getStringArray(R.array.Designcategory);//7 7
         String[] Developcategory = getResources().getStringArray(R.array.Developcategory);//6 13
         String[] Photocategory = getResources().getStringArray(R.array.Photocategory);//12 25
@@ -324,6 +341,6 @@ public class DictionaryActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(DictionaryActivity.this, choice_Big + "=" + choice_Small, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 }
