@@ -1,5 +1,6 @@
 package com.example.froject;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -116,6 +119,7 @@ public class Boardfragment extends Fragment {
                 postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
                 postrecyclerView.setAdapter(postAdapter);
                 setLikeClickListener(postAdapter,task);
+                setDotClickListener(postAdapter ,task);
             }
         });
         // 큰카테고리 뷰에따른 작은카테고리
@@ -298,14 +302,53 @@ public class Boardfragment extends Fragment {
                 isStar = list.get(position).getStar().contains(user.getEmail());
                 if (!list.get(position).getEmail().equals(user.getEmail())) {
                     if (isStar) {
-                        imageView.setImageResource(R.drawable.ic_baseline_star_border_24);
+                        imageView.setImageResource(R.drawable.unstar);
                         list.get(position).getStar().remove(user.getEmail());
                         task.getResult().getDocuments().get(position).getReference().update("star", list.get(position).getStar());
                     } else {
-                        imageView.setImageResource(R.drawable.ic_baseline_star_24);
+                        imageView.setImageResource(R.drawable.star);
                         list.get(position).getStar().add(user.getEmail());
                         task.getResult().getDocuments().get(position).getReference().update("star", list.get(position).getStar());
                     }
+                }
+            }
+        });
+    }
+    public void setDotClickListener(PostAdapter postAdapter, Task<QuerySnapshot> task) {
+        postAdapter.setDotClickListener(new DotClickListener() {
+            @Override
+            public void onDotClick(View view, int position) {
+                ImageView imageView = (ImageView) view;
+                Dialog dialog = new Dialog(getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.threedot_dialog_board);
+                if (!list.get(position).getEmail().equals(user.getEmail())) {
+                    Log.d("ㅎㅇ", "ㅎㅇ");
+                    dialog.show();
+                    TextView warn = dialog.findViewById(R.id.warn);
+                    warn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startToast("신고할게요");
+                            dialog.dismiss();
+                        }
+                    });
+                    TextView black = dialog.findViewById(R.id.black);
+                    black.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startToast("차단할게요");
+                            dialog.dismiss();
+                        }
+                    });
+                    TextView bye = dialog.findViewById(R.id.bye);
+                    bye.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startToast("더이상 보지않아요");
+                            dialog.dismiss();
+                        }
+                    });
                 }
             }
         });
@@ -413,4 +456,8 @@ public class Boardfragment extends Fragment {
         bigcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         bigcategoryrecyclerview.setAdapter(bigCategoryAdapter);
     }*/
+
+    private void startToast(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
 }

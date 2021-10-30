@@ -21,6 +21,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
     private Context context;
     private ArrayList<DocumentReference> listDoc;
     LikeClickListener likeClickListener;
+    DotClickListener dotClickListener;
     String user;
 
     PostAdapter(ArrayList<PostData> list) { this.list = list; }
@@ -43,6 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
         holder.setUser(user);
         holder.onBind(list.get(position));
         holder.setLikeClickListener(likeClickListener);
+        holder.setDotClickListener(dotClickListener);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +71,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
     void setLikeClickListener(LikeClickListener likeClickListener) {
         this.likeClickListener = likeClickListener;
     }
+    void setDotClickListener(DotClickListener dotClickListener) {
+        this.dotClickListener = dotClickListener;
+    }
 }
 
 class PostHolder extends RecyclerView.ViewHolder {
     TextView title;
     TextView updateTime1;
     TextView updateTime2;
+    ImageView threedot;
     ImageView like;
     LikeClickListener likeClickListener;
+    DotClickListener dotClickListener;
     String user;
 
     public PostHolder(@NonNull View itemView) {
@@ -93,6 +100,17 @@ class PostHolder extends RecyclerView.ViewHolder {
                 if (likeClickListener != null) {
                     likeClickListener.onStarClick(view, position);
                 }
+            }
+        });
+
+        threedot = itemView.findViewById(R.id.threeDot);
+
+        threedot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = getBindingAdapterPosition();
+                if(dotClickListener != null)
+                    dotClickListener.onDotClick(v,position);
             }
         });
     }
@@ -114,6 +132,9 @@ class PostHolder extends RecyclerView.ViewHolder {
     void setLikeClickListener(LikeClickListener likeClickListener) {
         this.likeClickListener = likeClickListener;
     }
+    void setDotClickListener(DotClickListener dotClickListener) {
+        this.dotClickListener = dotClickListener;
+    }
 
     void setUser(String user) {
         this.user = user;
@@ -122,4 +143,7 @@ class PostHolder extends RecyclerView.ViewHolder {
 }
 interface LikeClickListener {
     void onStarClick(View view, int position);
+}
+interface DotClickListener {
+    void onDotClick(View view, int position);
 }

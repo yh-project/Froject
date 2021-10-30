@@ -50,7 +50,7 @@ public class UserinfoActivity extends AppCompatActivity {
         for (int i=0;i<5;i++)
             levels.add((i+1)+"학년");
         ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, levels);
-        levelAdapter.setDropDownViewResource(R.layout.spinner_item);
+        levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(levelAdapter);
 
         ((Spinner) findViewById(R.id.setLevel)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

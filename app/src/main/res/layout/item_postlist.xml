@@ -33,13 +33,14 @@
 
     <ImageView
         android:id="@+id/threeDot"
-        android:layout_width="3dp"
-        android:layout_height="14dp"
+        android:layout_width="7dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="17.2dp"
+        android:layout_marginEnd="18.5dp"
         android:src="@drawable/three_dot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="18.5dp"
-        android:layout_marginTop="17.2dp"/>
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/like"

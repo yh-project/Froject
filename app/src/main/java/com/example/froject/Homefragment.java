@@ -74,13 +74,13 @@ public class Homefragment extends Fragment {
         String[] Plancategory = getResources().getStringArray(R.array.Plancategory);//1 31
         String[] Interiorlcategory = getResources().getStringArray(R.array.Interiorlcategory);//1 32
 
-        ImageView search = v.findViewById(R.id.search);
+        /*ImageView search = v.findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(SearchActivity.class);
             }
-        });
+        });*/
 
         int[] rand = make_num();
         String[] smallcat = new String[5];

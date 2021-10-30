@@ -133,7 +133,7 @@ public class WritingAdapter extends RecyclerView.Adapter<WriteHolder> {
                 list.get(position).setBigCategory(holder.Bigadapter.getItem(position2));
                 holder.Smalladapter = new ArrayAdapter<String>(holder.itemView.getContext(), R.layout.spinner_item_write, array[position2]);
                 //Smalladapter = ArrayAdapter.createFromResource(v.getContext(), R.array.Designcategory, android.R.layout.simple_spinner_dropdown_item);
-                holder.Smalladapter.setDropDownViewResource(R.layout.spinner_item_write);
+                holder.Smalladapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 holder.Smallspinner.setAdapter(holder.Smalladapter);
                 holder.Smallspinner.setSelection(holder.Smalladapter.getPosition(list.get(position).getSmallCategory()));
                 holder.Smallspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -281,14 +281,14 @@ class WriteHolder extends RecyclerView.ViewHolder {
         a.remove(a.size() - 1);
 
         CountAdapter = new ArrayAdapter<String>(v.getContext(), R.layout.spinner_item_write, cnt);
-        CountAdapter.setDropDownViewResource(R.layout.spinner_item_write);
+        CountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countSpinner.setAdapter(CountAdapter);
 
         Bigspinner = (Spinner) v.findViewById(R.id.bigcategory);
         Smallspinner = (Spinner) v.findViewById(R.id.smallcategory);
         Bigadapter = new ArrayAdapter<String>(v.getContext(), R.layout.spinner_item_write, a);
         //Bigadapter = ArrayAdapter.createFromResource(v.getContext(), R.array.Bigcategory, android.R.layout.simple_spinner_dropdown_item);
-        Bigadapter.setDropDownViewResource(R.layout.spinner_item_write);
+        Bigadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Bigspinner.setAdapter(Bigadapter);
 
         delButton = v.findViewById(R.id.deleteContent);

@@ -96,8 +96,7 @@ public class Profilefragment extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.logout:
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(LoginActivity.class);
+                    logoutAlert();
                     break;
                 case R.id.gotoLikeList:
                     intent = new Intent(getActivity(), LikeListActivity.class);
@@ -135,6 +134,27 @@ public class Profilefragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         startActivity(MainActivity.class);
+                    }
+                })
+                .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+
+                    }
+                });
+        AlertDialog msgDlg = msgBuilder.create();
+        msgDlg.show();
+    }
+
+    private void logoutAlert() {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(getActivity())
+                .setTitle("로그아웃")
+                .setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(LoginActivity.class);
                     }
                 })
                 .setNegativeButton("아니요", new DialogInterface.OnClickListener() {

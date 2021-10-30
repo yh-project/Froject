@@ -38,11 +38,6 @@ public class PassresetActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-    @Override
-    public void onBackPressed() {
-        backAlert();
-    }
-
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -83,25 +78,5 @@ public class PassresetActivity extends AppCompatActivity {
         Intent intent = new Intent(this, c);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
-
-    private void backAlert() {
-        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(PassresetActivity.this)
-                .setTitle("나가기")
-                .setMessage("입력하신 내용이 사라집니다. \n정말 이 창을 나가시겠습니까?")
-                .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        startActivity(LoginActivity.class);
-                    }
-                })
-                .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-
-                    }
-                });
-        AlertDialog msgDlg = msgBuilder.create();
-        msgDlg.show();
     }
 }
