@@ -17,7 +17,6 @@ import java.util.zip.Inflater;
 public class SmaillCategoryAdapter extends RecyclerView.Adapter<SmallHolder> {
     private String[] list;
     private ClickCallbackListener2 callbackListener2;
-    private int selected=0;
     private boolean[] is_checked;
 
     SmaillCategoryAdapter(String[] list, boolean[] is_checked) { this.list = list; this.is_checked=is_checked; }

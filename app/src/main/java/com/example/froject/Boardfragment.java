@@ -74,7 +74,7 @@ public class Boardfragment extends Fragment {
     private PostData[] lists;
     private int docSize;
 
-    private int prev=0, prev_big=0;
+    private int prev=-1, prev_big=-1;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -219,10 +219,10 @@ public class Boardfragment extends Fragment {
         callbackListener2 = new ClickCallbackListener2() {
             @Override
             public void callBack(String name, int a) {
-                Log.d("click",name+a);
                 getDBWithSort2(name,v);
+                if (prev != -1)
+                    is_checked[prev]=false;
                 is_checked[a]=true;
-                is_checked[prev]=false;
                 smaillCategoryAdapter.notifyItemChanged(a);
                 smaillCategoryAdapter.notifyItemChanged(prev);
                 prev = a;

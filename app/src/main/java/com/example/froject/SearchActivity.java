@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import static com.google.firebase.firestore.Query.Direction.DESCENDING;
 
@@ -62,10 +63,14 @@ public class SearchActivity extends AppCompatActivity {
                             break;
                         }
                         searchdata = editsearch.getText().toString();//검색한거 스트링으로 저장
+
                         editsearch.clearFocus();//엔터키 누르면 커서 제거
                         imm.hideSoftInputFromWindow(editsearch.getWindowToken(), 0); //키보드 내려줌.
 
+
                         searching(searchdata);
+
+                        editsearch.setText("");
 
                         break;
                     default:
@@ -103,17 +108,34 @@ public class SearchActivity extends AppCompatActivity {
         RecyclerView searchRecyclerView = findViewById(R.id.rankRecyclerView);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-
         db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
-                whereEqualTo("searchData","*"+search+"*").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+
+                if (!task.isSuccessful())
+                    return;
                 int docSize = task.getResult().getDocuments().size();
                 PostAdapter postAdapter;
 
+                Log.d("data",docSize+"");
+
+                String[] search2 = search.split("\n");
+
+
+                String pattern = "*"+search2[0]+"*";
                 for (int i = 0; i < docSize; i++) {
-                    list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
-                    listDoc.add(task.getResult().getDocuments().get(i).getReference());
+                    try {
+                        PostData data = task.getResult().getDocuments().get(i).toObject(PostData.class);
+                        if (data.getSearchData().matches(pattern)) {
+                            list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
+                            listDoc.add(task.getResult().getDocuments().get(i).getReference());
+                        }
+                    }
+                    catch (Exception e) {
+                        break;
+                    }
+
                 }
                 postAdapter = new PostAdapter(list);
                 postAdapter.setListDoc(listDoc);

@@ -25,6 +25,16 @@ public class Info implements Serializable {
         this.Email = Email;
     }
 
+    public Info(String name, String first_name, String last_name, String number, String univ, String level, String major, String Email) {
+        this.name = name;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.number = number;
+        this.univ = univ;
+        this.level = level;
+        this.major = major;
+        this.Email = Email;
+    }
 
     public Info() {
 
