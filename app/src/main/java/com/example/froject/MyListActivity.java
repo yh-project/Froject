@@ -39,14 +39,14 @@ public class MyListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Info my_info =(Info)intent.getSerializableExtra("my_info");
 
-        recyclerView = findViewById(R.id.listRecyclerView);
+        recyclerView = findViewById(R.id.mylistRecyclerView);
         list = new ArrayList<>();
         ArrayList<DocumentReference> listDoc = new ArrayList<>();
         list.clear();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
-                whereArrayContains("email", my_info.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                whereEqualTo("email", my_info.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
                 if (!task.isSuccessful()) {
