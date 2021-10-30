@@ -1023,6 +1023,8 @@ public class ChatActivity extends AppCompatActivity {
                     if (!myUid.equals(key)) users.put(key, users.get(key)+1);
                 }
                 document.getReference().update("users", users);
+                if (title!=null)
+                    document.getReference().update("title",title);
 
                 batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
