@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
@@ -25,7 +26,7 @@
         android:id="@+id/emailMent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이메일"
+        android:text="@string/signup_ement"
         android:textSize="11.5sp"
         android:textColor="#33529f"
         android:lineSpacingExtra="2.1sp"
@@ -33,7 +34,8 @@
         app:layout_constraintBottom_toTopOf="@+id/setEmail"
         app:layout_constraintStart_toStartOf="@+id/setEmail"
         android:layout_marginStart="15.9dp"
-        android:layout_marginBottom="7dp"/>
+        android:layout_marginBottom="7dp"
+        tools:ignore="SmallSp" />
 
     <!--이메일 입력-->
     <EditText
@@ -41,18 +43,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/input_box_signup"
-        android:hint="이메일을 입력해주세요."
+        android:hint="@string/signup_email"
         android:textColorHint="#727272"
         android:textSize="11.5sp"
         android:textColor="#000000"
         android:fontFamily="@font/nanumsquareroundr"
         android:lineSpacingExtra="2sp"
         android:paddingStart="15.8dp"
+        android:paddingEnd="0dp"
         android:inputType="textEmailAddress"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="203.5dp" />
+        android:layout_marginTop="203.5dp"
+        tools:ignore="Autofill,SmallSp" />
 
     <!--인증버튼-->
     <Button
@@ -62,18 +66,19 @@
         android:background="@drawable/login_box"
         app:layout_constraintTop_toTopOf="@+id/setEmail"
         app:layout_constraintEnd_toEndOf="@+id/setEmail"
-        android:text="인증"
+        android:text="@string/signup_verify"
         android:textColor="#ffffff"
         android:textSize="11.5sp"
         android:lineSpacingExtra="2sp"
-        android:fontFamily="@font/nanumsquareroundr" />
+        android:fontFamily="@font/nanumsquareroundr"
+        tools:ignore="SmallSp" />
 
     <!--비밀번호 문구-->
     <TextView
         android:id="@+id/passMent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호"
+        android:text="@string/signup_pment"
         android:textSize="11.5sp"
         android:textColor="#33529f"
         android:lineSpacingExtra="2.1sp"
@@ -81,7 +86,8 @@
         app:layout_constraintTop_toBottomOf="@+id/setEmail"
         app:layout_constraintStart_toStartOf="@+id/emailMent"
         android:layout_marginTop="31.2dp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        tools:ignore="SmallSp" />
 
     <!--비밀번호 입력-->
     <EditText
@@ -89,19 +95,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/input_box_signup"
-        android:hint="비밀번호를 입력해주세요."
+        android:hint="@string/signup_pass"
         android:textColorHint="#727272"
         android:textSize="11.5sp"
         android:textColor="#000000"
         android:fontFamily="@font/nanumsquareroundr"
         android:lineSpacingExtra="2sp"
         android:paddingStart="15.8dp"
+        android:paddingEnd="0dp"
         android:inputType="textPassword"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="289.6dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:ignore="Autofill,SmallSp" />
 
     <!--비밀번호 재입력-->
     <EditText
@@ -109,19 +117,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/input_box_signup"
-        android:hint="비밀번호를 한번 더 입력해주세요."
+        android:hint="@string/signup_pagain"
         android:textColorHint="#727272"
         android:textSize="11.5sp"
         android:textColor="#000000"
         android:fontFamily="@font/nanumsquareroundr"
         android:lineSpacingExtra="2sp"
         android:paddingStart="15.8dp"
+        android:paddingEnd="0dp"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/setPass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="6.8dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:ignore="Autofill,SmallSp" />
 
     <!--다음창으로-->
     <Button
@@ -129,7 +139,7 @@
         android:layout_width="300dp"
         android:layout_height="33.2dp"
         android:background="@drawable/login_box"
-        android:text="다음"
+        android:text="@string/signup_next"
         android:textColor="#ffffff"
         android:textSize="13.5sp"
         android:lineSpacingExtra="2.4sp"

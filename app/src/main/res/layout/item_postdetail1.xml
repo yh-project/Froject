@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -9,20 +10,21 @@
         android:id="@+id/inputContentTitle"
         android:layout_width="80.4dp"
         android:layout_height="21.9dp"
-        android:text="모집 내용"
+        android:text="@string/ip_title"
         android:textSize="10.2sp"
         android:background="@drawable/borderline_post"
         android:textColor="#070304"
         android:fontFamily="@font/nanumsquareroundb"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/inputContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="내용"
+        android:text="@string/ip_content"
         android:textColor="#2a3448"
         android:fontFamily="@font/nanumsquareroundr"
         android:paddingTop="10dp"
@@ -32,22 +34,25 @@
         android:textSize="10.5sp"
         android:lineSpacingExtra="2.1sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputContentTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/inputContentTitle"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/mentPlace"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="장소  :  "
+        android:text="@string/ip_place"
         android:textColor="#2a3448"
         android:fontFamily="@font/nanumsquareroundr"
         android:textSize="10.5sp"
         android:gravity="start"
         android:paddingTop="10dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/inputContent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/place"
@@ -60,21 +65,24 @@
         android:layout_marginTop="10dp"
         android:textSize="10.5sp"
         app:layout_constraintTop_toBottomOf="@+id/inputContent"
-        app:layout_constraintLeft_toRightOf="@+id/mentPlace" />
+        app:layout_constraintLeft_toRightOf="@+id/mentPlace"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/mentPeriod"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="기간  :  "
+        android:text="@string/ip_period"
         android:textColor="#2a3448"
         android:fontFamily="@font/nanumsquareroundr"
         android:gravity="start"
         android:paddingTop="10dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
         android:textSize="10.5sp"
         app:layout_constraintTop_toBottomOf="@+id/mentPlace"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/period"
@@ -86,21 +94,24 @@
         android:paddingTop="10dp"
         android:textSize="10.5sp"
         app:layout_constraintTop_toBottomOf="@+id/place"
-        app:layout_constraintLeft_toRightOf="@+id/mentPeriod" />
+        app:layout_constraintLeft_toRightOf="@+id/mentPeriod"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/mentCount"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="구인 수  :  "
+        android:text="@string/ip_count"
         android:textColor="#2a3448"
         android:fontFamily="@font/nanumsquareroundr"
         android:gravity="start"
         android:paddingTop="10dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
         android:textSize="10.5sp"
         app:layout_constraintTop_toBottomOf="@+id/mentPeriod"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/totalCount"
@@ -112,7 +123,8 @@
         android:paddingTop="10dp"
         android:textSize="10.5sp"
         app:layout_constraintTop_toBottomOf="@+id/period"
-        app:layout_constraintLeft_toRightOf="@+id/mentCount" />
+        app:layout_constraintLeft_toRightOf="@+id/mentCount"
+        tools:ignore="SmallSp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

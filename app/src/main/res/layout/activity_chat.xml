@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,7 @@
         android:id="@+id/opponentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="김수현"
+        android:text="@string/chat_name"
         android:textColor="#33529f"
         android:textSize="15.5sp"
         android:fontFamily="@font/nanumsquareroundb"
@@ -27,14 +28,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="28.4dp"
-        android:layout_marginTop="35.7dp" />
+        android:layout_marginTop="35.7dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/postTitle"
         android:layout_width="match_parent"
         android:layout_height="23.3dp"
         android:background="#e0e1ef"
-        android:text="앱 개발 공모전 참가하실 디자이너/개발자 구합니다"
+        android:text="@string/chat_title"
         android:textSize="11.5sp"
         android:textColor="#474747"
         android:lineSpacingExtra="2.3sp"
@@ -43,7 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/opponentName"
-        android:layout_marginTop="9.8dp" />
+        android:layout_marginTop="9.8dp"
+        tools:ignore="SmallSp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"
@@ -74,13 +77,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="17.7dp"
-            android:layout_marginTop="11.7dp" />
+            android:layout_marginTop="11.7dp"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/et_chatting"
             android:layout_width="253.9dp"
             android:layout_height="28.5dp"
-            android:hint="메시지를 입력하세요."
+            android:hint="@string/chat_input_box"
             android:textColorHint="#bebebd"
             android:inputType="textMultiLine"
             android:maxLength="128"
@@ -92,7 +96,8 @@
             android:backgroundTint="#ffffff"
             app:layout_constraintStart_toEndOf="@+id/choice_media"
             app:layout_constraintEnd_toStartOf="@+id/btn_send"
-            app:layout_constraintTop_toTopOf="@+id/choice_media"/>
+            app:layout_constraintTop_toTopOf="@+id/choice_media"
+            tools:ignore="Autofill" />
 
         <ImageButton
             android:id="@+id/btn_send"
@@ -102,170 +107,9 @@
             android:enabled="true"
             app:layout_constraintTop_toTopOf="@+id/choice_media"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="24.3dp"/>
+            android:layout_marginEnd="24.3dp"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/layout"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:weightSum="250">
-
-        &lt;!&ndash;탑바&ndash;&gt;
-        &lt;!&ndash;<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="130">
-
-            <ImageButton
-                android:id="@+id/back"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:background="@drawable/item_back_button" />
-
-            &lt;!&ndash;<TextView
-                android:id="@+id/opponentName"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="90"
-                android:gravity="center"
-                android:text="김수현"
-                android:textColor="#5768CB"
-                android:textSize="18sp"
-                android:textStyle="bold" />&ndash;&gt;
-
-        </LinearLayout>&ndash;&gt;
-
-        &lt;!&ndash;채팅창&ndash;&gt;
-        &lt;!&ndash;<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:weightSum="130">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="120" />
-
-        </LinearLayout>&ndash;&gt;
-
-    </LinearLayout>
-
-    &lt;!&ndash;채팅입력&ndash;&gt;
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#F1F2F4"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        &lt;!&ndash;<EditText
-            android:id="@+id/et_chatting"
-            android:layout_width="0dp"
-            android:layout_weight="100"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="메시지를 입력하세요."
-            android:textColorHint="#D4D4D4"
-            android:inputType="textMultiLine"
-            android:maxLength="128"
-            android:scrollHorizontally="false"
-            android:textSize="14sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:background="@drawable/borderline_post"
-            android:backgroundTint="#ffffff"/>&ndash;&gt;
-
-        &lt;!&ndash;<ImageButton
-            android:id="@+id/btn_send"
-            android:layout_width="0dp"
-            android:layout_weight="10"
-            android:layout_height="30dp"
-            android:background="@drawable/item_send_chat"
-            android:layout_marginLeft="15dp"
-            android:enabled="true" />&ndash;&gt;
-
-    </LinearLayout>-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-<!--
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#93A1CA"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_weight="1">
-
-        <EditText
-            android:id="@+id/et_chatting"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="내용 입력 (128자 제한)"
-            android:inputType="textMultiLine"
-            android:maxLength="128"
-            android:scrollHorizontally="false"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_send"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="입력"
-            android:enabled="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>-->

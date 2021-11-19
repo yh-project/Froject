@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,7 +9,7 @@
         android:id="@+id/setName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="홍길동님 후기 작성하기"
+        android:text="@string/rw_whose"
         android:textColor="#33529f"
         android:textSize="15.5sp"
         android:lineSpacingExtra="3.1sp"
@@ -22,7 +23,7 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="취소"
+        android:text="@string/rw_cancel"
         android:fontFamily="@font/nanumsquareroundb"
         android:textSize="14sp"
         android:textColor="#727272"
@@ -45,14 +46,15 @@
         android:id="@+id/startMent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이 사람을 추천하나요?"
+        android:text="@string/rw_start"
         android:textSize="11sp"
         android:textColor="#33529f"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstLine"
-        android:layout_marginTop="29.6dp" />
+        android:layout_marginTop="29.6dp"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/total_3"
@@ -62,7 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startMent"
-        android:layout_marginTop="17.1dp" />
+        android:layout_marginTop="17.1dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/total_2"
@@ -71,7 +74,8 @@
         android:src="@drawable/bad"
         app:layout_constraintEnd_toStartOf="@+id/total_3"
         app:layout_constraintTop_toTopOf="@+id/total_3"
-        android:layout_marginEnd="11.6dp"/>
+        android:layout_marginEnd="11.6dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/total_1"
@@ -80,7 +84,8 @@
         android:src="@drawable/very_bad"
         app:layout_constraintEnd_toStartOf="@+id/total_2"
         app:layout_constraintTop_toTopOf="@+id/total_3"
-        android:layout_marginEnd="11.6dp"/>
+        android:layout_marginEnd="11.6dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/total_4"
@@ -89,7 +94,8 @@
         android:src="@drawable/good"
         app:layout_constraintStart_toEndOf="@+id/total_3"
         app:layout_constraintTop_toTopOf="@+id/total_3"
-        android:layout_marginStart="11.6dp"/>
+        android:layout_marginStart="11.6dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/total_5"
@@ -98,7 +104,8 @@
         android:src="@drawable/very_good"
         app:layout_constraintStart_toEndOf="@+id/total_4"
         app:layout_constraintTop_toTopOf="@+id/total_3"
-        android:layout_marginStart="11.6dp"/>
+        android:layout_marginStart="11.6dp"
+        tools:ignore="ContentDescription" />
 
     <View
         android:id="@+id/secondLine"
@@ -113,26 +120,28 @@
         android:id="@+id/secondMent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="상세한 평가를 해주세요!"
+        android:text="@string/rw_second"
         android:textSize="11sp"
         android:textColor="#33529f"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondLine"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="29dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="성실도"
+        android:text="@string/rw_cont1"
         android:textSize="11sp"
         android:textColor="#33529f"
         app:layout_constraintEnd_toStartOf="@+id/secondMent"
         app:layout_constraintTop_toBottomOf="@+id/secondMent"
         android:layout_marginTop="25.1dp"
-        android:layout_marginEnd="27.4dp" />
+        android:layout_marginEnd="27.4dp"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/first_1"
@@ -142,7 +151,8 @@
         app:layout_constraintStart_toEndOf="@+id/first"
         app:layout_constraintTop_toTopOf="@+id/first"
         app:layout_constraintBottom_toBottomOf="@+id/first"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/first_2"
@@ -152,7 +162,8 @@
         app:layout_constraintStart_toEndOf="@+id/first_1"
         app:layout_constraintTop_toTopOf="@+id/first_1"
         app:layout_constraintBottom_toBottomOf="@+id/first_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/first_3"
@@ -162,7 +173,8 @@
         app:layout_constraintStart_toEndOf="@+id/first_2"
         app:layout_constraintTop_toTopOf="@+id/first_1"
         app:layout_constraintBottom_toBottomOf="@+id/first_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/first_4"
@@ -172,7 +184,8 @@
         app:layout_constraintStart_toEndOf="@+id/first_3"
         app:layout_constraintTop_toTopOf="@+id/first_1"
         app:layout_constraintBottom_toBottomOf="@+id/first_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/first_5"
@@ -182,19 +195,21 @@
         app:layout_constraintStart_toEndOf="@+id/first_4"
         app:layout_constraintTop_toTopOf="@+id/first_1"
         app:layout_constraintBottom_toBottomOf="@+id/first_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="신뢰도"
+        android:text="@string/rw_cont2"
         android:textSize="11sp"
         android:textColor="#33529f"
         app:layout_constraintStart_toStartOf="@+id/first"
         app:layout_constraintEnd_toEndOf="@+id/first"
         app:layout_constraintTop_toBottomOf="@+id/first"
-        android:layout_marginTop="41.3dp" />
+        android:layout_marginTop="41.3dp"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/second_1"
@@ -204,7 +219,8 @@
         app:layout_constraintStart_toEndOf="@+id/second"
         app:layout_constraintTop_toTopOf="@+id/second"
         app:layout_constraintBottom_toBottomOf="@+id/second"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/second_2"
@@ -214,7 +230,8 @@
         app:layout_constraintStart_toEndOf="@+id/second_1"
         app:layout_constraintTop_toTopOf="@+id/second_1"
         app:layout_constraintBottom_toBottomOf="@+id/second_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/second_3"
@@ -224,7 +241,8 @@
         app:layout_constraintStart_toEndOf="@+id/second_2"
         app:layout_constraintTop_toTopOf="@+id/second_1"
         app:layout_constraintBottom_toBottomOf="@+id/second_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/second_4"
@@ -234,7 +252,8 @@
         app:layout_constraintStart_toEndOf="@+id/second_3"
         app:layout_constraintTop_toTopOf="@+id/second_1"
         app:layout_constraintBottom_toBottomOf="@+id/second_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/second_5"
@@ -244,19 +263,21 @@
         app:layout_constraintStart_toEndOf="@+id/second_4"
         app:layout_constraintTop_toTopOf="@+id/second_1"
         app:layout_constraintBottom_toBottomOf="@+id/second_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/third"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="전공성"
+        android:text="@string/rw_cont3"
         android:textSize="11sp"
         android:textColor="#33529f"
         app:layout_constraintStart_toStartOf="@+id/second"
         app:layout_constraintEnd_toEndOf="@+id/second"
         app:layout_constraintTop_toBottomOf="@+id/second"
-        android:layout_marginTop="41.3dp" />
+        android:layout_marginTop="41.3dp"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/third_1"
@@ -266,7 +287,8 @@
         app:layout_constraintStart_toEndOf="@+id/third"
         app:layout_constraintTop_toTopOf="@+id/third"
         app:layout_constraintBottom_toBottomOf="@+id/third"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/third_2"
@@ -276,7 +298,8 @@
         app:layout_constraintStart_toEndOf="@+id/third_1"
         app:layout_constraintTop_toTopOf="@+id/third_1"
         app:layout_constraintBottom_toBottomOf="@+id/third_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/third_3"
@@ -286,7 +309,8 @@
         app:layout_constraintStart_toEndOf="@+id/third_2"
         app:layout_constraintTop_toTopOf="@+id/third_1"
         app:layout_constraintBottom_toBottomOf="@+id/third_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/third_4"
@@ -296,7 +320,8 @@
         app:layout_constraintStart_toEndOf="@+id/third_3"
         app:layout_constraintTop_toTopOf="@+id/third_1"
         app:layout_constraintBottom_toBottomOf="@+id/third_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/third_5"
@@ -306,7 +331,8 @@
         app:layout_constraintStart_toEndOf="@+id/third_4"
         app:layout_constraintTop_toTopOf="@+id/third_1"
         app:layout_constraintBottom_toBottomOf="@+id/third_1"
-        android:layout_marginStart="9.9dp"/>
+        android:layout_marginStart="9.9dp"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/inputReview"
@@ -315,21 +341,22 @@
         android:layout_marginTop="396dp"
         android:background="@drawable/box_review"
         android:gravity="start"
-        android:hint="다음 프로젝트를 위해 솔직하고 상세한 평가 부탁드려요!\n(10자 이상)"
+        android:hint="@string/rw_ment"
         android:padding="10dp"
         android:textColorHint="#bebebd"
         android:textSize="8.8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill,SmallSp,TextFields" />
 
     <Button
         android:id="@+id/finishBtn"
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
         android:background="@drawable/login_box"
-        android:text="작성 완료"
+        android:text="@string/rw_fin"
         android:textColor="#ffffff"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"

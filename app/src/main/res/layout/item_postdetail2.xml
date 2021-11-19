@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +11,7 @@
         android:id="@+id/inputCategory"
         android:layout_width="wrap_content"
         android:layout_height="21.9dp"
-        android:text="분야"
+        android:text="@string/ip_category"
         android:textSize="10.2sp"
         android:gravity="center"
         android:background="@drawable/borderline_post"
@@ -19,25 +20,27 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingStart="10dp"
-        android:paddingEnd="10dp"/>
+        android:paddingEnd="10dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/countPeople"
         android:layout_width="90dp"
         android:layout_height="37dp"
-        android:text="구인 수 : 1"
+        android:text="@string/ip_count2"
         android:textSize="10sp"
         android:gravity="center"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/inputContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="내용"
+        android:text="@string/ip_content"
         android:textColor="#000000"
         android:textStyle="bold"
         android:paddingTop="10dp"

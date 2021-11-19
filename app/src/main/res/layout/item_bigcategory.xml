@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquareroundb"
-        android:text="디자인"
+        android:text="@string/ib_catename"
         android:textColor="#2a3448"
         android:textSize="15sp"
         android:lineSpacingExtra="2.6sp"

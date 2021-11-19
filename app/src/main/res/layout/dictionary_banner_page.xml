@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/imageLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="18"
-        android:text="분야설명"
+        android:text="@string/db_explain"
         android:textColor="#33529f"
         android:textSize="15sp"
         android:fontFamily="@font/nanumsquareroundeb"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="자세히 >"
+        android:text="@string/db_dict"
         android:fontFamily="@font/nanumsquareroundb"
         android:textColor="#727272"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,11 +36,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxWidth="150dp"
-        android:text="살려줘"
+        android:text="@string/db_detail"
         android:textColor="#ffffff"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30.7dp"
-        android:layout_marginEnd="17.7dp" />
+        android:layout_marginEnd="17.7dp"
+        tools:ignore="ContentDescription" />
 
     <View
         android:id="@+id/firstLine"
@@ -56,7 +57,7 @@
                     android:paddingRight="5dp"
                     android:layout_marginTop="5dp"
                     android:backgroundTint="#e2e2e4"
-                    android:hint="제목"
+                    android:hint="@string/write_title"
                     android:textColorHint="#a6a5a5"
                     android:textColor="#000000"
                     android:textSize="11.5sp"
@@ -64,7 +65,8 @@
                     android:textAlignment="viewStart"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="Autofill,SmallSp,TextFields" />
 
                 <EditText
                     android:id="@+id/inputPlace"
@@ -73,7 +75,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:backgroundTint="#e2e2e4"
-                    android:hint="장소"
+                    android:hint="@string/write_place"
                     android:textColorHint="#a6a5a5"
                     android:textColor="#000000"
                     android:textSize="11.5sp"
@@ -82,16 +84,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/inputTitle"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    tools:ignore="Autofill,SmallSp,TextFields" />
 
                 <EditText
                     android:id="@+id/inputPeriod"
                     android:layout_width="match_parent"
                     android:layout_height="47.5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="34.5dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="34.5dp"
                     android:backgroundTint="#e2e2e4"
-                    android:hint="기간"
+                    android:hint="@string/write_period"
                     android:textColorHint="#a6a5a5"
                     android:textColor="#000000"
                     android:textSize="11.5sp"
@@ -100,12 +103,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/inputPlace"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    tools:ignore="Autofill,SmallSp,TextFields" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="협의 가능"
+                    android:text="@string/write_adjust"
                     android:textColor="#a6a5a5"
                     android:textSize="11.5sp"
                     android:fontFamily="@font/nanumsquareroundeb"
@@ -113,7 +117,8 @@
                     app:layout_constraintEnd_toEndOf="@+id/inputPeriod"
                     app:layout_constraintTop_toTopOf="@+id/inputPeriod"
                     app:layout_constraintBottom_toBottomOf="@+id/inputPeriod"
-                    android:layout_marginEnd="34.5dp"/>
+                    android:layout_marginEnd="34.5dp"
+                    tools:ignore="SmallSp" />
 
                 <CheckBox
                     android:id="@+id/checkperiod"
@@ -134,7 +139,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:backgroundTint="#e2e2e4"
-                    android:hint="내용"
+                    android:hint="@string/write_content"
                     android:textColorHint="#a6a5a5"
                     android:textColor="#000000"
                     android:textSize="11.5sp"
@@ -143,7 +148,8 @@
                     android:minLines="2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputPeriod" />
+                    app:layout_constraintTop_toBottomOf="@+id/inputPeriod"
+                    tools:ignore="Autofill,SmallSp,TextFields" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/checkLayout"
@@ -158,14 +164,15 @@
                         android:id="@+id/extraMent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="대외활동"
+                        android:text="@string/write_external"
                         android:textColor="#a6a5a5"
                         android:textSize="11.5sp"
                         android:lineSpacingExtra="2.3sp"
                         android:fontFamily="@font/nanumsquareroundeb"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:ignore="SmallSp" />
 
                     <CheckBox
                         android:id="@+id/checkcontest"
@@ -181,7 +188,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="봉사활동"
+                        android:text="@string/write_bongsa"
                         android:textColor="#a6a5a5"
                         android:textSize="11.5sp"
                         android:lineSpacingExtra="2.3sp"
@@ -189,7 +196,8 @@
                         app:layout_constraintEnd_toStartOf="@+id/checkvolunteer"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="10dp"
+                        tools:ignore="SmallSp" />
 
                     <CheckBox
                         android:id="@+id/checkvolunteer"
@@ -226,7 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="구인 수"
+                        android:text="@string/write_count"
                         android:textColor="#000000"
                         android:fontFamily="@font/nanumsquareroundeb"
                         app:layout_constraintTop_toTopOf="parent"
@@ -243,13 +251,14 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/totalCount"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="10dp"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/totalCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:text="@string/write_one"
                         android:textColor="#2a3448"
                         android:textSize="14.8sp"
                         android:fontFamily="@font/nanumsquareroundeb"
@@ -269,7 +278,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintLeft_toRightOf="@+id/totalCount"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="10dp"
+                        tools:ignore="ContentDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -302,7 +312,7 @@
         android:id="@+id/finishcontents"
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
-        android:text="작성완료"
+        android:text="@string/write_fin"
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:fontFamily="@font/nanumsquareroundeb"
@@ -312,330 +322,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="57.3dp"/>
-
-
-    <!--탑바-->
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:weightSum="130"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            tools:ignore="NestedWeights" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="닫기"
-            android:textColor="#909090"
-            android:fontFamily="@font/nanumsquareroundb"
-            android:gravity="center" />
-    </LinearLayout>-->
-
-    <!--메인콘텐츠-->
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="209"
-        android:weightSum="130"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:paddingTop="10dp">
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="110"
-            android:fillViewport="true"
-            tools:ignore="NestedWeights">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                &lt;!&ndash;<EditText
-                    android:id="@+id/inputTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:hint="제목"
-                    android:textColorHint="#B7B7B7"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/nanumsquareroundeb"
-                    android:textAlignment="viewStart" />&ndash;&gt;
-
-                &lt;!&ndash;<EditText
-                    android:id="@+id/inputPlace"
-                    android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:hint="장소"
-                    android:textColorHint="#B7B7B7"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/nanumsquareroundeb"
-                    android:textAlignment="viewStart" />&ndash;&gt;
-                
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:weightSum="110"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
-
-                    &lt;!&ndash;<EditText
-                        android:id="@+id/inputPeriod"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="80"
-                        android:paddingLeft="5dp"
-                        android:backgroundTint="@android:color/transparent"
-                        android:hint="기간"
-                        android:textColorHint="#B7B7B7"
-                        android:textColor="#000000"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/nanumsquareroundeb"
-                        android:textAlignment="viewStart" />&ndash;&gt;
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="20"
-                        android:text="협의 가능"
-                        android:textColor="#B7B7B7"
-                        android:textSize="12sp"
-                        android:fontFamily="@font/nanumsquareroundeb"
-                        android:gravity="end|center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="10"
-                        android:layout_height="match_parent"
-                        android:gravity="center">
-
-                       &lt;!&ndash; <CheckBox
-                            android:id="@+id/checkperiod"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:button="@null"
-                            android:background="@drawable/item_checkbox_custom"/>&ndash;&gt;
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                &lt;!&ndash;<EditText
-                    android:id="@+id/inputContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:hint="내용"
-                    android:textColorHint="#B7B7B7"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/nanumsquareroundeb"
-                    android:textAlignment="viewStart" />&ndash;&gt;
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:weightSum="110"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="40"
-                        android:orientation="horizontal">
-
-                        &lt;!&ndash;<TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="20"
-                            android:text="대외활동"
-                            android:textColor="#B7B7B7"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/nanumsquareroundeb"
-                            android:gravity="right|center_vertical" />&ndash;&gt;
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="10"
-                            android:layout_height="match_parent"
-                            android:gravity="center">
-
-                            &lt;!&ndash;<CheckBox
-                                android:id="@+id/checkcontest"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:button="@null"
-                                android:background="@drawable/item_checkbox_custom"/>&ndash;&gt;
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="40"
-                        android:orientation="horizontal">
-
-                        &lt;!&ndash;<TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="20"
-                            android:text="봉사활동"
-                            android:textColor="#B7B7B7"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/nanumsquareroundeb"
-                            android:gravity="right|center_vertical" />&ndash;&gt;
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="10"
-                            android:layout_height="match_parent"
-                            android:gravity="center">
-
-                            &lt;!&ndash;<CheckBox
-                                android:id="@+id/checkvolunteer"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:button="@null"
-                                android:background="@drawable/item_checkbox_custom"/>&ndash;&gt;
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="#EAEBED" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="49.5dp"
-                    android:layout_marginTop="10dp">
-
-                    &lt;!&ndash;<TextView
-                        android:id="@+id/just_ment"
-                        android:layout_width="0dp"
-                        android:layout_height="49.5dp"
-                        android:paddingLeft="10dp"
-                        app:layout_constraintHorizontal_weight="0.7"
-                        android:hint="구인 수"
-                        android:textColor="#000000"
-                        android:fontFamily="@font/nanumsquareroundeb"
-                        android:gravity="center_vertical"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/minus"/>&ndash;&gt;
-
-                    &lt;!&ndash;<ImageButton
-                        android:id="@+id/minus"
-                        android:layout_width="0dp"
-                        android:layout_height="49.5dp"
-                        app:layout_constraintHorizontal_weight="0.1"
-                        android:src="@drawable/item_remove_contents"
-                        android:background="#ffffff"
-                        android:visibility="invisible"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/totalCount"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@+id/just_ment"/>&ndash;&gt;
-
-                    &lt;!&ndash;<TextView
-                        android:id="@+id/totalCount"
-                        android:layout_width="0dp"
-                        android:layout_height="49.5dp"
-                        app:layout_constraintHorizontal_weight="0.1"
-                        android:text="1"
-                        android:textColor="#5768C3"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/nanumsquareroundeb"
-                        android:gravity="center"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/plus"
-                        app:layout_constraintLeft_toRightOf="@+id/minus" />&ndash;&gt;
-
-                    &lt;!&ndash;<ImageButton
-                        android:id="@+id/plus"
-                        android:layout_width="0dp"
-                        android:layout_height="49.5dp"
-                        app:layout_constraintHorizontal_weight="0.1"
-                        android:visibility="invisible"
-                        android:src="@drawable/item_add_contents"
-                        android:background="#ffffff"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@+id/totalCount"/>&ndash;&gt;
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-               &lt;!&ndash; <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/categoryContentRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />&ndash;&gt;
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-    </LinearLayout>
-
-    &lt;!&ndash;빈공간&ndash;&gt;
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:background="#EAEBED" />
-
-    &lt;!&ndash;완료버튼&ndash;&gt;
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:weightSum="130"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        &lt;!&ndash;<Button
-            android:id="@+id/finishcontents"
-            android:layout_width="0dp"
-            android:layout_weight="110"
-            android:layout_height="match_parent"
-            android:text="작성 완료"
-            android:textColor="#ffffff"
-            android:fontFamily="@font/nanumsquareroundeb"
-            android:background="@drawable/borderline_button_5768c3"/>&ndash;&gt;
-
-    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

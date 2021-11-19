@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
@@ -15,14 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="171.2dp"/>
+        android:layout_marginTop="171.2dp"
+        tools:ignore="ContentDescription" />
     
     <!--이메일 입력-->
     <EditText
         android:id="@+id/useEmail"
         android:layout_width="285dp"
         android:layout_height="wrap_content"
-        android:hint="이메일을 입력해주세요."
+        android:hint="@string/pr_email"
         android:paddingStart="7.9dp"
         android:paddingEnd="7.9dp"
         android:backgroundTint="#BEBEBD"
@@ -34,7 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passReset_logo"
-        android:layout_marginTop="81.6dp"/>
+        android:layout_marginTop="81.6dp"
+        tools:ignore="Autofill,TextFields" />
 
     <!--확인 버튼-->
     <Button
@@ -46,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/useEmail"
         android:layout_marginTop="13.4dp"
-        android:text="메일 전송"
+        android:text="@string/pr_send"
         android:textColor="#ffffff"
         android:textSize="13sp"
         android:lineSpacingExtra="2.4sp"

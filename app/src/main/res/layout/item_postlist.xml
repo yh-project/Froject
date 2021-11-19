@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="83dp"
     android:background="@drawable/postlist_border"
@@ -15,13 +16,14 @@
         android:layout_marginTop="11.9dp"
         android:layout_marginStart="10.1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/posttitle"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:text="앱 개발 공모전 참가하실 디자이너/개발자 구합니다"
+        android:text="@string/il_title"
         android:textColor="#2a3448"
         android:textSize="13sp"
         android:lineSpacingExtra="2.4sp"
@@ -40,7 +42,8 @@
         android:src="@drawable/three_dot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"/>
+        android:clickable="true"
+        tools:ignore="ContentDescription,KeyboardInaccessibleWidget" />
 
     <ImageView
         android:id="@+id/like"
@@ -50,26 +53,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="13dp"
-        android:layout_marginBottom="11.9dp"/>
+        android:layout_marginBottom="11.9dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/uploadtime1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1개월"
+        android:text="@string/il_time1"
         android:textSize="11sp"
         android:textColor="#2a3448"
         android:lineSpacingExtra="1.9sp"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toStartOf="@+id/posttitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="12.8dp"/>
+        android:layout_marginBottom="12.8dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/uploadtime2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="도레미"
+        android:text="@string/il_time2"
         android:textSize="11sp"
         android:textColor="#2a3448"
         android:lineSpacingExtra="1.9sp"
@@ -77,6 +82,7 @@
         app:layout_constraintStart_toEndOf="@+id/uploadtime1"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="12.8dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginStart="20dp"
+        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

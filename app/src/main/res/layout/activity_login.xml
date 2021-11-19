@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
@@ -23,7 +24,8 @@
             android:src="@drawable/final_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <!--이메일 입력-->
         <EditText
@@ -33,7 +35,7 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/input_box_login"
             android:fontFamily="@font/nanumsquareroundb"
-            android:hint="Email"
+            android:hint="@string/lin_email"
             android:inputType="textEmailAddress"
             android:lineSpacingExtra="2.4sp"
             android:paddingStart="18dp"
@@ -43,7 +45,8 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Logo" />
+            app:layout_constraintTop_toBottomOf="@+id/Logo"
+            tools:ignore="Autofill" />
 
         <!--비밀번호 입력-->
         <EditText
@@ -53,7 +56,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/input_box_login"
             android:fontFamily="@font/nanumsquareroundb"
-            android:hint="Password"
+            android:hint="@string/lin_pass"
             android:lineSpacingExtra="2.4sp"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
@@ -63,7 +66,8 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/loginEmail"
+            tools:ignore="Autofill" />
 
         <!--로그인 유지 (후에 추가 예정)-->
         <TextView
@@ -74,12 +78,13 @@
             android:layout_marginEnd="27dp"
             android:fontFamily="@font/nanumsquareroundb"
             android:lineSpacingExtra="1.7sp"
-            android:text="로그인 상태 유지"
+            android:text="@string/lin_still"
             android:textColor="#727272"
             android:textSize="9.5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginPass"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            tools:ignore="SmallSp" />
 
         <ImageView
             android:id="@+id/Login_checkbox"
@@ -90,7 +95,8 @@
             android:background="@drawable/login_checkbox"
             app:layout_constraintEnd_toStartOf="@+id/Login_still"
             app:layout_constraintTop_toBottomOf="@+id/loginPass"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            tools:ignore="ContentDescription" />
 
         <!--로그인버튼-->
         <Button
@@ -101,12 +107,13 @@
             android:background="@drawable/login_box"
             android:fontFamily="@font/nanumsquareroundb"
             android:lineSpacingExtra="2.3sp"
-            android:text="@string/login"
+            android:text="@string/lin_ment"
             android:textColor="#ffffff"
             android:textSize="11.3sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Login_still" />
+            app:layout_constraintTop_toBottomOf="@+id/Login_still"
+            tools:ignore="SmallSp" />
 
         <!--비밀번호 찾기, 회원가입-->
         <View
@@ -127,11 +134,12 @@
             android:layout_marginTop="9dp"
             android:fontFamily="@font/nanumsquareroundr"
             android:lineSpacingExtra="1.6sp"
-            android:text="회원가입"
+            android:text="@string/lin_signup"
             android:textColor="#727272"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/partLine"
-            app:layout_constraintTop_toBottomOf="@+id/logIn" />
+            app:layout_constraintTop_toBottomOf="@+id/logIn"
+            tools:ignore="SmallSp" />
 
         <TextView
             android:id="@+id/gotoResetpass"
@@ -141,11 +149,12 @@
             android:layout_marginEnd="14dp"
             android:fontFamily="@font/nanumsquareroundr"
             android:lineSpacingExtra="1.6sp"
-            android:text="비밀번호 찾기"
+            android:text="@string/lin_passreset"
             android:textColor="#727272"
             android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@+id/partLine"
-            app:layout_constraintTop_toBottomOf="@+id/logIn" />
+            app:layout_constraintTop_toBottomOf="@+id/logIn"
+            tools:ignore="SmallSp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,34 +2,218 @@
     <string name="app_name">Froject</string>
 
     <!--로그인 화면-->
-    <string name="logo">logo</string>
-    <string name="email_hint">Email</string>
-    <string name="pass_hint">Password</string>
-    <string name="ment_keeplogin">로그인 상태 유지</string>
-    <string name="resert_pass">비밀번호 찾기</string>
-    <string name="partline">|</string>
-    <string name="login">로그인</string>
-    <string name="gotosignup">회원가입</string>
+    <string name="lin_email">Email</string>
+    <string name="lin_pass">Password</string>
+    <string name="lin_still">로그인 상태 유지</string>
+    <string name="lin_signup">회원가입</string>
+    <string name="lin_passreset">비밀번호 찾기</string>
+    <string name="lin_ment">로그인</string>
 
     <!--비밀번호 재설정 화면-->
-    <string name="putemail">이메일을 입력해주세요</string>
-    <string name="sendmail">확인</string>
+    <string name="pr_email">이메일을 입력해주세요.</string>
+    <string name="pr_send">메일 전송</string>
 
     <!--회원가입 화면-->
     <string name="signup_ment">회원가입</string>
-    <string name="signup_email_hint">EMAIL</string>
-    <string name="signup_pass_hint">PASSWORD</string>
-    <string name="signup_pass_check_hint">PASSWORD 확인</string>
-    <string name="signup_name_hint">이름</string>
-    <string name="signup_date_hint">생년월일</string>
-    <string name="signup_gender">성별</string>
-    <string name="signup_woman">여</string>
-    <string name="signup_man">남</string>
-    <string name="signup_cancel">취 소</string>
-    <string name="signup_complete">확 인</string>
+    <string name="signup_ement">이메일</string>
+    <string name="signup_email">이메일을 입력해주세요.</string>
+    <string name="signup_verify">인증</string>
+    <string name="signup_pment">비밀번호</string>
+    <string name="signup_pass">비밀번호를 입력해주세요.</string>
+    <string name="signup_pagain">비밀번호를 한번 더 입력해주세요.</string>
+    <string name="signup_next">다음</string>
 
+    <!--채팅 화면-->
+    <string name="chat_name">김수현</string>
+    <string name="chat_title">앱 개발 공모전 참가하실 디자이너/개발자 구합니다</string>
+    <string name="chat_input_box">메세지를 입력하세요.</string>
 
-    <string name="logout">로그아웃</string>
+    <!--사전 화면-->
+    <string name="dic_name">분야이름</string>
+    <string name="dic_explain">분야설명</string>
+    <string name="dic_detail">세부분야 설명</string>
+    <string name="dic_relative">관련 게시글 보러 가기</string>
+
+    <!--프로필수정 화면-->
+    <string name="edpf_edit">프로필 수정</string>
+    <string name="edpf_fname_hint">최</string>
+    <string name="edpf_fname">성</string>
+    <string name="edpf_lname_hint">지수</string>
+    <string name="edpf_lname">이름</string>
+    <string name="edpf_univ">영남대학교</string>
+    <string name="edpf_ument">학교</string>
+    <string name="edpf_lment">학년</string>
+    <string name="edpf_major">시각디자인학과</string>
+    <string name="edpf_mment">학과</string>
+    <string name="edpf_check">확인</string>
+
+    <!--완료플젝 화면-->
+    <string name="fin_title">완료된 프로젝트</string>
+
+    <!--즐겨찾기 화면-->
+    <string name="like_title">즐겨찾기</string>
+
+    <!--내게시글 화면-->
+    <string name="ml_title">내 게시글</string>
+
+    <!--게시글 화면-->
+    <string name="post_title">앱 개발 공모전 참가하실 디자이너/개발자 구합니다.</string>
+    <string name="post_id">김수현</string>
+    <string name="post_sndchat">채팅 보내기</string>
+    <string name="post_del">삭제</string>
+
+    <!--프로필 화면-->
+    <string name="pf_title">프로필</string>
+    <string name="pf_name">김수현</string>
+    <string name="pf_major">시각디자인학과</string>
+    <string name="pf_slash">/</string>
+    <string name="pf_level">3학년</string>
+    <string name="pf_univ">영남대학교</string>
+    <string name="pf_record">올린 게시글</string>
+    <string name="pf_like">즐겨찾기</string>
+    <string name="pf_finpro">완료된 프로젝트</string>
+    <string name="pf_review">평가</string>
+
+    <!--리뷰목록 화면-->
+    <string name="rl_title">후기</string>
+
+    <!--검색 화면-->
+    <string name="search_input">검색어를 입력하세요.</string>
+    <string name="search_recent">최근 검색어</string>
+
+    <!--회원정보입력 화면-->
+    <string name="ui_title">회원정보</string>
+    <string name="ui_fname_ment">성</string>
+    <string name="ui_fname">홍</string>
+    <string name="ui_lname_ment">이름</string>
+    <string name="ui_lname">길동</string>
+    <string name="ui_numment">전화번호</string>
+    <string name="ui_number">01012345678</string>
+    <string name="ui_ument">학교</string>
+    <string name="ui_univ">길동대학교</string>
+    <string name="ui_lment">학년</string>
+    <string name="ui_mment">전공</string>
+    <string name="ui_major">시각디자인학과</string>
+    <string name="ui_fin">완료</string>
+
+    <!--게시글작성 화면-->
+    <string name="write_title">제목</string>
+    <string name="write_place">장소</string>
+    <string name="write_period">기간</string>
+    <string name="write_adjust">협의 가능</string>
+    <string name="write_content">내용</string>
+    <string name="write_external">대외활동</string>
+    <string name="write_bongsa">봉사활동</string>
+    <string name="write_count">구인 수</string>
+    <string name="write_one">1</string>
+    <string name="write_fin">작성완료</string>
+
+    <!--리뷰작성 화면-->
+    <string name="rw_whose">홍길동님 후기 작성하기</string>
+    <string name="rw_cancel">취소</string>
+    <string name="rw_start">이 사람을 추천하나요?</string>
+    <string name="rw_second">상세한 평가를 해주세요!</string>
+    <string name="rw_cont1">성실도</string>
+    <string name="rw_cont2">신뢰도</string>
+    <string name="rw_cont3">전공성</string>
+    <string name="rw_ment">다음 프로젝트를 위해 솔직하고 상세한 평가 부탁드려요!(10자 이상)\n</string>
+    <string name="rw_fin">작성 완료</string>
+
+    <!--사전배너 화면-->
+    <string name="db_explain">분야설명</string>
+    <string name="db_dict">자세히 ></string>
+    <string name="db_detail">세부설명</string>
+
+    <!--카테고리 프래그먼트-->
+    <string name="cf_title">카테고리</string>
+
+    <!--홈 프래그먼트-->
+    <string name="hf_like">즐겨찾기 목록</string>
+
+    <!--프로필 프래그먼트-->
+    <string name="ff_title">내 정보</string>
+    <string name="ff_name">김수현</string>
+    <string name="ff_major">시각디자인학과</string>
+    <string name="ff_slash">/</string>
+    <string name="ff_level">3학년</string>
+    <string name="ff_univ">영남대학교</string>
+    <string name="ff_editp">프로필 수정</string>
+    <string name="ff_mypro">올린 게시글</string>
+    <string name="ff_like">즐겨찾기</string>
+    <string name="ff_finpro">완료된 프로젝트</string>
+    <string name="ff_review">평가</string>
+    <string name="ff_logout">로그아웃</string>
+
+    <!--item_addcontent-->
+    <string name="ia_ment">글을 입력해주세요.</string>
+
+    <!--item_bigcategory-->
+    <string name="ib_catename">디자인</string>
+
+    <!--item_category-->
+    <string name="ic_catename">디자인</string>
+
+    <!--item_categorycontent-->
+    <string name="icc_ment">글을 입력해주세요.</string>
+
+    <!--item_chatlist-->
+    <string name="icl_name">김수현</string>
+    <string name="icl_title">앱 개발 공모전 참가하실 디자이너/개발자 구합니다.</string>
+    <string name="icl_time">오늘</string>
+    <string name="icl_item">알겠습니다.</string>
+    <string name="icl_unread">1</string>
+
+    <!--item_finishproject-->
+    <string name="if_title">앱 개발 공모전 참가하실 디자이너/개발자 구합니다.</string>
+    <string name="if_time">1개월</string>
+    <string name="if_review">작성한 후기 보기</string>
+
+    <!--item_msgbox-->
+    <string name="im_date">2021-01-01</string>
+    <string name="im_unread">1</string>
+    <string name="im_time">1분</string>
+    <string name="im_msg">message</string>
+    <string name="im_name">이름</string>
+
+    <!--item_postdetail-->
+    <string name="ip_title">모집 내용</string>
+    <string name="ip_content">내용</string>
+    <string name="ip_place">장소 : </string>
+    <string name="ip_period">기간 : </string>
+    <string name="ip_count">구인 수 : </string>
+    <string name="ip_count2">구인 수 : 1</string>
+    <string name="ip_category">분야</string>
+
+    <!--item_postlist-->
+    <string name="il_title">앱 개발 공모전 참가하실 디자이너/개발자 구합니다.</string>
+    <string name="il_time1">1개월</string>
+    <string name="il_time2">2021-01-01</string>
+
+    <!--item_recentsearch-->
+    <string name="ir_detail">상세페이지</string>
+
+    <!--item_review-->
+    <string name="ire_name">김수현</string>
+    <string name="ire_first">성실도</string>
+    <string name="ire_second">신뢰도</string>
+    <string name="ire_third">전문성</string>
+    <string name="ire_ment">작성된 리뷰</string>
+
+    <!--item_searchrand-->
+    <string name="is_rank">1</string>
+    <string name="is_content">UX/UI</string>
+
+    <!--item_smallcategory-->
+    <string name="isc_catename">로고/브랜딩</string>
+
+    <!--three_dot-->
+    <string name="td_report">신고하기</string>
+    <string name="td_black">차단하기</string>
+    <string name="td_bye">이 게시글 보지 않기</string>
+    <string name="td_edit">게시글 수정</string>
+    <string name="td_del">게시글 삭제</string>
+    <string name="td_complete">프로젝트 완료</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

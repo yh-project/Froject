@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff">
 
     <ImageView
@@ -11,13 +13,14 @@
         android:layout_height="372.4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/bigcategoryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="분야이름"
+        android:text="@string/dic_name"
         android:textColor="#ffffff"
         android:textSize="17.5sp"
         android:fontFamily="@font/nanumsquareroundb"
@@ -30,7 +33,7 @@
         android:id="@+id/bigcategoryDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="분야설명"
+        android:text="@string/dic_explain"
         android:textColor="#ffffff"
         android:textSize="12.5sp"
         android:textAlignment="center"
@@ -65,7 +68,7 @@
         android:id="@+id/smallcategoryDetail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="세부분야 설명"
+        android:text="@string/dic_detail"
         android:textSize="12.5sp"
         android:textColor="#33529f"
         android:fontFamily="@font/nanumsquareroundr"
@@ -80,7 +83,7 @@
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
         android:background="@drawable/login_box"
-        android:text="관련 게시글 보러 가기"
+        android:text="@string/dic_relative"
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:fontFamily="@font/nanumsquareroundb"
@@ -88,152 +91,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="46dp" />
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:weightSum="130">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10" />
-
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:src="@drawable/item_back_button"
-            android:background="#ffffff"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="90"
-            android:layout_height="match_parent"
-            android:text="분야사전"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="#5768CA" />
-
-    </LinearLayout>-->
-
-    <!--<Spinner
-        android:id="@+id/bigcategory"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"/>-->
-
-   <!-- <Spinner
-        android:id="@+id/smallcategory"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"/>-->
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="190"
-        android:orientation="vertical"
-        android:weightSum="190"
-        android:background="@drawable/shadow_top_dictionary">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:orientation="horizontal"
-            android:weightSum="130"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:text="분야 설명"
-                android:textColor="#000000"
-                android:gravity="center_vertical"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="80"
-            android:orientation="horizontal"
-            android:weightSum="130"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/explainCategory"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="110"
-                android:hint="설명"
-                android:textColor="#000000"
-                android:gravity="start"
-                android:padding="5dp"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2"
-            android:background="#F1F2F4" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:orientation="horizontal"
-            android:weightSum="130"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="100"
-                android:text="관련 학과"
-                android:textColor="#000000"
-                android:gravity="center_vertical"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="80"
-            android:orientation="horizontal"
-            android:weightSum="130"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/relativeMajor"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="110"
-                android:hint="학과"
-                android:textColor="#000000"
-                android:gravity="start"
-                android:padding="5dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

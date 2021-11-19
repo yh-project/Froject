@@ -12,7 +12,7 @@
         android:id="@+id/smallcategoryname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로고·브랜딩"
+        android:text="@string/isc_catename"
         android:textColor="#bebebd"
         android:textSize="13sp"
         android:lineSpacingExtra="2.2sp"

@@ -2,12 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_category"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:clickable="true"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    tools:ignore="KeyboardInaccessibleWidget">
 
     <ImageView
         android:id="@+id/categorysrc"
@@ -16,19 +18,21 @@
         android:src="@drawable/category_design"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/categoryname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="디자인"
+        android:text="@string/ic_catename"
         android:textColor="#294075"
         android:textSize="11sp"
         android:lineSpacingExtra="2.1sp"
         android:fontFamily="@font/nanumsquareroundr"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categorysrc"/>
+        app:layout_constraintTop_toBottomOf="@+id/categorysrc"
+        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

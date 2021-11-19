@@ -16,7 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="41.6dp"
         android:layout_marginTop="27dp"
-        android:visibility="visible" />
+        android:visibility="visible"
+        tools:ignore="ContentDescription" />
 
    <ImageView
         android:id="@+id/option"
@@ -26,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="28.4dp"
-        android:layout_marginTop="27dp" />
+        android:layout_marginTop="27dp"
+       tools:ignore="ContentDescription" />
 
     <View
         android:layout_width="match_parent"
@@ -41,7 +43,7 @@
         android:id="@+id/postTitle"
         android:layout_width="244.3dp"
         android:layout_height="40dp"
-        android:text="앱 개발 공모전 참가하실 디자이너/개발자 구합니다."
+        android:text="@string/post_title"
         android:textSize="17.3sp"
         android:maxLines="2"
         android:textColor="#2a3448"
@@ -59,13 +61,14 @@
         app:layout_constraintTop_toBottomOf="@+id/postTitle"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="54.6dp"/>
+        android:layout_marginStart="54.6dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/userId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="김수현"
+        android:text="@string/post_id"
         android:textColor="#2a3448"
         android:textSize="11.5sp"
         android:lineSpacingExtra="2.3sp"
@@ -73,7 +76,8 @@
         app:layout_constraintStart_toEndOf="@+id/profilePicture"
         app:layout_constraintTop_toTopOf="@+id/profilePicture"
         app:layout_constraintBottom_toBottomOf="@+id/profilePicture"
-        android:layout_marginStart="11.4dp"/>
+        android:layout_marginStart="11.4dp"
+        tools:ignore="SmallSp" />
 
     <View
         android:id="@+id/secondLine"
@@ -102,7 +106,7 @@
         android:layout_width="283.3dp"
         android:layout_height="33.2dp"
         android:background="@drawable/button_33529f"
-        android:text="채팅 보내기"
+        android:text="@string/post_sndchat"
         android:textSize="12sp"
         android:textColor="#ffffff"
         android:fontFamily="@font/nanumsquareroundb"
@@ -126,7 +130,7 @@
         android:id="@+id/deletepost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="삭제"
+        android:text="@string/post_del"
         android:textColor="#909090"
         android:textSize="15sp"
         android:fontFamily="@font/nanumsquareroundeb"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAlignment="center"
-            android:text="1999-01-01"/>
+            android:text="@string/im_date"/>
         <View
             android:layout_width="100dp"
             android:layout_height="1dp"
@@ -41,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:gravity="left"
-        android:layout_gravity="left"
+        android:gravity="start"
+        android:layout_gravity="start"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -55,21 +56,23 @@
                 android:id="@+id/user_photo"
                 android:layout_width="29.6dp"
                 android:layout_height="29.6dp"
-                android:src="@drawable/profile_image"/>
+                android:src="@drawable/profile_image"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="5dp">
+            android:layout_marginStart="5dp">
 
             <TextView
                 android:id="@+id/msg_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:text="name" />
+                android:text="@string/im_name"
+                tools:ignore="SmallSp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,14 +88,14 @@
                     android:layout_marginTop="5dp"
                     android:maxWidth="270dp"
                     android:autoLink="all"
-                    android:text="msg \ndoraemi"
+                    android:text="@string/im_msg"
                     android:background="@drawable/item_otherchat"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="bottom">
 
                     <TextView
@@ -100,9 +103,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="invisible"
-                        android:gravity="left|bottom"
+                        android:gravity="start|bottom"
                         android:textSize="8.5sp"
-                        android:text="0"/>
+                        android:text="@string/im_unread"
+                        tools:ignore="SmallSp" />
 
                     <TextView
                         android:id="@+id/timestamp"
@@ -111,7 +115,8 @@
                         android:layout_gravity="bottom"
                         android:textColor="#9c9b9c"
                         android:textSize="8.5sp"
-                        android:text="time"/>
+                        android:text="@string/im_time"
+                        tools:ignore="SmallSp" />
 
                 </LinearLayout>
 

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
@@ -10,7 +11,7 @@
         android:id="@+id/topBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="프로필"
+        android:text="@string/pf_title"
         android:textSize="15.5sp"
         android:textColor="#33529f"
         android:lineSpacingExtra="3.1sp"
@@ -38,13 +39,14 @@
         app:layout_constraintTop_toBottomOf="@+id/firstLine"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="38.3dp" />
+        android:layout_marginStart="38.3dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="김수현"
+        android:text="@string/pf_name"
         android:textColor="#070304"
         android:textSize="14.3sp"
         android:lineSpacingExtra="2.9sp"
@@ -58,7 +60,7 @@
         android:id="@+id/userMajor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="시각디자인학과"
+        android:text="@string/pf_major"
         android:textColor="#8d8d8d"
         android:textSize="10.8sp"
         android:lineSpacingExtra="2.2sp"
@@ -66,13 +68,14 @@
         app:layout_constraintStart_toEndOf="@+id/profileImage"
         app:layout_constraintBottom_toBottomOf="@+id/profileImage"
         android:layout_marginBottom="6.5dp"
-        android:layout_marginStart="13.8dp"/>
+        android:layout_marginStart="13.8dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/divideInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/"
+        android:text="@string/pf_slash"
         android:textColor="#8d8d8d"
         android:textSize="10.8sp"
         android:fontFamily="@font/nanumsquareroundb"
@@ -80,26 +83,28 @@
         app:layout_constraintTop_toTopOf="@+id/userMajor"
         app:layout_constraintBottom_toBottomOf="@+id/userMajor"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
+        android:layout_marginEnd="5dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/userLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3학년"
+        android:text="@string/pf_level"
         android:textColor="#8d8d8d"
         android:textSize="10.8sp"
         android:lineSpacingExtra="2.2sp"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toEndOf="@+id/divideInfo"
         app:layout_constraintBottom_toBottomOf="@+id/divideInfo"
-        android:layout_marginStart="13.8dp"/>
+        android:layout_marginStart="13.8dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/divideInfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/"
+        android:text="@string/pf_slash"
         android:textColor="#8d8d8d"
         android:textSize="10.8sp"
         android:fontFamily="@font/nanumsquareroundb"
@@ -107,20 +112,22 @@
         app:layout_constraintTop_toTopOf="@+id/userLevel"
         app:layout_constraintBottom_toBottomOf="@+id/userLevel"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
+        android:layout_marginEnd="5dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:id="@+id/userUniv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="영남대학교"
+        android:text="@string/pf_univ"
         android:textColor="#8d8d8d"
         android:textSize="10.8sp"
         android:lineSpacingExtra="2.2sp"
         android:fontFamily="@font/nanumsquareroundb"
         app:layout_constraintStart_toEndOf="@+id/divideInfo2"
         app:layout_constraintBottom_toBottomOf="@+id/divideInfo2"
-        android:layout_marginStart="13.8dp"/>
+        android:layout_marginStart="13.8dp"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/gotoMyPost"
@@ -130,7 +137,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileImage"
         android:layout_marginStart="65.8dp"
-        android:layout_marginTop="31.7dp" />
+        android:layout_marginTop="31.7dp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/gotoLikeList"
@@ -139,7 +147,8 @@
         android:src="@drawable/likepost"
         app:layout_constraintStart_toEndOf="@+id/gotoMyPost"
         app:layout_constraintEnd_toStartOf="@+id/gotoFinishList"
-        app:layout_constraintTop_toTopOf="@+id/gotoMyPost" />
+        app:layout_constraintTop_toTopOf="@+id/gotoMyPost"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/gotoFinishList"
@@ -148,12 +157,13 @@
         android:src="@drawable/finishpost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/gotoMyPost"
-        android:layout_marginEnd="65.8dp" />
+        android:layout_marginEnd="65.8dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="올린 게시글"
+        android:text="@string/pf_record"
         android:textSize="10sp"
         android:textColor="#8d8d8d"
         android:fontFamily="@font/nanumsquareroundb"
@@ -161,12 +171,13 @@
         app:layout_constraintStart_toStartOf="@+id/gotoMyPost"
         app:layout_constraintEnd_toEndOf="@+id/gotoMyPost"
         app:layout_constraintTop_toBottomOf="@+id/gotoMyPost"
-        android:layout_marginTop="12.3dp" />
+        android:layout_marginTop="12.3dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="즐겨찾기"
+        android:text="@string/pf_like"
         android:textSize="10sp"
         android:textColor="#8d8d8d"
         android:fontFamily="@font/nanumsquareroundb"
@@ -174,12 +185,13 @@
         app:layout_constraintStart_toStartOf="@+id/gotoLikeList"
         app:layout_constraintEnd_toEndOf="@+id/gotoLikeList"
         app:layout_constraintTop_toBottomOf="@+id/gotoLikeList"
-        android:layout_marginTop="12.3dp" />
+        android:layout_marginTop="12.3dp"
+        tools:ignore="SmallSp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="완료된 프로젝트"
+        android:text="@string/pf_finpro"
         android:textSize="10sp"
         android:textColor="#8d8d8d"
         android:fontFamily="@font/nanumsquareroundb"
@@ -187,7 +199,8 @@
         app:layout_constraintStart_toStartOf="@+id/gotoFinishList"
         app:layout_constraintEnd_toEndOf="@+id/gotoFinishList"
         app:layout_constraintTop_toBottomOf="@+id/gotoFinishList"
-        android:layout_marginTop="12.3dp" />
+        android:layout_marginTop="12.3dp"
+        tools:ignore="SmallSp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -200,7 +213,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="평가"
+            android:text="@string/pf_review"
             android:textColor="#294075"
             android:textSize="14.3sp"
             android:lineSpacingExtra="2.9sp"
@@ -218,7 +231,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="19.8dp"
-            android:layout_marginEnd="37.6dp"/>
+            android:layout_marginEnd="37.6dp"
+            tools:ignore="ContentDescription" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reviewlistRecyclerView"
