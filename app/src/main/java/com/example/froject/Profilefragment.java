@@ -81,6 +81,7 @@ public class Profilefragment extends Fragment {
         v.findViewById(R.id.logout).setOnClickListener(onClickListener);
         v.findViewById(R.id.gotoLikeList).setOnClickListener(onClickListener);
         v.findViewById(R.id.gotoMyPost).setOnClickListener(onClickListener);
+        v.findViewById(R.id.gotoFinishList).setOnClickListener(onClickListener);
 
         return v;
     }
@@ -105,6 +106,11 @@ public class Profilefragment extends Fragment {
                     break;
                 case R.id.gotoMyPost:
                     intent = new Intent(getActivity(), MyListActivity.class);
+                    intent.putExtra("my_info",my_info);
+                    startActivity(intent);
+                    break;
+                case R.id.gotoFinishList:
+                    intent = new Intent(getActivity(),FinishActivity.class);
                     intent.putExtra("my_info",my_info);
                     startActivity(intent);
                     break;

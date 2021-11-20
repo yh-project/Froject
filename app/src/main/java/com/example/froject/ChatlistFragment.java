@@ -21,10 +21,15 @@ import androidx.fragment.app.Fragment;
 //import gujc.directtalk9.chat.ChatActivity;
 //import gujc.directtalk9.model.UserModel;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 //import com.google.firebase.storage.FirebaseStorage;
 //import com.google.firebase.storage.StorageReference;
 
@@ -92,6 +97,14 @@ public class ChatlistFragment extends Fragment {
             }
             viewHolder.user_name.setText(user.getname());
             viewHolder.user_msg.setText(user.getuniv());
+            /*FirebaseFirestore.getInstance().collection("rooms").
+                    whereEqualTo("users",user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                    task.getResult().getDocuments()
+                }
+            });*/
+            //viewHolder.count.setText(user);
 
             /*if (user.getUserphoto()==null) {
                 Glide.with(getActivity()).load(R.drawable.user)
@@ -110,6 +123,7 @@ public class ChatlistFragment extends Fragment {
                     //Intent intent = new Intent(getView().getContext(), WriteActivity.class);
                     Intent intent = new Intent(getView().getContext(), ChatActivity.class);
                     intent.putExtra("you_email", user.getEmail());
+                    intent.putExtra("rName",user.getname());
                     startActivity(intent);
                 }
             });
@@ -120,11 +134,13 @@ public class ChatlistFragment extends Fragment {
     private class CustomViewHolder extends RecyclerView.ViewHolder {
         public TextView user_name;
         public TextView user_msg;
+        public TextView count;
 
         CustomViewHolder(View view) {
             super(view);
             user_name = view.findViewById(R.id.msg_name);
             user_msg = view.findViewById(R.id.msg_item);
+            count = view.findViewById(R.id.noReadCount);
         }
     }
 }

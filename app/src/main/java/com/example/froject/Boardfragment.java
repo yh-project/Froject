@@ -323,7 +323,6 @@ public class Boardfragment extends Fragment {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.threedot_dialog_board);
                 if (!list.get(position).getEmail().equals(user.getEmail())) {
-                    Log.d("ㅎㅇ", "ㅎㅇ");
                     dialog.show();
                     TextView warn = dialog.findViewById(R.id.warn);
                     warn.setOnClickListener(new View.OnClickListener() {
@@ -353,109 +352,6 @@ public class Boardfragment extends Fragment {
             }
         });
     }
-
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        Log.w("omg","onResume");
-        //whereArrayContains("bigCategory",bigcat)
-        db.collectionGroup("Board").orderBy("writeTime", DESCENDING).
-                whereArrayContains("bigCategory",bigcat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                postrecyclerView = getView().findViewById(R.id.boardRecyclerView);
-                docSize = task.getResult().getDocuments().size();
-                Log.w(TAG, "omg" + docSize);
-                for (int i = 0; i < docSize; i++) {
-                    list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
-                    listDoc.add(task.getResult().getDocuments().get(i).getReference());
-                }
-                postAdapter = new PostAdapter(list);
-                postAdapter.setListDoc(listDoc);
-                postAdapter.setUser(user.getEmail());
-                postrecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-                postrecyclerView.setAdapter(postAdapter);
-                setLikeClickListener(postAdapter,task);
-            }
-        });
-        // 큰카테고리 뷰에따른 작은카테고리
-        bigcategoryrecyclerview = getView().findViewById(R.id.bigcategoryRecyclerView);
-        bigcategorylist = getResources().getStringArray(R.array.Bigcategory);
-        bigCategoryAdapter = new BigCategoryAdapter(bigcategorylist);
-
-        //이전 카테고리뷰에서 누른 카테고리의 하부 카테고리 기본 생성
-        switch(bigcat) {
-            case "디자인":
-                smallcategorylist = getResources().getStringArray(R.array.Designcategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-            case "개발":
-                smallcategorylist = getResources().getStringArray(R.array.Developcategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-            case "사진·영상":
-                smallcategorylist = getResources().getStringArray(R.array.Photocategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-            case "번역·통역":
-                smallcategorylist = getResources().getStringArray(R.array.Translatecategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-            case "기획":
-                smallcategorylist = getResources().getStringArray(R.array.Plancategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-            case "인테리어":
-                smallcategorylist = getResources().getStringArray(R.array.Interiorlcategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-            case "대외활동":
-                smallcategorylist = getResources().getStringArray(R.array.Extracategory);
-                setRecyclerView(getView(), smallcategorylist);
-                break;
-        }
-
-        //큰카테고리 선택시 작은카테고리 생성
-        callbackListener = new ClickCallbackListener() {
-            @Override
-            public void callBack(String name) {
-                switch(name) {
-                    case "디자인":
-                        smallcategorylist = getResources().getStringArray(R.array.Designcategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                    case "개발":
-                        smallcategorylist = getResources().getStringArray(R.array.Developcategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                    case "사진·영상":
-                        smallcategorylist = getResources().getStringArray(R.array.Photocategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                    case "번역·통역":
-                        smallcategorylist = getResources().getStringArray(R.array.Translatecategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                    case "기획":
-                        smallcategorylist = getResources().getStringArray(R.array.Plancategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                    case "인테리어":
-                        smallcategorylist = getResources().getStringArray(R.array.Interiorlcategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                    case "대외활동":
-                        smallcategorylist = getResources().getStringArray(R.array.Extracategory);
-                        setRecyclerView(getView(), smallcategorylist);
-                        break;
-                }
-                getDBWithSort(name,getView());
-            }
-        };
-        bigCategoryAdapter.setCallbackListener(callbackListener);
-        bigcategoryrecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        bigcategoryrecyclerview.setAdapter(bigCategoryAdapter);
-    }*/
 
     private void startToast(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();

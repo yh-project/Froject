@@ -46,7 +46,6 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private EditText etEmail, etPassword, etPasswordCheck;
 
-    String gender = "";
     FirebaseUser user;
 
     private boolean is_has_email = false;

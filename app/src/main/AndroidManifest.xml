@@ -35,6 +35,7 @@
         <activity android:name=".LikeListActivity" />
         <activity android:name=".MyListActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".FinishActivity"/>
 
 
     </application>

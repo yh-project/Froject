@@ -50,12 +50,12 @@ public class DictionaryViewPagerAdapter extends PagerAdapter {
 
             if(i==0) {
                 layout.setBackgroundResource(R.drawable.design_second);
-                explain.setText("디자인학과에서는 인간생활의 편리함과 아름다움을 추구하는 디자인 전반에 대한 지식과 이론을 습득하고 실기를 합니다.");
+                explain.setText("디자인계열에서는 인간생활의 편리함과 아름다움을 추구하는 디자인 전반에 대한 지식과 이론을 습득하고 실기를 합니다.");
                 i++;
             }
             else if(i==1) {
                 layout.setBackgroundResource(R.drawable.develop_second);
-                explain.setText("개발학과에서는 살아가는데에 있어 편의와 삶의 안정성을 제공해주는 다양한 기술, 실습과 이론들을 학습합니다.");
+                explain.setText("개발계열에서는 살아가는데에 있어 편의와 삶의 안정성을 제공해주는 다양한 기술, 실습과 이론들을 학습합니다.");
                 i++;
             }
             else if(i>=2) {

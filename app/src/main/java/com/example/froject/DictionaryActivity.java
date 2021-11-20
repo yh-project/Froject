@@ -57,12 +57,12 @@ public class DictionaryActivity extends AppCompatActivity {
         String bigcat = intent.getStringExtra("contact_big");
         bigname.setText(bigcat);
         if(bigcat.equals("디자인")) {
-            String content = "디자인학과에서는 인간생활의 편리함과 아름다움을 추구하는디자인 전반에 대한 지식과 이론을 습득하고 실기를 한다.";
+            String content = "디자인계열은 인간생활의 편리함과 아름다움을 추구하는디자인 전반에 대한 지식과 이론을 습득하고 실기를 한다.";
             background.setBackgroundResource(R.drawable.design_image);
             bigdetail.setText(content + " 분야");
         }
         else if(bigcat.equals("개발")) {
-            String content = "개발학과에서는 사람이 살아가면서 불필요하고 불편한 점들을 해소하면서 나아가 편의를 주기 위해 다양한 학습을 한다.";;
+            String content = "개발개열은 사람이 살아가면서 불필요하고 불편한 점들을 해소하면서 나아가 편의를 주기 위해 다양한 학습을 한다.";;
             background.setBackgroundResource(R.drawable.develop_image);
             bigdetail.setText(content);
         }
