@@ -758,6 +758,8 @@ public class ChatActivity extends AppCompatActivity {
     private String title;
     private String rName;
 
+    private TextView title_tv;
+
     /*public static final ChatFragment getInstance(String toUid, String roomID) {
         ChatFragment f = new ChatFragment();
         Bundle bdl = new Bundle();
@@ -776,6 +778,11 @@ public class ChatActivity extends AppCompatActivity {
         rName = getIntent().getStringExtra("rName");
         TextView tv = findViewById(R.id.opponentName);
         tv.setText(rName);
+        title_tv = findViewById(R.id.postTitle);
+        if (title != null) {
+
+            title_tv.setText(title);
+        }
 
         recyclerView = findViewById(R.id.rv_list);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -929,7 +936,9 @@ public class ChatActivity extends AppCompatActivity {
                 userCount = users.size();
                 users.put(myUid, (long) 0);
                 document.getReference().update("users", users);
-                if (getIntent() != null)
+                String set_title = (String)document.get("title");
+                title_tv.setText(set_title);
+                if (title != null)
                     document.getReference().update("title",title);
             }
         });
@@ -1029,8 +1038,8 @@ public class ChatActivity extends AppCompatActivity {
                     if (!myUid.equals(key)) users.put(key, users.get(key)+1);
                 }
                 document.getReference().update("users", users);
-                if (getIntent() != null)
-                    document.getReference().update("title",title);
+                /*if (title != null)
+                    document.getReference().update("title",title);*/
 
                 batch.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

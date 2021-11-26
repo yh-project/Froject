@@ -64,7 +64,7 @@
             android:layout_width="124dp"
             android:layout_height="32dp"
             android:background="@drawable/borderline_button_eef0f5"
-            android:hint="@string/edpf_fname_hint"
+
             android:textColor="#2a3448"
             android:textColorHint="#2a3448"
             android:textSize="10sp"
@@ -76,6 +76,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="Autofill,SmallSp"
             android:inputType="text"/>
+            <!--android:hint="@string/edpf_fname_hint"-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,7 +98,7 @@
             android:layout_height="32dp"
             android:background="@drawable/borderline_button_eef0f5"
             android:fontFamily="@font/nanumsquareroundb"
-            android:hint="@string/edpf_lname_hint"
+
             android:lineSpacingExtra="2sp"
             android:paddingStart="15.7dp"
             android:paddingEnd="0dp"
@@ -107,6 +108,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="Autofill,SmallSp,TextFields" />
+            <!--android:hint="@string/edpf_lname_hint"-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -129,7 +131,7 @@
         android:layout_width="274.1dp"
         android:layout_height="32dp"
         android:background="@drawable/borderline_button_eef0f5"
-        android:hint="@string/edpf_univ"
+
         android:textColorHint="#2a3448"
         android:textColor="#2a3448"
         android:textSize="10sp"
@@ -142,6 +144,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameLayout"
         android:layout_marginTop="30.4dp"
         tools:ignore="Autofill,SmallSp,TextFields" />
+        <!--android:hint="@string/edpf_univ"-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -192,7 +195,7 @@
         android:layout_width="274.1dp"
         android:layout_height="32dp"
         android:background="@drawable/borderline_button_eef0f5"
-        android:hint="@string/edpf_major"
+
         android:textColorHint="#2a3448"
         android:textColor="#2a3448"
         android:textSize="10sp"
@@ -205,6 +208,7 @@
         app:layout_constraintTop_toBottomOf="@+id/newLevel"
         android:layout_marginTop="30.4dp"
         tools:ignore="Autofill,SmallSp,TextFields" />
+        <!--android:hint="@string/edpf_major"-->
 
     <TextView
         android:layout_width="wrap_content"

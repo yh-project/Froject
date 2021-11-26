@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class Profilefragment extends Fragment {
+public class    Profilefragment extends Fragment {
     private static final String TAG = "ProfileFragment";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     final ArrayList<String> userinfoList = new ArrayList<>();

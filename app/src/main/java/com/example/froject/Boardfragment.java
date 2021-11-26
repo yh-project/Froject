@@ -85,7 +85,7 @@ public class Boardfragment extends Fragment {
     CollectionReference boardRef = docRef.collection("Board");
     PostData tmp;
     String bigcat="";
-    boolean[] is_checked = new boolean[10];
+    boolean[] is_checked = new boolean[12];
     boolean[] is_checked_big = new boolean[7];
 
     @Override
@@ -173,10 +173,10 @@ public class Boardfragment extends Fragment {
 
             @Override
             public void callBack(String name, int a) {
-                for(int i=0;i<10;i++)
+                for(int i=0;i<12;i++)
                     is_checked[i]=false;
-                is_checked_big[a]=true;
                 is_checked_big[prev_big]=false;
+                is_checked_big[a]=true;
                 bigCategoryAdapter.notifyItemChanged(a);
                 bigCategoryAdapter.notifyItemChanged(prev_big);
                 prev_big = a;

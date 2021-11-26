@@ -2,6 +2,8 @@ package com.example.froject;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -62,15 +64,14 @@ public class SearchActivity extends AppCompatActivity {
                         if (EtNullCheck(editsearch) == 0) {
                             break;
                         }
-                        searchdata = editsearch.getText().toString();//검색한거 스트링으로 저장
+                        //입력글자 깨짐현상 - google 입력기에서 문제생김 //https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=wnwogh88&logNo=220462603648
+
+                        searchdata = editsearch.getText().toString().trim();//검색한거 스트링으로 저장
 
                         editsearch.clearFocus();//엔터키 누르면 커서 제거
                         imm.hideSoftInputFromWindow(editsearch.getWindowToken(), 0); //키보드 내려줌.
 
-
                         searching(searchdata);
-
-                        editsearch.setText("");
 
                         break;
                     default:
@@ -121,22 +122,21 @@ public class SearchActivity extends AppCompatActivity {
                 Log.d("data",docSize+"");
 
                 String[] search2 = search.split("\n");
+                String pattern = ".*"+search2[0]+".*";
+                editsearch.setText(editsearch.getText().toString().trim());
 
-
-                String pattern = "*"+search2[0]+"*";
-                for (int i = 0; i < docSize; i++) {
-                    try {
+                try {
+                    for (int i = 0; i < docSize; i++) {
                         PostData data = task.getResult().getDocuments().get(i).toObject(PostData.class);
                         if (data.getSearchData().matches(pattern)) {
                             list.add(task.getResult().getDocuments().get(i).toObject(PostData.class));
                             listDoc.add(task.getResult().getDocuments().get(i).getReference());
                         }
                     }
-                    catch (Exception e) {
-                        break;
-                    }
-
+                } catch (Exception e) {
+                    Log.w("exception", e);
                 }
+
                 postAdapter = new PostAdapter(list);
                 postAdapter.setListDoc(listDoc);
                 postAdapter.setUser(user.getEmail());

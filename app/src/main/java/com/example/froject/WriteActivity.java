@@ -218,10 +218,6 @@ public class WriteActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.finishcontents:
-                    /*PostData postData1 = list.get(0);
-                    PostData postData2 = list.get(1);
-                    Log.d("하이3", postData1.getInputContent());
-                    Log.d("하이3", postData2.getInputContent());*/
                     String title = ((EditText)findViewById(R.id.inputTitle)).getText().toString();
                     String place = ((EditText)findViewById(R.id.inputPlace)).getText().toString();
                     String period = ((EditText)findViewById(R.id.inputPeriod)).getText().toString();

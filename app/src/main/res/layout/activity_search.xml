@@ -29,6 +29,7 @@
         android:lineSpacingExtra="2.2sp"
         android:fontFamily="@font/nanumsquareroundeb"
         android:maxLines="1"
+        android:singleLine="true"
         android:paddingStart="5dp"
         android:paddingEnd="0dp"
         android:background="@android:color/transparent"

@@ -21,8 +21,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.ktx.Firebase;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,6 +38,7 @@ public class MyListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PostAdapter mylistAdapter;
     private ArrayList<PostData> list;
+    private ArrayList<DocumentReference> listDoc;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -48,7 +51,7 @@ public class MyListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.mylistRecyclerView);
         list = new ArrayList<>();
-        ArrayList<DocumentReference> listDoc = new ArrayList<>();
+        listDoc = new ArrayList<>();
         list.clear();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -119,6 +122,18 @@ public class MyListActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             startToast("프로젝트가 종료되었습니다.");
+                            listDoc.get(position).collection("PostComments").document();
+                            FirebaseFirestore.getInstance().collection("rooms").whereEqualTo("title",list.get(position))
+                                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                    /*task.getResult().toObjects()
+                                    ArrayList<String> users = (ArrayList<String>)((QuerySnapshot)task.getResult()).
+                                    for (String user:users) {
+                                        listDoc.get(position).collection("PostComments").document(user);
+                                    }*/
+                                }
+                            });
                             dialog.dismiss();
                         }
                     });
@@ -136,5 +151,6 @@ public class MyListActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
 }
 
