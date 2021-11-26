@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         @Nullable String data = intent.getStringExtra("data");
         //End = get info for past Activity
 
+        @Nullable String back_mylist = intent.getStringExtra("back_mylist");
         //Case : Back to MainActivity
 
         Bundle bundle = new Bundle();
@@ -136,6 +137,21 @@ public class MainActivity extends AppCompatActivity {
                         boardfragment.setArguments(bundle2);
                     }
                     addFragment(boardfragment);
+                    break;
+
+            }
+        }
+        if(back_mylist != null) {
+            switch(back_mylist) {
+                case "back_mylist":
+                    if(profilefragment == null) {
+                        bundle.putSerializable("my_info", my_info);
+                        profilefragment = new Profilefragment();
+                        profilefragment.setArguments(bundle);
+                        addFragment(profilefragment);
+                    } else {
+                        showFragment(profilefragment);
+                    }
                     break;
             }
         }

@@ -49,6 +49,7 @@ public class MyListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Info my_info =(Info)intent.getSerializableExtra("my_info");
 
+
         recyclerView = findViewById(R.id.mylistRecyclerView);
         list = new ArrayList<>();
         listDoc = new ArrayList<>();
@@ -78,10 +79,30 @@ public class MyListActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+        ((ImageView)findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+;               Dialog dialog = new Dialog(MyListActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.back_dialog_mylist);
+                dialog.show();
+                TextView okay = dialog.findViewById(R.id.okay);
+                okay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MyListActivity.this, MainActivity.class);
+                        intent.putExtra("data", "back_mylist");
+                        startActivity(MainActivity.class);
+                        dialog.dismiss();
+                    }
+                });
+                TextView no = dialog.findViewById(R.id.no);
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 
