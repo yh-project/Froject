@@ -83,15 +83,26 @@ public class WriteActivity extends AppCompatActivity {
 
         intent = getIntent();
         new_post = (PostData)intent.getSerializableExtra("postData");
-        if(new_post!=null) {
-
-        }
 
         setContentView(R.layout.activity_write);
         totalCount = findViewById(R.id.totalCount);
         checkPeriod = findViewById(R.id.checkperiod);
         checkContest = findViewById(R.id.checkcontest);
         checkVolunteer = findViewById(R.id.checkvolunteer);
+
+        if(new_post!= null) {
+            Log.d("WriteActivity","no post");
+            totalCount.setText(new_post.getTotalPeople());
+            checkPeriod.setChecked(new_post.periodNegotiable);
+            checkContest.setChecked(new_post.contest);
+            checkVolunteer.setChecked(new_post.volunteer);
+
+            ((EditText)findViewById(R.id.inputTitle)).setText(new_post.getTitle());
+            ((EditText)findViewById(R.id.inputPlace)).setText(new_post.getPlace());
+            ((EditText)findViewById(R.id.inputPeriod)).setText(new_post.getPeriod());
+            //((TextView)findViewById(R.id.totalCount)).setText(new_post.total;
+            ((EditText)findViewById(R.id.inputContent)).setText(new_post.getMainContent());
+        }
 
         findViewById(R.id.minus).setOnClickListener(onCountListener);
         findViewById(R.id.plus).setOnClickListener(onCountListener);
@@ -101,8 +112,18 @@ public class WriteActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.categoryContentRecyclerView);
         list = new ArrayList<>();
-        WriteData writeData = new WriteData();
-        list.add(writeData);
+        WriteData writeData = null;
+        if (new_post != null)
+            for (int i=0;i<new_post.getBigCategory().size();i++) {
+                writeData = new WriteData(new_post.getCategoryContent().get(i),
+                        new_post.getBigCategory().get(i), new_post.getSmallCategory().get(i),
+                        new_post.getCategoryPeople().get(i));
+                list.add(writeData);
+            }
+        else {
+            writeData = new WriteData();
+            list.add(writeData);
+        }
         writingAdapter = new WritingAdapter(list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         ItemHeightSpace itemHeightSpace = new ItemHeightSpace(50);
