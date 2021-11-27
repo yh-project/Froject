@@ -62,6 +62,7 @@ public class WriteActivity extends AppCompatActivity {
     private CheckBox checkPeriod;
     private CheckBox checkVolunteer;
     private CheckBox checkContest;
+    private boolean is_correction=false;
 
     private static final int MAX_COUNT = 10;
 
@@ -70,6 +71,7 @@ public class WriteActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("users").document(user.getEmail());
     CollectionReference boardRef = docRef.collection("Board");
+    private String getDocRef;
 
     //LinearLayout contentslayout;
     PostData new_post;
@@ -83,6 +85,7 @@ public class WriteActivity extends AppCompatActivity {
 
         intent = getIntent();
         new_post = (PostData)intent.getSerializableExtra("postData");
+        getDocRef = intent.getStringExtra("DocRef");
 
         setContentView(R.layout.activity_write);
         totalCount = findViewById(R.id.totalCount);
@@ -102,6 +105,7 @@ public class WriteActivity extends AppCompatActivity {
             ((EditText)findViewById(R.id.inputPeriod)).setText(new_post.getPeriod());
             //((TextView)findViewById(R.id.totalCount)).setText(new_post.total;
             ((EditText)findViewById(R.id.inputContent)).setText(new_post.getMainContent());
+            is_correction = true;
         }
 
         findViewById(R.id.minus).setOnClickListener(onCountListener);
@@ -245,7 +249,12 @@ public class WriteActivity extends AppCompatActivity {
                     String totalCnt = ((TextView)findViewById(R.id.totalCount)).getText().toString();
                     String mainContent = ((EditText)findViewById(R.id.inputContent)).getText().toString();
 
-                    new_post = new PostData(title, place, period, mainContent, totalCnt);
+                    if (!is_correction)
+                        new_post = new PostData(title, place, period, mainContent, totalCnt);
+                    else {
+                        new_post.setTitle(title);
+                        new_post.set_PostData(title,place,period,mainContent,totalCnt);
+                    }
                     Date date = new Date(System.currentTimeMillis());
                     SimpleDateFormat sdate = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
                     sdate.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
@@ -279,14 +288,23 @@ public class WriteActivity extends AppCompatActivity {
                     new_post.setPeriodNegotiable(checkPeriod.isChecked());
                     new_post.settingSearchData();
 
-                    boardRef.document(sdate.format(date)).set(new_post);
-                    boardRef.document(sdate.format(date)).update("writeTime",date);
-                    db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                            boardRef.document(sdate.format(date)).update("postNumber",""+(task.getResult().getDocuments().size()+1));
-                        }
-                    });
+                    if (!is_correction) {
+                        Log.d("WriteActivity","new post update");
+                        boardRef.document(sdate.format(date)).set(new_post);
+                        boardRef.document(sdate.format(date)).update("writeTime", date);
+                        db.collectionGroup("Board").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                                boardRef.document(sdate.format(date)).update("postNumber", "" + (task.getResult().getDocuments().size() + 1));
+                            }
+                        });
+                    }
+                    else {
+                        Log.d("WriteActivity","correct post update");
+                        boardRef.document(getDocRef).set(new_post);
+                        boardRef.document(getDocRef).update("writeTime", date);
+
+                    }
 
                     intent.setClass(WriteActivity.this,MainActivity.class);
                     //intent.putExtra("reload",true);

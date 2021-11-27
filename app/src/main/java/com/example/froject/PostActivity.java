@@ -80,6 +80,7 @@ public class PostActivity extends AppCompatActivity {
                     Intent intent = new Intent(PostActivity.this, WriteActivity.class);
                     intent.putExtra("you_email", postdata.Email);
                     intent.putExtra("postData",postdata);
+                    intent.putExtra("DocRef",docRef);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }

@@ -46,6 +46,14 @@ public class PostData implements Serializable {
         this.totalPeople = totalPeople;
     }
 
+    public void set_PostData(String title, String place, String period, String mainContent, String totalPeople) {
+        this.title = title;
+        this.place = place;
+        this.period = period;
+        this.mainContent = mainContent;
+        this.totalPeople = totalPeople;
+    }
+
     // 게시글 화면에서 보일 분야별내용부분 생성자
     /*public PostData(String Content, String BigCategory, String SmallCategory, String countPeople) {
         this.Content = Content;
