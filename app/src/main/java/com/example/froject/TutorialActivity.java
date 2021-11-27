@@ -1,11 +1,13 @@
 package com.example.froject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -26,14 +28,16 @@ public class TutorialActivity extends AppCompatActivity {
 
         tutorialshow = findViewById(R.id.showTutorial);
 
-        /*pages = new int[] {
+        pages = new int[] {
                 R.layout.tutorial_1,
                 R.layout.tutorial_2,
                 R.layout.tutorial_3,
                 R.layout.tutorial_4
-        };*/
+        };
         pagerAdapter = new PagerAdapter();
-        tutorialshow.setAdapter(pagerAdapter);    }
+        tutorialshow.setAdapter(pagerAdapter);
+
+    }
 
     public class PagerAdapter extends androidx.viewpager.widget.PagerAdapter {
         private LayoutInflater layoutInflater;
@@ -45,6 +49,15 @@ public class TutorialActivity extends AppCompatActivity {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View view = layoutInflater.inflate(pages[position], container, false);
+
+            Button goMain = view.findViewById(R.id.gotoMain);
+            goMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TutorialActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            });
             container.addView(view);
 
             return view;

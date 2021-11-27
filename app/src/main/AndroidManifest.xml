@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Froject"
         android:largeHeap="true">
-        <activity android:name=".LoadingActivity">
+        <activity android:name=".TutorialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,6 +36,7 @@
         <activity android:name=".MyListActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".FinishActivity"/>
+        <activity android:name=".LoadingActivity" />
 
 
     </application>

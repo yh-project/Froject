@@ -135,5 +135,6 @@ public class PostData implements Serializable {
 
     public String getSearchData() { return searchData; }
     public void setSearchData(String searchData) { this.searchData = searchData; }
-    public void settingSearchData() { this.searchData = title + place + period + ((periodNegotiable) ? "(협의가능)" : "") + mainContent + totalPeople + ((volunteer) ? "봉사활동" : "") + ((contest) ? "대외활동" : "") + author + Email; }
+    public void settingSearchData() { this.searchData = title + place + period + ((periodNegotiable) ? "(협의가능)" : "")
+            + mainContent + totalPeople + ((volunteer) ? "봉사활동" : "") + ((contest) ? "대외활동" : "") + author + Email; }
 }
