@@ -139,7 +139,7 @@ public class SignupActivity extends AppCompatActivity {
     private void send_email() {
         String email = ((EditText) findViewById(R.id.setEmail)).getText().toString();
         if (!check_email(email)) {
-            startToast("대학 메일로 가입해주세요\n(ex. abcd@korea.ac.kr / abc@korea.edu");
+            startToast("대학 메일로 가입해주세요\n(ex. abcd@korea.ac.kr / abc@korea.edu)");
             return;
         }
         mAuth.createUserWithEmailAndPassword(email,"000000").addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -165,9 +165,10 @@ public class SignupActivity extends AppCompatActivity {
                                                 if (user.isEmailVerified()) {
                                                     findViewById(R.id.setPass).setVisibility(View.VISIBLE);
                                                     findViewById(R.id.passCheck).setVisibility(View.VISIBLE);
-                                                    //background 이상하므로 나중에 수정
-                                                    //((Button)findViewById(R.id.sendMail)).setBackgroundColor(R.drawable.box_e0e1ef);
+
+                                                    ((Button)findViewById(R.id.sendMail)).setBackground(getDrawable(R.drawable.login_unbox));
                                                     ((Button)findViewById(R.id.sendMail)).setClickable(false);
+                                                    ((Button)findViewById(R.id.sendMail)).setText("인증완료");
 
                                                     AlertDialog.Builder msgBuilder = new AlertDialog.Builder(SignupActivity.this)
                                                             .setTitle("이메일 인증 완료")
@@ -339,7 +340,9 @@ public class SignupActivity extends AppCompatActivity {
     private boolean check_email(String email) {
         String pattern = "[0-9a-zA-Z]*\\@[0-9a-zA-Z]*\\.ac\\.kr"; //--@--.ac.kr
         String pattern2 = "[0-9a-zA-Z]*\\@[0-9a-zA-Z]*\\.edu";    //--@--.edu
-        boolean regex = Pattern.matches(pattern, email) || Pattern.matches(pattern2,email);
+        //구현 영상을 위한 코드, 삭제 필요
+        String pattern3 = "[0-9a-zA-Z]*\\@naver\\.com";    //--@naver.com
+        boolean regex = Pattern.matches(pattern, email) || Pattern.matches(pattern2,email) || Pattern.matches(pattern3,email);
 
         return regex;
     }

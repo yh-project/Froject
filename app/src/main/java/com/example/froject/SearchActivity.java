@@ -81,11 +81,18 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        for(int i=0 ; i<10;i++) {
-            RecentSearchData recentSearchData = new RecentSearchData("배고파"+(i+1));
-            SearchRankData searchRankData = new SearchRankData(""+(i+1), "저녁은 삼겹살"+(i+1));
+        String[] recent = {"해커톤", "웹", "앱", "아두이노"};
+        String[] rank = {"앱개발","UI/UX","AI","뮤직비디오","번역"};
 
-            recentList.add(recentSearchData);
+        for(int i=0 ; i<5;i++) {
+
+            RecentSearchData recentSearchData;
+            if (i!=4) {
+                recentSearchData = new RecentSearchData(recent[i]);
+                recentList.add(recentSearchData);
+            }
+
+            SearchRankData searchRankData = new SearchRankData(""+(i+1), rank[i]);
             rankList.add(searchRankData);
         }
         recentSearchAdapter = new RecentSearchAdapter(recentList);
